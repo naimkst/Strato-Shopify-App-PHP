@@ -534,7 +534,7 @@ function buildKlarglasOption() {
     subtab_id: '7',
     label: 'Klarglas',
     value_key: 'standard',
-    image_url: '<svg width="120" height="90" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Klarglas"><rect x="12" y="10" width="96" height="70" rx="3" fill="#f7fbff" stroke="#9ab5c9" stroke-width="3"/><path d="M24 72 96 18" stroke="#d9edf7" stroke-width="8" stroke-linecap="round"/><path d="M38 74 102 28" stroke="#eef7fb" stroke-width="5" stroke-linecap="round"/></svg>',
+    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Klarglas.png',
     price: 0,
     extra_json: '{}'
   };
