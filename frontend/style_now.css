@@ -2378,7 +2378,8 @@ div#tab7.active {
 }
 
 .its_my_app_work #tab6 .card-option img {
-    width: 66px;
+    width: 100% !important;
+    margin-right: 0rem;
 }
 
 div#globalBottomCheckpoint {

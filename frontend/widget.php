@@ -327,6 +327,13 @@ span.checkmark-box img {
     width: 95px;
 }
 
+@media (min-width: 1024px) and (max-width: 1799px) {
+    .its_my_app_work #tab6 .card-option img {
+        width: 100% !important;
+        margin-right: 0rem;
+    }
+}
+
 .its_my_app_work .checkmark-box img {
     width: 24px !important;
     height: auto !important;
