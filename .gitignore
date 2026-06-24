@@ -1,0 +1,16 @@
+.DS_Store
+*.log
+*.tmp
+*.download
+
+.env
+.env.*
+!.env.example
+
+# Live server credentials and generated/private data.
+conn.php
+connect.php
+generate_token.php
+tokens/
+uploads/
+debug_product_response.json

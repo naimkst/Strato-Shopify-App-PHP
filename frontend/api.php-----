@@ -1,0 +1,338 @@
+<style>
+svg#svg_preview {
+    width: 500px;
+height:500px;
+overflow: visible;
+
+}
+</style>
+
+<svg width="160" height="160" viewBox="-1 -1 2002 2002" id="svg_preview" xmlns:xlink="http://www.w3.org/1999/xlink" data-source="selected"><defs><pattern id="colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="colour_pattern_h_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="guide_rail_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="curtain_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="bottom_slat_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="infill_basic_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="infill_additional_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="infill_application_colour_pattern_v_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern><pattern id="inside_shading_box_colour_pattern_h_preview" x="0" y="0" height="500" width="500" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><image x="0" y="0" height="500" width="500" preserveAspectRatio="none" xlink:href="https://server.fenzon.de/images/"></image></pattern></defs><g><path id="infill_1" d=" M948 1923 L948 1052 L77 1052 L77 1923 Z" stroke="#000000" stroke-width="1" fill="#a0bdcc"></path><path id="infill_2" d=" M1923 1923 L1923 1052 L1052 1052 L1052 1923 Z" stroke="#000000" stroke-width="1" fill="#a0bdcc"></path><path id="infill_3" d=" M1923 948 L1923 77 L77 77 L77 948 Z" stroke="#000000" stroke-width="1" fill="#a0bdcc"></path><path id="opening_1" d="M928 1487.5 L97 1072 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_1" d="M928 1487.5 L97 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_1" d="M512.5 1072 L97 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_1" d="M512.5 1072 L928 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_2" d="M1072 1487.5 L1903 1072 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_2" d="M1072 1487.5 L1903 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_2" d="M1487.5 1072 L1072 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_2" d="M1487.5 1072 L1903 1903 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_3" d="M1903 512.5 L97 97 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="opening_3" d="M1903 512.5 L97 928 Z" stroke="#000000" stroke-width="1" fill="none"></path><path id="outer_frame_1" d="M66 1934 L1934 1934 L2000 2000 L0 2000 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="outer_frame_2" d="M1934 1934 L1934 66 L2000 0 L2000 2000 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="outer_frame_3" d="M1934 66 L66 66 L0 0 L2000 0 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="outer_frame_4" d="M66 66 L66 1934 L0 2000 L0 0 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="mullion_1" d="M66 1041 L66 959 L1934 959 L1934 1041 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="mullion_2" d="M959 1934 L959 1041 L1041 1041 L1041 1934 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_1_1" d="M97 1903 L928 1903 L985 1960 L40 1960 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_1_2" d="M928 1903 L928 1072 L985 1015 L985 1960 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_1_3" d="M928 1072 L97 1072 L40 1015 L985 1015 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_1_4" d="M97 1072 L97 1903 L40 1960 L40 1015 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_2_1" d="M1072 1903 L1903 1903 L1960 1960 L1015 1960 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_2_2" d="M1903 1903 L1903 1072 L1960 1015 L1960 1960 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_2_3" d="M1903 1072 L1072 1072 L1015 1015 L1960 1015 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_2_4" d="M1072 1072 L1072 1903 L1015 1960 L1015 1015 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_3_1" d="M97 928 L1903 928 L1960 985 L40 985 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_3_2" d="M1903 928 L1903 97 L1960 40 L1960 985 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_3_3" d="M1903 97 L97 97 L40 40 L1960 40 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><path id="vent_3_4" d="M97 97 L97 928 L40 985 L40 40 Z" stroke="#000000" stroke-width="1" fill="#f6f5fa"></path><g id="handle_handle_1" transform="translate(942.35,1411.35)"><path d="m 0.1325,12.4585 c 0,-16.4348912 28,-16.4348912 28,0 v 37 c 0,14.74256 -28,14.74256 -28,0 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="M 25.46,32.21 A 11.35,13.62 0 0 1 14.11,45.83 11.35,13.62 0 0 1 2.76,32.21 11.35,13.62 0 0 1 14.11,18.59 11.35,13.62 0 0 1 25.46,32.21 Z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="m 3.1325,37.401239 c 0,-13.096 22,-13.096 22,0 l -2.5,110.480 c 0,4.312 -3.5,4.312 -8.5,4.312 -5,0 -8.5,0 -8.5,-4.30972 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path></g><g id="fitting_rosette_1" transform="translate(985,1010)"><defs><linearGradient id="rosette_1_fitting_stainless_steel" x1="0%" y1="0%" x2="100%" y2="50%" spreadMethod="pad"><stop offset="0%" stop-color="#dddddd"></stop><stop offset="20%" stop-color="#eaeaea"></stop><stop offset="40%" stop-color="#dadada"></stop><stop offset="80%" stop-color="#eaeaea"></stop><stop offset="100%" stop-color="#dddddd"></stop></linearGradient></defs></g><g id="handle_handle_2" transform="translate(1057.65,1411.35) scale(-1 1)"><path d="m 0.1325,12.4585 c 0,-16.4348912 28,-16.4348912 28,0 v 37 c 0,14.74256 -28,14.74256 -28,0 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="M 25.46,32.21 A 11.35,13.62 0 0 1 14.11,45.83 11.35,13.62 0 0 1 2.76,32.21 11.35,13.62 0 0 1 14.11,18.59 11.35,13.62 0 0 1 25.46,32.21 Z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="m 3.1325,37.401239 c 0,-13.096 22,-13.096 22,0 l -2.5,110.480 c 0,4.312 -3.5,4.312 -8.5,4.312 -5,0 -8.5,0 -8.5,-4.30972 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path></g><g id="fitting_rosette_2" transform="translate(1015,1010) scale(-1 1)"><defs><linearGradient id="rosette_2_fitting_stainless_steel" x1="0%" y1="0%" x2="100%" y2="50%" spreadMethod="pad"><stop offset="0%" stop-color="#dddddd"></stop><stop offset="20%" stop-color="#eaeaea"></stop><stop offset="40%" stop-color="#dadada"></stop><stop offset="80%" stop-color="#eaeaea"></stop><stop offset="100%" stop-color="#dddddd"></stop></linearGradient></defs></g><g id="handle_handle_3" transform="translate(1917.35,436.35)"><path d="m 0.1325,12.4585 c 0,-16.4348912 28,-16.4348912 28,0 v 37 c 0,14.74256 -28,14.74256 -28,0 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="M 25.46,32.21 A 11.35,13.62 0 0 1 14.11,45.83 11.35,13.62 0 0 1 2.76,32.21 11.35,13.62 0 0 1 14.11,18.59 11.35,13.62 0 0 1 25.46,32.21 Z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path> <path d="m 3.1325,37.401239 c 0,-13.096 22,-13.096 22,0 l -2.5,110.480 c 0,4.312 -3.5,4.312 -8.5,4.312 -5,0 -8.5,0 -8.5,-4.30972 z" stroke="#000000" stroke-width="0.265" fill="#fefefe"></path></g><g id="fitting_rosette_3" transform="translate(1960,35)"><defs><linearGradient id="rosette_3_fitting_stainless_steel" x1="0%" y1="0%" x2="100%" y2="50%" spreadMethod="pad"><stop offset="0%" stop-color="#dddddd"></stop><stop offset="20%" stop-color="#eaeaea"></stop><stop offset="40%" stop-color="#dadada"></stop><stop offset="80%" stop-color="#eaeaea"></stop><stop offset="100%" stop-color="#dddddd"></stop></linearGradient></defs></g></g></svg>
+
+
+<div id="inputsBox"></div>
+
+<script>
+// ==== GLOBALS ====
+let __panelData = null;
+let currentWidths = [];
+let currentHeights = [];
+
+// ==== HELPERS ====
+const nums = s => (s?.match(/-?\d+(?:\.\d+)?/g) || []).map(Number);
+function pathPts(d) {
+  const n = nums(d), o = [];
+  for (let i = 0; i < n.length - 1; i += 2) o.push({ x: n[i], y: n[i + 1] });
+  return o;
+}
+function rectPath(l, t, r, b) {
+  return `M${r} ${b} L${r} ${t} L${l} ${t} L${l} ${b} Z`;
+}
+
+// ==== INIT PANELS ====
+function initPanels(svg) {
+  const infills = Array.from(svg.querySelectorAll("path[id^='infill_']"));
+  return infills.map(el => {
+    const bb = el.getBBox();
+    return {
+      el, id: el.id,
+      orig: { left: bb.x, top: bb.y, right: bb.x + bb.width, bottom: bb.y + bb.height },
+      box: { left: bb.x, top: bb.y, right: bb.x + bb.width, bottom: bb.y + bb.height }
+    };
+  });
+}
+
+// ==== DIMENSION LINES ====
+function drawDimLine(svg, x1, x2, y1, y2, tx, ty, textValue, cls) {
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", x1); line.setAttribute("x2", x2);
+  line.setAttribute("y1", y1); line.setAttribute("y2", y2);
+  line.setAttribute("stroke", "black");
+  line.classList.add(cls);
+
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", tx - 45); rect.setAttribute("y", ty - 35);
+  rect.setAttribute("width", 90); rect.setAttribute("height", 70);
+  rect.setAttribute("fill", "#F4F4F4");
+  rect.classList.add(cls);
+
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", tx); text.setAttribute("y", ty);
+  text.setAttribute("style", "fill:black; font-size:40px; font-family:Arial; dominant-baseline:middle; text-anchor:middle;");
+  text.textContent = textValue;
+  text.classList.add(cls);
+
+  svg.appendChild(line); svg.appendChild(rect); svg.appendChild(text);
+}
+
+function redrawSubWidths(svg, widths, yBottom) {
+  svg.querySelectorAll(".subWidth").forEach(el => el.remove());
+  let x = 0;
+  widths.forEach(w => {
+    const midX = x + w / 2;
+    drawDimLine(svg, x, x + w, yBottom + 120, yBottom + 120, midX, yBottom + 120, w, "subWidth");
+    x += w;
+  });
+}
+
+function redrawSubHeights(svg, heights, xRight) {
+  svg.querySelectorAll(".subHeight").forEach(el => el.remove());
+  let y = 0;
+  heights.forEach(h => {
+    const midY = y + h / 2;
+    drawDimLine(svg, xRight + 120, xRight + 120, y, y + h, xRight + 120, midY, h, "subHeight");
+    y += h;
+  });
+}
+
+// ==== MAIN MEASUREMENT DRAWER ====
+function drawSelectedMeasurements(svg) {
+  svg = svg || document.getElementById("svg_preview");
+  if (!svg) return;
+
+  svg.querySelectorAll(".measurement").forEach(el => el.remove());
+  document.getElementById("inputsBox").innerHTML = "";
+
+  const [vx, vy, vwidth, vheight] = svg.getAttribute("viewBox").split(" ").map(Number);
+
+  const yBottom = vheight + 100;
+  drawDimLine(svg, 0, vwidth, yBottom, yBottom, vwidth / 2, yBottom, vwidth, "measurement");
+
+  const xRight = vwidth + 100;
+  drawDimLine(svg, xRight, xRight, 0, vheight, xRight, vheight / 2, vheight, "measurement");
+
+  // ---- MULLIONS ----
+  const mullions = Array.from(svg.querySelectorAll("path[id^='mullion_']")).map(el => el.getBBox());
+  let verticalCount = 1;
+  let horizontalCount = 1;
+  mullions.forEach(m => {
+    if (m.height > m.width) verticalCount++;
+    else horizontalCount++;
+  });
+
+  const inputsBox = document.getElementById("inputsBox");
+
+  // ---- SUB WIDTHS ----
+  if (verticalCount > 1) {
+    currentWidths = Array(verticalCount).fill(Math.round(vwidth / verticalCount));
+
+    const wWrap = document.createElement("div");
+    wWrap.innerHTML = `<h4>Pane Widths (Total = ${vwidth})</h4>`;
+
+    currentWidths.forEach((w, i) => {
+      const inp = document.createElement("input");
+      inp.type = "number";
+      inp.min = 0;
+      inp.max = vwidth;
+      inp.value = w;
+      inp.dataset.index = i;
+      inp.id = `width_${i}`;
+      inp.style.width = "80px";
+
+      inp.oninput = () => {
+        updateArray(svg, currentWidths, vwidth, i, +inp.value, "width", yBottom, xRight);
+      };
+
+      wWrap.appendChild(document.createTextNode(`Pane ${i + 1}: `));
+      wWrap.appendChild(inp);
+      wWrap.appendChild(document.createElement("br"));
+    });
+
+    inputsBox.appendChild(wWrap);
+    redrawSubWidths(svg, currentWidths, yBottom);
+  }
+
+  // ---- SUB HEIGHTS ----
+  if (horizontalCount > 1) {
+    currentHeights = Array(horizontalCount).fill(Math.round(vheight / horizontalCount));
+
+    const hWrap = document.createElement("div");
+    hWrap.innerHTML = `<h4>Pane Heights (Total = ${vheight})</h4>`;
+
+    currentHeights.forEach((h, i) => {
+      const inp = document.createElement("input");
+      inp.type = "number";
+      inp.min = 0;
+      inp.max = vheight;
+      inp.value = h;
+      inp.dataset.index = i;
+      inp.id = `height_${i}`;
+      inp.style.width = "80px";
+
+      inp.oninput = () => {
+        updateArray(svg, currentHeights, vheight, i, +inp.value, "height", yBottom, xRight);
+      };
+
+      hWrap.appendChild(document.createTextNode(`Row ${i + 1}: `));
+      hWrap.appendChild(inp);
+      hWrap.appendChild(document.createElement("br"));
+    });
+
+    inputsBox.appendChild(hWrap);
+    redrawSubHeights(svg, currentHeights, xRight);
+  }
+
+  if (currentWidths.length && currentHeights.length) {
+    applyResizes(svg, currentWidths, currentHeights);
+  }
+}
+
+// ==== UPDATE FUNCTION ====
+function updateArray(svg, arr, total, index, newVal, type, yBottom, xRight) {
+  newVal = Math.max(0, Math.min(total, newVal));
+
+  const oldOtherSum = arr.reduce((a, b) => a + b, 0) - arr[index];
+  const otherTotal = total - newVal;
+
+  arr[index] = newVal;
+
+  arr.forEach((val, j) => {
+    if (j !== index) {
+      if (oldOtherSum === 0) {
+        arr[j] = Math.floor(otherTotal / (arr.length - 1));
+      } else {
+        arr[j] = Math.round((val / oldOtherSum) * otherTotal);
+      }
+    }
+  });
+
+  let diff = total - arr.reduce((a, b) => a + b, 0);
+  if (diff !== 0) arr[arr.length - 1] += diff;
+
+  arr.forEach((val, j) => {
+    document.querySelector(`#${type}_${j}`).value = val;
+  });
+
+  if (type === "width") {
+    redrawSubWidths(svg, arr, yBottom);
+    currentWidths = [...arr];
+  } else {
+    redrawSubHeights(svg, arr, xRight);
+    currentHeights = [...arr];
+  }
+
+  if (currentWidths.length && currentHeights.length) {
+    applyResizes(svg, currentWidths, currentHeights);
+  }
+}
+
+// ==== APPLY RESIZES (with offset fix) ====
+function applyResizes(svg, widths, heights) {
+  if (!__panelData) __panelData = initPanels(svg);
+  if (!__panelData) return;
+
+  const baseLeft = __panelData[0].orig.left;
+  const baseTop  = __panelData[0].orig.top;
+
+  let y = 0, idx = 0, newBoxes = {};
+  for (let r = 0; r < heights.length; r++) {
+    let h = heights[r], x = 0;
+    for (let c = 0; c < widths.length; c++) {
+      const w = widths[c], p = __panelData[idx];
+      if (p) {
+        const L = baseLeft + x;
+        const T = baseTop + y;
+        const R = L + w;
+        const B = T + h;
+        p.box = { left: L, top: T, right: R, bottom: B };
+        p.el.setAttribute("d", rectPath(L, T, R, B));
+        newBoxes[p.id] = p.box;
+      }
+      x += w; idx++;
+    }
+    y += h;
+  }
+
+  // --- openings ---
+  Array.from(svg.querySelectorAll("path[id^='opening_']")).forEach(el => {
+    if (!el.__normPts) {
+      const pts = pathPts(el.getAttribute("d"));
+      el.__normPts = pts.map(pt => {
+        let owner = __panelData.find(
+          p => pt.x >= p.orig.left && pt.x <= p.orig.right && pt.y >= p.orig.top && pt.y <= p.orig.bottom
+        );
+        if (!owner) return { panel: null, x: pt.x, y: pt.y };
+        const b = owner.orig;
+        return {
+          panel: owner.id,
+          tx: (pt.x - b.left) / (b.right - b.left),
+          ty: (pt.y - b.top) / (b.bottom - b.top)
+        };
+      });
+    }
+    const mapped = el.__normPts.map(p => {
+      if (!p.panel) return { x: p.x, y: p.y };
+      const b = newBoxes[p.panel];
+      const w = b.right - b.left, h = b.bottom - b.top;
+      return { x: b.left + p.tx * w, y: b.top + p.ty * h };
+    });
+    let d = `M${mapped[0].x} ${mapped[0].y}`;
+    for (let i = 1; i < mapped.length; i++) d += ` L${mapped[i].x} ${mapped[i].y}`;
+    el.setAttribute("d", d);
+  });
+
+  // --- vents ---
+  Array.from(svg.querySelectorAll("path[id^='vent_']")).forEach(v => {
+    const m = v.id.match(/^vent_(\d+)_/);
+    if (!m) return;
+    const inf = __panelData[m[1] - 1];
+    if (!inf) return;
+    const b = newBoxes[inf.id];
+    if (b) v.setAttribute("d", rectPath(b.left, b.top, b.right, b.bottom));
+  });
+
+  // --- mullions ---
+  Array.from(svg.querySelectorAll("path[id^='mullion_']")).forEach(m => {
+    const bb = m.getBBox();
+    const isVertical = bb.height > bb.width;
+    if (isVertical) {
+      let pos = baseLeft;
+      for (const w of widths) {
+        pos += w;
+        if (Math.abs(pos - bb.x) < bb.width * 2) {
+          m.setAttribute("transform", `translate(${pos - bb.x},0)`);
+          break;
+        }
+      }
+    } else {
+      let pos = baseTop;
+      for (const h of heights) {
+        pos += h;
+        if (Math.abs(pos - bb.y) < bb.height * 2) {
+          m.setAttribute("transform", `translate(0,${pos - bb.y})`);
+          break;
+        }
+      }
+    }
+  });
+
+  // --- handles ---
+  Array.from(svg.querySelectorAll("g[id^='handle_handle_']")).forEach(h => {
+    if (!h.__anchor) {
+      const bb = h.getBBox(), cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2;
+      const owner =
+        __panelData.find(p => cx >= p.orig.left && cx <= p.orig.right && cy >= p.orig.top && cy <= p.orig.bottom) ||
+        __panelData[0];
+      const b = owner.orig;
+      h.__anchor = {
+        panel: owner.id,
+        nx: (cx - b.left) / (b.right - b.left),
+        ny: (cy - b.top) / (b.bottom - b.top),
+        rest: ""
+      };
+    }
+    const a = h.__anchor, b = newBoxes[a.panel];
+    if (b) {
+      const x = b.left + a.nx * (b.right - b.left);
+      const y = b.top + a.ny * (b.bottom - b.top);
+      h.setAttribute("transform", `translate(${x},${y})${a.rest}`);
+    }
+  });
+}
+
+// ==== INIT ON DOM READY ====
+document.addEventListener("DOMContentLoaded", () => {
+  const svg = document.getElementById("svg_preview");
+  drawSelectedMeasurements(svg);
+});
+</script>
