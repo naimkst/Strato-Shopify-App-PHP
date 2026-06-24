@@ -658,6 +658,20 @@ color: rgba(0, 0, 0, 0.5);
     margin-top: 8%;
     margin-bottom: 2%;
 }
+
+.its_my_app_work .price_inner .price{
+    display: inline-flex !important;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.its_my_app_work .price_inner .price-tax{
+    font-size: 45%;
+    font-weight: 500;
+    text-transform: none;
+}
   
 
 

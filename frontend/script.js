@@ -736,6 +736,19 @@ function parseConfiguratorNumber(value) {
   return Number.isFinite(number) ? number : 0;
 }
 
+function setSidebarPrice(element, value, emptyText = '—') {
+  if (!element) return;
+  const normalized = String(value ?? '').replace(',', '.');
+  const price = parseFloat(normalized);
+
+  if (!Number.isFinite(price)) {
+    element.textContent = emptyText;
+    return;
+  }
+
+  element.innerHTML = `${price.toFixed(2)} € <span class="price-tax">inkl. MwSt.</span>`;
+}
+
 function getCurrentWindowWidthMm() {
   const values = [
     document.getElementById('width')?.value,
@@ -2714,22 +2727,22 @@ const t4Price = document.querySelector('#tab4 .price-box .price');
 
 if (t4Price) {
   if (hasVisitedTab5) {
-    t4Price.textContent = total.toFixed(2) + " €";
+    setSidebarPrice(t4Price, total);
   } else {
-    t4Price.textContent = basePriceTab4.toFixed(2) + " €";
+    setSidebarPrice(t4Price, basePriceTab4);
   }
 }
   // Tab 5 sidebar
   const glassPrice = document.getElementById('glass-price');
-  if (glassPrice) glassPrice.textContent = total.toFixed(2) + " €";
+  setSidebarPrice(glassPrice, total);
 
   // Tab 6 sidebar
   const zubePrice = document.getElementById('zubehoer-price');
-  if (zubePrice) zubePrice.textContent = total.toFixed(2) + " €";
+  setSidebarPrice(zubePrice, total);
 
   // Tab 7 sidebar
   const t7Price = document.getElementById('t7-price');
-  if (t7Price) t7Price.textContent = total.toFixed(2) + " €";
+  setSidebarPrice(t7Price, total);
 }
 
 
@@ -4404,7 +4417,7 @@ function updateGroesseDropdownsAndSidebar() {
     heightInput.onfocus = focusAlert;
 
     const priceBox = document.querySelector('#tab4 .price-box .price');
-    if (priceBox) priceBox.textContent = '-';
+    setSidebarPrice(priceBox, null, '-');
     const sbW = document.getElementById('sb-width');  if (sbW) sbW.textContent = '';
     const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = '';
     return;
@@ -4434,7 +4447,7 @@ function updateGroesseDropdownsAndSidebar() {
     widthInput.onfocus = fallbackAlert;
     heightInput.onfocus = fallbackAlert;
     const priceBox = document.querySelector('#tab4 .price-box .price');
-    if (priceBox) priceBox.textContent = '-';
+    setSidebarPrice(priceBox, null, '-');
     const sbW = document.getElementById('sb-width');  if (sbW) sbW.textContent = '';
     const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = '';
     return;
@@ -4533,7 +4546,7 @@ function updateTab4PriceAndSVGFromCombo(combos) {
   let heightVal = parseInt(document.getElementById('height').value, 10);
 
   if (!combos || combos.length === 0 || isNaN(widthVal) || isNaN(heightVal)) {
-    if (priceBox) priceBox.textContent = '-';
+    setSidebarPrice(priceBox, null, '-');
     document.getElementById('sb-width').textContent = '';
     document.getElementById('sb-height').textContent = '';
     return;
@@ -4547,7 +4560,7 @@ function updateTab4PriceAndSVGFromCombo(combos) {
     document.getElementById('sb-height').textContent = heightVal;
   } else {
     basePriceTab4 = 0;
-    if (priceBox) priceBox.textContent = '-';
+    setSidebarPrice(priceBox, null, '-');
   }
 
   // update SVG for Tab 4
@@ -5625,7 +5638,10 @@ function updateWingSidebarSVG(svg) {
 }
 function updateWingSidebarPrice(price) {
   const box = document.querySelector('#sidebar-wing-price');
-  if (box) box.textContent = price ? (parseFloat(price).toFixed(2) + ' €') : '';
+  if (box) {
+    const hasPrice = price !== null && price !== undefined && price !== '';
+    setSidebarPrice(box, hasPrice ? price : null, '');
+  }
 }
 function updateOpeningSidebarSVG(svg) {
   document.querySelectorAll('.preview-box[data-preview="opening"] .opening-svg-preview').forEach(box => {

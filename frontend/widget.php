@@ -598,7 +598,17 @@ flex: 0.8;
 
 
 .its_my_app_work .price_inner .price {
-    display: block !important;
+    display: inline-flex !important;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.its_my_app_work .price_inner .price-tax {
+    font-size: 45%;
+    font-weight: 500;
+    text-transform: none;
 }
 
 .its_my_app_work .tab-content.active {
@@ -1633,7 +1643,7 @@ div#tab7-svgPreviewBox svg g path {
         </div>
         <div class="price-box">
 <div class="price_inner">
-          <strong>FENSTER  <span class="price" id="tab4-price">54.96 €</span></strong>
+          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
 
 </div>
           <span>Lieferzeit: ca. 3-5 Wochen</span>
@@ -1736,7 +1746,7 @@ div#tab7-svgPreviewBox svg g path {
   </div>
   <div class="price-box">
   <div class="price_inner">
-    <strong>FENSTER <span class="price" id="glass-price">65.96 €</span></strong>
+    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
     </div>
     <span>Lieferzeit: ca. 3-5 Wochen</span>
     <div class="quantity quantity_app">
@@ -1890,7 +1900,7 @@ div#tab7-svgPreviewBox svg g path {
       <div class="price-box">
       <div class="price_inner">
         <strong>FENSTER
-        <span class="price" id="zubehoer-price">54.96 €</span></strong>
+        <span class="price" id="zubehoer-price">54.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
         </div>
 
         <span>Lieferzeit: ca. 3-5 Wochen</span>
