@@ -1881,11 +1881,12 @@ div#tab7-svgPreviewBox svg g path {
         ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
        RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
        FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
-        <span id="zubehoer-sidebar-luefter" style="display:none"></span>
+       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
         <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
        <span id="zubehoer-sidebar-rollladen"></span>
 
       </p>
+      <div id="zubehoer-sidebar-balkon-notes"></div>
       <div class="price-box">
       <div class="price_inner">
         <strong>FENSTER

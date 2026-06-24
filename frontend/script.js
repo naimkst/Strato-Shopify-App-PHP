@@ -800,8 +800,32 @@ function syncEffectiveHeightDisplays() {
   });
 }
 
+function isBalconyDoorConfiguration() {
+  if (staticCode === '__static_balkon__') return true;
+
+  const activeStatic = document.querySelector('.tab-nav-buttons button.active')?.dataset?.code;
+  if (activeStatic === '__static_balkon__') return true;
+
+  const urlStatic = getUrlParam('tab_check');
+  if (urlStatic === '__static_balkon__') return true;
+
+  const labels = [
+    windowConfig.profile,
+    windowConfig.wing,
+    windowConfig.opening,
+    document.getElementById('t7-sidebar-profile')?.textContent,
+    document.getElementById('t7-sidebar-wing')?.textContent,
+    document.getElementById('t7-sidebar-opening')?.textContent,
+    document.getElementById('zubehoer-sidebar-profile')?.textContent,
+    document.getElementById('zubehoer-sidebar-wing')?.textContent,
+    document.getElementById('zubehoer-sidebar-opening')?.textContent
+  ].join(' ');
+
+  return hasNormalizedText(labels, ['balkontuer', 'balkontueren', 'balkon tuer', 'balkon tueren']);
+}
+
 function getBalconyDoorNotesHTML() {
-  if (staticCode !== '__static_balkon__') return '';
+  if (!isBalconyDoorConfiguration()) return '';
   return '<div class="balcony-door-notes"><p>Rahmen unten</p><p>Griff innen + Schnapper</p></div>';
 }
 
@@ -4822,6 +4846,8 @@ function updateTab6Sidebar() {
   document.getElementById('zubehoer-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
   const fensterbankSidebar = document.getElementById('zubehoer-sidebar-fensterbank');
   if (fensterbankSidebar) fensterbankSidebar.textContent = getSillProfileSummary();
+  const zubehoerBalconyNotes = document.getElementById('zubehoer-sidebar-balkon-notes');
+  if (zubehoerBalconyNotes) zubehoerBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
   update_svg_4to7();
 
