@@ -775,9 +775,32 @@ function getSelectedSillProfile() {
   ) || SILL_PROFILE_OPTIONS[0];
 }
 
+function parseConfiguratorNumber(value) {
+  const normalized = String(value || '').replace(',', '.');
+  const number = parseFloat(normalized);
+  return Number.isFinite(number) ? number : 0;
+}
+
+function getCurrentWindowWidthMm() {
+  const values = [
+    document.getElementById('width')?.value,
+    document.getElementById('sb-width')?.textContent,
+    document.getElementById('glass-sidebar-width')?.textContent,
+    document.getElementById('zubehoer-sidebar-width')?.textContent,
+    document.getElementById('t7-sidebar-width')?.textContent
+  ];
+
+  for (const value of values) {
+    const width = parseConfiguratorNumber(value);
+    if (width > 0) return width;
+  }
+
+  return 0;
+}
+
 function getSillProfilePrice(profile = getSelectedSillProfile()) {
   if (!profile || !profile.pricePerMeter) return 0;
-  const width = parseFloat(document.getElementById('width')?.value || document.getElementById('sb-width')?.textContent);
+  const width = getCurrentWindowWidthMm();
   if (!width) return 0;
   return (width / 1000) * profile.pricePerMeter;
 }
@@ -786,7 +809,13 @@ function getSillProfileSummary() {
   const profile = getSelectedSillProfile();
   if (!profile || profile.id === '__none__') return '';
 
-  return `${profile.article} ${profile.designation} (${profile.profile}, +${profile.addHeight} mm, ${profile.pricePerMeter.toFixed(2)} €/m, weiß)`;
+  const width = getCurrentWindowWidthMm();
+  const calculatedPrice = getSillProfilePrice(profile);
+  const calculatedText = width
+    ? `, ${width} mm = ${calculatedPrice.toFixed(2)} €`
+    : '';
+
+  return `${profile.article} ${profile.designation} (${profile.profile}, +${profile.addHeight} mm, ${profile.pricePerMeter.toFixed(2)} €/m${calculatedText}, weiß)`;
 }
 
 function updateSillProfilePrice() {
@@ -2672,6 +2701,8 @@ updateAllSidebars();
 }
 
 function updateAllSidebars() {
+  refreshAreaBasedPrices();
+
   if (typeof updateUnifiedSidebar === 'function') updateUnifiedSidebar();
   if (typeof updateTab5Sidebar === 'function') updateTab5Sidebar();
   if (typeof updateTab6Sidebar === 'function') updateTab6Sidebar();
@@ -2682,7 +2713,6 @@ function updateAllSidebars() {
     updateGroesseDropdownsAndSidebar();
   }
 
-  refreshAreaBasedPrices();
   updateTab4SVG();
   syncEffectiveHeightDisplays();
 
@@ -2692,6 +2722,7 @@ function updateAllSidebars() {
 
 // Recompute total with qty
 function recomputeTotalPrice() {
+updateSillProfilePrice();
 
 const totalTab5 = Object.values(extraPriceTab5Map).reduce((a, b) => a + b, 0);
 const totalTab6 = Object.values(extraPriceTab6Map || {}).reduce((a, b) => a + b, 0);
