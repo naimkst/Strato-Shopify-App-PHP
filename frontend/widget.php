@@ -1134,6 +1134,130 @@ div#tab7-svgPreviewBox svg g path {
     }
 }
 
+.its_my_app_work #rollladen-subtab .section-block {
+    display: block !important;
+    margin-bottom: 14px;
+}
+
+.its_my_app_work #rollladen-subtab .section-heading {
+    margin: 0 0 10px !important;
+    line-height: 1.25;
+}
+
+.its_my_app_work #rollladen-subtab .option-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 18px !important;
+    max-width: 100% !important;
+    align-items: stretch;
+}
+
+.its_my_app_work #rollladen-subtab #abmessungen .option-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.its_my_app_work #rollladen-subtab .card-option:not(.text-input-option-block) {
+    display: grid !important;
+    grid-template-rows: 220px auto;
+    align-items: start !important;
+    gap: 12px !important;
+    min-height: 388px;
+    padding: 12px 38px 14px 12px !important;
+    overflow: hidden;
+}
+
+.its_my_app_work #rollladen-subtab #antrieb .card-option:not(.text-input-option-block) {
+    grid-template-rows: 160px auto;
+    min-height: 260px;
+}
+
+.its_my_app_work #rollladen-subtab .text-input-option-block {
+    padding: 10px !important;
+    min-height: auto;
+}
+
+.its_my_app_work #rollladen-subtab .card-option > img {
+    width: 100% !important;
+    height: 220px !important;
+    max-height: 220px;
+    margin: 0 !important;
+    object-fit: contain;
+}
+
+.its_my_app_work #rollladen-subtab #antrieb .card-option > img {
+    height: 160px !important;
+    max-height: 160px;
+}
+
+.its_my_app_work #rollladen-subtab .card-text {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+}
+
+.its_my_app_work #rollladen-subtab .card-text strong {
+    display: block !important;
+    align-items: initial !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    margin: 0 0 6px !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.its_my_app_work #rollladen-subtab .feature {
+    margin: 0;
+    padding-left: 17px;
+}
+
+.its_my_app_work #rollladen-subtab .feature li {
+    font-size: 13px;
+    line-height: 1.35;
+    margin: 2px 0;
+    overflow-wrap: anywhere;
+}
+
+.its_my_app_work #rollladen-subtab .checkmark-box {
+    width: 18px;
+    height: 18px;
+    right: 10px;
+    top: 10px;
+}
+
+.its_my_app_work #rollladen-subtab .checkmark-box img {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 820px) {
+    .its_my_app_work #rollladen-subtab .option-grid,
+    .its_my_app_work #rollladen-subtab #abmessungen .option-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #rollladen-subtab .option-grid,
+    .its_my_app_work #rollladen-subtab #abmessungen .option-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .its_my_app_work #rollladen-subtab .card-option:not(.text-input-option-block) {
+        grid-template-rows: 180px auto;
+        min-height: auto;
+    }
+
+    .its_my_app_work #rollladen-subtab .card-option > img {
+        height: 180px !important;
+        max-height: 180px;
+    }
+
+    .its_my_app_work #rollladen-subtab #antrieb .card-option > img {
+        height: 140px !important;
+        max-height: 140px;
+    }
+}
+
 
 
 
