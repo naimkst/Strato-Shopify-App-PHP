@@ -50,12 +50,29 @@ jobs:
           DEPLOY_REF: ${{ inputs.ref }}
         run: git checkout --force "$DEPLOY_REF"
 
+      - name: Check FTP secrets
+        id: ftp_secrets
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "${FTP_HOST}" ] || [ -z "${FTP_USERNAME}" ] || [ -z "${FTP_PASSWORD}" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::FTP secrets are not configured. Skipping live deploy."
+            exit 0
+          fi
+
+          echo "configured=true" >> "$GITHUB_OUTPUT"
+
       - name: Install FTP client
+        if: steps.ftp_secrets.outputs.configured == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y lftp
 
       - name: Deploy via FTP
+        if: steps.ftp_secrets.outputs.configured == 'true'
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
