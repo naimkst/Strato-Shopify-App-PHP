@@ -1258,6 +1258,157 @@ div#tab7-svgPreviewBox svg g path {
     }
 }
 
+.its_my_app_work #rollladen-subtab.rollladen-reference-layout {
+    display: block !important;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference {
+    max-width: 100%;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference-intro {
+    margin-bottom: 22px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference h3 {
+    margin: 0 0 18px;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 500;
+    color: #000;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference-intro p {
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-choice {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+    color: #111;
+    cursor: pointer;
+    text-align: left;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #c5c5c5;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: inset 0 0 0 3px #fff;
+    flex: 0 0 auto;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-choice.active .rollladen-checkbox,
+.its_my_app_work #rollladen-subtab .rollladen-mounting-choice.active .rollladen-checkbox {
+    background: #3f9b2a;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-system-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-bottom: 34px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference-card {
+    border: 1px solid #cfcfcf;
+    background: #fff;
+    min-height: 430px;
+    padding: 24px 26px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-reference-card.active {
+    border-color: #0B2D60;
+    box-shadow: inset 0 0 0 1px #0B2D60;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-system-image {
+    width: 100% !important;
+    height: 280px !important;
+    object-fit: contain;
+    margin: 0 0 20px !important;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-system-title {
+    display: block;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #111;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-mounting-list {
+    display: grid;
+    gap: 10px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-mounting-choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #111;
+    cursor: pointer;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-drive-section {
+    margin-top: 24px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-drive-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+    gap: 32px;
+    margin: 22px 0 42px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-drive-choice {
+    font-size: 20px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-drive-section p {
+    margin: 0;
+    color: #777;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    text-align: right;
+}
+
+@media (max-width: 820px) {
+    .its_my_app_work #rollladen-subtab .rollladen-reference h3 {
+        font-size: 28px;
+    }
+
+    .its_my_app_work #rollladen-subtab .rollladen-system-grid,
+    .its_my_app_work #rollladen-subtab .rollladen-drive-row {
+        grid-template-columns: 1fr;
+    }
+
+    .its_my_app_work #rollladen-subtab .rollladen-reference-card {
+        min-height: auto;
+    }
+}
+
 
 
 
