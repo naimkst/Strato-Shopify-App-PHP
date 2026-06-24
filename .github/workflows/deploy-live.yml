@@ -1,0 +1,110 @@
+name: Deploy live
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref to deploy. Use backup-before-configurator-update to roll back."
+        required: false
+        default: ""
+      delete_extra:
+        description: "Delete remote files that are not in git. Keep false unless the target path is dedicated to this app."
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      dry_run:
+        description: "Show FTP changes without uploading."
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+concurrency:
+  group: deploy-live
+  cancel-in-progress: false
+
+jobs:
+  ftp:
+    name: FTP deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Select requested ref
+        if: github.event_name == 'workflow_dispatch' && inputs.ref != ''
+        env:
+          DEPLOY_REF: ${{ inputs.ref }}
+        run: git checkout --force "$DEPLOY_REF"
+
+      - name: Install FTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+          DELETE_EXTRA: ${{ github.event_name == 'workflow_dispatch' && inputs.delete_extra || 'false' }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+        run: |
+          set -euo pipefail
+
+          : "${FTP_HOST:?Missing GitHub secret FTP_HOST}"
+          : "${FTP_USERNAME:?Missing GitHub secret FTP_USERNAME}"
+          : "${FTP_PASSWORD:?Missing GitHub secret FTP_PASSWORD}"
+
+          remote_dir="${FTP_REMOTE_DIR:-/}"
+          mirror_command="mirror --reverse --verbose --only-newer"
+
+          if [ "${DELETE_EXTRA}" = "true" ]; then
+            mirror_command="${mirror_command} --delete"
+          fi
+
+          if [ "${DRY_RUN}" = "true" ]; then
+            mirror_command="${mirror_command} --dry-run"
+          fi
+
+          lftp -u "${FTP_USERNAME}","${FTP_PASSWORD}" "${FTP_HOST}" <<LFTP
+          set ftp:ssl-allow true
+          set ftp:ssl-force false
+          set ssl:verify-certificate true
+          set net:max-retries 2
+          set net:timeout 20
+          ${mirror_command} \
+            --exclude-glob .git/ \
+            --exclude-glob .git/** \
+            --exclude-glob .github/ \
+            --exclude-glob .github/** \
+            --exclude-glob uploads/ \
+            --exclude-glob uploads/** \
+            --exclude-glob tokens/ \
+            --exclude-glob tokens/** \
+            --exclude-glob .env \
+            --exclude-glob .env.* \
+            --exclude-glob conn.php \
+            --exclude-glob connect.php \
+            --exclude-glob generate_token.php \
+            --exclude-glob debug_product_response.json \
+            --exclude-glob .DS_Store \
+            --exclude-glob "*.log" \
+            --exclude-glob "*.tmp" \
+            ./ "${remote_dir}"
+          bye
+          LFTP
