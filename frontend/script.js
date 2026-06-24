@@ -327,6 +327,11 @@ let TAB6_SELECTION = {};
 
 const SILL_PROFILE_SUBTAB_ID = '__fensterbankanschlussprofil__';
 const SILL_PROFILE_PRICE_KEY = SILL_PROFILE_SUBTAB_ID;
+const ROLLLADEN_SYSTEM_SECTION_ID = '__rollladen_system__';
+const ROLLLADEN_DIMENSIONS_SECTION_ID = '__rollladen_dimensions__';
+const ROLLLADEN_DRIVE_SECTION_ID = '__rollladen_drive__';
+const ROLLLADEN_SYSTEM_IDS = ['324', '325', '327'];
+const ROLLLADEN_SYSTEM_DEPENDENCIES = ROLLLADEN_SYSTEM_IDS.join(',');
 
 const SILL_PROFILE_OPTIONS = [
   {
@@ -406,6 +411,48 @@ const VSG_PRICE_BY_LABEL = {
   '6': { double: 55.90, triple: 59.90 },
   '8': { double: 65.90, triple: 85.90 }
 };
+
+const ROLLLADEN_DRIVE_OPTIONS = [
+  {
+    id: '__rollladen_drive_gurt__',
+    label: 'Gurt',
+    price: '0.00',
+    depends_on: ROLLLADEN_SYSTEM_DEPENDENCIES,
+    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Vorbaurollladen%20Gurt%20weiss.jpg',
+    option_type: '',
+    extra_json: JSON.stringify({
+      heading: 'Gurt',
+      subheading: 'Manuelle Bedienung',
+      features: ['Manuell']
+    })
+  },
+  {
+    id: '__rollladen_drive_motor__',
+    label: 'Motor',
+    price: '0.00',
+    depends_on: ROLLLADEN_SYSTEM_DEPENDENCIES,
+    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Elektrischerantrieb-Motor-Somfy.jpg',
+    option_type: '',
+    extra_json: JSON.stringify({
+      heading: 'Motor',
+      subheading: 'Elektrischer Antrieb',
+      features: ['Elektrisch']
+    })
+  },
+  {
+    id: '__rollladen_drive_funk__',
+    label: 'Funk',
+    price: '0.00',
+    depends_on: ROLLLADEN_SYSTEM_DEPENDENCIES,
+    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Elektrischerantrieb-Motor-Somfy.jpg',
+    option_type: '',
+    extra_json: JSON.stringify({
+      heading: 'Funk',
+      subheading: 'Funkmotor',
+      features: ['Funksteuerung']
+    })
+  }
+];
 
 function normalizeConfigText(value) {
   return String(value || '')
@@ -522,6 +569,140 @@ function normalizeOrnamentOptions(options) {
     });
 }
 
+function getJsonValue(value, fallback = {}) {
+  if (!value) return fallback;
+  if (typeof value === 'object') return value;
+  try {
+    return JSON.parse(value);
+  } catch (_) {
+    return fallback;
+  }
+}
+
+function getRollladenSystemLabel(opt) {
+  const label = opt?.label || opt?.value_key || '';
+  const normalized = normalizeConfigText(label);
+
+  if (String(opt?.id) === '324' || normalized.includes('ras vorbaurollladen')) {
+    return 'RAS Vorbaurollladen - an Fassade/an Rahmen';
+  }
+
+  if (String(opt?.id) === '325' || normalized.includes('rar vorbaurollladen')) {
+    return 'RAR Vorbaurollladen - an Fassade/an Rahmen';
+  }
+
+  if (String(opt?.id) === '327' || normalized.includes('rak vorbau unter putz')) {
+    return 'RAK Vorbau unter Putz';
+  }
+
+  return label;
+}
+
+function buildRollladenSystemOption(source, spec) {
+  const opt = {
+    ...(source || {}),
+    id: spec.id,
+    label: spec.label,
+    value_key: '',
+    section_id: ROLLLADEN_SYSTEM_SECTION_ID,
+    depends_on: '',
+    option_type: ''
+  };
+  const extra = getJsonValue(opt.extra_json, {});
+  extra.heading = spec.label;
+  if (spec.mounting) {
+    const features = Array.isArray(extra.features) ? extra.features : [];
+    if (!features.some(feature => hasNormalizedText(feature, ['montage']))) {
+      features.push(spec.mounting);
+    }
+    extra.features = features;
+  }
+  opt.extra_json = JSON.stringify(extra);
+  return opt;
+}
+
+function buildRollladenInputOption(source, spec) {
+  return {
+    ...(source || {}),
+    id: spec.id,
+    label: '',
+    value_key: '',
+    price: '0.00',
+    section_id: ROLLLADEN_DIMENSIONS_SECTION_ID,
+    depends_on: ROLLLADEN_SYSTEM_DEPENDENCIES,
+    option_type: 'inputField',
+    extra_json: JSON.stringify({
+      type: 'inputField',
+      input_label: spec.label,
+      placeholder: '',
+      value: spec.value
+    })
+  };
+}
+
+function normalizeRollladenSubtab(subtab) {
+  if (!subtab) return subtab;
+
+  const allOptions = Array.isArray(subtab.options) ? subtab.options : [];
+  const findById = id => allOptions.find(opt => String(opt.id) === String(id));
+  const systemSpecs = [
+    { id: '324', label: 'RAS Vorbaurollladen - an Fassade/an Rahmen', mounting: 'Montage am Rahmen / Fassade' },
+    { id: '325', label: 'RAR Vorbaurollladen - an Fassade/an Rahmen', mounting: 'Montage am Rahmen / Fassade' },
+    { id: '327', label: 'RAK Vorbau unter Putz', mounting: '' }
+  ];
+
+  const systems = systemSpecs
+    .map(spec => {
+      const source = findById(spec.id) || allOptions.find(opt => getRollladenSystemLabel(opt) === spec.label);
+      return source ? buildRollladenSystemOption(source, spec) : null;
+    })
+    .filter(Boolean);
+
+  const widthInput = buildRollladenInputOption(findById('381'), {
+    id: '381',
+    label: 'Breite (mm)',
+    value: '550'
+  });
+  const heightInput = buildRollladenInputOption(findById('382'), {
+    id: '382',
+    label: 'Höhe (mm)',
+    value: '550'
+  });
+
+  const driveOptions = ROLLLADEN_DRIVE_OPTIONS.map((opt, index) => ({
+    ...opt,
+    section_id: ROLLLADEN_DRIVE_SECTION_ID,
+    extra_json: JSON.stringify({
+      ...getJsonValue(opt.extra_json, {}),
+      is_default: index === 0
+    })
+  }));
+
+  subtab.sections = [
+    {
+      id: ROLLLADEN_SYSTEM_SECTION_ID,
+      name: 'System',
+      order_index: '1',
+      options: systems
+    },
+    {
+      id: ROLLLADEN_DIMENSIONS_SECTION_ID,
+      name: 'Abmessungen',
+      order_index: '2',
+      options: [widthInput, heightInput]
+    },
+    {
+      id: ROLLLADEN_DRIVE_SECTION_ID,
+      name: 'Antrieb',
+      order_index: '3',
+      options: driveOptions
+    }
+  ];
+
+  subtab.options = subtab.sections.flatMap(section => section.options);
+  return subtab;
+}
+
 function normalizeConfiguratorData(data) {
   if (!data || !Array.isArray(data.tabs)) return data;
 
@@ -562,6 +743,10 @@ function normalizeConfiguratorData(data) {
           subtab.sections = subtab.sections.filter(section =>
             !hasNormalizedText(section?.name, ['fensterzubehoer'])
           );
+        }
+
+        if (hasNormalizedText(subtab.name, ['rollladen'])) {
+          normalizeRollladenSubtab(subtab);
         }
       });
 
@@ -2941,11 +3126,33 @@ function getRollladenDisplayLabel(opt) {
   const label = opt?.label || opt?.value_key || '';
   const normalized = normalizeConfigText(label);
 
-  if (normalized.includes('ras vorbaurollladen') || normalized.includes('rar vorbaurollladen')) {
-    return `${label} - an Fassade / an Rahmen`;
+  if (
+    (normalized.includes('ras vorbaurollladen') || normalized.includes('rar vorbaurollladen')) &&
+    !normalized.includes('fassade') &&
+    !normalized.includes('rahmen')
+  ) {
+    return `${label} - an Fassade/an Rahmen`;
   }
 
   return label;
+}
+
+function isRollladenSystemSection(section) {
+  const id = String(section?.id || '');
+  const name = normalizeConfigText(section?.name || '');
+  return id === ROLLLADEN_SYSTEM_SECTION_ID || name.includes('system') || name.includes('weitere optionen');
+}
+
+function getTab6OptionPriceKey(subtabId, section) {
+  return section ? `${subtabId}_${section.id}` : subtabId;
+}
+
+function clearTab6SubtabPrices(subtabId) {
+  Object.keys(extraPriceTab6Map || {}).forEach(key => {
+    if (String(key) === String(subtabId) || String(key).startsWith(`${subtabId}_`)) {
+      delete extraPriceTab6Map[key];
+    }
+  });
 }
 
 function renderTab6RollladenOptions(subtab, subtabId) {
@@ -3159,10 +3366,11 @@ if (document.querySelector('#tab6')?.classList.contains('active')) {
 
 const parent = div.closest('.option-grid');
 const isWeitere = (section?.name || '').toLowerCase().includes('weitere');
+const isSystemSection = isRollladenSystemSection(section);
 const isActive = div.classList.contains('active');
 
-// 👉 TOGGLE ONLY for "Weitere Optionen"
-if (isWeitere && isActive) {
+// 👉 TOGGLE ONLY for Rolläden system choices
+if ((isWeitere || isSystemSection) && isActive) {
 
   // ❌ DESELECT
   div.classList.remove('active');
@@ -3177,7 +3385,7 @@ if (isWeitere && isActive) {
   // 🔥 CLEAR EVERYTHING
   windowConfig.rollladen = null;
   windowConfig.rollladenOn = false;
-  extraPriceTab6 = 0;
+  clearTab6SubtabPrices(subtabId);
 
   document.getElementById('zubehoer-sidebar-rollladen').textContent = '';
 
@@ -3206,11 +3414,13 @@ if (section && subtab) {
   selectedBySection[key] = String(opt.id);
 }
 
-windowConfig.rollladen = displayLabel;
-windowConfig.rollladenOn = true;
-//extraPriceTab6 = parseFloat(opt.price) || 0;
-extraPriceTab6Map[subtabId] = parseFloat(opt.price) || 0;
-document.getElementById('zubehoer-sidebar-rollladen').textContent = displayLabel;
+if (isSystemSection) {
+  windowConfig.rollladen = displayLabel;
+  windowConfig.rollladenOn = true;
+  document.getElementById('zubehoer-sidebar-rollladen').textContent = displayLabel;
+}
+
+extraPriceTab6Map[getTab6OptionPriceKey(subtabId, section)] = parseFloat(opt.price) || 0;
 
 updateDependentSections?.(subtab);
 recomputeTotalPrice?.();
@@ -3225,11 +3435,12 @@ updateTab7Summary?.();
 
       updateDependentSections?.(subtab);
 
-      document.getElementById('zubehoer-sidebar-rollladen').textContent = displayLabel;
-      windowConfig.rollladen = displayLabel;
-      windowConfig.rollladenOn = !!windowConfig.rollladen;
-      //extraPriceTab6 = parseFloat(opt.price) || 0;
-extraPriceTab6Map[subtabId] = parseFloat(opt.price) || 0;
+      if (isSystemSection) {
+        document.getElementById('zubehoer-sidebar-rollladen').textContent = displayLabel;
+        windowConfig.rollladen = displayLabel;
+        windowConfig.rollladenOn = !!windowConfig.rollladen;
+      }
+      extraPriceTab6Map[getTab6OptionPriceKey(subtabId, section)] = parseFloat(opt.price) || 0;
       recomputeTotalPrice?.();
       updateTab6Sidebar?.();
       updateTab7Summary?.();
@@ -3542,7 +3753,7 @@ function updateDependentSections(subtab) {
     const block = document.querySelector(`.section-block[data-section-id="${section.id}"]`);
     if (!block) return;
 
-    const cards = Array.from(block.querySelectorAll('.card-option'));
+    const cards = Array.from(block.querySelectorAll('.card-option, .image-select-option-block, .text-input-option-block'));
     let visibleCount = 0;
 
     cards.forEach(card => {
