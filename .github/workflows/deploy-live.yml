@@ -19,7 +19,7 @@ on:
           - "false"
           - "true"
       dry_run:
-        description: "Show FTP changes without uploading."
+        description: "Show SFTP changes without uploading."
         required: true
         default: "false"
         type: choice
@@ -33,7 +33,7 @@ concurrency:
 
 jobs:
   ftp:
-    name: FTP deploy
+    name: SFTP deploy
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -65,19 +65,21 @@ jobs:
 
           echo "configured=true" >> "$GITHUB_OUTPUT"
 
-      - name: Install FTP client
+      - name: Install SFTP client
         if: steps.ftp_secrets.outputs.configured == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y lftp
 
-      - name: Deploy via FTP
+      - name: Deploy via SFTP
         if: steps.ftp_secrets.outputs.configured == 'true'
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
           DELETE_EXTRA: ${{ github.event_name == 'workflow_dispatch' && inputs.delete_extra || 'false' }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
         run: |
@@ -88,6 +90,14 @@ jobs:
           : "${FTP_PASSWORD:?Missing GitHub secret FTP_PASSWORD}"
 
           remote_dir="${FTP_REMOTE_DIR:-/}"
+          ftp_protocol="${FTP_PROTOCOL:-sftp}"
+          if [ -n "${FTP_PORT}" ]; then
+            ftp_port="${FTP_PORT}"
+          elif [ "${ftp_protocol}" = "sftp" ]; then
+            ftp_port="22"
+          else
+            ftp_port="21"
+          fi
           mirror_command="mirror --reverse --verbose --only-newer"
 
           if [ "${DELETE_EXTRA}" = "true" ]; then
@@ -98,9 +108,23 @@ jobs:
             mirror_command="${mirror_command} --dry-run"
           fi
 
-          lftp -u "${FTP_USERNAME}","${FTP_PASSWORD}" "${FTP_HOST}" <<LFTP
+          case "${ftp_protocol}" in
+            sftp)
+              remote_url="sftp://${FTP_HOST}:${ftp_port}"
+              ;;
+            ftp)
+              remote_url="ftp://${FTP_HOST}:${ftp_port}"
+              ;;
+            *)
+              echo "Unsupported FTP_PROTOCOL: ${ftp_protocol}" >&2
+              exit 1
+              ;;
+          esac
+
+          lftp -u "${FTP_USERNAME}","${FTP_PASSWORD}" "${remote_url}" <<LFTP
           set ftp:ssl-allow true
           set ftp:ssl-force false
+          set sftp:auto-confirm yes
           set ssl:verify-certificate true
           set net:max-retries 2
           set net:timeout 20
@@ -119,6 +143,8 @@ jobs:
             --exclude-glob connect.php \
             --exclude-glob generate_token.php \
             --exclude-glob debug_product_response.json \
+            --exclude-glob .remote-backups/ \
+            --exclude-glob .remote-backups/** \
             --exclude-glob .DS_Store \
             --exclude-glob "*.log" \
             --exclude-glob "*.tmp" \
