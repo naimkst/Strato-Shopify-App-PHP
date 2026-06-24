@@ -2893,7 +2893,7 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
     const div = document.createElement('div');
     const active = String(windowConfig.fensterbankAnschlussprofilId || '__none__') === String(profile.id);
 
-    div.className = 'card-option' + (active ? ' active' : '');
+    div.className = 'card-option sill-profile-option' + (active ? ' active' : '');
     div.dataset.id = profile.id;
     div.dataset.label = profile.label;
 
@@ -2902,9 +2902,9 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
       : `<span>Art.-Nr. ${profile.article}</span><span>${profile.profile}</span><span>+${profile.addHeight} mm Höhe</span><span>${profile.pricePerMeter.toFixed(2)} €/m, weiß</span>`;
 
     div.innerHTML = `
-      <img src="https://droplify.de/deine-fenster24/frontend/img/Fensterbankanschlussprofil.jpg" alt="${profile.label || ''}">
-      <div>
-        <strong>${profile.label || ''}</strong><br>
+      <img class="sill-profile-image" src="https://droplify.de/deine-fenster24/frontend/img/Fensterbankanschlussprofil.jpg" alt="${profile.label || ''}">
+      <div class="sill-profile-copy">
+        <strong class="sill-profile-title">${profile.label || ''}</strong>
         ${details}
       </div>
       <span class="checkmark-box">

@@ -1057,6 +1057,76 @@ div#tab7-svgPreviewBox svg g path {
     margin: 2px 0;
 }
 
+.its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
+    grid-template-columns: repeat(3, minmax(250px, 1fr)) !important;
+    gap: 20px !important;
+    align-items: stretch;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+    display: grid !important;
+    grid-template-columns: 72px minmax(0, 1fr);
+    column-gap: 18px;
+    row-gap: 8px;
+    align-items: center;
+    min-height: 158px;
+    padding: 18px 38px 18px 14px;
+    overflow: hidden;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+    width: 72px !important;
+    max-width: 72px;
+    height: auto !important;
+    margin: 0 !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-copy {
+    min-width: 0;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-title {
+    display: block !important;
+    align-items: initial !important;
+    font-size: 15px !important;
+    line-height: 1.28 !important;
+    margin: 0 0 12px !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-copy span {
+    display: block;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+@media (max-width: 820px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
+        grid-template-columns: repeat(2, minmax(250px, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+        grid-template-columns: 64px minmax(0, 1fr);
+        min-height: 146px;
+        padding: 16px 38px 16px 12px;
+    }
+
+    .its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+        width: 64px !important;
+        max-width: 64px;
+    }
+}
+
 
 
 
