@@ -14,3 +14,4 @@ generate_token.php
 tokens/
 uploads/
 debug_product_response.json
+.remote-backups/
