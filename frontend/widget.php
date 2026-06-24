@@ -828,14 +828,14 @@ span.extra_image {
 .its_my_app_work .tab-nav-buttons button {
     background: transparent;
     color: #000;
-    font-weight: bold;    
+    font-weight: bold;
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
     border-radius: 20px;
 	    width: 22%;
-	
+
 }
 .its_my_app_work .tab-nav-buttons button.active{
     border: 2px solid #003087;
@@ -888,7 +888,7 @@ button.extrahlink a {
 
 .its_my_app_work #tab3 .card-option {
     flex-direction: column !important;
-	
+
 }
 
 #tab3 .opening-svg-container {
@@ -1045,6 +1045,18 @@ div#tab7-svgPreviewBox svg g path {
     display: none !important;
 }
 
+.balcony-door-notes {
+    margin: 10px 0;
+    padding: 8px 10px;
+    border-left: 3px solid #0B2D60;
+    background: #F4F4F4;
+    font-size: 14px;
+}
+
+.balcony-door-notes p {
+    margin: 2px 0;
+}
+
 
 
 
@@ -1072,33 +1084,33 @@ div#tab7-svgPreviewBox svg g path {
 
 <div class="tab-nav-buttons container">
   <button data-code="__static_ksf__" class="active" onclick="goToTabWithCode('__static_ksf__')">
-  
+
   <img src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/Kunststofffenster-Konfigurator.webp?v=1773949803">
-  <span>Fenster</span></button> 
-    
+  <span>Fenster</span></button>
+
   <button data-code="__static_balkon__" onclick="goToTabWithCode('__static_balkon__')">
-    <img src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/Balkontuer-Konfigurator.webp?v=1773949803">  
+    <img src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/Balkontuer-Konfigurator.webp?v=1773949803">
   <span>Balkontüren</span></button>
-  
+
   <button  data-code="__static_schiebe__" onclick="goToTabWithCode('__static_schiebe__')">
 <img src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/Hebeschiebetuer-Konfigurator.webp?v=1773949802">
   <span>Schiebetüren</span></button>
-  
+
   <button class="extrahlink">
    <a  data-code="__haustüren__" href="https://deine-fenster24.myshopify.com/collections/turen">
 <img src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/WhatsApp_Image_2026-05-12_at_1.43.53_AM.png?v=1778531034">
   <span>Haustüren</span></a>
   </button>
-  
+
   </div>
-  
-  
-  
+
+
+
 <div class="tab-header-wrapper">
   <div class="tab-header accordion-header-container container" id="tabHeaderContainer">
-  
+
   </div>
-  
+
 
 </div>
 
@@ -1109,11 +1121,11 @@ div#tab7-svgPreviewBox svg g path {
     <h2>1. PROFIL AUSWÄHLEN</h2>
 	<div class="container">
       <div class="option-grid">
-   
+
       </div>
       <div class="sidebar preview-box" data-preview="profile">
 	    <div class="inner_scrolling">
-	  
+
         <h4>INNENANSICHT</h4>
       <img src="" alt="Profile Image" />
   <p></p>
@@ -1137,10 +1149,10 @@ div#tab7-svgPreviewBox svg g path {
     <h2>2. FLÜGEL KONFIGURIEREN</h2>
 	<div class="container">
       <div class="option-grid">
-   
+
       </div>
      <div class="preview-box" data-preview="wing">
-	
+
   <h4>INNENANSICHT</h4>
   <div class="wing-svg-preview"></div>
   <img src="" alt="Preview" style="display:none;">
@@ -1164,10 +1176,10 @@ div#tab7-svgPreviewBox svg g path {
   <div class="tab-content" id="tab3">
     <h2>3. ÖFFNUNGSART AUSWÄHLEN</h2>
     <div class="container">
-      <div class="option-grid">      
+      <div class="option-grid">
       </div>
       <div class="preview-box" data-preview="opening">
-	 
+
   <h4>ÖFFNUNGSART</h4>
   <div class="opening-svg-preview"></div>
   <img src="" alt="Preview" style="display:none;"><p></p>
@@ -1270,7 +1282,7 @@ div#tab7-svgPreviewBox svg g path {
         <div class="price-box">
 <div class="price_inner">
           <strong>FENSTER  <span class="price" id="tab4-price">54.96 €</span></strong>
-         
+
 </div>
           <span>Lieferzeit: ca. 3-5 Wochen</span>
           <div class="quantity quantity_app">
@@ -1286,19 +1298,19 @@ div#tab7-svgPreviewBox svg g path {
       </div>
      </div>
     </div>
-	
+
 	<div class="bottom_check_point container">
  <div class="progress-bar-container"><div class="progress-bar"></div></div>
       <div class="footer-buttons">
         <button class="btnmain back" onclick="prevTab()">ZURÜCK</button>
         <button class="btnmain next_butoon next" onclick="nextTab()">WEITER</button>
       </div>
-	  
+
 	  </div>
   </div>
 
-  
-  
+
+
  <!-- TAB 5: Farben und Glass (FULL HTML, no skipped content) -->
 <div class="tab-content" id="tab5">
   <h2>5. FARBEN UND GLASS</h2>
@@ -1323,7 +1335,7 @@ div#tab7-svgPreviewBox svg g path {
       <div id="farben-tab-aussen" class="option-grid glass-subtab" style="display:none;">
 <div class="section-title">FARBE AUSSEN</div>
       </div>
-	  
+
       <!-- Griff -->
       <div id="farben-tab-griff" class="option-grid glass-subtab" style="display:none;">
 <div class="section-title">GRIFF</div>
@@ -1331,21 +1343,21 @@ div#tab7-svgPreviewBox svg g path {
       </div>
       <!-- Isolierglas -->
       <div id="farben-tab-isolierglas" class="option-grid glass-subtab" style="display:none;">
-      
-<div class="section-title">ISOLIERGLAS</div>       
+
+<div class="section-title">ISOLIERGLAS</div>
 
             </div>
       <!-- Ornament -->
-      <div id="farben-tab-ornament" class="option-grid glass-subtab" style="display:none;">     
-      
-<div class="section-title">ORNAMENT</div>        
+      <div id="farben-tab-ornament" class="option-grid glass-subtab" style="display:none;">
+
+<div class="section-title">ORNAMENT</div>
       </div>
-	  
-	   <div id="farben-tab-vsg" class="option-grid glass-subtab" style="display:none;">     
-      
-<div class="section-title">VSG Glas</div>        
+
+	   <div id="farben-tab-vsg" class="option-grid glass-subtab" style="display:none;">
+
+<div class="section-title">VSG Glas</div>
       </div>
-	  
+
     </div>
    <!-- Sidebar preview (Tab 5, ALL data carried over, unique IDs, always updates) -->
 
@@ -1388,14 +1400,14 @@ div#tab7-svgPreviewBox svg g path {
 </div>
 </div>
   </div>
-  
+
   <div class="bottom_check_point container">
  <div class="progress-bar-container"><div class="progress-bar"></div></div>
       <div class="footer-buttons">
         <button class="btnmain back" onclick="prevTab()">ZURÜCK</button>
         <button class="btnmain next_butoon next" onclick="nextTab()">WEITER</button>
       </div>
-	  
+
 	  </div>
 </div>
 
@@ -1410,48 +1422,15 @@ div#tab7-svgPreviewBox svg g path {
     <div class="main">
       <!-- Sub-tabs for Zubehör -->
       <div class="tabs" style="margin-bottom:18px;">
-        <div class="tab active" onclick="switchAccessorySubTab('sprossen')">SPROSSEN</div>
-        <div class="tab" onclick="switchAccessorySubTab('rahmenverbreiterung')">RAHMENVERBREITERUNG</div>
-        <div class="tab" onclick="switchAccessorySubTab('fensterzubehoer')">FENSTERZUBEHÖR</div>
-        <div class="tab" onclick="switchAccessorySubTab('rollladen')">ROLLLADEN</div>
-      </div>
-      <!-- Sprossen subtab -->
-      <div id="sprossen-subtab" class="accessory-subtab" style="">
-        <div class="section-title">SPROSSEN</div>
-        <div class="option-grid">
-
-          <div class="card-option active" onclick="selectSprosse(this,'18mm')">
-            <img src="https://droplify.de/deine-fenster24/frontend/sixthtabSprossen.svg" alt="">
-            <div>
-              <strong>SPROSSEN 18 MM</strong>
-              <span>Inneliegende Sprossen</span>
-            </div>
-            <span class="checkmark-box"><img src="https://droplify.de/deine-fenster24/frontend/Vector.svg"></span>
-          </div>
-          <div class="card-option" onclick="selectSprosse(this,'26mm')">
-            <img src="https://droplify.de/deine-fenster24/frontend/sixthtabSprossen1.svg" alt="">
-             <div>
-              <strong>SPROSSEN 26 MM</strong>
-             <span> Inneliegende Sprossen</span>
-            </div>
-            <span class="checkmark-box"><img src="https://droplify.de/deine-fenster24/frontend/Vector.svg"></span>
-          </div>
-        </div>
-        <div class="formobilegroup" id="formobilegroup" style="display:flex;gap:2rem;margin-top:1rem;">
-          <div class="form-group">
-            <label for="sprosse-horizontal">HORIZONTAL (ELEMENTE)</label>
-            <input type="number" id="sprosse-horizontal" value="2" min="0">
-          </div>
-          <div class="form-group">
-            <label for="sprosse-vertikal">SENKRECHT (ELEMENTE)</label>
-            <input type="number" id="sprosse-vertikal" value="2" min="0">
-          </div>
-        </div>
+        <div class="tab active">RAHMENVERBREITERUNG</div>
+        <div class="tab">FENSTERBANK-ANSCHLUSSPROFIL</div>
+        <div class="tab">ROLLLADEN</div>
+        <div class="tab" style="display:none"></div>
       </div>
       <!-- Rahmenverbreiterung subtab -->
-      <div id="rahmenverbreiterung-subtab" class="accessory-subtab" style="display:none;">
+      <div id="rahmenverbreiterung-subtab" class="accessory-subtab" style="">
         <div class="section-title">RAHMENVERBREITERUNG</div>
-		
+
 		 <div style="display:flex;flex-wrap:wrap;gap:2rem;">
 
         <div class="form-group">
@@ -1475,8 +1454,8 @@ div#tab7-svgPreviewBox svg g path {
     </div>
 
   </div>
-		
-		
+
+
 		<!----
         <div style="display:flex;flex-wrap:wrap;gap:2rem;">
           <div class="form-group">
@@ -1514,34 +1493,17 @@ div#tab7-svgPreviewBox svg g path {
         </div>
 		----->
       </div>
-      <!-- Fensterzubehör subtab -->
-      <div id="fensterzubehoer-subtab" class="accessory-subtab" style="display:none;">
-        <div class="section-title">FENSTERZUBEHÖR</div>
-        <div style="display:flex;gap:2rem;">
-          <div class="form-group">
-
-            <label for="lz-luefter">LÜFTER</label>
-            <select id="lz-luefter">
-              <option>
-         FENSTERFALZLUFTER CAIRE FLEX</option>
-              <option>ANDERER LÜFTER</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="lz-reedkontakt">REEDKONTAKT</label>
-            <select id="lz-reedkontakt">
-              <option>REEDKONTAKT</option>
-              <option>OHNE</option>
-            </select>
-          </div>
-        </div>
+      <!-- Fensterbank-Anschlussprofil subtab -->
+      <div id="fensterbankanschlussprofil-subtab" class="accessory-subtab" style="display:none;">
+        <div class="section-title">FENSTERBANK-ANSCHLUSSPROFIL</div>
+        <div class="option-grid"></div>
       </div>
       <!-- Rolladen subtab -->
       <div id="rollladen-subtab" class="accessory-subtab" style="display:none;">
         <div class="section-title">ROLLLADEN</div>
         <div class="option-grid">
-        
-       
+
+
 
         </div>
       </div>
@@ -1552,7 +1514,7 @@ div#tab7-svgPreviewBox svg g path {
       <h4>INNENANSICHT</h4>
      <div class="svgover" id="svgPreviewBox">
     </div>
-     
+
       <p style="font-size:15px;">
         <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
         <span id="zubehoer-sidebar-wing"></span><br>
@@ -1565,12 +1527,10 @@ div#tab7-svgPreviewBox svg g path {
         GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
         ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
         ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
-        SPROSSEN: <span id="zubehoer-sidebar-sprosse"></span> 
-        <!--H: <span id="zubehoer-sidebar-sprosseH"></span> |
-        V: <span id="zubehoer-sidebar-sprosseV"></span><br>--->
        RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
-        <!--LÜFTER: <span id="zubehoer-sidebar-luefter"></span><br>-->
-        <!--REEDKONTAKT:<span id="zubehoer-sidebar-reedkontakt"></span>--->
+       FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
+        <span id="zubehoer-sidebar-luefter" style="display:none"></span>
+        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
        <span id="zubehoer-sidebar-rollladen"></span>
 
       </p>
@@ -1648,11 +1608,12 @@ div#tab7-svgPreviewBox svg g path {
         <p>Griff: <span id="t7-sidebar-griff"></span></p>
         <p>Isolierglas: <span id="t7-sidebar-isolierglas"></span></p>
         <p>Ornament: <span id="t7-sidebar-ornament"></span></p>
+        <div id="t7-sidebar-balkon-notes"></div>
 
-        <p>Sprosse: <span id="t7-sidebar-sprosse"></span></p>
         <p>Rahmen: <span id="t7-sidebar-rahmen"></span></p>
-        <p>Lüfter: <span id="t7-sidebar-luefter"></span></p>
-        <p>Reedkontakt: <span id="t7-sidebar-reedkontakt"></span></p>
+        <p>Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
+        <span id="t7-sidebar-luefter" style="display:none"></span>
+        <span id="t7-sidebar-reedkontakt" style="display:none"></span>
         <p>Rollladen:<span id="t7-sidebar-rollladen"></span></p>
       </div>
 
