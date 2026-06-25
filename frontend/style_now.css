@@ -667,10 +667,11 @@ color: rgba(0, 0, 0, 0.5);
     text-align: right;
 }
 
+.its_my_app_work .price_inner .price .price-tax,
 .its_my_app_work .price_inner .price-tax{
     font-size: 45%;
     font-weight: 500;
-    text-transform: none;
+    text-transform: none !important;
 }
   
 

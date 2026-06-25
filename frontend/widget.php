@@ -605,10 +605,11 @@ flex: 0.8;
     text-align: right;
 }
 
+.its_my_app_work .price_inner .price .price-tax,
 .its_my_app_work .price_inner .price-tax {
     font-size: 45%;
     font-weight: 500;
-    text-transform: none;
+    text-transform: none !important;
 }
 
 .its_my_app_work .tab-content.active {
@@ -1744,6 +1745,7 @@ div#tab7-svgPreviewBox svg g path {
     ORNAMENT: <span id="glass-sidebar-ornament">KARO MATT</span><br>
 	VSG Glas: <span id="glass-sidebar-vsg"></span>
   </div>
+  <div id="glass-sidebar-balkon-notes"></div>
   <div class="price-box">
   <div class="price_inner">
     <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>

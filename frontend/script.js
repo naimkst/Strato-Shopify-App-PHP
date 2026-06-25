@@ -837,6 +837,9 @@ function isBalconyDoorConfiguration() {
     document.getElementById('t7-sidebar-profile')?.textContent,
     document.getElementById('t7-sidebar-wing')?.textContent,
     document.getElementById('t7-sidebar-opening')?.textContent,
+    document.getElementById('glass-sidebar-profile')?.textContent,
+    document.getElementById('glass-sidebar-wing')?.textContent,
+    document.getElementById('glass-sidebar-opening')?.textContent,
     document.getElementById('zubehoer-sidebar-profile')?.textContent,
     document.getElementById('zubehoer-sidebar-wing')?.textContent,
     document.getElementById('zubehoer-sidebar-opening')?.textContent
@@ -4817,6 +4820,9 @@ function updateTab5Sidebar() {
 
   document.getElementById('glass-sidebar-height').textContent =
     document.getElementById('height')?.value || '';
+
+  const glassBalconyNotes = document.getElementById('glass-sidebar-balkon-notes');
+  if (glassBalconyNotes) glassBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
 
   // Size + Beschlag from Tab4
