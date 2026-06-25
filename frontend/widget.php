@@ -1023,7 +1023,8 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 
-#tab6 a.inquiry-btn {
+#tab6 a.inquiry-btn,
+#tab7 a.inquiry-btn {
     background: #0B2D60;
     color: #fff;
     font-size: 22px;
@@ -1035,10 +1036,15 @@ div#tab7-svgPreviewBox svg g path {
     display: block;
 }
 
-#tab6 .inquiry-box {
+#tab6 .inquiry-box,
+#tab7 .inquiry-box {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.rollladen-sidebar-line {
+    display: block;
 }
 
 #tab5 #farben-tab-innen .card-option svg {
@@ -1979,7 +1985,7 @@ div#tab7-svgPreviewBox svg g path {
         <p>Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
         <span id="t7-sidebar-luefter" style="display:none"></span>
         <span id="t7-sidebar-reedkontakt" style="display:none"></span>
-        <p>Rollladen:<span id="t7-sidebar-rollladen"></span></p>
+        <div id="t7-sidebar-rollladen"></div>
       </div>
 
 

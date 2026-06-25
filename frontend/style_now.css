@@ -917,8 +917,13 @@ color: rgba(0, 0, 0, 0.7);
     font-size: 10px !important;
 }
 
-#tab6 a.inquiry-btn {
+#tab6 a.inquiry-btn,
+#tab7 a.inquiry-btn {
     font-size: 14px;
+}
+
+.rollladen-sidebar-line {
+    display: block;
 }
 
 .its_my_app_work #tab4 .container {

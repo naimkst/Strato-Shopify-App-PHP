@@ -3242,11 +3242,86 @@ function clearRollladenWindowConfig() {
   windowConfig.rollladenOn = false;
 }
 
+function getRollladenSummaryLines() {
+  const lines = [];
+  if (windowConfig.rollladen) lines.push(['Rollladen', windowConfig.rollladen]);
+  if (windowConfig.rollladenMounting) lines.push(['Montage', windowConfig.rollladenMounting]);
+  if (windowConfig.rollladenDrive) lines.push(['Antrieb', windowConfig.rollladenDrive]);
+  return lines;
+}
+
+function getRollladenDetailsText() {
+  return getRollladenSummaryLines()
+    .map(([label, value]) => `${label}: ${value}`)
+    .join('\n');
+}
+
+function getRollladenDetailsHTML() {
+  return getRollladenSummaryLines()
+    .map(([label, value]) => `<span class="rollladen-sidebar-line"><strong>${label}:</strong> ${value}</span>`)
+    .join('');
+}
+
+function getRollladenInquiryHTML() {
+  return `
+    <div class="inquiry-box rollladen-inquiry-box">
+      <a href="/pages/contact" class="inquiry-btn">
+        Anfrage senden
+      </a>
+    </div>
+  `;
+}
+
+function syncRollladenInquiryMode() {
+  const inquiryMode = !!windowConfig.rollladenOn;
+
+  const tab6 = document.getElementById('tab6');
+  if (tab6) {
+    const priceBox = tab6.querySelector('.price-box');
+    let inquiryBox = tab6.querySelector('.rollladen-inquiry-box');
+
+    if (priceBox) {
+      priceBox.style.display = inquiryMode ? 'none' : '';
+      if (inquiryMode && !inquiryBox) {
+        priceBox.insertAdjacentHTML('afterend', getRollladenInquiryHTML());
+        inquiryBox = tab6.querySelector('.rollladen-inquiry-box');
+      }
+    }
+
+    if (!inquiryMode && inquiryBox) inquiryBox.remove();
+  }
+
+  const tab7 = document.getElementById('tab7');
+  if (tab7) {
+    const checkoutParts = [
+      tab7.querySelector('.price_inner'),
+      tab7.querySelector('.quantity_app'),
+      tab7.querySelector('button.btnmain-cart.cart')
+    ].filter(Boolean);
+
+    checkoutParts.forEach(el => {
+      el.style.display = inquiryMode ? 'none' : '';
+    });
+
+    let inquiryBox = tab7.querySelector('.rollladen-inquiry-box');
+    if (inquiryMode && !inquiryBox) {
+      const cartButton = tab7.querySelector('button.btnmain-cart.cart');
+      const sidebar = tab7.querySelector('.sidebar .forscrolling') || tab7.querySelector('.sidebar');
+
+      if (cartButton) cartButton.insertAdjacentHTML('afterend', getRollladenInquiryHTML());
+      else if (sidebar) sidebar.insertAdjacentHTML('beforeend', getRollladenInquiryHTML());
+    }
+
+    if (!inquiryMode && inquiryBox) inquiryBox.remove();
+  }
+}
+
 function updateRollladenAfterSelection(subtabId) {
   recomputeTotalPrice?.();
   updateTab6Sidebar?.();
   updateTab7Summary?.();
   setRollladenPreview(!!windowConfig.rollladenOn);
+  syncRollladenInquiryMode();
 }
 
 function renderReferenceRollladenOptions(subtab, subtabId, grid) {
@@ -3375,17 +3450,7 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
   }
 
   function ensureRollladenInquiryButton() {
-    const priceBox = document.querySelector('#tab6 .price-box');
-    if (!priceBox || document.querySelector('#tab6 .inquiry-box')) return;
-
-    const inquiryBox = document.createElement('div');
-    inquiryBox.className = 'inquiry-box';
-    inquiryBox.innerHTML = `
-      <a href="/pages/contact" class="inquiry-btn">
-        Anfrage senden
-      </a>
-    `;
-    priceBox.parentNode.replaceChild(inquiryBox, priceBox);
+    syncRollladenInquiryMode();
   }
 
   noChoice.addEventListener('click', selectNoRollladen);
@@ -3767,35 +3832,7 @@ updateTab7Summary?.();
       updateTab7Summary?.();
 
 
-	  // ===== REPLACE PRICE BOX WITH BUTTON =====
-
-const priceBox = document.querySelector('#tab6 .price-box');
-
-if (priceBox) {
-
-  // check if already replaced
-  let inquiryBox = document.querySelector('#tab6 .inquiry-box');
-
-  if (windowConfig.rollladenOn) {
-
-    // create once
-    if (!inquiryBox) {
-
-      inquiryBox = document.createElement('div');
-      inquiryBox.className = 'inquiry-box';
-
-      inquiryBox.innerHTML = `
-        <a href="/pages/contact" class="inquiry-btn">
-          Anfrage senden
-        </a>
-      `;
-
-      // 🔥 replace price-box WITH inquiry-box (same position)
-      priceBox.parentNode.replaceChild(inquiryBox, priceBox);
-    }
-
-  }
-}
+      syncRollladenInquiryMode();
 
       const svgNow = document.querySelector('#tab6 #svgPreviewBox svg');
       if (svgNow && typeof drawRollladenBox === 'function')
@@ -3974,9 +4011,10 @@ if (t7BalconyNotes) t7BalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
 // Zubehör from Tab 6 (mirror values directly)
 document.getElementById('t7-sidebar-rahmen').textContent     = document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '';
-document.getElementById('t7-sidebar-luefter').textContent    = document.getElementById('zubehoer-sidebar-luefter')?.textContent || '';
-document.getElementById('t7-sidebar-reedkontakt').textContent= document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '';
-document.getElementById('t7-sidebar-rollladen').innerHTML   = document.getElementById('zubehoer-sidebar-rollladen')?.innerHTML  || '';
+	document.getElementById('t7-sidebar-luefter').textContent    = document.getElementById('zubehoer-sidebar-luefter')?.textContent || '';
+	document.getElementById('t7-sidebar-reedkontakt').textContent= document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '';
+	document.getElementById('t7-sidebar-rollladen').innerHTML   = getRollladenDetailsHTML();
+	syncRollladenInquiryMode();
 
 
   // === SVG Preview ===
@@ -4108,8 +4146,14 @@ function updateDependentSections(subtab) {
 
 // ========== TAB 7 ADD TO CART ==========
 document.addEventListener("click", function(e) {
+  if (windowConfig.rollladenOn && e.target.closest('button.btnmain-cart.cart')) {
+    e.preventDefault();
+    syncRollladenInquiryMode();
+    document.querySelector('.rollladen-inquiry-box .inquiry-btn')?.focus();
+    return;
+  }
 
- function addToCartWithProperties(variantId, item) {
+	 function addToCartWithProperties(variantId, item) {
   const properties = {
     "System": item.profile,
     "Typ": item.wing,
@@ -4193,7 +4237,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       rahmen: document.getElementById("t7-sidebar-rahmen")?.textContent,
       luefter: document.getElementById("t7-sidebar-luefter")?.textContent,
       reedkontakt: document.getElementById("t7-sidebar-reedkontakt")?.textContent,
-      rollladen: document.getElementById("t7-sidebar-rollladen")?.textContent,
+	      rollladen: getRollladenDetailsText(),
       qty: currentQty,
 	      price: document.getElementById("t7-price")?.textContent,
 	      svg: svgMarkup
@@ -4336,7 +4380,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       rahmen: document.getElementById("zubehoer-sidebar-rahmen")?.textContent,
       luefter: document.getElementById("zubehoer-sidebar-luefter")?.textContent,
       reedkontakt: document.getElementById("zubehoer-sidebar-reedkontakt")?.textContent,
-      rollladen: document.getElementById("zubehoer-sidebar-rollladen")?.textContent,
+	      rollladen: getRollladenDetailsText(),
       qty: currentQty,
 	      price: document.getElementById("zubehoer-price")?.textContent,
 	      svg: svgMarkup
@@ -4909,31 +4953,21 @@ function updateTab6Sidebar() {
   // --- 🧩 ROLLLADEN summary block ---
   const rollSidebar = document.getElementById('zubehoer-sidebar-rollladen');
   if (!rollSidebar) return;
-  rollSidebar.innerHTML = '';
+  const rollladenHTML = getRollladenDetailsHTML();
+  rollSidebar.innerHTML = rollladenHTML;
 
   // 🔹 only show if system is selected
-  const systemSelected = !!windowConfig.rollladen;
-  if (!systemSelected) {
+  if (!rollladenHTML) {
     rollSidebar.style.display = 'none';
     recomputeTotalPrice();
+    syncRollladenInquiryMode();
     return;
   } else {
     rollSidebar.style.display = 'block';
   }
 
-  const addRollLine = (label, value) => {
-    if (!value) return;
-    const line = document.createElement('div');
-    line.className = 'rollladen-sidebar-line';
-    line.textContent = `${label}: ${value}\n`;
-    rollSidebar.appendChild(line);
-  };
-
-  addRollLine('Rollladen', windowConfig.rollladen);
-  addRollLine('Montage', windowConfig.rollladenMounting);
-  addRollLine('Antrieb', windowConfig.rollladenDrive);
-
   recomputeTotalPrice();
+  syncRollladenInquiryMode();
   return;
 
   // --- collect all extra (input + select) entries ---
