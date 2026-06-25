@@ -315,6 +315,7 @@ const tabMapcheck = {
   __static_balkon__: 'static-tab-balkon'
 };
 let staticCode = null;
+let pendingStaticCode = null;
 
 
 
@@ -814,15 +815,22 @@ function syncEffectiveHeightDisplays() {
 }
 
 function isBalconyDoorConfiguration() {
+  const activeStatic = document.querySelector('.tab-nav-buttons button.active')?.dataset?.code;
+  const urlStatic = getUrlParam('tab_check');
+  const productParam = getUrlParam('product');
+  const selectedStaticCode = windowConfig.staticCode || staticCode || activeStatic || urlStatic;
+
+  if (selectedStaticCode === '__static_balkon__') return true;
   if (staticCode === '__static_balkon__') return true;
 
-  const activeStatic = document.querySelector('.tab-nav-buttons button.active')?.dataset?.code;
   if (activeStatic === '__static_balkon__') return true;
 
-  const urlStatic = getUrlParam('tab_check');
   if (urlStatic === '__static_balkon__') return true;
 
   const labels = [
+    selectedStaticCode,
+    productParam,
+    window.location.pathname,
     windowConfig.profile,
     windowConfig.wing,
     windowConfig.opening,
@@ -834,12 +842,30 @@ function isBalconyDoorConfiguration() {
     document.getElementById('zubehoer-sidebar-opening')?.textContent
   ].join(' ');
 
-  return hasNormalizedText(labels, ['balkontuer', 'balkontueren', 'balkon tuer', 'balkon tueren']);
+  return hasNormalizedText(labels, ['balkontuer', 'balkontueren', 'balkon tuer', 'balkon tueren', 'balkon', 'balcony']);
+}
+
+function getBalconyDoorNotes() {
+  return isBalconyDoorConfiguration()
+    ? ['Rahmen unten', 'Griff innen + Schnapper']
+    : [];
 }
 
 function getBalconyDoorNotesHTML() {
-  if (!isBalconyDoorConfiguration()) return '';
-  return '<div class="balcony-door-notes"><p>Rahmen unten</p><p>Griff innen + Schnapper</p></div>';
+  const notes = getBalconyDoorNotes();
+  if (!notes.length) return '';
+  return `<div class="balcony-door-notes">${notes.map(note => `<p>${note}</p>`).join('')}</div>`;
+}
+
+function addBalconyDoorDetails(item) {
+  const notes = getBalconyDoorNotes();
+  if (!notes.length) return item;
+
+  item.balkon_note_1 = notes[0];
+  item.balkon_note_2 = notes[1];
+  item.rahmen_unten = 'Ja';
+  item.griff_innen_schnapper = 'Ja';
+  return item;
 }
 
 function calculateThreeFachPrice() {
@@ -848,7 +874,7 @@ function calculateThreeFachPrice() {
 
 
 
-function goToTabWithCode(code) {
+function goToTabWithCode(code, persistUrl = true) {
 //switchTab(0); // open static tab first
   // stop if same button clicked
   if (staticCode === code) {
@@ -856,6 +882,8 @@ function goToTabWithCode(code) {
   }
 
   staticCode = code;
+  windowConfig.staticCode = code;
+  if (persistUrl) updateUrlParam('tab_check', code);
 
 
   // set active button
@@ -915,7 +943,7 @@ function getUrlParam(key) {
 window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const tabCode = params.get('tab_check');
-  if (tabCode && tabMapcheck[tabCode]) goToTabWithCode(tabCode);
+  if (tabCode && tabMapcheck[tabCode]) pendingStaticCode = tabCode;
 
   // Restore selections from URL query parameters
   const tabSelectors = {
@@ -1020,6 +1048,7 @@ let TAB5_LAZY_CACHE = {
 
 let currentTab = 0;
 const windowConfig = {
+  staticCode: null,
   profile: null, profileImg: null,
   wing: null, wingImg: null, wingSvg: null, wingPrice: null, wingId: null,
   opening: null, openingImg: null, openingSvg: null, openingPrice: null, openingId: null,
@@ -1314,7 +1343,8 @@ renderTab6Options();
     updateTabEnableStatus();
 
 
-goToTabWithCode('__static_ksf__');
+	const initialStaticCode = pendingStaticCode || (tabMapcheck[getUrlParam('tab_check')] ? getUrlParam('tab_check') : '__static_ksf__');
+	goToTabWithCode(initialStaticCode, Boolean(pendingStaticCode || getUrlParam('tab_check')));
 switchTab(0);
 
 maxUnlockedTab = 1;
@@ -4094,8 +4124,10 @@ document.addEventListener("click", function(e) {
     "Sprosse": item.sprosse,
     "Sprosse H": item.sprosseh,
     "Sprosse V": item.sprossev,
-    "Rahmen": item.rahmen,
-    "Lüfter": item.luefter,
+	    "Rahmen": item.rahmen,
+	    "Rahmen unten": item.rahmen_unten,
+	    "Griff innen + Schnapper": item.griff_innen_schnapper,
+	    "Lüfter": item.luefter,
     "Reedkontakt": item.reedkontakt,
     "Rollladen": item.rollladen
   };
@@ -4141,8 +4173,8 @@ document.addEventListener("click", function(e) {
 if (mullion) mullion.setAttribute("style", "display:none");
     const svgMarkup = svgNode ? new XMLSerializer().serializeToString(svgNode) : "";
 
-    const item = {
-      profile: windowConfig.profile,
+	    const item = {
+	      profile: windowConfig.profile,
       wing: windowConfig.wing,
       opening: windowConfig.opening,
       width: document.getElementById("t7-width")?.textContent,
@@ -4160,11 +4192,12 @@ if (mullion) mullion.setAttribute("style", "display:none");
       reedkontakt: document.getElementById("t7-sidebar-reedkontakt")?.textContent,
       rollladen: document.getElementById("t7-sidebar-rollladen")?.textContent,
       qty: currentQty,
-      price: document.getElementById("t7-price")?.textContent,
-      svg: svgMarkup
-    };
+	      price: document.getElementById("t7-price")?.textContent,
+	      svg: svgMarkup
+	    };
+	    addBalconyDoorDetails(item);
 
-    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
+	    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item)
@@ -4194,19 +4227,20 @@ if (mullion) mullion.setAttribute("style", "display:none");
 if (mullion) mullion.setAttribute("style", "display:none");
     const svgMarkup = svgNode ? new XMLSerializer().serializeToString(svgNode) : "";
 
-    const item = {
-      profile: windowConfig.profile,
+	    const item = {
+	      profile: windowConfig.profile,
       wing: windowConfig.wing,
       opening: windowConfig.opening,
       width: document.getElementById("sb-width")?.textContent,
       height: document.getElementById("sb-height")?.textContent,
       beschlag: document.getElementById("sb-beschlag")?.textContent,
       qty: currentQty,
-      price: document.getElementById("t7-price")?.textContent,
-      svg: svgMarkup
-    };
+	      price: document.getElementById("t7-price")?.textContent,
+	      svg: svgMarkup
+	    };
+	    addBalconyDoorDetails(item);
 
-    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
+	    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item)
@@ -4234,8 +4268,8 @@ if (mullion) mullion.setAttribute("style", "display:none");
 if (mullion) mullion.setAttribute("style", "display:none");
     const svgMarkup = svgNode ? new XMLSerializer().serializeToString(svgNode) : "";
 
-    const item = {
-      profile: windowConfig.profile,
+	    const item = {
+	      profile: windowConfig.profile,
       wing: windowConfig.wing,
       opening: windowConfig.opening,
       width: document.getElementById("glass-sidebar-width")?.textContent,
@@ -4247,11 +4281,12 @@ if (mullion) mullion.setAttribute("style", "display:none");
       isolierglas: document.getElementById("glass-sidebar-isolierglas")?.textContent,
       ornament: document.getElementById("glass-sidebar-ornament")?.textContent,
       qty: currentQty,
-      price: document.getElementById("glass-price")?.textContent,
-      svg: svgMarkup
-    };
+	      price: document.getElementById("glass-price")?.textContent,
+	      svg: svgMarkup
+	    };
+	    addBalconyDoorDetails(item);
 
-    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
+	    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item)
@@ -4279,8 +4314,8 @@ if (mullion) mullion.setAttribute("style", "display:none");
 if (mullion) mullion.setAttribute("style", "display:none");
     const svgMarkup = svgNode ? new XMLSerializer().serializeToString(svgNode) : "";
 
-    const item = {
-      profile: windowConfig.profile,
+	    const item = {
+	      profile: windowConfig.profile,
       wing: windowConfig.wing,
       opening: windowConfig.opening,
       width: document.getElementById("zubehoer-sidebar-width")?.textContent,
@@ -4300,11 +4335,12 @@ if (mullion) mullion.setAttribute("style", "display:none");
       reedkontakt: document.getElementById("zubehoer-sidebar-reedkontakt")?.textContent,
       rollladen: document.getElementById("zubehoer-sidebar-rollladen")?.textContent,
       qty: currentQty,
-      price: document.getElementById("zubehoer-price")?.textContent,
-      svg: svgMarkup
-    };
+	      price: document.getElementById("zubehoer-price")?.textContent,
+	      svg: svgMarkup
+	    };
+	    addBalconyDoorDetails(item);
 
-    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
+	    fetch("https://droplify.de/deine-fenster24/shopify-create-product.php?shop=deine-fenster24-com.myshopify.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item)

@@ -80,6 +80,18 @@ if (!empty($data['svg'])) {
     $images[] = ["src" => $svgUrl];
 }
 
+$configValue = function ($key) use ($data) {
+    return htmlspecialchars((string)($data[$key] ?? ''), ENT_QUOTES, 'UTF-8');
+};
+
+$balconyRows = '';
+if (!empty($data['balkon_note_1'])) {
+    $balconyRows .= '<li>' . $configValue('balkon_note_1') . '</li>';
+}
+if (!empty($data['balkon_note_2'])) {
+    $balconyRows .= '<li>' . $configValue('balkon_note_2') . '</li>';
+}
+
 // ---------- PRODUCT ----------
 $product = [
   "product" => [
@@ -100,8 +112,9 @@ $product = [
         <li>Isolierglas: {$data['isolierglas']}</li>
         <li>Ornament: {$data['ornament']}</li>
         <li>Sprosse: {$data['sprosse']}</li>
-        <li>Rahmen: {$data['rahmen']}</li>
-        <li>Lüfter: {$data['luefter']}</li>
+	        <li>Rahmen: {$data['rahmen']}</li>
+	        {$balconyRows}
+	        <li>Lüfter: {$data['luefter']}</li>
         <li>Reedkontakt: {$data['reedkontakt']}</li>
         <li>Rollladen: {$data['rollladen']}</li>
       </ul>",
