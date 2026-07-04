@@ -976,12 +976,13 @@ color: rgba(0, 0, 0, 0.7);
 .rollladen-inquiry-modal {
     position: fixed;
     inset: 0;
-    z-index: 999999999 !important;
+    z-index: 2147483647 !important;
     display: none;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 20px;
+    padding: 18px;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .rollladen-inquiry-modal.is-open {
@@ -989,22 +990,26 @@ color: rgba(0, 0, 0, 0.7);
 }
 
 .rollladen-inquiry-backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
+    z-index: 0;
 }
 
 .rollladen-inquiry-dialog {
     position: relative;
     z-index: 1;
-    width: min(720px, 100%);
-    max-height: calc(100vh - 40px);
-    overflow: auto;
+    width: min(720px, calc(100vw - 36px));
+    max-height: min(680px, calc(100dvh - 36px));
+    overflow-y: auto;
+    overflow-x: hidden;
     background: #fff;
     border-radius: 6px;
-    padding: 28px 32px 24px;
+    padding: 22px 28px 18px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     text-align: left;
+    box-sizing: border-box;
+    isolation: isolate;
 }
 
 .rollladen-inquiry-close {
@@ -1021,22 +1026,22 @@ color: rgba(0, 0, 0, 0.7);
 
 .rollladen-inquiry-logo {
     display: block;
-    width: 110px;
+    width: 92px;
     height: auto;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .rollladen-inquiry-dialog .rollladen-inquiry-title {
     color: #2d2d2d;
-    font-size: clamp(30px, 4vw, 42px);
+    font-size: clamp(26px, 3vw, 36px);
     line-height: 1.12;
     font-weight: 700;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
 }
 
 .rollladen-inquiry-dialog .rollladen-inquiry-fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 10px 12px;
 }
 
 .rollladen-inquiry-dialog label {
@@ -1049,33 +1054,34 @@ color: rgba(0, 0, 0, 0.7);
 .rollladen-inquiry-dialog input,
 .rollladen-inquiry-dialog select,
 .rollladen-inquiry-dialog textarea {
-    margin-top: 8px;
+    margin-top: 6px;
     border: 1px solid #ddd;
     border-radius: 0;
     background: #fff;
     font-size: 16px;
+    min-height: 40px;
 }
 
 .rollladen-inquiry-color-title {
     color: #2d2d2d;
     font-size: 15px;
     font-weight: 700;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .rollladen-inquiry-color-help {
     color: #667085;
     font-size: 13px;
     font-weight: 600;
-    margin: 6px 0 10px;
+    margin: 4px 0 8px;
 }
 
 .rollladen-inquiry-color-area {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 14px;
+    gap: 12px;
     align-items: stretch;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .rollladen-inquiry-color {
@@ -1089,8 +1095,8 @@ color: rgba(0, 0, 0, 0.7);
 .rollladen-inquiry-side-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px 26px;
-    margin-top: 14px;
+    gap: 12px 24px;
+    margin-top: 10px;
 }
 
 .rollladen-inquiry-side-option {
@@ -1123,7 +1129,7 @@ color: rgba(0, 0, 0, 0.7);
 }
 
 .rollladen-inquiry-preview {
-    min-height: 160px;
+    min-height: 116px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #f7f7f9;
@@ -1137,13 +1143,13 @@ color: rgba(0, 0, 0, 0.7);
 }
 
 .rollladen-inquiry-dialog textarea {
-    min-height: 170px;
+    min-height: 120px;
     border-radius: 10px;
 }
 
 .rollladen-inquiry-message-label {
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .rollladen-inquiry-submit {
@@ -1161,7 +1167,8 @@ color: rgba(0, 0, 0, 0.7);
 
 @media (max-width: 768px) {
     .rollladen-inquiry-dialog {
-        padding: 22px 18px 20px;
+        max-height: calc(100dvh - 24px);
+        padding: 18px 16px 16px;
     }
 
     .rollladen-inquiry-dialog .rollladen-inquiry-fields {
@@ -3313,13 +3320,13 @@ div#globalBottomCheckpoint {
 }
 
 .rollladen-inquiry-modal {
-    z-index: 999999999 !important;
+    z-index: 2147483647 !important;
     overflow-y: auto;
 }
 
 .rollladen-inquiry-dialog {
     z-index: 1000000000 !important;
-    max-height: calc(100dvh - 40px);
+    max-height: min(680px, calc(100dvh - 36px));
 }
 
 .its_my_app_work #tab2 .wing-svg-container,
