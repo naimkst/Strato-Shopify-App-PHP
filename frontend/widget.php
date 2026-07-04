@@ -1023,8 +1023,8 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 
-#tab6 a.inquiry-btn,
-#tab7 a.inquiry-btn {
+#tab6 .inquiry-btn,
+#tab7 .inquiry-btn {
     background: #0B2D60;
     color: #fff;
     font-size: 22px;
@@ -1034,6 +1034,8 @@ div#tab7-svgPreviewBox svg g path {
     font-weight: bold;
     width: 100%;
     display: block;
+    border: 0;
+    cursor: pointer;
 }
 
 #tab6 .inquiry-box,
@@ -1041,6 +1043,45 @@ div#tab7-svgPreviewBox svg g path {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.rollladen-inquiry-form {
+    display: grid;
+    gap: 12px;
+}
+
+.rollladen-inquiry-title {
+    color: #0B2D60;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.rollladen-inquiry-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.rollladen-inquiry-form input,
+.rollladen-inquiry-form textarea {
+    width: 100%;
+    border: 1px solid #d5d5d5;
+    padding: 10px 12px;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.rollladen-inquiry-form textarea {
+    min-height: 180px;
+    resize: vertical;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .rollladen-inquiry-fields {
+        grid-template-columns: 1fr;
+    }
 }
 
 .rollladen-sidebar-line {
@@ -1273,10 +1314,6 @@ div#tab7-svgPreviewBox svg g path {
         height: 140px !important;
         max-height: 140px;
     }
-}
-
-.its_my_app_work #rollladen-subtab.rollladen-reference-layout {
-    display: block !important;
 }
 
 .its_my_app_work #rollladen-subtab .rollladen-reference {

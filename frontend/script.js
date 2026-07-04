@@ -3268,12 +3268,81 @@ function getRollladenDetailsHTML() {
     .join('');
 }
 
+function escapeInquiryValue(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function getTextById(id) {
+  return (document.getElementById(id)?.textContent || '').trim();
+}
+
+function addInquiryLine(lines, label, value) {
+  const cleanValue = String(value || '').replace(/\s+/g, ' ').trim();
+  if (cleanValue) lines.push(`${label}: ${cleanValue}`);
+}
+
+function buildRollladenInquiryMessage() {
+  const lines = [
+    'Anfrage Rollläden',
+    '',
+    'Fensterkonfiguration'
+  ];
+
+  addInquiryLine(lines, 'System', windowConfig.profile);
+  addInquiryLine(lines, 'Typ', windowConfig.wing);
+  addInquiryLine(lines, 'Öffnungsart', windowConfig.opening);
+  addInquiryLine(lines, 'Breite', getTextById('zubehoer-sidebar-width') || getTextById('sb-width'));
+  addInquiryLine(lines, 'Höhe', getTextById('zubehoer-sidebar-height') || getTextById('sb-height'));
+  addInquiryLine(lines, 'Beschlag', getTextById('zubehoer-sidebar-beschlag') || beschlagLabel);
+  addInquiryLine(lines, 'Farbe innen', getTextById('zubehoer-sidebar-innen') || getTextById('glass-sidebar-innen'));
+  addInquiryLine(lines, 'Farbe außen', getTextById('zubehoer-sidebar-aussen') || getTextById('glass-sidebar-aussen'));
+  addInquiryLine(lines, 'Griff', getTextById('zubehoer-sidebar-griff') || getTextById('glass-sidebar-griff'));
+  addInquiryLine(lines, 'Isolierglas', getTextById('zubehoer-sidebar-isolierglas') || getTextById('glass-sidebar-isolierglas'));
+  addInquiryLine(lines, 'Ornament', getTextById('zubehoer-sidebar-ornament') || getTextById('glass-sidebar-ornament'));
+  addInquiryLine(lines, 'Rahmenverbreiterung', getTextById('zubehoer-sidebar-rahmen'));
+  addInquiryLine(lines, 'Fensterbank-Anschlussprofil', typeof getSillProfileSummary === 'function' ? getSillProfileSummary() : '');
+
+  const rollladenLines = getRollladenSummaryLines();
+  if (rollladenLines.length) {
+    lines.push('', 'Rollläden');
+    rollladenLines.forEach(([label, value]) => addInquiryLine(lines, label, value));
+  }
+
+  addInquiryLine(lines, 'Menge', currentQty);
+  addInquiryLine(lines, 'Konfigurator URL', window.location.href);
+
+  return lines.join('\n');
+}
+
+function updateRollladenInquiryForms() {
+  const message = buildRollladenInquiryMessage();
+  document.querySelectorAll('.rollladen-inquiry-message').forEach(field => {
+    field.value = message;
+  });
+}
+
 function getRollladenInquiryHTML() {
+  const message = escapeInquiryValue(buildRollladenInquiryMessage());
+
   return `
     <div class="inquiry-box rollladen-inquiry-box">
-      <a href="/pages/contact" class="inquiry-btn">
-        Anfrage senden
-      </a>
+      <form class="rollladen-inquiry-form" method="post" action="https://deine-fenster24.com/contact#contact_form" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[tags]" value="Rollladen Anfrage, Konfigurator">
+        <div class="rollladen-inquiry-title">Rollladen-Anfrage</div>
+        <div class="rollladen-inquiry-fields">
+          <input type="text" name="contact[name]" placeholder="Name">
+          <input type="email" name="contact[email]" placeholder="E-Mail" required>
+          <input type="tel" name="contact[phone]" placeholder="Telefon">
+        </div>
+        <textarea class="rollladen-inquiry-message" name="contact[body]" rows="12">${message}</textarea>
+        <button type="submit" class="inquiry-btn">Anfrage senden</button>
+      </form>
     </div>
   `;
 }
@@ -3320,6 +3389,8 @@ function syncRollladenInquiryMode() {
 
     if (!inquiryMode && inquiryBox) inquiryBox.remove();
   }
+
+  if (inquiryMode) updateRollladenInquiryForms();
 }
 
 function updateRollladenAfterSelection(subtabId) {
