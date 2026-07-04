@@ -1426,6 +1426,39 @@ div#tab7-svgPreviewBox svg g path {
     }
 }
 
+.its_my_app_work #tab2 .wing-svg-container,
+.its_my_app_work #tab3 .opening-svg-container {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 18px;
+}
+
+.its_my_app_work #tab2 .card-option .wing-svg-container svg,
+.its_my_app_work #tab2 .card-option .wing-svg-container svg:first-child,
+.its_my_app_work #tab3 .card-option .opening-svg-container svg {
+    width: auto !important;
+    height: 210px !important;
+    max-width: 100%;
+    margin: 0 auto !important;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .its_my_app_work #tab2 .wing-svg-container,
+    .its_my_app_work #tab3 .opening-svg-container {
+        height: 160px;
+    }
+
+    .its_my_app_work #tab2 .card-option .wing-svg-container svg,
+    .its_my_app_work #tab2 .card-option .wing-svg-container svg:first-child,
+    .its_my_app_work #tab3 .card-option .opening-svg-container svg {
+        height: 150px !important;
+    }
+}
+
 
 
 

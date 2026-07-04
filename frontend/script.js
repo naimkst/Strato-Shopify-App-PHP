@@ -1238,7 +1238,8 @@ function updateThreeFachPriceIfActive() {
 
 
 // ============ FETCH AND INITIALIZE ============
-fetch('https://droplify.de/deine-fenster24/admin/get-tabs_front.php')
+const tabsDataUrl = `https://droplify.de/deine-fenster24/admin/get-tabs_front.php?v=${Date.now()}`;
+fetch(tabsDataUrl, { cache: 'no-store' })
   .then(res => res.json())
   .then(data => {
 
