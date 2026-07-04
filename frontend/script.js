@@ -3349,6 +3349,44 @@ function addInquiryLine(lines, label, value) {
   if (cleanValue) lines.push(`${label}: ${cleanValue}`);
 }
 
+const ROLLLADEN_INQUIRY_COLOR_OPTIONS = [
+  'Nicht dabei / andere Farbe',
+  'Weiss',
+  'Cremeweiß',
+  'Basaltgrau',
+  'Grau-Sandstruktur',
+  'Anthrazitgrau-Holzstruktur',
+  'Eiche Natur',
+  'Eiche Spezial',
+  'Oregon',
+  'Palisander',
+  'Mahagoni',
+  'Nussbaum',
+  'Aluminium gebuerstet'
+];
+
+function getRollladenInquiryFieldValues() {
+  const width = getCurrentWindowWidthMm?.() || parseConfiguratorNumber(getTextById('zubehoer-sidebar-width') || getTextById('sb-width'));
+  const height = parseConfiguratorNumber(
+    getEffectiveHeightValue?.()
+    || getTextById('zubehoer-sidebar-height')
+    || getTextById('sb-height')
+  );
+  const qty = parseInt(currentQty, 10);
+
+  return {
+    width: width > 0 ? String(width) : '',
+    height: height > 0 ? String(height) : '',
+    quantity: Number.isFinite(qty) && qty > 0 ? String(qty) : '1'
+  };
+}
+
+function renderRollladenColorOptions() {
+  return ROLLLADEN_INQUIRY_COLOR_OPTIONS
+    .map(color => `<option value="${escapeInquiryValue(color)}">${escapeInquiryValue(color)}</option>`)
+    .join('');
+}
+
 function buildRollladenInquiryMessage() {
   const lines = [
     'Anfrage Rollläden',
@@ -3385,13 +3423,27 @@ function buildRollladenInquiryMessage() {
 
 function updateRollladenInquiryForms() {
   const message = buildRollladenInquiryMessage();
+  const fields = getRollladenInquiryFieldValues();
+
   document.querySelectorAll('.rollladen-inquiry-message').forEach(field => {
     field.value = message;
+  });
+
+  document.querySelectorAll('.rollladen-inquiry-width').forEach(field => {
+    field.value = fields.width;
+  });
+  document.querySelectorAll('.rollladen-inquiry-height').forEach(field => {
+    field.value = fields.height;
+  });
+  document.querySelectorAll('.rollladen-inquiry-quantity').forEach(field => {
+    field.value = fields.quantity;
   });
 }
 
 function getRollladenInquiryHTML() {
   const message = escapeInquiryValue(buildRollladenInquiryMessage());
+  const fields = getRollladenInquiryFieldValues();
+  const colorOptions = renderRollladenColorOptions();
 
   return `
     <div class="inquiry-box rollladen-inquiry-box">
@@ -3409,7 +3461,33 @@ function getRollladenInquiryHTML() {
             <div class="rollladen-inquiry-fields">
               <label>Name*<input type="text" name="contact[name]" required></label>
               <label>E-Mail*<input type="email" name="contact[email]" required></label>
+              <label>Breite (mm)*<input class="rollladen-inquiry-width" type="text" name="contact[Breite (mm)]" value="${escapeInquiryValue(fields.width)}" required></label>
+              <label>Höhe (mm)*<input class="rollladen-inquiry-height" type="text" name="contact[Höhe (mm)]" value="${escapeInquiryValue(fields.height)}" required></label>
               <label>Telefon<input type="tel" name="contact[phone]"></label>
+              <label>Anzahl<input class="rollladen-inquiry-quantity" type="number" name="contact[Anzahl]" min="1" value="${escapeInquiryValue(fields.quantity)}"></label>
+            </div>
+            <div class="rollladen-inquiry-color-title">Farbe*</div>
+            <div class="rollladen-inquiry-color-help">Falls Ihre Farbe nicht dabei ist, bitte unten im Textfeld beschreiben.</div>
+            <div class="rollladen-inquiry-color-area">
+              <div class="rollladen-inquiry-color-controls">
+                <select class="rollladen-inquiry-color" name="contact[Farbe]" required>
+                  <option value="" selected disabled>Bitte Farbe auswählen</option>
+                  ${colorOptions}
+                </select>
+                <div class="rollladen-inquiry-side-options">
+                  <label class="rollladen-inquiry-side-option">
+                    <input type="radio" name="contact[Farbseite]" value="beidseitig" checked>
+                    <span aria-hidden="true"></span>
+                    beidseitig
+                  </label>
+                  <label class="rollladen-inquiry-side-option">
+                    <input type="radio" name="contact[Farbseite]" value="nur außen">
+                    <span aria-hidden="true"></span>
+                    nur außen
+                  </label>
+                </div>
+              </div>
+              <div class="rollladen-inquiry-preview">VORSCHAUBILD</div>
             </div>
             <label class="rollladen-inquiry-message-label">Wichtige Infos</label>
             <textarea class="rollladen-inquiry-message" name="contact[body]" rows="12">${message}</textarea>

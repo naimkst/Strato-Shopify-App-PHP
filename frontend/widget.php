@@ -1059,11 +1059,12 @@ div#tab7-svgPreviewBox svg g path {
 
 .rollladen-inquiry-fields {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
 }
 
 .rollladen-inquiry-form input,
+.rollladen-inquiry-form select,
 .rollladen-inquiry-form textarea {
     width: 100%;
     border: 1px solid #d5d5d5;
@@ -1081,7 +1082,7 @@ div#tab7-svgPreviewBox svg g path {
 .rollladen-inquiry-modal {
     position: fixed;
     inset: 0;
-    z-index: 999999;
+    z-index: 999999999 !important;
     display: none;
     align-items: center;
     justify-content: center;
@@ -1140,7 +1141,7 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .rollladen-inquiry-dialog .rollladen-inquiry-fields {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
 }
 
@@ -1152,12 +1153,93 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .rollladen-inquiry-dialog input,
+.rollladen-inquiry-dialog select,
 .rollladen-inquiry-dialog textarea {
     margin-top: 8px;
     border: 1px solid #ddd;
     border-radius: 0;
     background: #fff;
     font-size: 16px;
+}
+
+.rollladen-inquiry-color-title {
+    color: #2d2d2d;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+
+.rollladen-inquiry-color-help {
+    color: #667085;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 6px 0 10px;
+}
+
+.rollladen-inquiry-color-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: stretch;
+    margin-bottom: 14px;
+}
+
+.rollladen-inquiry-color {
+    min-height: 44px;
+    border-radius: 999px !important;
+    font-weight: 700;
+    color: #2d2d2d;
+    background: #fff;
+}
+
+.rollladen-inquiry-side-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 26px;
+    margin-top: 14px;
+}
+
+.rollladen-inquiry-side-option {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+.rollladen-inquiry-side-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rollladen-inquiry-side-option span {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cfd5df;
+    border-radius: 4px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.rollladen-inquiry-side-option input:checked + span {
+    border-color: #f5b335;
+    background: #f5b335;
+}
+
+.rollladen-inquiry-preview {
+    min-height: 160px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f7f7f9;
+    color: #687386;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
 }
 
 .rollladen-inquiry-dialog textarea {
@@ -1189,6 +1271,10 @@ div#tab7-svgPreviewBox svg g path {
     }
 
     .rollladen-inquiry-dialog .rollladen-inquiry-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .rollladen-inquiry-color-area {
         grid-template-columns: 1fr;
     }
 }
