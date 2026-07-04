@@ -1848,6 +1848,8 @@ const OPENING_ORDER = [
   "DKL/Fest/DKR",
   "Fest/DL-Pfosten/DKR",
   "DL-Pfosten/DKR-Fest",
+  "Fest im Rahmen-DKL-Pfosten -DKR",
+  "DKL-Pfosten-DKR - Fest im Rahmen",
   "DKL/DR-Pfosten/Fest",
   "Fest/DL-Stulp/DKR",
   "DL-Stulp/DKR-Fest",
