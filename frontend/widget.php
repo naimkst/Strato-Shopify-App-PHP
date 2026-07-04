@@ -1084,7 +1084,7 @@ div#tab7-svgPreviewBox svg g path {
     inset: 0;
     z-index: 2147483647 !important;
     display: none;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding: 18px;
     box-sizing: border-box;

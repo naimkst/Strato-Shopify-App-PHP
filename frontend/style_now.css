@@ -978,7 +978,7 @@ color: rgba(0, 0, 0, 0.7);
     inset: 0;
     z-index: 2147483647 !important;
     display: none;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding: 18px;
     box-sizing: border-box;
