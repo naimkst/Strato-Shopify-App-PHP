@@ -971,9 +971,117 @@ color: rgba(0, 0, 0, 0.7);
     white-space: pre-wrap;
 }
 
+.rollladen-inquiry-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.rollladen-inquiry-modal.is-open {
+    display: flex;
+}
+
+.rollladen-inquiry-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.rollladen-inquiry-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(720px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    background: #fff;
+    border-radius: 6px;
+    padding: 28px 32px 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    text-align: left;
+}
+
+.rollladen-inquiry-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: 0;
+    background: transparent;
+    color: #000;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.rollladen-inquiry-logo {
+    display: block;
+    width: 110px;
+    height: auto;
+    margin-bottom: 12px;
+}
+
+.rollladen-inquiry-dialog .rollladen-inquiry-title {
+    color: #2d2d2d;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.12;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.rollladen-inquiry-dialog .rollladen-inquiry-fields {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.rollladen-inquiry-dialog label {
+    display: block;
+    color: #2d2d2d;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.rollladen-inquiry-dialog input,
+.rollladen-inquiry-dialog textarea {
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    background: #fff;
+    font-size: 16px;
+}
+
+.rollladen-inquiry-dialog textarea {
+    min-height: 170px;
+    border-radius: 10px;
+}
+
+.rollladen-inquiry-message-label {
+    display: block;
+    margin-top: 4px;
+}
+
+.rollladen-inquiry-submit {
+    display: block;
+    margin-left: auto;
+    margin-top: 0;
+    border: 0;
+    background: #000;
+    color: #fff;
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
-    #tab6 .rollladen-inquiry-fields,
-    #tab7 .rollladen-inquiry-fields {
+    .rollladen-inquiry-dialog {
+        padding: 22px 18px 20px;
+    }
+
+    .rollladen-inquiry-dialog .rollladen-inquiry-fields {
         grid-template-columns: 1fr;
     }
 }

@@ -3395,21 +3395,46 @@ function getRollladenInquiryHTML() {
 
   return `
     <div class="inquiry-box rollladen-inquiry-box">
-      <form class="rollladen-inquiry-form" method="post" action="https://deine-fenster24.com/contact#contact_form" accept-charset="UTF-8">
-        <input type="hidden" name="form_type" value="contact">
-        <input type="hidden" name="utf8" value="✓">
-        <input type="hidden" name="contact[tags]" value="Rollladen Anfrage, Konfigurator">
-        <div class="rollladen-inquiry-title">Rollladen-Anfrage</div>
-        <div class="rollladen-inquiry-fields">
-          <input type="text" name="contact[name]" placeholder="Name">
-          <input type="email" name="contact[email]" placeholder="E-Mail" required>
-          <input type="tel" name="contact[phone]" placeholder="Telefon">
+      <button type="button" class="inquiry-btn rollladen-inquiry-open">Rollladen-Anfrage</button>
+      <div class="rollladen-inquiry-modal" aria-hidden="true">
+        <div class="rollladen-inquiry-backdrop" data-rollladen-close></div>
+        <div class="rollladen-inquiry-dialog" role="dialog" aria-modal="true" aria-label="Rollladen-Anfrage">
+          <button type="button" class="rollladen-inquiry-close" aria-label="Schließen" data-rollladen-close>×</button>
+          <img class="rollladen-inquiry-logo" src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/logo-web2.jpg?v=1778837486" alt="Deine-Fenster24.com">
+          <form class="rollladen-inquiry-form" method="post" action="https://deine-fenster24.com/contact#contact_form" accept-charset="UTF-8">
+            <input type="hidden" name="form_type" value="contact">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="Rollladen Anfrage, Konfigurator">
+            <div class="rollladen-inquiry-title">Rollladen-Anfrage</div>
+            <div class="rollladen-inquiry-fields">
+              <label>Name*<input type="text" name="contact[name]" required></label>
+              <label>E-Mail*<input type="email" name="contact[email]" required></label>
+              <label>Telefon<input type="tel" name="contact[phone]"></label>
+            </div>
+            <label class="rollladen-inquiry-message-label">Wichtige Infos</label>
+            <textarea class="rollladen-inquiry-message" name="contact[body]" rows="12">${message}</textarea>
+            <button type="submit" class="rollladen-inquiry-submit">ABSENDEN ›</button>
+          </form>
         </div>
-        <textarea class="rollladen-inquiry-message" name="contact[body]" rows="12">${message}</textarea>
-        <button type="submit" class="inquiry-btn">Anfrage senden</button>
-      </form>
+      </div>
     </div>
   `;
+}
+
+function openRollladenInquiryModal(box) {
+  const modal = box?.querySelector('.rollladen-inquiry-modal');
+  if (!modal) return;
+  updateRollladenInquiryForms();
+  document.querySelectorAll('.rollladen-inquiry-modal.is-open').forEach(closeRollladenInquiryModal);
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  modal.querySelector('input[name="contact[name]"]')?.focus();
+}
+
+function closeRollladenInquiryModal(modal) {
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
 }
 
 function syncRollladenInquiryMode() {
@@ -4291,7 +4316,22 @@ document.addEventListener("click", function(e) {
   if (windowConfig.rollladenOn && e.target.closest('button.btnmain-cart.cart')) {
     e.preventDefault();
     syncRollladenInquiryMode();
-    document.querySelector('.rollladen-inquiry-box .inquiry-btn')?.focus();
+    const inquiryBox = document.querySelector('#tab7 .rollladen-inquiry-box') || document.querySelector('.rollladen-inquiry-box');
+    openRollladenInquiryModal(inquiryBox);
+    return;
+  }
+
+  const openButton = e.target.closest('.rollladen-inquiry-open');
+  if (openButton) {
+    e.preventDefault();
+    openRollladenInquiryModal(openButton.closest('.rollladen-inquiry-box'));
+    return;
+  }
+
+  const closeTarget = e.target.closest('[data-rollladen-close]');
+  if (closeTarget) {
+    e.preventDefault();
+    closeRollladenInquiryModal(closeTarget.closest('.rollladen-inquiry-modal'));
     return;
   }
 
@@ -7700,4 +7740,9 @@ const observer = new MutationObserver(() => {
     }
 
   });
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.rollladen-inquiry-modal.is-open').forEach(closeRollladenInquiryModal);
 });
