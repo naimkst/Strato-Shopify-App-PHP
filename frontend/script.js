@@ -208,9 +208,6 @@ function mapCommentsToSVG(svg) {
   processNodes(rootGroup);
 }
 
-const loader = document.getElementById('tabLoader');
-
-
 function renderSectionedOptions(subtab, container) {
   ////const subtabContainer = document.querySelector('#rollladen-subtab');
   const subtabContainer = container;
@@ -305,8 +302,25 @@ function renderSectionedOptions(subtab, container) {
 
 
 
-function showLoader() { if (loader) loader.style.display = 'flex'; }
-function hideLoader() { if (loader) loader.style.display = 'none'; }
+function getTabLoader() {
+  return document.getElementById('tabLoader');
+}
+
+function showLoader() {
+  const loader = getTabLoader();
+  if (loader) {
+    loader.style.display = 'flex';
+    loader.setAttribute('aria-hidden', 'false');
+  }
+}
+
+function hideLoader() {
+  const loader = getTabLoader();
+  if (loader) {
+    loader.style.display = 'none';
+    loader.setAttribute('aria-hidden', 'true');
+  }
+}
 
 // ====== STATIC NAV BUTTONS HANDLING =======
 const tabMapcheck = {
@@ -1091,6 +1105,86 @@ let TAB5_PRELOAD = {
   innen: null,
   aussen: null
 };
+let TAB5_COLOR_PROMISES = {
+  innen: null,
+  aussen: null
+};
+const TAB5_COLOR_LIMIT = 100;
+const TAB5_COLOR_ENDPOINTS = {
+  innen: 'https://droplify.de/deine-fenster24/admin/get-tab5-innen.php',
+  aussen: 'https://droplify.de/deine-fenster24/admin/get-tab5-aussen.php'
+};
+const GRIFF_OPTION_ORDER = [
+  ['232', 'standard weiss'],
+  ['234', 'silber'],
+  ['233', 'stahl'],
+  ['236', 'braun'],
+  ['872', 'hoppe silber abschliessbar'],
+  ['237', 'hoppe stahl'],
+  ['873', 'hoppe braun abschliessbar'],
+  ['235', 'hoppe weiss abschliessbar'],
+  ['1051', 'weiss'],
+  ['1052', 'silber'],
+  ['1053', 'schwarz']
+];
+
+function getTab5ColorType(subName) {
+  if (subName.includes('innen')) return 'innen';
+  if (subName.includes('außen') || subName.includes('aussen')) return 'aussen';
+  return null;
+}
+
+function getTab5ColorUrl(type) {
+  return `${TAB5_COLOR_ENDPOINTS[type]}?limit=${TAB5_COLOR_LIMIT}&offset=0&v=${Date.now()}`;
+}
+
+async function fetchTab5ColorOptions(type) {
+  if (!type || !TAB5_COLOR_ENDPOINTS[type]) return [];
+  if (Array.isArray(TAB5_PRELOAD[type]) && TAB5_PRELOAD[type].length) {
+    return TAB5_PRELOAD[type];
+  }
+
+  if (!TAB5_COLOR_PROMISES[type]) {
+    TAB5_COLOR_PROMISES[type] = fetch(getTab5ColorUrl(type), { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error(`Color options request failed: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        const tab = data.tabs?.find(t => String(t.id) === '5');
+        const options = tab?.subtabs?.[0]?.options || [];
+        TAB5_PRELOAD[type] = options;
+        return options;
+      })
+      .finally(() => {
+        TAB5_COLOR_PROMISES[type] = null;
+      });
+  }
+
+  return TAB5_COLOR_PROMISES[type];
+}
+
+function sortGriffOptions(options) {
+  const idOrder = new Map(GRIFF_OPTION_ORDER.map(([id], idx) => [id, idx]));
+  const labelOrder = new Map(GRIFF_OPTION_ORDER.map(([, label], idx) => [normalizeConfigText(label), idx]));
+
+  options.sort((a, b) => {
+    const idA = idOrder.has(String(a.id)) ? idOrder.get(String(a.id)) : null;
+    const idB = idOrder.has(String(b.id)) ? idOrder.get(String(b.id)) : null;
+
+    const labelA = labelOrder.has(normalizeConfigText(a.label || ''))
+      ? labelOrder.get(normalizeConfigText(a.label || ''))
+      : null;
+    const labelB = labelOrder.has(normalizeConfigText(b.label || ''))
+      ? labelOrder.get(normalizeConfigText(b.label || ''))
+      : null;
+
+    const orderA = idA ?? labelA ?? 999;
+    const orderB = idB ?? labelB ?? 999;
+    if (orderA !== orderB) return orderA - orderB;
+    return String(a.label || '').localeCompare(String(b.label || ''));
+  });
+}
 
 let forceInitialTabOpen = true;
 
@@ -1244,7 +1338,6 @@ fetch(tabsDataUrl, { cache: 'no-store' })
   .then(data => {
 
 	  data = normalizeConfiguratorData(data);
-	  preloadTab5Data();
     const tabs = data.tabs;
     GLOBAL_TABS = tabs;
     ALL_COMBOS = data.height_width_prices || [];
@@ -1334,11 +1427,6 @@ if (!tab0) {
 ////renderTab5Options();
 
 renderTab5Options();
-
-// ✅ ONLY ONE PLACE IN WHOLE FILE
-setTimeout(() => {
-  initAllTab5Subtabs();
-}, 300);
 
 
 // Handle Tab 6 subtabs and options
@@ -2130,8 +2218,8 @@ function selectBeschlag(el, label) {
 
 
 // ===== TAB 5 HANDLING =====
-// Wrapper: initializes Tab 5 buttons and loads first subtab
-function renderTab5Options() {
+// Wrapper: initializes Tab 5 buttons and loads first subtab only when Tab 5 is visible.
+function renderTab5Options(loadDefault = currentTab === 4) {
   const tab5 = GLOBAL_TABS.find(t => String(t.id) === '5');
   if (!tab5 || !tab5.subtabs) return;
 
@@ -2145,7 +2233,7 @@ function renderTab5Options() {
   });
 
   // Load first subtab by default
-  if (tab5.subtabs[0]) {
+  if (loadDefault && tab5.subtabs[0]) {
     switchTab5Subtab(tab5.subtabs[0].id, subtabBtns);
   }
 }
@@ -2181,21 +2269,10 @@ function updateHandleColor(svg, color) {
 
 async function preloadTab5Data() {
   try {
-    const [innenRes, aussenRes] = await Promise.all([
-      fetch('https://droplify.de/deine-fenster24/admin/get-tab5-innen.php?limit=9999&offset=0'),
-      fetch('https://droplify.de/deine-fenster24/admin/get-tab5-aussen.php?limit=9999&offset=0')
+    await Promise.all([
+      fetchTab5ColorOptions('innen'),
+      fetchTab5ColorOptions('aussen')
     ]);
-
-    const innenData = await innenRes.json();
-    const aussenData = await aussenRes.json();
-
-    TAB5_PRELOAD.innen =
-      innenData.tabs.find(t => String(t.id) === '5')?.subtabs?.[0]?.options || [];
-
-    TAB5_PRELOAD.aussen =
-      aussenData.tabs.find(t => String(t.id) === '5')?.subtabs?.[0]?.options || [];
-
-
   } catch (e) {
     console.error('❌ Preload failed', e);
   }
@@ -2231,11 +2308,9 @@ if (hideGriffIds.includes(openingId)) {
   if (!subtab) return;
 
   const subName = (subtab.name || '').toLowerCase();
+  const colorType = getTab5ColorType(subName);
 
-  const isColorTab =
-    subName.includes('innen') ||
-    subName.includes('außen') ||
-    subName.includes('aussen');
+  const isColorTab = !!colorType;
 
   if (!window.TAB5_CACHE) window.TAB5_CACHE = {};
 
@@ -2334,19 +2409,11 @@ renderOptions(filteredOptions);
 
     if (!grid.contains(loader)) grid.appendChild(loader);
 
-    let url = subName.includes('innen')
-      ? `https://droplify.de/deine-fenster24/admin/get-tab5-innen.php?limit=300&offset=0`
-      : `https://droplify.de/deine-fenster24/admin/get-tab5-aussen.php?limit=300&offset=0`;
-
     try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      const tab = data.tabs.find(t => String(t.id) === '5');
-      const options = tab?.subtabs?.[0]?.options || [];
+      const options = await fetchTab5ColorOptions(colorType);
 
       if (!options.length) {
-        loader.innerText = 'No data';
+        loader.innerText = 'Keine Optionen verfügbar.';
         return;
       }
 
@@ -2370,7 +2437,9 @@ renderOptions(filteredOptions);
   function renderOptions(options) {
 
 	  // 🔥 SORT BY data-value (value_key)
-if (!subName.includes('ornament')) options.sort((a, b) => {
+if (subName.includes('griff')) {
+  sortGriffOptions(options);
+} else if (!subName.includes('ornament')) options.sort((a, b) => {
   const valA = (a.value_key || '').toString().toLowerCase();
   const valB = (b.value_key || '').toString().toLowerCase();
 
@@ -2701,13 +2770,8 @@ updateAllSidebars();
 // ⚡ USE PRELOADED DATA (FAST)
 // ===============================
 
-if (subName.includes('innen') && TAB5_PRELOAD.innen) {
-  renderOptions(TAB5_PRELOAD.innen);
-  return;
-}
-
-if ((subName.includes('außen') || subName.includes('aussen')) && TAB5_PRELOAD.aussen) {
-  renderOptions(TAB5_PRELOAD.aussen);
+if (colorType && Array.isArray(TAB5_PRELOAD[colorType]) && TAB5_PRELOAD[colorType].length) {
+  renderOptions(TAB5_PRELOAD[colorType]);
   return;
 }
 
@@ -3303,6 +3367,7 @@ function buildRollladenInquiryMessage() {
   addInquiryLine(lines, 'Griff', getTextById('zubehoer-sidebar-griff') || getTextById('glass-sidebar-griff'));
   addInquiryLine(lines, 'Isolierglas', getTextById('zubehoer-sidebar-isolierglas') || getTextById('glass-sidebar-isolierglas'));
   addInquiryLine(lines, 'Ornament', getTextById('zubehoer-sidebar-ornament') || getTextById('glass-sidebar-ornament'));
+  addInquiryLine(lines, 'Dichtungen', 'schwarz');
   addInquiryLine(lines, 'Rahmenverbreiterung', getTextById('zubehoer-sidebar-rahmen'));
   addInquiryLine(lines, 'Fensterbank-Anschlussprofil', typeof getSillProfileSummary === 'function' ? getSillProfileSummary() : '');
 
@@ -4243,6 +4308,7 @@ document.addEventListener("click", function(e) {
     "Griff": item.griff,
     "Isolierglas": item.isolierglas,
     "Ornament": item.ornament,
+    "Dichtungen": item.dichtungen || "schwarz",
     "Fensterbank-Anschlussprofil": item.fensterbank,
     "Fensterbank Zusatzhöhe (mm)": item.fensterbank_add_height,
     "Sprosse": item.sprosse,

@@ -1738,7 +1738,8 @@ div#tab7-svgPreviewBox svg g path {
           <span id="sb-opening">FESTVERGLASUNG</span><br>
           BREITE: <span id="sb-width">500</span> MM<br>
           HÖHE: <span id="sb-height">557</span> MM<br>
-          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span>
+          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+          Dichtungen schwarz
         </div>
         <div class="price-box">
 <div class="price_inner">
@@ -1841,6 +1842,7 @@ div#tab7-svgPreviewBox svg g path {
     GRIFF: <span id="glass-sidebar-griff">FENSTERGRIFF GOLD</span><br>
     ISOLIERGLAS: <span id="glass-sidebar-isolierglas">3-FACH VERGLASUNG</span><br>
     ORNAMENT: <span id="glass-sidebar-ornament">KARO MATT</span><br>
+    Dichtungen schwarz<br>
 	VSG Glas: <span id="glass-sidebar-vsg"></span>
   </div>
   <div id="glass-sidebar-balkon-notes"></div>
@@ -1989,6 +1991,7 @@ div#tab7-svgPreviewBox svg g path {
         GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
         ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
         ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
+        Dichtungen schwarz<br>
        RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
        FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
        <span id="zubehoer-sidebar-luefter" style="display:none"></span>
@@ -2071,6 +2074,7 @@ div#tab7-svgPreviewBox svg g path {
         <p>Griff: <span id="t7-sidebar-griff"></span></p>
         <p>Isolierglas: <span id="t7-sidebar-isolierglas"></span></p>
         <p>Ornament: <span id="t7-sidebar-ornament"></span></p>
+        <p>Dichtungen schwarz</p>
         <div id="t7-sidebar-balkon-notes"></div>
 
         <p>Rahmen: <span id="t7-sidebar-rahmen"></span></p>
