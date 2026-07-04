@@ -1446,6 +1446,15 @@ div#tab7-svgPreviewBox svg g path {
     display: block;
 }
 
+.its_my_app_work #tab2 .card-option[data-id="16"] .wing-svg-container {
+    overflow: visible;
+}
+
+.its_my_app_work #tab2 .card-option[data-id="16"] .wing-svg-container svg {
+    transform: scaleY(1.45);
+    transform-origin: center center;
+}
+
 @media (max-width: 768px) {
     .its_my_app_work #tab2 .wing-svg-container,
     .its_my_app_work #tab3 .opening-svg-container {
@@ -1456,6 +1465,10 @@ div#tab7-svgPreviewBox svg g path {
     .its_my_app_work #tab2 .card-option .wing-svg-container svg:first-child,
     .its_my_app_work #tab3 .card-option .opening-svg-container svg {
         height: 150px !important;
+    }
+
+    .its_my_app_work #tab2 .card-option[data-id="16"] .wing-svg-container svg {
+        transform: scaleY(1.35);
     }
 }
 
