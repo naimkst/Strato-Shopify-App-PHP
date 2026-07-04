@@ -1455,6 +1455,11 @@ div#tab7-svgPreviewBox svg g path {
     transform-origin: center center;
 }
 
+.its_my_app_work #tab5 .option-grid.tab5-isolierglas-grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+    gap: 24px;
+}
+
 @media (max-width: 768px) {
     .its_my_app_work #tab2 .wing-svg-container,
     .its_my_app_work #tab3 .opening-svg-container {
@@ -1469,6 +1474,10 @@ div#tab7-svgPreviewBox svg g path {
 
     .its_my_app_work #tab2 .card-option[data-id="16"] .wing-svg-container svg {
         transform: scaleY(1.35);
+    }
+
+    .its_my_app_work #tab5 .option-grid.tab5-isolierglas-grid {
+        grid-template-columns: 1fr !important;
     }
 }
 

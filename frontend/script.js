@@ -2241,6 +2241,7 @@ if (hideGriffIds.includes(openingId)) {
 
   const grid = document.querySelector('#tab5 .option-grid');
   if (!grid) return;
+  grid.classList.toggle('tab5-isolierglas-grid', subName.includes('isolierglas'));
 
   // ===============================
   // ACTIVE BUTTON
