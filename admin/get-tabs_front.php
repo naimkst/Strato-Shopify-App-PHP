@@ -41,11 +41,18 @@ while ($tab = $tabResult->fetch_assoc()) {
 
     // TAB OPTIONS
     $tab_options = [];
-    $tabOptResult = $conn->query("SELECT * FROM tab_options WHERE tab_id = $tab_id ORDER BY id");
 
-    while ($opt = $tabOptResult->fetch_assoc()) {
-        $tab_options[] = $opt;
+    // Tabs 1-3 use top-level options for the profile/wing/opening combo flow.
+    // Later tabs render from subtabs, so loading their tab-level options here
+    // duplicates large color/accessory payloads and can block the frontend loader.
+    if (in_array($tab_id, [1, 2, 3], true)) {
+        $tabOptResult = $conn->query("SELECT * FROM tab_options WHERE tab_id = $tab_id ORDER BY id");
+
+        while ($opt = $tabOptResult->fetch_assoc()) {
+            $tab_options[] = $opt;
+        }
     }
+
     $tab['options'] = $tab_options;
 
     // SUBTABS
@@ -142,19 +149,11 @@ while ($tab = $tabResult->fetch_assoc()) {
  * ============================================================
  */
 
-// height_width_prices
+// Price grids are loaded lazily from get-combos.php for the selected product
+// combination. Keeping them out of this response prevents the frontend loader
+// from waiting on a multi-megabyte JSON payload before the first tab can render.
 $hw_prices = [];
-$res = $conn->query("SELECT * FROM height_width_prices ORDER BY id");
-while ($row = $res->fetch_assoc()) {
-    $hw_prices[] = $row;
-}
-
-// combo_options
 $combo_options = [];
-$res2 = $conn->query("SELECT * FROM combo_options");
-while ($row = $res2->fetch_assoc()) {
-    $combo_options[] = $row;
-}
 
 /**
  * ============================================================

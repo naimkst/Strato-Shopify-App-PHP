@@ -1082,6 +1082,8 @@ rollladenOn: false   // convenience boolean for drawing the box
 const selectedBySection = {};
 let beschlagLabel = 'SIEGENIA FAVORIT BASIS';
 let ALL_COMBOS = [];
+let COMBO_ROWS_BY_KEY = {};
+let COMBO_ROWS_PROMISES = {};
 let GLOBAL_TABS = [];
 let ALL_WING_OPTIONS = [];
 let TAB5_SELECTION = {};
@@ -4426,23 +4428,63 @@ function getComboVariantsForSearch() {
   combos = combos.filter((c, i, self) => i === self.findIndex(x => x.join(',') === c.join(',')));
   return combos;
 }
-function getMatchingComboRows() {
-
+function getCurrentPricingComboIds() {
   const profileId = getCurrentProfileId();
   const wingId = windowConfig.wingId;
   const openingId = windowConfig.openingId;
 
   if (!staticCode || !profileId || !wingId || !openingId) {
-    return [];
+    return null;
   }
 
-  const comboIds = [
+  return [
     String(staticCode),
     String(profileId),
     String(wingId),
     String(openingId)
   ];
+}
 
+function getCurrentPricingComboKey() {
+  const comboIds = getCurrentPricingComboIds();
+  return comboIds ? JSON.stringify(comboIds) : '';
+}
+
+function hasCachedPricingRows(comboKey) {
+  return Object.prototype.hasOwnProperty.call(COMBO_ROWS_BY_KEY, comboKey);
+}
+
+function loadPricingRowsForCombo(comboKey) {
+  if (!comboKey) return Promise.resolve([]);
+  if (hasCachedPricingRows(comboKey)) return Promise.resolve(COMBO_ROWS_BY_KEY[comboKey]);
+  if (COMBO_ROWS_PROMISES[comboKey]) return COMBO_ROWS_PROMISES[comboKey];
+
+  const url = `https://droplify.de/deine-fenster24/admin/get-combos.php?combo_option_ids=${encodeURIComponent(comboKey)}`;
+
+  COMBO_ROWS_PROMISES[comboKey] = fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error(`Price grid request failed: ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      const rows = Array.isArray(data.height_width_prices) ? data.height_width_prices : [];
+      COMBO_ROWS_BY_KEY[comboKey] = rows;
+      return rows;
+    })
+    .catch(err => {
+      delete COMBO_ROWS_PROMISES[comboKey];
+      throw err;
+    });
+
+  return COMBO_ROWS_PROMISES[comboKey];
+}
+
+function getMatchingComboRows() {
+  const comboIds = getCurrentPricingComboIds();
+  if (!comboIds) return [];
+
+  const comboKey = JSON.stringify(comboIds);
+  if (hasCachedPricingRows(comboKey)) return COMBO_ROWS_BY_KEY[comboKey];
 
   return ALL_COMBOS.filter(row => {
     let ids;
@@ -4468,13 +4510,54 @@ function findPriceForSize(combos, widthInput, heightInput) {
   return filtered[0];
 }
 
+function setGroesseLoadingState(widthInput, heightInput) {
+  widthInput.value = '';
+  heightInput.value = '';
+  widthInput.min = ''; widthInput.max = '';
+  heightInput.min = ''; heightInput.max = '';
+  widthInput.placeholder = 'Laden...';
+  heightInput.placeholder = 'Laden...';
+  widthInput.readOnly = true;
+  heightInput.readOnly = true;
+  widthInput.onfocus = heightInput.onfocus = null;
+  widthInput.oninput = heightInput.oninput = null;
+  widthInput.onchange = heightInput.onchange = null;
+  widthInput.onblur = heightInput.onblur = null;
+  widthInput.onkeydown = heightInput.onkeydown = null;
+
+  const priceBox = document.querySelector('#tab4 .price-box .price');
+  setSidebarPrice(priceBox, null, '-');
+}
 
 function updateGroesseDropdownsAndSidebar() {
   const widthInput  = document.getElementById('width');
   const heightInput = document.getElementById('height');
   if (!widthInput || !heightInput) return;
 
+  const comboKey = getCurrentPricingComboKey();
+  if (comboKey && !hasCachedPricingRows(comboKey)) {
+    setGroesseLoadingState(widthInput, heightInput);
+
+    loadPricingRowsForCombo(comboKey)
+      .then(() => {
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateGroesseDropdownsAndSidebar();
+        }
+      })
+      .catch(err => {
+        console.error('Price grid loading failed', err);
+        COMBO_ROWS_BY_KEY[comboKey] = [];
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateGroesseDropdownsAndSidebar();
+        }
+      });
+
+    return;
+  }
+
   const combos = getMatchingComboRows();
+  widthInput.placeholder = '';
+  heightInput.placeholder = '';
 
   // ---- NO DB ROWS: blank + readonly + alert on focus ----
   if (!combos || combos.length === 0) {

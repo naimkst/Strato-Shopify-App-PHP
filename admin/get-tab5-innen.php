@@ -58,17 +58,8 @@ while ($tab = $resTabs->fetch_assoc()) {
     }
 }
 
-// extras (unchanged)
-$hw_prices = [];
-$r = $conn->query("SELECT * FROM height_width_prices");
-while ($row = $r->fetch_assoc()) $hw_prices[] = $row;
-
-$combo_options = [];
-$r2 = $conn->query("SELECT * FROM combo_options");
-while ($row = $r2->fetch_assoc()) $combo_options[] = $row;
-
 echo json_encode([
     "tabs" => $tabs,
-    "height_width_prices" => $hw_prices,
-    "combo_options" => $combo_options
+    "height_width_prices" => [],
+    "combo_options" => []
 ]);
