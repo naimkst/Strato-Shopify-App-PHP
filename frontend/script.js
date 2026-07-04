@@ -5769,16 +5769,24 @@ function moveActiveTabBottomCheckpoint() {
     prevTab.classList.remove('bottom-detached');
     const oldBottom = slot.querySelector('.bottom_check_point');
     if (oldBottom) prevTab.append(oldBottom);
+    delete slot.dataset.activeTab;
   }
 
   // move active
   const activeTab = document.querySelector('.tab-content.active');
-  if (!activeTab) return;
+  if (!activeTab) {
+    delete slot.dataset.activeTab;
+    return;
+  }
 
   const bottom = activeTab.querySelector('.bottom_check_point');
-  if (!bottom) return;
+  if (!bottom) {
+    slot.dataset.activeTab = activeTab.id || '';
+    return;
+  }
 
   activeTab.classList.add('bottom-detached');
+  slot.dataset.activeTab = activeTab.id || '';
   slot.append(bottom);
 }
 

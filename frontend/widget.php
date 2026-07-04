@@ -1627,6 +1627,48 @@ div#tab7-svgPreviewBox svg g path {
     }
 }
 
+/* Keep Tab 5 footer controls out of the right-hand preview column. */
+@media (min-width: 1024px) {
+    .its_my_app_work #tab5.active > .bottom_check_point.container,
+    div#globalBottomCheckpoint[data-active-tab="tab5"] > .bottom_check_point.container {
+        display: block !important;
+        width: 58% !important;
+        max-width: 58% !important;
+        min-width: 0 !important;
+        margin-left: 20px !important;
+        margin-right: auto !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+    }
+
+    div#globalBottomCheckpoint[data-active-tab="tab5"] {
+        pointer-events: none;
+    }
+
+    div#globalBottomCheckpoint[data-active-tab="tab5"] > .bottom_check_point.container {
+        pointer-events: auto;
+    }
+
+    .its_my_app_work #tab4.active .preview-box,
+    .its_my_app_work #tab5.active .preview-box,
+    .its_my_app_work #tab6.active .preview-box,
+    .its_my_app_work #tab7.active .preview-box {
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+}
+
+.rollladen-inquiry-modal {
+    z-index: 999999999 !important;
+    overflow-y: auto;
+}
+
+.rollladen-inquiry-dialog {
+    z-index: 1000000000 !important;
+    max-height: calc(100dvh - 40px);
+}
+
 
 
 
