@@ -1806,20 +1806,35 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option {
-    min-height: 180px;
+    min-height: 210px;
     padding: 14px !important;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option img {
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option > img {
     width: 100% !important;
-    max-width: 170px !important;
-    height: 118px !important;
-    max-height: 118px !important;
+    max-width: 190px !important;
+    height: 132px !important;
+    max-height: 132px !important;
     object-fit: contain;
     margin: 0 0 10px !important;
+    transform: none !important;
+}
+
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option[data-id="__klarglas__"] > img {
+    max-width: 220px !important;
+    height: 145px !important;
+    max-height: 145px !important;
+}
+
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option .checkmark-box img {
+    width: 100% !important;
+    max-width: 18px !important;
+    height: auto !important;
+    max-height: 18px !important;
+    margin: 0 !important;
 }
 
 .its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
