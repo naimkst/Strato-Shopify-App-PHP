@@ -569,7 +569,7 @@ function buildKlarglasOption() {
     subtab_id: '7',
     label: 'Klarglas',
     value_key: 'standard',
-    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Klarglas.png',
+    image_url: 'https://droplify.de/deine-fenster24/frontend/img/Klarglas.png?v=20260710-ornament-image',
     price: 0,
     extra_json: '{}'
   };
