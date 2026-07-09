@@ -45,10 +45,9 @@ while ($tab = $tabResult->fetch_assoc()) {
     // TAB OPTIONS
     $tab_options = [];
 
-    // Tabs 1-3 use top-level options for the profile/wing/opening combo flow.
-    // Later tabs render from subtabs, so loading their tab-level options here
-    // duplicates large color/accessory payloads and can block the frontend loader.
-    if (in_array($tab_id, [1, 2, 3], true)) {
+    // Only profiles are needed for the first render. Tab 2/3 combo SVG rows are
+    // loaded lazily after profile/wing selection to keep the initial payload fast.
+    if ($tab_id === 1) {
         $tabOptResult = $conn->query("SELECT * FROM tab_options WHERE tab_id = $tab_id ORDER BY id");
 
         while ($opt = $tabOptResult->fetch_assoc()) {
@@ -72,14 +71,23 @@ while ($tab = $tabResult->fetch_assoc()) {
             strpos($name, 'innen') !== false ||
             strpos($name, 'außen') !== false ||
             strpos($name, 'aussen') !== false;
+        $skipInitialOptions =
+            strpos($name, 'sprossen') !== false ||
+            strpos($name, 'rollladen') !== false;
+        $deferInitialOptions =
+            $tab_id === 5 &&
+            (
+                strpos($name, 'griff') !== false ||
+                strpos($name, 'isolierglas') !== false
+            );
 
         // =========================
         // OPTIONS
         // =========================
         $flat_options = [];
 
-        if (!$isHeavy) {
-            $res = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id ORDER BY id");
+        if (!$isHeavy && !$skipInitialOptions && !$deferInitialOptions) {
+            $res = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id AND label NOT LIKE 'HW Combo:%' ORDER BY id");
             while ($row = $res->fetch_assoc()) {
                 $flat_options[] = $row;
             }
@@ -92,7 +100,7 @@ while ($tab = $tabResult->fetch_assoc()) {
         // =========================
         $sections = [];
 
-        if (!$isHeavy) {
+        if (!$isHeavy && !$skipInitialOptions && !$deferInitialOptions) {
 
             $secRes = $conn->query("SELECT * FROM subtab_sections WHERE subtab_id = $subtab_id ORDER BY order_index, id");
 
@@ -103,7 +111,7 @@ while ($tab = $tabResult->fetch_assoc()) {
                     $sec_id = (int)$sec['id'];
 
                     $sec_options = [];
-                    $r = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id AND section_id = $sec_id ORDER BY id");
+                    $r = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id AND section_id = $sec_id AND label NOT LIKE 'HW Combo:%' ORDER BY id");
 
                     while ($o = $r->fetch_assoc()) {
                         $sec_options[] = $o;
@@ -118,7 +126,7 @@ while ($tab = $tabResult->fetch_assoc()) {
                 }
 
                 // unsectioned options
-                $unRes = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id AND section_id IS NULL ORDER BY id");
+                $unRes = $conn->query("SELECT * FROM tab_options WHERE subtab_id = $subtab_id AND section_id IS NULL AND label NOT LIKE 'HW Combo:%' ORDER BY id");
 
                 if ($unRes && $unRes->num_rows > 0) {
                     $un_options = [];

@@ -346,6 +346,10 @@ const ROLLLADEN_SYSTEM_SECTION_ID = '__rollladen_system__';
 const ROLLLADEN_DRIVE_SECTION_ID = '__rollladen_drive__';
 const ROLLLADEN_SYSTEM_IDS = ['324', '325', '327'];
 const ROLLLADEN_SYSTEM_DEPENDENCIES = ROLLLADEN_SYSTEM_IDS.join(',');
+const ROLLLADEN_SYSTEM_IMAGES = {
+  '324': 'https://cdn.shopify.com/s/files/1/0987/9683/1102/files/big_RAS_Vorbaurolllaeden_Eckig.jpg?v=1778618926',
+  '325': 'https://cdn.shopify.com/s/files/1/0987/9683/1102/files/big_RAR_Vorbaurolllaeden_Rund.jpg?v=1778618927'
+};
 
 const SILL_PROFILE_OPTIONS = [
   {
@@ -655,8 +659,8 @@ function normalizeRollladenSubtab(subtab) {
   const allOptions = Array.isArray(subtab.options) ? subtab.options : [];
   const findById = id => allOptions.find(opt => String(opt.id) === String(id));
   const systemSpecs = [
-    { id: '324', label: 'RAS Vorbaurollladen' },
-    { id: '325', label: 'RAR Vorbaurollladen' },
+    { id: '324', label: 'RAS Vorbaurollladen', image_url: ROLLLADEN_SYSTEM_IMAGES['324'] },
+    { id: '325', label: 'RAR Vorbaurollladen', image_url: ROLLLADEN_SYSTEM_IMAGES['325'] },
     {
       id: '__rollladen_system_rnk_xt__',
       label: 'RNK/XT Aufsatzrolladen',
@@ -1165,6 +1169,12 @@ let TAB5_COLOR_PROMISES = {
   innen: null,
   aussen: null
 };
+let SUBTAB_OPTIONS_CACHE = {};
+let SUBTAB_OPTIONS_PROMISES = {};
+let TAB2_OPTIONS_CACHE = {};
+let TAB2_OPTIONS_PROMISES = {};
+let TAB3_OPTIONS_CACHE = {};
+let TAB3_OPTIONS_PROMISES = {};
 const TAB5_COLOR_LIMIT = 100;
 const TAB5_COLOR_ENDPOINTS = {
   innen: 'https://droplify.de/deine-fenster24/admin/get-tab5-innen.php',
@@ -1188,6 +1198,27 @@ function getTab5ColorType(subName) {
   if (subName.includes('innen')) return 'innen';
   if (subName.includes('außen') || subName.includes('aussen')) return 'aussen';
   return null;
+}
+
+function isActiveTab5Subtab(subtabId) {
+  const activeBtn = document.querySelector('#tab5 .tabs .tab.active');
+  return !!activeBtn && activeBtn.getAttribute('data-id') === String(subtabId);
+}
+
+function filterVsgOptions(options) {
+  const seen = new Set();
+
+  return (Array.isArray(options) ? options : []).filter(opt => {
+    const normalized = normalizeConfigText(`${opt?.label || ''} ${opt?.value_key || ''}`);
+    if (!normalized.includes('vsg') || (!normalized.includes('6') && !normalized.includes('8'))) {
+      return false;
+    }
+
+    const displayLabel = getTab5DisplayLabel(opt, 'vsg');
+    if (seen.has(displayLabel)) return false;
+    seen.add(displayLabel);
+    return true;
+  });
 }
 
 function getTab5ColorUrl(type) {
@@ -1218,6 +1249,111 @@ async function fetchTab5ColorOptions(type) {
   }
 
   return TAB5_COLOR_PROMISES[type];
+}
+
+async function fetchSubtabOptions(subtabId) {
+  if (!subtabId) return [];
+  const key = String(subtabId);
+
+  if (Array.isArray(SUBTAB_OPTIONS_CACHE[key])) return SUBTAB_OPTIONS_CACHE[key];
+
+  if (!SUBTAB_OPTIONS_PROMISES[key]) {
+    const params = new URLSearchParams({
+      subtab_id: key,
+      v: Date.now().toString()
+    });
+
+    SUBTAB_OPTIONS_PROMISES[key] = fetch(`https://droplify.de/deine-fenster24/admin/get-subtab-options.php?${params}`, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error(`Subtab options request failed: ${res.status}`);
+        return res.json();
+      })
+      .then(options => {
+        SUBTAB_OPTIONS_CACHE[key] = Array.isArray(options) ? options : [];
+        return SUBTAB_OPTIONS_CACHE[key];
+      })
+      .finally(() => {
+        delete SUBTAB_OPTIONS_PROMISES[key];
+      });
+  }
+
+  return SUBTAB_OPTIONS_PROMISES[key];
+}
+
+function getTab2LazyKey(staticValue, profileId) {
+  return `${staticValue || ''}|${profileId || ''}`;
+}
+
+function getTab3LazyKey(staticValue, profileId, wingId) {
+  return `${staticValue || ''}|${profileId || ''}|${wingId || ''}`;
+}
+
+function setTabOptions(tabId, options, lazyKey) {
+  const tab = GLOBAL_TABS.find(t => String(t.id) === String(tabId));
+  if (!tab) return;
+  tab.options = Array.isArray(options) ? options : [];
+  tab.lazyKey = lazyKey;
+}
+
+async function fetchTab2Options(staticValue, profileId) {
+  if (!staticValue || !profileId) return [];
+
+  const key = getTab2LazyKey(staticValue, profileId);
+  if (Array.isArray(TAB2_OPTIONS_CACHE[key])) return TAB2_OPTIONS_CACHE[key];
+
+  if (!TAB2_OPTIONS_PROMISES[key]) {
+    const params = new URLSearchParams({
+      static_code: staticValue,
+      profile_id: profileId,
+      v: Date.now().toString()
+    });
+
+    TAB2_OPTIONS_PROMISES[key] = fetch(`https://droplify.de/deine-fenster24/admin/get-tab2.php?${params}`, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error(`Tab 2 request failed: ${res.status}`);
+        return res.json();
+      })
+      .then(options => {
+        TAB2_OPTIONS_CACHE[key] = Array.isArray(options) ? options : [];
+        return TAB2_OPTIONS_CACHE[key];
+      })
+      .finally(() => {
+        delete TAB2_OPTIONS_PROMISES[key];
+      });
+  }
+
+  return TAB2_OPTIONS_PROMISES[key];
+}
+
+async function fetchTab3Options(staticValue, profileId, wingId) {
+  if (!staticValue || !profileId || !wingId) return [];
+
+  const key = getTab3LazyKey(staticValue, profileId, wingId);
+  if (Array.isArray(TAB3_OPTIONS_CACHE[key])) return TAB3_OPTIONS_CACHE[key];
+
+  if (!TAB3_OPTIONS_PROMISES[key]) {
+    const params = new URLSearchParams({
+      static_code: staticValue,
+      profile_id: profileId,
+      wing_id: wingId,
+      v: Date.now().toString()
+    });
+
+    TAB3_OPTIONS_PROMISES[key] = fetch(`https://droplify.de/deine-fenster24/admin/get-tab3.php?${params}`, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error(`Tab 3 request failed: ${res.status}`);
+        return res.json();
+      })
+      .then(options => {
+        TAB3_OPTIONS_CACHE[key] = Array.isArray(options) ? options : [];
+        return TAB3_OPTIONS_CACHE[key];
+      })
+      .finally(() => {
+        delete TAB3_OPTIONS_PROMISES[key];
+      });
+  }
+
+  return TAB3_OPTIONS_PROMISES[key];
 }
 
 function sortGriffOptions(options) {
@@ -1720,6 +1856,24 @@ comboIds.push(profileId);
   const tab2 = GLOBAL_TABS.find(t => String(t.id) === '2');
   if (!tab2 || !tab2.options) return;
 
+  const lazyKey = getTab2LazyKey(staticCode, profileId);
+  if (tab2.lazyKey !== lazyKey) {
+    grid.innerHTML = '<div style="padding:2em;color:#888;">Loading...</div>';
+
+    fetchTab2Options(staticCode, profileId)
+      .then(options => {
+        if (getTab2LazyKey(getCurrentStaticCode(), getCurrentProfileId()) !== lazyKey) return;
+        setTabOptions('2', options, lazyKey);
+        renderTab2WingOptions();
+      })
+      .catch(err => {
+        console.error(err);
+        grid.innerHTML = '<div style="padding:2em;color:#888;">Flügel-Optionen konnten nicht geladen werden.</div>';
+      });
+
+    return;
+  }
+
   let matchingRows = [];
   tab2.options.forEach(opt => {
     try {
@@ -2033,6 +2187,24 @@ function renderTab3OpeningOptions() {
 
   const tab3 = GLOBAL_TABS.find(t => String(t.id) === '3');
   if (!tab3 || !tab3.options) return;
+
+  const lazyKey = getTab3LazyKey(staticCode, profileId, wingId);
+  if (tab3.lazyKey !== lazyKey) {
+    grid.innerHTML = '<div style="padding:2em;color:#888;">Loading...</div>';
+
+    fetchTab3Options(staticCode, profileId, wingId)
+      .then(options => {
+        if (getTab3LazyKey(getCurrentStaticCode(), getCurrentProfileId(), windowConfig.wingId) !== lazyKey) return;
+        setTabOptions('3', options, lazyKey);
+        renderTab3OpeningOptions();
+      })
+      .catch(err => {
+        console.error(err);
+        grid.innerHTML = '<div style="padding:2em;color:#888;">Öffnungs-Optionen konnten nicht geladen werden.</div>';
+      });
+
+    return;
+  }
 
   let matchingRows = [];
 
@@ -2403,7 +2575,26 @@ if (hideGriffIds.includes(openingId)) {
     allOptions = options;
 
     if (!options.length) {
-      grid.innerHTML = '<div style="padding:2em;color:#888;">Keine Optionen verfügbar.</div>';
+      grid.innerHTML = '<div style="padding:2em;color:#888;">Loading...</div>';
+      fetchSubtabOptions(subtabId)
+        .then(loadedOptions => {
+          if (!loadedOptions.length) {
+            grid.innerHTML = '<div style="padding:2em;color:#888;">Keine Optionen verfügbar.</div>';
+            return;
+          }
+
+          const activeButton = subtabBtns
+            ? Array.from(subtabBtns).find(btn => btn.classList.contains('active'))
+            : null;
+
+          subtab.options = subName.includes('vsg') ? filterVsgOptions(loadedOptions) : loadedOptions;
+          if (activeButton?.getAttribute('data-id') !== String(subtabId)) return;
+          switchTab5Subtab(subtabId, subtabBtns);
+        })
+        .catch(err => {
+          console.error(err);
+          grid.innerHTML = '<div style="padding:2em;color:#888;">Optionen konnten nicht geladen werden.</div>';
+        });
       return;
     }
 let filteredOptions = options.slice();
@@ -2440,6 +2631,10 @@ if (subName.includes('ornament')) {
   filteredOptions = normalizeOrnamentOptions(filteredOptions);
 }
 
+if (subName.includes('vsg')) {
+  filteredOptions = filterVsgOptions(filteredOptions);
+}
+
 // ✅ PASS FILTERED OPTIONS
 renderOptions(filteredOptions);
     return;
@@ -2468,6 +2663,7 @@ renderOptions(filteredOptions);
 
     try {
       const options = await fetchTab5ColorOptions(colorType);
+      if (!isActiveTab5Subtab(subtabId)) return;
 
       if (!options.length) {
         loader.innerText = 'Keine Optionen verfügbar.';
@@ -2492,6 +2688,11 @@ renderOptions(filteredOptions);
   // 🔧 RENDER FUNCTION
   // =========================================================
   function renderOptions(options) {
+    if (!isActiveTab5Subtab(subtabId)) return;
+    grid.innerHTML = '';
+    if (subName.includes('vsg')) {
+      options = filterVsgOptions(options);
+    }
 
 	  // 🔥 SORT BY data-value (value_key)
 if (subName.includes('griff')) {
@@ -2517,6 +2718,7 @@ if (subName.includes('griff')) {
       const div = document.createElement('div');
       const displayLabel = getTab5DisplayLabel(opt, subName);
       div.className = 'card-option';
+      if (subName.includes('vsg')) div.classList.add('vsg-option-card');
       div.dataset.id = opt.id;
       div.dataset.label = displayLabel || '';
       div.dataset.value = opt.value_key || '';
@@ -2834,6 +3036,7 @@ updateAllSidebars();
 // ===============================
 
 if (colorType && Array.isArray(TAB5_PRELOAD[colorType]) && TAB5_PRELOAD[colorType].length) {
+  if (!isActiveTab5Subtab(subtabId)) return;
   renderOptions(TAB5_PRELOAD[colorType]);
   return;
 }

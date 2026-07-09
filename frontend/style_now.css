@@ -3287,6 +3287,10 @@ div#globalBottomCheckpoint {
     display: none !important;
 }
 
+.its_my_app_work #tab5 .card-option.vsg-option-card strong {
+    text-transform: none !important;
+}
+
 /* Keep Tab 5 footer controls out of the right-hand preview column. */
 @media (min-width: 1024px) {
     .its_my_app_work #tab5.active > .bottom_check_point.container,
