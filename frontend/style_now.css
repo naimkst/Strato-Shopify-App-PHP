@@ -3655,6 +3655,87 @@ div#globalBottomCheckpoint {
     }
 }
 
+/* Doc QA fixes: keep summary text consistent and avoid image/card overlaps. */
+.balcony-door-notes {
+    margin: 2px 0;
+    padding: 0;
+    border-left: 0;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 400;
+}
+
+.balcony-door-notes p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 400;
+}
+
+.its_my_app_work .preview-box .forscrolling,
+.its_my_app_work .preview-box .summary-box {
+    font-size: 15px;
+    line-height: 1.42;
+    color: #222;
+    font-weight: 400;
+}
+
+.its_my_app_work .rollladen-sidebar-line {
+    display: block;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    font-weight: 400;
+}
+
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    gap: 16px !important;
+    margin-top: 0 !important;
+    align-items: stretch;
+}
+
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option {
+    min-height: 180px;
+    padding: 14px !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.its_my_app_work #tab5 .option-grid.tab5-ornament-grid .card-option img {
+    width: 100% !important;
+    max-width: 170px !important;
+    height: 118px !important;
+    max-height: 118px !important;
+    object-fit: contain;
+    margin: 0 0 10px !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+    grid-template-columns: 118px minmax(0, 1fr);
+    min-height: 172px;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+    width: 112px !important;
+    max-width: 112px;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+        grid-template-columns: 96px minmax(0, 1fr);
+    }
+
+    .its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+        width: 92px !important;
+        max-width: 92px;
+    }
+}
+
 
 .card-option[data-id="630"] {
     display: none !important;

@@ -465,6 +465,9 @@ const ROLLLADEN_DRIVE_OPTIONS = [
   }
 ];
 
+const SLIDING_DOOR_HEIGHT_MIN_MM = 2000;
+const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/Drutex-Aufsatzkasten-308-Styropor.jpg';
+
 function normalizeConfigText(value) {
   return String(value || '')
     .toLowerCase()
@@ -542,6 +545,23 @@ function getVsgPrice(label) {
   return calculateAreaSurcharge(VSG_PRICE_BY_LABEL[thickness][getGlazingPaneKey()]);
 }
 
+function getTab5DisplayLabel(opt, subName = '') {
+  const label = String(opt?.label || '');
+  const normalizedSubtab = normalizeConfigText(subName);
+  const normalizedLabel = normalizeConfigText(label);
+
+  if (normalizedSubtab.includes('isolierglas') && normalizedLabel.includes('warme kante') && !normalizedLabel.includes('gratis')) {
+    return label.replace(/warme\s+kante/i, 'Warme Kante Gratis');
+  }
+
+  if (normalizedSubtab.includes('vsg')) {
+    if (normalizedLabel.includes('8')) return '8mm VSG außen';
+    if (normalizedLabel.includes('6')) return '6mm VSG außen';
+  }
+
+  return label;
+}
+
 function buildKlarglasOption() {
   return {
     id: '__klarglas__',
@@ -602,8 +622,8 @@ function getRollladenSystemLabel(opt) {
     return 'RAR Vorbaurollladen';
   }
 
-  if (String(opt?.id) === '327' || normalized.includes('rak vorbau unter putz')) {
-    return 'RAK Vorbau unter Putz';
+  if (String(opt?.id) === '__rollladen_system_rnk_xt__' || normalized.includes('rnk xt aufsatzrolladen')) {
+    return 'RNK/XT Aufsatzrolladen';
   }
 
   return label;
@@ -619,6 +639,8 @@ function buildRollladenSystemOption(source, spec) {
     depends_on: '',
     option_type: ''
   };
+  if (spec.image_url) opt.image_url = spec.image_url;
+  if (spec.price != null) opt.price = spec.price;
   const extra = getJsonValue(opt.extra_json, {});
   extra.heading = spec.label;
   extra.subheading = '';
@@ -635,13 +657,18 @@ function normalizeRollladenSubtab(subtab) {
   const systemSpecs = [
     { id: '324', label: 'RAS Vorbaurollladen' },
     { id: '325', label: 'RAR Vorbaurollladen' },
-    { id: '327', label: 'RAK Vorbau unter Putz' }
+    {
+      id: '__rollladen_system_rnk_xt__',
+      label: 'RNK/XT Aufsatzrolladen',
+      image_url: RNK_XT_ROLLLADEN_IMAGE,
+      price: '0.00'
+    }
   ];
 
   const systems = systemSpecs
     .map(spec => {
       const source = findById(spec.id) || allOptions.find(opt => getRollladenSystemLabel(opt) === spec.label);
-      return source ? buildRollladenSystemOption(source, spec) : null;
+      return buildRollladenSystemOption(source, spec);
     })
     .filter(Boolean);
 
@@ -751,6 +778,35 @@ function parseConfiguratorNumber(value) {
   return Number.isFinite(number) ? number : 0;
 }
 
+function isSlidingDoorConfiguration() {
+  return String(staticCode || windowConfig.staticCode || '') === '__static_schiebe__';
+}
+
+function getDimensionInputBounds(rawMinW, rawMaxW, rawMinH, rawMaxH) {
+  return {
+    minW: rawMinW,
+    maxW: rawMaxW,
+    minH: isSlidingDoorConfiguration() ? Math.min(rawMinH, SLIDING_DOOR_HEIGHT_MIN_MM) : rawMinH,
+    maxH: rawMaxH
+  };
+}
+
+function getPricingLookupDimensions(combos, widthValue, heightValue) {
+  if (!isSlidingDoorConfiguration()) {
+    return { width: widthValue, height: heightValue };
+  }
+
+  const heights = (combos || [])
+    .map(row => parseConfiguratorNumber(row.height))
+    .filter(height => height > 0);
+  const minMatrixHeight = heights.length ? Math.min(...heights) : heightValue;
+
+  return {
+    width: widthValue,
+    height: heightValue < minMatrixHeight ? minMatrixHeight : heightValue
+  };
+}
+
 function setSidebarPrice(element, value, emptyText = '—') {
   if (!element) return;
   const normalized = String(value ?? '').replace(',', '.');
@@ -798,7 +854,7 @@ function getSillProfileSummary() {
     ? `, ${width} mm = ${calculatedPrice.toFixed(2)} €`
     : '';
 
-  return `${profile.article} ${profile.designation} (${profile.profile}, +${profile.addHeight} mm, ${profile.pricePerMeter.toFixed(2)} €/m${calculatedText}, weiß)`;
+  return `${profile.label} (${profile.pricePerMeter.toFixed(2)} €/m${calculatedText}, weiß)`;
 }
 
 function updateSillProfilePrice() {
@@ -2287,7 +2343,7 @@ if (!TAB5_SELECTION[subtabId]) {
   TAB5_SELECTION[subtabId] = null;
 }
 	// ===== HIDE GRIFF BASED ON TAB 3 =====
-const hideGriffIds = ['429', '440', '497'];
+const hideGriffIds = [];
 
 const griffTabBtn = document.querySelector('#tab5 .tabs .tab:nth-child(3)');
 
@@ -2317,6 +2373,7 @@ if (hideGriffIds.includes(openingId)) {
   const grid = document.querySelector('#tab5 .option-grid');
   if (!grid) return;
   grid.classList.toggle('tab5-isolierglas-grid', subName.includes('isolierglas'));
+  grid.classList.toggle('tab5-ornament-grid', subName.includes('ornament'));
 
   // ===============================
   // ACTIVE BUTTON
@@ -2458,21 +2515,22 @@ if (subName.includes('griff')) {
     options.forEach((opt) => {
 
       const div = document.createElement('div');
+      const displayLabel = getTab5DisplayLabel(opt, subName);
       div.className = 'card-option';
       div.dataset.id = opt.id;
-      div.dataset.label = opt.label || '';
+      div.dataset.label = displayLabel || '';
       div.dataset.value = opt.value_key || '';
 
       let imageBlock = '';
       if (opt.image_url && opt.image_url.trim().startsWith('<svg')) {
         imageBlock = opt.image_url;
       } else if (opt.image_url) {
-        imageBlock = `<img src="${opt.image_url}" alt="">`;
+        imageBlock = `<img src="${opt.image_url}" alt="${displayLabel || ''}">`;
       }
 
       div.innerHTML = `
         ${imageBlock}
-        <div><strong>${opt.label || ''}</strong></div>
+        <div><strong>${displayLabel || ''}</strong></div>
         <span class="checkmark-box">
           <img src="https://droplify.de/deine-fenster24/frontend/Vector.svg">
         </span>
@@ -2516,9 +2574,9 @@ updateAllSidebars();
   TAB5_SELECTION[subtabId] = opt.id;
 
   // 🔥 ADD THIS (CRITICAL)
-  const el = document.getElementById('glass-sidebar-vsg');
-  if (el) el.textContent = opt.label;
-} else {
+    const el = document.getElementById('glass-sidebar-vsg');
+    if (el) el.textContent = displayLabel;
+  } else {
 
     // ===============================
     // ✅ NORMAL BEHAVIOR (UNCHANGED)
@@ -2536,7 +2594,7 @@ TAB5_SELECTION[subtabId] = opt.id;
   // ✅ COMMON LOGIC (UNCHANGED)
   // ===============================
 
-  const value = opt.label || '';
+  const value = displayLabel || '';
 
   updateUrlParam(subtab.name.toLowerCase(), value);
 
@@ -2632,15 +2690,15 @@ try {
 } catch (e) {}
 
 if (subName.includes('isolierglas')) {
-  extraPriceTab5Map[subtabId] = hasNormalizedText(opt.label, ['3 fach', '3fach'])
+  extraPriceTab5Map[subtabId] = hasNormalizedText(displayLabel, ['3 fach', '3fach'])
     ? calculateThreeFachPrice()
     : 0;
 }
 else if (subName.includes('vsg')) {
-  extraPriceTab5Map[subtabId] = getVsgPrice(opt.label);
+  extraPriceTab5Map[subtabId] = getVsgPrice(displayLabel);
 }
 else if (subName.includes('ornament')) {
-  extraPriceTab5Map[subtabId] = getOrnamentPrice(opt.label);
+  extraPriceTab5Map[subtabId] = getOrnamentPrice(displayLabel);
 }
 else if (
   usePercent &&
@@ -2738,9 +2796,14 @@ if (!autoSelectDone) {
     // ===============================
     // ✅ YOUR EXISTING LOGIC (UNCHANGED)
     // ===============================
-    const findMatch = (key) =>
-      [...grid.querySelectorAll('.card-option')]
-        .find(el => (el.dataset.label || '').toLowerCase() === (key || '').toLowerCase());
+    const findMatch = (key) => {
+      const normalizedKey = normalizeConfigText(key || '');
+      return [...grid.querySelectorAll('.card-option')]
+        .find(el => {
+          const normalizedLabel = normalizeConfigText(el.dataset.label || '');
+          return normalizedLabel === normalizedKey || normalizedLabel.replace(/\s+gratis\b/, '') === normalizedKey;
+        });
+    };
 
     let selected = null;
 
@@ -3212,7 +3275,7 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
 
     const details = profile.id === '__none__'
       ? '<span>Kein Fensterbank-Anschlussprofil</span>'
-      : `<span>Art.-Nr. ${profile.article}</span><span>${profile.profile}</span><span>+${profile.addHeight} mm Höhe</span><span>${profile.pricePerMeter.toFixed(2)} €/m, weiß</span>`;
+      : `<span>${profile.profile}</span><span>${profile.pricePerMeter.toFixed(2)} €/m, weiß</span>`;
 
     div.innerHTML = `
       <img class="sill-profile-image" src="https://droplify.de/deine-fenster24/frontend/img/Fensterbankanschlussprofil.jpg" alt="${profile.label || ''}">
@@ -3328,7 +3391,7 @@ function getRollladenDetailsText() {
 
 function getRollladenDetailsHTML() {
   return getRollladenSummaryLines()
-    .map(([label, value]) => `<span class="rollladen-sidebar-line"><strong>${label}:</strong> ${value}</span>`)
+    .map(([label, value]) => `<span class="rollladen-sidebar-line">${label}: ${value}</span>`)
     .join('');
 }
 
@@ -3447,17 +3510,17 @@ function getRollladenInquiryHTML() {
 
   return `
     <div class="inquiry-box rollladen-inquiry-box">
-      <button type="button" class="inquiry-btn rollladen-inquiry-open">Rollladen-Anfrage</button>
+      <button type="button" class="inquiry-btn rollladen-inquiry-open">Anfrage stellen</button>
       <div class="rollladen-inquiry-modal" aria-hidden="true">
         <div class="rollladen-inquiry-backdrop" data-rollladen-close></div>
-        <div class="rollladen-inquiry-dialog" role="dialog" aria-modal="true" aria-label="Rollladen-Anfrage">
+        <div class="rollladen-inquiry-dialog" role="dialog" aria-modal="true" aria-label="Anfrage stellen">
           <button type="button" class="rollladen-inquiry-close" aria-label="Schließen" data-rollladen-close>×</button>
           <img class="rollladen-inquiry-logo" src="https://cdn.shopify.com/s/files/1/0987/9683/1102/files/logo-web2.jpg?v=1778837486" alt="Deine-Fenster24.com">
           <form class="rollladen-inquiry-form" method="post" action="https://deine-fenster24.com/contact#contact_form" accept-charset="UTF-8">
             <input type="hidden" name="form_type" value="contact">
             <input type="hidden" name="utf8" value="✓">
             <input type="hidden" name="contact[tags]" value="Rollladen Anfrage, Konfigurator">
-            <div class="rollladen-inquiry-title">Rollladen-Anfrage</div>
+            <div class="rollladen-inquiry-title">Anfrage stellen</div>
             <div class="rollladen-inquiry-fields">
               <label>Name*<input type="text" name="contact[name]" required></label>
               <label>E-Mail*<input type="email" name="contact[email]" required></label>
@@ -4878,10 +4941,11 @@ function updateGroesseDropdownsAndSidebar() {
     return;
   }
 
-  const minW = Math.min(...allWidths);
-  const maxW = Math.max(...allWidths);
-  const minH = Math.min(...allHeights);
-  const maxH = Math.max(...allHeights);
+  const rawMinW = Math.min(...allWidths);
+  const rawMaxW = Math.max(...allWidths);
+  const rawMinH = Math.min(...allHeights);
+  const rawMaxH = Math.max(...allHeights);
+  const { minW, maxW, minH, maxH } = getDimensionInputBounds(rawMinW, rawMaxW, rawMinH, rawMaxH);
 
   widthInput.min = String(minW);
   widthInput.max = String(maxW);
@@ -4977,7 +5041,8 @@ function updateTab4PriceAndSVGFromCombo(combos) {
     return;
   }
 
-  const tier = findPriceForSize(combos, widthVal, heightVal);
+  const lookupSize = getPricingLookupDimensions(combos, widthVal, heightVal);
+  const tier = findPriceForSize(combos, lookupSize.width, lookupSize.height);
 
   if (tier) {
     basePriceTab4 = parseFloat(tier.price) || 0;
@@ -6632,26 +6697,6 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
   Lt.setAttribute('y', midY);
   Lt.setAttribute('style', textStyle);
   Lt.textContent = Math.round(outH); g.appendChild(Lt);
-
-  // right (height + 30)
-  const RIGHT_MAIN_X = rightX + 60;
-  const R = document.createElementNS('http://www.w3.org/2000/svg','line');
-  R.setAttribute('x1', RIGHT_MAIN_X); R.setAttribute('x2', RIGHT_MAIN_X);
-  R.setAttribute('y1', topY);         R.setAttribute('y2', vbY + vbH + 15);
-  R.setAttribute('stroke', '#000'); g.appendChild(R);
-
-  const rightBG = document.createElementNS('http://www.w3.org/2000/svg','rect');
-  rightBG.setAttribute('x', RIGHT_MAIN_X - bgW/2);
-  rightBG.setAttribute('y', midY - bgH/2);
-  rightBG.setAttribute('width', bgW);
-  rightBG.setAttribute('height', bgH);
-  rightBG.setAttribute('fill', '#F4F4F4'); g.appendChild(rightBG);
-
-  const Rt = document.createElementNS('http://www.w3.org/2000/svg','text');
-  Rt.setAttribute('x', RIGHT_MAIN_X);
-  Rt.setAttribute('y', midY);
-  Rt.setAttribute('style', textStyle);
-  Rt.textContent = Math.round(outH + 40); g.appendChild(Rt);
 
   // bottom (width)
   const BOTTOM_MAIN_Y = botY + 70;
