@@ -811,6 +811,17 @@ function getPricingLookupDimensions(combos, widthValue, heightValue) {
   };
 }
 
+function splitEvenly(total, count) {
+  const safeCount = Math.max(1, parseInt(count, 10) || 1);
+  const safeTotal = Math.max(0, Math.round(parseConfiguratorNumber(total)));
+  const base = Math.floor(safeTotal / safeCount);
+  const remainder = safeTotal - (base * safeCount);
+
+  return Array.from({ length: safeCount }, (_, index) =>
+    base + (index < remainder ? 1 : 0)
+  );
+}
+
 function setSidebarPrice(element, value, emptyText = '—') {
   if (!element) return;
   const normalized = String(value ?? '').replace(',', '.');
@@ -7950,6 +7961,8 @@ function onRowW(r, c) {
     const inputs=[];
     const totalRaw = vals.reduce((a,b)=>a+b,0);
     const outer    = (model.axis==='x') ? wVal : hVal;
+    const forceEqualSlidingSplit = isSlidingDoorConfiguration() && model.axis === 'x' && model.infillCount > 1;
+    const equalSlidingValues = forceEqualSlidingSplit ? splitEvenly(outer, model.infillCount) : null;
 
     for(let i=0;i<model.infillCount;i++){
       const wrap=document.createElement('div'); wrap.style.margin='6px 0';
@@ -7960,8 +7973,12 @@ function onRowW(r, c) {
 
       const rawVal = vals[i];
       const ratio  = rawVal / totalRaw;
-      const uiVal  = Math.round(outer * ratio);
+      const uiVal  = forceEqualSlidingSplit ? equalSlidingValues[i] : Math.round(outer * ratio);
       inp.value = uiVal;
+      if (forceEqualSlidingSplit) {
+        inp.readOnly = true;
+        inp.title = 'Schiebetüren werden immer 50/50 aufgeteilt.';
+      }
 
       inp.dataset.scale  = uiVal / rawVal;
       inp.dataset.rawMin = 0;
@@ -7973,11 +7990,24 @@ function onRowW(r, c) {
 
     // ✅ Fix: adjust last so sum matches outer
     if (inputs.length > 1) {
-      const sum = inputs.slice(0,-1).reduce((s,el)=>s + (+el.value||0),0);
-      inputs[inputs.length-1].value = outer - sum;
+      if (forceEqualSlidingSplit) {
+        equalSlidingValues.forEach((value, index) => {
+          if (inputs[index]) inputs[index].value = value;
+        });
+      } else {
+        const sum = inputs.slice(0,-1).reduce((s,el)=>s + (+el.value||0),0);
+        inputs[inputs.length-1].value = outer - sum;
+      }
     }
 
     function writeExcept(skip){
+      if (forceEqualSlidingSplit) {
+        splitEvenly(outer, inputs.length).forEach((value, index) => {
+          if (inputs[index]) inputs[index].value = value;
+        });
+        return;
+      }
+
       const totalRaw = vals.reduce((a,b)=>a+b,0);
       const outer    = (model.axis==='x') ? wVal : hVal;
       inputs.forEach((el,i)=>{
@@ -7990,6 +8020,15 @@ function onRowW(r, c) {
 
   function onEdit(i) {
   const outer = (model.axis === 'x') ? wVal : hVal;
+  if (forceEqualSlidingSplit) {
+    const values = splitEvenly(outer, inputs.length);
+    values.forEach((value, index) => {
+      if (inputs[index]) inputs[index].value = value;
+    });
+    model.apply1D(values);
+    return;
+  }
+
   let uiVal = +inputs[i].value || 0;
   uiVal = Math.max(0, Math.min(uiVal, outer));   // clamp inside 0..outer
   inputs[i].value = uiVal;
