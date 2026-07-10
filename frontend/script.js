@@ -470,7 +470,7 @@ const ROLLLADEN_DRIVE_OPTIONS = [
 ];
 
 const SLIDING_DOOR_HEIGHT_MIN_MM = 2000;
-const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/Drutex-Aufsatzkasten-308-Styropor.jpg';
+const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/shades.png';
 
 function normalizeConfigText(value) {
   return String(value || '')
@@ -626,8 +626,12 @@ function getRollladenSystemLabel(opt) {
     return 'RAR Vorbaurollladen';
   }
 
-  if (String(opt?.id) === '__rollladen_system_rnk_xt__' || normalized.includes('rnk xt aufsatzrolladen')) {
-    return 'RNK/XT Aufsatzrolladen';
+  if (
+    String(opt?.id) === '__rollladen_system_rnk_xt__' ||
+    normalized.includes('rnk xt aufsatzrolladen') ||
+    normalized.includes('rnk xt aufsatz unter putz')
+  ) {
+    return 'RNK/XT Aufsatz unter Putz';
   }
 
   return label;
@@ -663,7 +667,7 @@ function normalizeRollladenSubtab(subtab) {
     { id: '325', label: 'RAR Vorbaurollladen', image_url: ROLLLADEN_SYSTEM_IMAGES['325'] },
     {
       id: '__rollladen_system_rnk_xt__',
-      label: 'RNK/XT Aufsatzrolladen',
+      label: 'RNK/XT Aufsatz unter Putz',
       image_url: RNK_XT_ROLLLADEN_IMAGE,
       price: '0.00'
     }
@@ -3559,6 +3563,14 @@ function getRollladenMountingOptions(opt) {
     normalized.includes('rar vorbaurollladen')
   ) {
     return ['an Fassade', 'an Rahmen'];
+  }
+
+  if (
+    String(opt?.id) === '__rollladen_system_rnk_xt__' ||
+    normalized.includes('rnk xt aufsatz unter putz') ||
+    normalized.includes('rnk xt aufsatzrolladen')
+  ) {
+    return ['inkl. Fenstermaß', 'exkl. Fenstermaß'];
   }
 
   return [];
