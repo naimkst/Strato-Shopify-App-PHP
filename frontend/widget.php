@@ -607,9 +607,10 @@ flex: 0.8;
 
 .its_my_app_work .price_inner .price .price-tax,
 .its_my_app_work .price_inner .price-tax {
-    font-size: 45%;
+    font-size: 38%;
     font-weight: 500;
     text-transform: none !important;
+    white-space: nowrap;
 }
 
 .its_my_app_work .tab-content.active {
@@ -1313,6 +1314,7 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .balcony-door-notes {
+    display: block;
     margin: 10px 0;
     padding: 8px 10px;
     border-left: 3px solid #0B2D60;
@@ -1322,6 +1324,15 @@ div#tab7-svgPreviewBox svg g path {
 
 .balcony-door-notes p {
     margin: 2px 0;
+}
+
+.balcony-door-notes > span {
+    display: block;
+    margin: 0;
+}
+
+.optional-summary-line {
+    display: block;
 }
 
 .its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
@@ -1539,6 +1550,18 @@ div#tab7-svgPreviewBox svg g path {
     font-size: 20px;
     font-weight: 600;
     color: #000;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-request-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.its_my_app_work #rollladen-subtab .rollladen-request-heading strong {
+    font-size: 28px;
+    line-height: 1.2;
 }
 
 .its_my_app_work #rollladen-subtab .rollladen-choice {
@@ -1773,6 +1796,7 @@ div#tab7-svgPreviewBox svg g path {
 
 /* Doc QA fixes: keep summary text consistent and avoid image/card overlaps. */
 .balcony-door-notes {
+    display: block;
     margin: 2px 0;
     padding: 0;
     border-left: 0;
@@ -1784,6 +1808,15 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .balcony-door-notes p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 400;
+}
+
+.balcony-door-notes > span {
+    display: block;
     margin: 0;
     color: inherit;
     font-size: inherit;
@@ -1805,6 +1838,16 @@ div#tab7-svgPreviewBox svg g path {
     line-height: inherit;
     color: inherit;
     font-weight: 400;
+}
+
+.its_my_app_work .rollladen-sidebar-preview {
+    display: block;
+    max-width: 180px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 8px auto 12px;
 }
 
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
@@ -2092,7 +2135,7 @@ div#tab7-svgPreviewBox svg g path {
         </div>
         <div class="price-box">
 <div class="price_inner">
-          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
+	          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
 
 </div>
           <span>Lieferzeit: ca. 3-5 Wochen</span>
@@ -2184,20 +2227,20 @@ div#tab7-svgPreviewBox svg g path {
     <span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
     <span id="glass-sidebar-opening">FESTVERGLASUNG</span><br>
     BREITE: <span id="glass-sidebar-width">500</span> MM<br>
-    HÖHE: <span id="glass-sidebar-height">557</span> MM<br>
-    BESCHLAG: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-    FARBE INNEN: <span id="glass-sidebar-innen">BETONGRAU</span><br>
-    FARBE AUSSEN: <span id="glass-sidebar-aussen">DUNKELROT</span><br>
-    GRIFF: <span id="glass-sidebar-griff">FENSTERGRIFF GOLD</span><br>
-    ISOLIERGLAS: <span id="glass-sidebar-isolierglas">3-FACH VERGLASUNG</span><br>
-    ORNAMENT: <span id="glass-sidebar-ornament">KARO MATT</span><br>
-    Dichtungen schwarz<br>
-	VSG Glas: <span id="glass-sidebar-vsg"></span>
-  </div>
-  <div id="glass-sidebar-balkon-notes"></div>
-  <div class="price-box">
+	    HÖHE: <span id="glass-sidebar-height">557</span> MM<br>
+	    <span id="glass-sidebar-balkon-notes"></span>
+	    BESCHLAG: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+	    FARBE INNEN: <span id="glass-sidebar-innen">BETONGRAU</span><br>
+	    FARBE AUSSEN: <span id="glass-sidebar-aussen">DUNKELROT</span><br>
+	    GRIFF: <span id="glass-sidebar-griff">Standard weiss</span><br>
+	    ISOLIERGLAS: <span id="glass-sidebar-isolierglas">2-FACH VERGLASUNG</span><br>
+	    ORNAMENT: <span id="glass-sidebar-ornament">KLARGLAS</span><br>
+	    Dichtungen schwarz<br>
+		<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
+	  </div>
+	  <div class="price-box">
   <div class="price_inner">
-    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
+	    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
     </div>
     <span>Lieferzeit: ca. 3-5 Wochen</span>
     <div class="quantity quantity_app">
@@ -2325,34 +2368,36 @@ div#tab7-svgPreviewBox svg g path {
     <div class="sidebar mypreviousdesign preview-box">
 	<div class="forscrolling">
       <h4>INNENANSICHT</h4>
-     <div class="svgover" id="svgPreviewBox">
-    </div>
+	     <div class="svgover" id="svgPreviewBox">
+	    </div>
+	    <img id="zubehoer-rollladen-preview-img" class="rollladen-sidebar-preview" alt="" style="display:none;">
 
-      <p style="font-size:15px;">
+	      <p style="font-size:15px;">
         <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
         <span id="zubehoer-sidebar-wing"></span><br>
-        <span id="zubehoer-sidebar-opening"></span><br>
-        BREITE: <span id="zubehoer-sidebar-width"></span> MM<br>
-        HÖHE: <span id="zubehoer-sidebar-height"></span> MM<br>
-        BESCHLAG: <span id="zubehoer-sidebar-beschlag"></span><br>
+	        <span id="zubehoer-sidebar-opening"></span><br>
+	        BREITE: <span id="zubehoer-sidebar-width"></span> MM<br>
+	        HÖHE: <span id="zubehoer-sidebar-height"></span> MM<br>
+	        <span id="zubehoer-sidebar-balkon-notes"></span>
+	        BESCHLAG: <span id="zubehoer-sidebar-beschlag"></span><br>
         FARBE INNEN: <span id="zubehoer-sidebar-innen"></span><br>
         FARBE AUSSEN: <span id="zubehoer-sidebar-aussen"></span><br>
         GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
-        ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
-        ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
-        Dichtungen schwarz<br>
-       RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
+	        ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
+	        ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
+	        Dichtungen schwarz<br>
+	        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
+	       RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
        FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
        <span id="zubehoer-sidebar-luefter" style="display:none"></span>
         <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
        <span id="zubehoer-sidebar-rollladen"></span>
 
       </p>
-      <div id="zubehoer-sidebar-balkon-notes"></div>
-      <div class="price-box">
+	      <div class="price-box">
       <div class="price_inner">
         <strong>FENSTER
-        <span class="price" id="zubehoer-price">54.96 € <span class="price-tax">inkl. MwSt.</span></span></strong>
+	        <span class="price" id="zubehoer-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
         </div>
 
         <span>Lieferzeit: ca. 3-5 Wochen</span>
@@ -2397,37 +2442,44 @@ div#tab7-svgPreviewBox svg g path {
         <div class="form-group"><label>Griff</label><p id="t7-griff"></p></div>
       </div>
 
-      <div class="flex-row">
-        <div class="form-group"><label>Isolierglas</label><p id="t7-isolierglas"></p></div>
-        <div class="form-group"><label>Ornament</label><p id="t7-ornament"></p></div>
-      </div>
-    </div>
+	      <div class="flex-row">
+	        <div class="form-group"><label>Isolierglas</label><p id="t7-isolierglas"></p></div>
+	        <div class="form-group"><label>Ornament</label><p id="t7-ornament"></p></div>
+	      </div>
+	      <div class="flex-row">
+	        <div class="form-group optional-summary-field" style="display:none;"><label>Rahmenverbreiterung</label><p id="t7-rahmen"></p></div>
+	        <div class="form-group optional-summary-field" style="display:none;"><label>Fensterbank-Anschlussprofil</label><p id="t7-fensterbank"></p></div>
+	        <div class="form-group optional-summary-field" style="display:none;"><label>Rollläden</label><p id="t7-rollladen-summary"></p></div>
+	      </div>
+	    </div>
 
 
     <!-- Right Sidebar (Preview Box reused layout) -->
     <div class="sidebar mypreviousdesign preview-box">
 	<div class="forscrolling">
       <h4>Innenansicht</h4>
-     <div id="tab7-svgPreviewBox"></div>
-   <div class="summary-box">
+	     <div id="tab7-svgPreviewBox"></div>
+	     <img id="t7-rollladen-preview-img" class="rollladen-sidebar-preview" alt="" style="display:none;">
+	   <div class="summary-box">
 
     <strong><span id="t7-sidebar-profile"></span></strong><br>
         <p><span id="t7-sidebar-wing"></span></p>
-        <p><span id="t7-sidebar-opening"></span></p>
-        <p>Breite: <span id="t7-sidebar-width"></span></p>
-        <p>Höhe: <span id="t7-sidebar-height"></span></p>
-        <p>Beschlag: <span id="t7-sidebar-beschlag"></span></p>
+	        <p><span id="t7-sidebar-opening"></span></p>
+	        <p>Breite: <span id="t7-sidebar-width"></span></p>
+	        <p>Höhe: <span id="t7-sidebar-height"></span></p>
+	        <div id="t7-sidebar-balkon-notes"></div>
+	        <p>Beschlag: <span id="t7-sidebar-beschlag"></span></p>
 
         <p>Farbe Innen: <span id="t7-sidebar-innen"></span></p>
         <p>Farbe Außen: <span id="t7-sidebar-aussen"></span></p>
         <p>Griff: <span id="t7-sidebar-griff"></span></p>
-        <p>Isolierglas: <span id="t7-sidebar-isolierglas"></span></p>
-        <p>Ornament: <span id="t7-sidebar-ornament"></span></p>
-        <p>Dichtungen schwarz</p>
-        <div id="t7-sidebar-balkon-notes"></div>
+	        <p>Isolierglas: <span id="t7-sidebar-isolierglas"></span></p>
+	        <p>Ornament: <span id="t7-sidebar-ornament"></span></p>
+	        <p>Dichtungen schwarz</p>
+	        <p class="optional-summary-line" style="display:none;">VSG Glas: <span id="t7-sidebar-vsg"></span></p>
 
-        <p>Rahmen: <span id="t7-sidebar-rahmen"></span></p>
-        <p>Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
+	        <p class="optional-summary-line" style="display:none;">Rahmen: <span id="t7-sidebar-rahmen"></span></p>
+	        <p class="optional-summary-line" style="display:none;">Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
         <span id="t7-sidebar-luefter" style="display:none"></span>
         <span id="t7-sidebar-reedkontakt" style="display:none"></span>
         <div id="t7-sidebar-rollladen"></div>

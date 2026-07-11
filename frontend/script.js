@@ -474,6 +474,14 @@ const ROLLLADEN_ACCESSORY_OPTIONS = [
 ];
 
 const SLIDING_DOOR_HEIGHT_MIN_MM = 2000;
+const SLIDING_DOOR_RAHMEN_PROFILE_IDS = ['584'];
+const SLIDING_DOOR_RAHMEN_VALUES = [
+  { label: '0MM', price: 0 },
+  { label: '15MM', price: 8.82 },
+  { label: '35MM', price: 12.36 },
+  { label: '60MM', price: 15.51 },
+  { label: '100MM', price: 25.10 }
+];
 const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/shades.png';
 
 function normalizeConfigText(value) {
@@ -803,6 +811,25 @@ function parseConfiguratorNumber(value) {
   return Number.isFinite(number) ? number : 0;
 }
 
+function createSlidingDoorRahmenFallbackOption(position) {
+  const labels = {
+    oben: 'Rahmenverbreiterung oben',
+    rechts: 'Rahmenverbreiterung rechts',
+    unten: 'Rahmenverbreiterung unten',
+    links: 'Rahmenverbreiterung links'
+  };
+
+  return {
+    id: `__sliding_rahmen_${position}__`,
+    depends_on: SLIDING_DOOR_RAHMEN_PROFILE_IDS.join(','),
+    extra_json: JSON.stringify({
+      dropdown_label: labels[position] || position,
+      default_option: SLIDING_DOOR_RAHMEN_VALUES[0],
+      options: SLIDING_DOOR_RAHMEN_VALUES.slice(1)
+    })
+  };
+}
+
 function isSlidingDoorConfiguration() {
   return String(staticCode || windowConfig.staticCode || '') === '__static_schiebe__';
 }
@@ -853,7 +880,7 @@ function setSidebarPrice(element, value, emptyText = '—') {
     return;
   }
 
-  element.innerHTML = `${price.toFixed(2)} € <span class="price-tax">inkl. MwSt.</span>`;
+  element.innerHTML = `${price.toFixed(2)} € <span class="price-tax">inkl. MwSt. zzg. Versand</span>`;
 }
 
 function getCurrentWindowWidthMm() {
@@ -900,8 +927,7 @@ function updateSillProfilePrice() {
 function getEffectiveHeightValue() {
   const height = parseInt(document.getElementById('height')?.value, 10);
   if (!Number.isFinite(height) || height <= 0) return '';
-  const addHeight = parseInt(windowConfig.fensterbankAddHeight || 0, 10);
-  return String(height + (Number.isFinite(addHeight) ? addHeight : 0));
+  return String(height);
 }
 
 function syncEffectiveHeightDisplays() {
@@ -963,7 +989,7 @@ function getBalconyDoorNotes() {
 function getBalconyDoorNotesHTML() {
   const notes = getBalconyDoorNotes();
   if (!notes.length) return '';
-  return `<div class="balcony-door-notes">${notes.map(note => `<p>${note}</p>`).join('')}</div>`;
+  return `<span class="balcony-door-notes">${notes.map(note => `<span>${note}</span>`).join('')}</span>`;
 }
 
 function addBalconyDoorDetails(item) {
@@ -1196,9 +1222,10 @@ const windowConfig = {
   fensterbankPricePerMeter: 0,
 rollladen: null,      // label chosen in Tab 6 → ROLLLADEN
 rollladenMounting: '',
-rollladenDrive: '',
-rollladenAccessory: '',
-rollladenOn: false   // convenience boolean for drawing the box
+  rollladenDrive: '',
+  rollladenAccessory: '',
+  rollladenImage: '',
+  rollladenOn: false   // convenience boolean for drawing the box
 
 };
 
@@ -1569,7 +1596,6 @@ function refreshAreaBasedPrices() {
 function updateThreeFachPriceIfActive() {
   refreshAreaBasedPrices();
   recomputeTotalPrice();
-  syncEffectiveHeightDisplays();
 }
 
 
@@ -2809,6 +2835,7 @@ if (isVSG) {
     // 🔥 CLEAR SIDEBAR
     const el = document.getElementById('glass-sidebar-vsg');
     if (el) el.textContent = '';
+    setOptionalSummaryText('glass-sidebar-vsg', '');
 
     extraPriceTab5Map[subtabId] = 0;
 
@@ -2829,6 +2856,7 @@ updateAllSidebars();
   // 🔥 ADD THIS (CRITICAL)
     const el = document.getElementById('glass-sidebar-vsg');
     if (el) el.textContent = displayLabel;
+    setOptionalSummaryText('glass-sidebar-vsg', displayLabel);
   } else {
 
     // ===============================
@@ -2912,6 +2940,7 @@ else if (subName.includes('vsg')) {
 
   const el = document.getElementById('glass-sidebar-vsg');
   if (el) el.textContent = value;
+  setOptionalSummaryText('glass-sidebar-vsg', value);
 }
 
 
@@ -3010,14 +3039,18 @@ if (subName.includes('vsg')) {
 
   const savedId = TAB5_SELECTION[subtabId];
 
-  if (savedId) {
-    const match = [...grid.querySelectorAll('.card-option')]
-      .find(el => String(el.dataset.id) === String(savedId));
+    if (savedId) {
+      const match = [...grid.querySelectorAll('.card-option')]
+        .find(el => String(el.dataset.id) === String(savedId));
 
-    if (match) {
-      setTimeout(() => match.click(), 50); // restore toggle
+      if (match) {
+        setTimeout(() => match.click(), 50); // restore toggle
+      } else {
+        delete TAB5_SELECTION[subtabId];
+        windowConfig.vsg = null;
+        setOptionalSummaryText('glass-sidebar-vsg', '');
+      }
     }
-  }
 
   return; // ❗ still prevent auto-select
 }
@@ -3033,7 +3066,7 @@ if (!autoSelectDone) {
 
   setTimeout(() => {
 
-    // 🔥 FIRST: check saved selection
+    // 🔥 FIRST: check saved selection, but drop stale values from older configs.
     const savedId = TAB5_SELECTION[subtabId];
 
     if (savedId) {
@@ -3044,6 +3077,8 @@ if (!autoSelectDone) {
         match.click(); // 🔥 IMPORTANT (triggers full logic)
         return;        // stop here
       }
+
+      delete TAB5_SELECTION[subtabId];
     }
 
     // ===============================
@@ -3065,6 +3100,20 @@ if (!autoSelectDone) {
     }
     else if (subName.includes('außen') || subName.includes('aussen')) {
       selected = findMatch(windowConfig.farbeAussen);
+    }
+    else if (subName.includes('griff')) {
+      selected = findMatch(windowConfig.griff) ||
+        findMatch('Standard weiss') ||
+        findMatch('Weiss') ||
+        findMatch('Weiß');
+    }
+    else if (subName.includes('isolierglas')) {
+      selected = findMatch(windowConfig.isolierglas) ||
+        findMatch(isTripleGlazingRequired() ? '3-fach Verglasung' : '2-fach Verglasung');
+    }
+    else if (subName.includes('ornament')) {
+      selected = findMatch(windowConfig.ornament) ||
+        findMatch('Klarglas');
     }
 
 
@@ -3122,13 +3171,8 @@ function updateAllSidebars() {
   if (typeof updateTab6Sidebar === 'function') updateTab6Sidebar();
   if (typeof updateTab7Summary === 'function') updateTab7Summary();
 
-  // 🔥 ADD THIS
-  if (typeof updateGroesseDropdownsAndSidebar === 'function') {
-    updateGroesseDropdownsAndSidebar();
-  }
-
   updateTab4SVG();
-  syncEffectiveHeightDisplays();
+  syncOptionalSummaryLines();
 
 
 
@@ -3314,7 +3358,7 @@ waitForTab6SvgAndInit();  // Wait for SVG and inject dynamic inputs
 }
 
 // ---- RAHMENVERBREITERUNG ----
-function renderTab6Rahmenverbreiterung(subtab, subtabId){
+function renderTab6RahmenverbreiterungLegacy(subtab, subtabId){
 
   const selectsMap = {
     oben: document.getElementById('rb-oben'),
@@ -3486,6 +3530,116 @@ setTimeout(() => {
   });
 }
 
+// Override: supports profile-specific DB rows and fills Aluplast Hebeschiebetüren
+// when the backend has no Rahmenverbreiterung rows for profile 584.
+function renderTab6Rahmenverbreiterung(subtab, subtabId) {
+  const selectsMap = {
+    oben: document.getElementById('rb-oben'),
+    rechts: document.getElementById('rb-rechts'),
+    unten: document.getElementById('rb-unten'),
+    links: document.getElementById('rb-links')
+  };
+  const options = Array.isArray(subtab?.options) ? subtab.options : [];
+  const currentProfileId = String(getCurrentProfileId() || '').trim();
+  const fallbackProfile = SLIDING_DOOR_RAHMEN_PROFILE_IDS.includes(currentProfileId);
+
+  Object.values(selectsMap).forEach(select => {
+    if (select) select.innerHTML = '';
+  });
+
+  const getRahmenPosition = (extra, opt) => {
+    const label = String(extra?.dropdown_label || opt?.label || '').toLowerCase();
+    if (label.includes('oben')) return 'oben';
+    if (label.includes('rechts')) return 'rechts';
+    if (label.includes('unten')) return 'unten';
+    if (label.includes('links')) return 'links';
+    return null;
+  };
+
+  const appendSelectOption = (select, item, selected = false) => {
+    const option = document.createElement('option');
+    option.value = item?.label || '';
+    option.textContent = item?.label || '0MM';
+    option.dataset.price = parseFloat(item?.price || 0);
+    option.selected = selected;
+    select.appendChild(option);
+  };
+
+  const appendRahmenOption = (opt, force = false) => {
+    if (!opt) return false;
+    const dep = String(opt.depends_on || '').trim();
+    if (!force && dep) {
+      if (!currentProfileId) return false;
+      const depIds = dep.split(',').map(value => value.trim());
+      if (!depIds.includes(currentProfileId)) return false;
+    }
+
+    const extra = getJsonValue(opt.extra_json, {});
+    const pos = getRahmenPosition(extra, opt);
+    const select = pos ? selectsMap[pos] : null;
+    if (!select) return false;
+
+    if (extra.default_option) {
+      appendSelectOption(select, extra.default_option, true);
+    } else if (!select.options.length) {
+      appendSelectOption(select, { label: '0MM', price: 0 }, true);
+    }
+
+    (extra.options || []).forEach(item => appendSelectOption(select, item));
+    return true;
+  };
+
+  options.forEach(opt => appendRahmenOption(opt));
+
+  if (fallbackProfile) {
+    Object.keys(selectsMap).forEach(pos => {
+      const select = selectsMap[pos];
+      if (select && !select.options.length) {
+        appendRahmenOption(createSlidingDoorRahmenFallbackOption(pos), true);
+      }
+    });
+  }
+
+  const hasAnyOptions = Object.values(selectsMap).some(select => select && select.options.length);
+  if (!hasAnyOptions) {
+    console.warn('❌ No rahmen data');
+    return;
+  }
+
+  function updateRahmenSidebar() {
+    let total = 0;
+    const values = [];
+
+    Object.entries(selectsMap).forEach(([pos, select]) => {
+      if (!select || !select.value) return;
+      values.push(select.value);
+      total += parseFloat(select.options[select.selectedIndex]?.dataset.price || 0);
+      TAB6_SELECTION[pos] = select.value;
+    });
+
+    setOptionalSummaryText('zubehoer-sidebar-rahmen', values.join(' / '));
+    extraPriceTab6Map[subtabId] = total;
+    recomputeTotalPrice();
+    updateAllSidebars();
+  }
+
+  Object.values(selectsMap).forEach(select => {
+    if (!select) return;
+    select.removeEventListener('change', updateRahmenSidebar);
+    select.addEventListener('change', updateRahmenSidebar);
+  });
+
+  setTimeout(() => {
+    Object.entries(selectsMap).forEach(([pos, select]) => {
+      const saved = TAB6_SELECTION[pos];
+      if (!select || !saved) return;
+      const match = [...select.options].find(option => option.value === saved);
+      if (match) select.value = saved;
+    });
+    updateRahmenSidebar();
+  }, 50);
+}
+
 // ---- FENSTERZUBEHÖR ----
 function renderTab6Fensterzubehoer(subtab, subtabId) {
   const luefterSel = document.getElementById('lz-luefter');
@@ -3552,7 +3706,6 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
       windowConfig.fensterbankPricePerMeter = parseFloat(profile.pricePerMeter || 0);
 
       updateSillProfilePrice();
-      syncEffectiveHeightDisplays();
       recomputeTotalPrice();
       updateTab6Sidebar();
       updateTab7Summary();
@@ -3619,6 +3772,22 @@ function setRollladenPreview(enabled) {
   }
 }
 
+function syncRollladenPreviewImages() {
+  ['zubehoer-rollladen-preview-img', 't7-rollladen-preview-img'].forEach(id => {
+    const img = document.getElementById(id);
+    if (!img) return;
+    if (windowConfig.rollladenOn && windowConfig.rollladenImage) {
+      img.src = windowConfig.rollladenImage;
+      img.alt = windowConfig.rollladen || 'Rollläden';
+      img.style.display = '';
+    } else {
+      img.removeAttribute('src');
+      img.alt = '';
+      img.style.display = 'none';
+    }
+  });
+}
+
 function clearRollladenWindowConfig() {
   Object.keys(windowConfig).forEach(key => {
     if (
@@ -3635,6 +3804,7 @@ function clearRollladenWindowConfig() {
   windowConfig.rollladenMounting = '';
   windowConfig.rollladenDrive = '';
   windowConfig.rollladenAccessory = '';
+  windowConfig.rollladenImage = '';
   windowConfig.rollladenOn = false;
 }
 
@@ -3674,6 +3844,29 @@ function getTextById(id) {
 function addInquiryLine(lines, label, value) {
   const cleanValue = String(value || '').replace(/\s+/g, ' ').trim();
   if (cleanValue) lines.push(`${label}: ${cleanValue}`);
+}
+
+function setSummaryText(id, value) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  el.textContent = value || '';
+  return el;
+}
+
+function setOptionalSummaryText(id, value) {
+  const el = setSummaryText(id, value);
+  if (!el) return;
+  const row = el.closest('.optional-summary-field') ||
+    el.closest('.optional-summary-line') ||
+    el.parentElement;
+  if (row) row.style.display = String(value || '').trim() ? '' : 'none';
+}
+
+function syncOptionalSummaryLines() {
+  ['glass-sidebar-vsg', 'zubehoer-sidebar-vsg', 't7-sidebar-vsg'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) setOptionalSummaryText(id, el.textContent);
+  });
 }
 
 const ROLLLADEN_INQUIRY_COLOR_OPTIONS = [
@@ -3893,6 +4086,7 @@ function updateRollladenAfterSelection(subtabId) {
   updateTab6Sidebar?.();
   updateTab7Summary?.();
   setRollladenPreview(!!windowConfig.rollladenOn);
+  syncRollladenPreviewImages();
   syncRollladenInquiryMode();
 }
 
@@ -3914,8 +4108,8 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
   wrapper.className = 'rollladen-reference';
   wrapper.innerHTML = `
     <div class="rollladen-reference-intro">
-      <h3>Rolläden</h3>
-      <p>Wünschen Sie Rollläden?</p>
+      <h3>Rollläden</h3>
+      <p class="rollladen-request-heading"><span>Wünschen Sie Rollläden?</span> <strong>Rollläden nur auf Anfrage.</strong></p>
       <button type="button" class="rollladen-choice rollladen-none-choice" data-rollladen-none="1" aria-pressed="false">
         <span class="rollladen-checkbox" aria-hidden="true"></span>
         <span>Ich benötige keine Rollläden</span>
@@ -4037,6 +4231,7 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
     const mountingOptions = getRollladenMountingOptions(opt);
     selectedBySection[systemKey] = String(opt.id);
     windowConfig.rollladen = getRollladenDisplayLabel(opt);
+    windowConfig.rollladenImage = opt.image_url || '';
     windowConfig.rollladenOn = true;
     windowConfig.rollladenMounting = mountingOptions.length
       ? (mountingOverride || windowConfig.rollladenMounting || mountingOptions[0])
@@ -4054,7 +4249,10 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
       const selectedSystem = systemOptions.find(opt =>
         getRollladenDisplayLabel(opt) === windowConfig.rollladen
       );
-      if (selectedSystem) selectedBySection[systemKey] = String(selectedSystem.id);
+      if (selectedSystem) {
+        selectedBySection[systemKey] = String(selectedSystem.id);
+        windowConfig.rollladenImage = windowConfig.rollladenImage || selectedSystem.image_url || '';
+      }
     }
 
     if (windowConfig.rollladenDrive && !selectedBySection[driveKey]) {
@@ -4628,9 +4826,12 @@ function updateTab7Summary() {
 
   document.getElementById('t7-innen').textContent    = document.getElementById('glass-sidebar-innen')?.textContent || '';
   document.getElementById('t7-aussen').textContent   = document.getElementById('glass-sidebar-aussen')?.textContent || '';
-  document.getElementById('t7-griff').textContent    = document.getElementById('glass-sidebar-griff')?.textContent || '';
-  document.getElementById('t7-isolierglas').textContent = document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
-  document.getElementById('t7-ornament').textContent    = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+	  document.getElementById('t7-griff').textContent    = document.getElementById('glass-sidebar-griff')?.textContent || '';
+	  document.getElementById('t7-isolierglas').textContent = document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
+	  document.getElementById('t7-ornament').textContent    = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+  setOptionalSummaryText('t7-rahmen', document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '');
+  setOptionalSummaryText('t7-fensterbank', getSillProfileSummary());
+  setOptionalSummaryText('t7-rollladen-summary', getRollladenDetailsText());
 
 // === Right Sidebar Summary (Tab 7) ===
 document.getElementById('t7-sidebar-profile').textContent    = windowConfig.profile || '';
@@ -4646,17 +4847,20 @@ document.getElementById('t7-sidebar-aussen').textContent     = document.getEleme
 document.getElementById('t7-sidebar-griff').textContent      = document.getElementById('glass-sidebar-griff')?.textContent || '';
 document.getElementById('t7-sidebar-isolierglas').textContent= document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
 document.getElementById('t7-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
-const t7Fensterbank = document.getElementById('t7-sidebar-fensterbank');
-if (t7Fensterbank) t7Fensterbank.textContent = getSillProfileSummary();
-const t7BalconyNotes = document.getElementById('t7-sidebar-balkon-notes');
-if (t7BalconyNotes) t7BalconyNotes.innerHTML = getBalconyDoorNotesHTML();
+setOptionalSummaryText('t7-sidebar-vsg', document.getElementById('glass-sidebar-vsg')?.textContent || '');
+	const t7Fensterbank = document.getElementById('t7-sidebar-fensterbank');
+	if (t7Fensterbank) t7Fensterbank.textContent = getSillProfileSummary();
+setOptionalSummaryText('t7-sidebar-fensterbank', getSillProfileSummary());
+	const t7BalconyNotes = document.getElementById('t7-sidebar-balkon-notes');
+	if (t7BalconyNotes) t7BalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
-// Zubehör from Tab 6 (mirror values directly)
-document.getElementById('t7-sidebar-rahmen').textContent     = document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '';
-	document.getElementById('t7-sidebar-luefter').textContent    = document.getElementById('zubehoer-sidebar-luefter')?.textContent || '';
-	document.getElementById('t7-sidebar-reedkontakt').textContent= document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '';
-	document.getElementById('t7-sidebar-rollladen').innerHTML   = getRollladenDetailsHTML();
-	syncRollladenInquiryMode();
+	// Zubehör from Tab 6 (mirror values directly)
+setOptionalSummaryText('t7-sidebar-rahmen', document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '');
+		document.getElementById('t7-sidebar-luefter').textContent    = document.getElementById('zubehoer-sidebar-luefter')?.textContent || '';
+		document.getElementById('t7-sidebar-reedkontakt').textContent= document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '';
+		document.getElementById('t7-sidebar-rollladen').innerHTML   = getRollladenDetailsHTML();
+		syncRollladenPreviewImages();
+		syncRollladenInquiryMode();
 
 
   // === SVG Preview ===
@@ -4737,7 +4941,6 @@ targets.forEach(el => {
 }
 }
 
-syncEffectiveHeightDisplays();
 recomputeTotalPrice();
 
 }
@@ -5160,10 +5363,39 @@ function getMatchingComboRows() {
 
 
 function findPriceForSize(combos, widthInput, heightInput) {
-  const filtered = combos.filter(c => c.width <= widthInput && c.height <= heightInput);
-  if (filtered.length === 0) return null;
-  filtered.sort((a, b) => (b.width === a.width) ? (b.height - a.height) : (b.width - a.width));
-  return filtered[0];
+  const rows = (combos || [])
+    .map(row => ({
+      ...row,
+      width: parseConfiguratorNumber(row.width),
+      height: parseConfiguratorNumber(row.height)
+    }))
+    .filter(row => row.width > 0 && row.height > 0);
+
+  const width = parseConfiguratorNumber(widthInput);
+  const height = parseConfiguratorNumber(heightInput);
+  if (!rows.length || !width || !height) return null;
+
+  const exact = rows.find(row => row.width === width && row.height === height);
+  if (exact) return exact;
+
+  const covering = rows.filter(row => row.width >= width && row.height >= height);
+  if (covering.length) {
+    covering.sort((a, b) =>
+      (a.width * a.height) - (b.width * b.height) ||
+      a.width - b.width ||
+      a.height - b.height
+    );
+    return covering[0];
+  }
+
+  const lower = rows.filter(row => row.width <= width && row.height <= height);
+  if (!lower.length) return null;
+  lower.sort((a, b) =>
+    (b.width * b.height) - (a.width * a.height) ||
+    b.width - a.width ||
+    b.height - a.height
+  );
+  return lower[0];
 }
 
 function setGroesseLoadingState(widthInput, heightInput) {
@@ -5393,7 +5625,6 @@ function updateTab4PriceAndSVGFromCombo(combos) {
   // ✅ always recalc for all tabs
   refreshAreaBasedPrices();
   recomputeTotalPrice();
-  syncEffectiveHeightDisplays();
 
 
 }
@@ -5608,6 +5839,7 @@ function updateTab5Sidebar() {
 
   const glassBalconyNotes = document.getElementById('glass-sidebar-balkon-notes');
   if (glassBalconyNotes) glassBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
+  syncOptionalSummaryLines();
 
 
   // Size + Beschlag from Tab4
@@ -5682,9 +5914,10 @@ function updateTab6Sidebar() {
   document.getElementById('zubehoer-sidebar-innen').textContent      = document.getElementById('glass-sidebar-innen')?.textContent || '';
   document.getElementById('zubehoer-sidebar-aussen').textContent     = document.getElementById('glass-sidebar-aussen')?.textContent || '';
   document.getElementById('zubehoer-sidebar-griff').textContent      = document.getElementById('glass-sidebar-griff')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-isolierglas').textContent= document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
-  const fensterbankSidebar = document.getElementById('zubehoer-sidebar-fensterbank');
+	  document.getElementById('zubehoer-sidebar-isolierglas').textContent= document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
+	  document.getElementById('zubehoer-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+  setOptionalSummaryText('zubehoer-sidebar-vsg', document.getElementById('glass-sidebar-vsg')?.textContent || '');
+	  const fensterbankSidebar = document.getElementById('zubehoer-sidebar-fensterbank');
   if (fensterbankSidebar) fensterbankSidebar.textContent = getSillProfileSummary();
   const zubehoerBalconyNotes = document.getElementById('zubehoer-sidebar-balkon-notes');
   if (zubehoerBalconyNotes) zubehoerBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
@@ -5700,6 +5933,7 @@ function updateTab6Sidebar() {
   // 🔹 only show if system is selected
   if (!rollladenHTML) {
     rollSidebar.style.display = 'none';
+    syncRollladenPreviewImages();
     recomputeTotalPrice();
     syncRollladenInquiryMode();
     return;
@@ -5707,6 +5941,7 @@ function updateTab6Sidebar() {
     rollSidebar.style.display = 'block';
   }
 
+  syncRollladenPreviewImages();
   recomputeTotalPrice();
   syncRollladenInquiryMode();
   return;
