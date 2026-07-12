@@ -1849,16 +1849,6 @@ div#tab7-svgPreviewBox svg g path {
     font-weight: 400;
 }
 
-.its_my_app_work .rollladen-sidebar-preview {
-    display: block;
-    max-width: 180px;
-    max-height: 150px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    margin: 8px auto 12px;
-}
-
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
     gap: 16px !important;
@@ -2379,9 +2369,7 @@ div#tab7-svgPreviewBox svg g path {
       <h4>INNENANSICHT</h4>
 	     <div class="svgover" id="svgPreviewBox">
 	    </div>
-	    <img id="zubehoer-rollladen-preview-img" class="rollladen-sidebar-preview" alt="" style="display:none;">
-
-	      <p style="font-size:15px;">
+		      <p style="font-size:15px;">
         <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
         <span id="zubehoer-sidebar-wing"></span><br>
 	        <span id="zubehoer-sidebar-opening"></span><br>
@@ -2468,8 +2456,7 @@ div#tab7-svgPreviewBox svg g path {
 	<div class="forscrolling">
       <h4>Innenansicht</h4>
 	     <div id="tab7-svgPreviewBox"></div>
-	     <img id="t7-rollladen-preview-img" class="rollladen-sidebar-preview" alt="" style="display:none;">
-	   <div class="summary-box">
+		   <div class="summary-box">
 
     <strong><span id="t7-sidebar-profile"></span></strong><br>
         <p><span id="t7-sidebar-wing"></span></p>

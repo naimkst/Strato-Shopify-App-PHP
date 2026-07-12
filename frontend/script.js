@@ -3773,19 +3773,7 @@ function setRollladenPreview(enabled) {
 }
 
 function syncRollladenPreviewImages() {
-  ['zubehoer-rollladen-preview-img', 't7-rollladen-preview-img'].forEach(id => {
-    const img = document.getElementById(id);
-    if (!img) return;
-    if (windowConfig.rollladenOn && windowConfig.rollladenImage) {
-      img.src = windowConfig.rollladenImage;
-      img.alt = windowConfig.rollladen || 'Rollläden';
-      img.style.display = '';
-    } else {
-      img.removeAttribute('src');
-      img.alt = '';
-      img.style.display = 'none';
-    }
-  });
+  syncRollladenInquiryPreview();
 }
 
 function clearRollladenWindowConfig() {
