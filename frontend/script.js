@@ -3907,6 +3907,18 @@ function renderRollladenColorOptions() {
     .join('');
 }
 
+function getRollladenInquiryPreviewHTML() {
+  if (!windowConfig.rollladenOn || !windowConfig.rollladenImage) return 'VORSCHAUBILD';
+
+  return `<img src="${escapeInquiryValue(windowConfig.rollladenImage)}" alt="${escapeInquiryValue(windowConfig.rollladen || 'Rollläden')}">`;
+}
+
+function syncRollladenInquiryPreview() {
+  document.querySelectorAll('.rollladen-inquiry-preview').forEach(preview => {
+    preview.innerHTML = getRollladenInquiryPreviewHTML();
+  });
+}
+
 function buildRollladenInquiryMessage() {
   const lines = [
     'Anfrage Rollläden',
@@ -3958,6 +3970,8 @@ function updateRollladenInquiryForms() {
   document.querySelectorAll('.rollladen-inquiry-quantity').forEach(field => {
     field.value = fields.quantity;
   });
+
+  syncRollladenInquiryPreview();
 }
 
 function getRollladenInquiryHTML() {
@@ -4007,7 +4021,7 @@ function getRollladenInquiryHTML() {
                   </label>
                 </div>
               </div>
-              <div class="rollladen-inquiry-preview">VORSCHAUBILD</div>
+              <div class="rollladen-inquiry-preview">${getRollladenInquiryPreviewHTML()}</div>
             </div>
             <label class="rollladen-inquiry-message-label">Wichtige Infos</label>
             <textarea class="rollladen-inquiry-message" name="contact[body]" rows="12">${message}</textarea>

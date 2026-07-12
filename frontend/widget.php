@@ -1249,6 +1249,15 @@ div#tab7-svgPreviewBox svg g path {
     letter-spacing: 0.03em;
 }
 
+.rollladen-inquiry-preview img {
+    display: block;
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
 .rollladen-inquiry-dialog textarea {
     min-height: 120px;
     border-radius: 10px;
