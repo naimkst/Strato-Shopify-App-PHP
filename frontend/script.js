@@ -4814,39 +4814,39 @@ function updateTab7Summary() {
 
 	document.querySelectorAll('.quantity_cover #qty, #t7-qty').forEach(el => {
     el.textContent = currentQty;
-  });
-  // === Left Summary ===
-  document.getElementById('t7-system').textContent   = windowConfig.profile || '';
-  document.getElementById('t7-typ').textContent      = windowConfig.wing || '';
-  document.getElementById('t7-opening').textContent  = windowConfig.opening || '';
+	  });
+	  // === Left Summary ===
+	  setSummaryText('t7-system', windowConfig.profile || '');
+	  setSummaryText('t7-typ', windowConfig.wing || '');
+	  setSummaryText('t7-opening', windowConfig.opening || '');
 
-  document.getElementById('t7-width').textContent    = document.getElementById('sb-width')?.textContent || '';
-  document.getElementById('t7-height').textContent   = document.getElementById('sb-height')?.textContent || '';
-  document.getElementById('t7-beschlag').textContent = beschlagLabel || '';
+	  setSummaryText('t7-width', document.getElementById('sb-width')?.textContent || '');
+	  setSummaryText('t7-height', document.getElementById('sb-height')?.textContent || '');
+	  setSummaryText('t7-beschlag', beschlagLabel || '');
 
-  document.getElementById('t7-innen').textContent    = document.getElementById('glass-sidebar-innen')?.textContent || '';
-  document.getElementById('t7-aussen').textContent   = document.getElementById('glass-sidebar-aussen')?.textContent || '';
-	  document.getElementById('t7-griff').textContent    = document.getElementById('glass-sidebar-griff')?.textContent || '';
-	  document.getElementById('t7-isolierglas').textContent = document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
-	  document.getElementById('t7-ornament').textContent    = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+	  setSummaryText('t7-innen', document.getElementById('glass-sidebar-innen')?.textContent || '');
+	  setSummaryText('t7-aussen', document.getElementById('glass-sidebar-aussen')?.textContent || '');
+	  setSummaryText('t7-griff', document.getElementById('glass-sidebar-griff')?.textContent || '');
+	  setSummaryText('t7-isolierglas', document.getElementById('glass-sidebar-isolierglas')?.textContent || '');
+	  setSummaryText('t7-ornament', document.getElementById('glass-sidebar-ornament')?.textContent || '');
   setOptionalSummaryText('t7-rahmen', document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '');
   setOptionalSummaryText('t7-fensterbank', getSillProfileSummary());
   setOptionalSummaryText('t7-rollladen-summary', getRollladenDetailsText());
 
 // === Right Sidebar Summary (Tab 7) ===
-document.getElementById('t7-sidebar-profile').textContent    = windowConfig.profile || '';
-document.getElementById('t7-sidebar-wing').textContent       = windowConfig.wing || '';
-document.getElementById('t7-sidebar-opening').textContent    = windowConfig.opening || '';
-document.getElementById('t7-sidebar-width').textContent      = document.getElementById('sb-width')?.textContent || '';
-document.getElementById('t7-sidebar-height').textContent     = document.getElementById('sb-height')?.textContent || '';
-document.getElementById('t7-sidebar-beschlag').textContent   = beschlagLabel || '';
+	setSummaryText('t7-sidebar-profile', windowConfig.profile || '');
+	setSummaryText('t7-sidebar-wing', windowConfig.wing || '');
+	setSummaryText('t7-sidebar-opening', windowConfig.opening || '');
+	setSummaryText('t7-sidebar-width', document.getElementById('sb-width')?.textContent || '');
+	setSummaryText('t7-sidebar-height', document.getElementById('sb-height')?.textContent || '');
+	setSummaryText('t7-sidebar-beschlag', beschlagLabel || '');
 
-// Colors / Glas / Ornament from Tab 5
-document.getElementById('t7-sidebar-innen').textContent      = document.getElementById('glass-sidebar-innen')?.textContent || '';
-document.getElementById('t7-sidebar-aussen').textContent     = document.getElementById('glass-sidebar-aussen')?.textContent || '';
-document.getElementById('t7-sidebar-griff').textContent      = document.getElementById('glass-sidebar-griff')?.textContent || '';
-document.getElementById('t7-sidebar-isolierglas').textContent= document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
-document.getElementById('t7-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+	// Colors / Glas / Ornament from Tab 5
+	setSummaryText('t7-sidebar-innen', document.getElementById('glass-sidebar-innen')?.textContent || '');
+	setSummaryText('t7-sidebar-aussen', document.getElementById('glass-sidebar-aussen')?.textContent || '');
+	setSummaryText('t7-sidebar-griff', document.getElementById('glass-sidebar-griff')?.textContent || '');
+	setSummaryText('t7-sidebar-isolierglas', document.getElementById('glass-sidebar-isolierglas')?.textContent || '');
+	setSummaryText('t7-sidebar-ornament', document.getElementById('glass-sidebar-ornament')?.textContent || '');
 setOptionalSummaryText('t7-sidebar-vsg', document.getElementById('glass-sidebar-vsg')?.textContent || '');
 	const t7Fensterbank = document.getElementById('t7-sidebar-fensterbank');
 	if (t7Fensterbank) t7Fensterbank.textContent = getSillProfileSummary();
@@ -4854,11 +4854,12 @@ setOptionalSummaryText('t7-sidebar-fensterbank', getSillProfileSummary());
 	const t7BalconyNotes = document.getElementById('t7-sidebar-balkon-notes');
 	if (t7BalconyNotes) t7BalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
-	// Zubehör from Tab 6 (mirror values directly)
-setOptionalSummaryText('t7-sidebar-rahmen', document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '');
-		document.getElementById('t7-sidebar-luefter').textContent    = document.getElementById('zubehoer-sidebar-luefter')?.textContent || '';
-		document.getElementById('t7-sidebar-reedkontakt').textContent= document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '';
-		document.getElementById('t7-sidebar-rollladen').innerHTML   = getRollladenDetailsHTML();
+		// Zubehör from Tab 6 (mirror values directly)
+	setOptionalSummaryText('t7-sidebar-rahmen', document.getElementById('zubehoer-sidebar-rahmen')?.textContent || '');
+			setSummaryText('t7-sidebar-luefter', document.getElementById('zubehoer-sidebar-luefter')?.textContent || '');
+			setSummaryText('t7-sidebar-reedkontakt', document.getElementById('zubehoer-sidebar-reedkontakt')?.textContent || '');
+			const t7Rollladen = document.getElementById('t7-sidebar-rollladen');
+			if (t7Rollladen) t7Rollladen.innerHTML = getRollladenDetailsHTML();
 		syncRollladenPreviewImages();
 		syncRollladenInquiryMode();
 
@@ -5812,40 +5813,34 @@ function drawRollladenBox(svg, enabled) {
 
 function updateTab5Sidebar() {
 
-	 // ===== TAB 1 =====
-  document.getElementById('glass-sidebar-profile').textContent =
-    windowConfig.profile || '';
+		 // ===== TAB 1 =====
+	  setSummaryText('glass-sidebar-profile', windowConfig.profile || '');
 
-	 // ===== TAB 2 =====
-  document.getElementById('glass-sidebar-wing').textContent =
-    windowConfig.wing || '';
+		 // ===== TAB 2 =====
+	  setSummaryText('glass-sidebar-wing', windowConfig.wing || '');
 
-	  // ===== TAB 3 =====
-  document.getElementById('glass-sidebar-opening').textContent =
-    windowConfig.opening || '';
+		  // ===== TAB 3 =====
+	  setSummaryText('glass-sidebar-opening', windowConfig.opening || '');
 
-	  // ===== TAB 4 =====
-  document.getElementById('glass-sidebar-beschlag').textContent =
-    beschlagLabel || '';
+		  // ===== TAB 4 =====
+	  setSummaryText('glass-sidebar-beschlag', beschlagLabel || '');
 
 	  // --- carry values into Tab 5 sidebar ---
 
 	    // SIZE (Tab 4 inputs)
-  document.getElementById('glass-sidebar-width').textContent =
-    document.getElementById('width')?.value || '';
+	  setSummaryText('glass-sidebar-width', document.getElementById('width')?.value || '');
 
-  document.getElementById('glass-sidebar-height').textContent =
-    document.getElementById('height')?.value || '';
+	  setSummaryText('glass-sidebar-height', document.getElementById('height')?.value || '');
 
   const glassBalconyNotes = document.getElementById('glass-sidebar-balkon-notes');
   if (glassBalconyNotes) glassBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
   syncOptionalSummaryLines();
 
 
-  // Size + Beschlag from Tab4
-  document.getElementById('zubehoer-sidebar-width').textContent   = document.getElementById('sb-width')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-height').textContent  = document.getElementById('sb-height')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-beschlag').textContent= beschlagLabel || '';
+	  // Size + Beschlag from Tab4
+	  setSummaryText('zubehoer-sidebar-width', document.getElementById('sb-width')?.textContent || '');
+	  setSummaryText('zubehoer-sidebar-height', document.getElementById('sb-height')?.textContent || '');
+	  setSummaryText('zubehoer-sidebar-beschlag', beschlagLabel || '');
 
   update_svg_4to7();
   // Update prices
@@ -5901,21 +5896,21 @@ function updateTab6SidebarRollladen() {
 
 function updateTab6Sidebar() {
   // Profile/Wing/Opening from global state
-  document.getElementById('zubehoer-sidebar-profile').textContent = windowConfig.profile || '';
-  document.getElementById('zubehoer-sidebar-wing').textContent    = windowConfig.wing || '';
-  document.getElementById('zubehoer-sidebar-opening').textContent = windowConfig.opening || '';
+  setSummaryText('zubehoer-sidebar-profile', windowConfig.profile || '');
+  setSummaryText('zubehoer-sidebar-wing', windowConfig.wing || '');
+  setSummaryText('zubehoer-sidebar-opening', windowConfig.opening || '');
 
   // Size + Beschlag from Tab4
-  document.getElementById('zubehoer-sidebar-width').textContent   = document.getElementById('sb-width')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-height').textContent  = document.getElementById('sb-height')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-beschlag').textContent= beschlagLabel || '';
+  setSummaryText('zubehoer-sidebar-width', document.getElementById('sb-width')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-height', document.getElementById('sb-height')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-beschlag', beschlagLabel || '');
 
   // Tab5 extras (colors, glass, griff, ornament)
-  document.getElementById('zubehoer-sidebar-innen').textContent      = document.getElementById('glass-sidebar-innen')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-aussen').textContent     = document.getElementById('glass-sidebar-aussen')?.textContent || '';
-  document.getElementById('zubehoer-sidebar-griff').textContent      = document.getElementById('glass-sidebar-griff')?.textContent || '';
-	  document.getElementById('zubehoer-sidebar-isolierglas').textContent= document.getElementById('glass-sidebar-isolierglas')?.textContent || '';
-	  document.getElementById('zubehoer-sidebar-ornament').textContent   = document.getElementById('glass-sidebar-ornament')?.textContent || '';
+  setSummaryText('zubehoer-sidebar-innen', document.getElementById('glass-sidebar-innen')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-aussen', document.getElementById('glass-sidebar-aussen')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-griff', document.getElementById('glass-sidebar-griff')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-isolierglas', document.getElementById('glass-sidebar-isolierglas')?.textContent || '');
+  setSummaryText('zubehoer-sidebar-ornament', document.getElementById('glass-sidebar-ornament')?.textContent || '');
   setOptionalSummaryText('zubehoer-sidebar-vsg', document.getElementById('glass-sidebar-vsg')?.textContent || '');
 	  const fensterbankSidebar = document.getElementById('zubehoer-sidebar-fensterbank');
   if (fensterbankSidebar) fensterbankSidebar.textContent = getSillProfileSummary();
@@ -6648,9 +6643,11 @@ function restorePreviews() {
 }
 
 function restoreActiveSelections() {
-  document.querySelectorAll('#tab1 .card-option').forEach(el =>
-    el.classList.toggle('active', el.querySelector('strong').innerText.replace(/^DRUTEX /,'') === windowConfig.profile)
-  );
+  document.querySelectorAll('#tab1 .card-option').forEach(el => {
+    const label = (el.querySelector('strong')?.textContent || el.dataset.label || '')
+      .replace(/^DRUTEX\s*/i, '');
+    el.classList.toggle('active', label === windowConfig.profile);
+  });
   document.querySelectorAll('#tab2 .card-option').forEach(el => {
     const isActive = el.dataset.id === String(windowConfig.wingId);
     el.classList.toggle('active', isActive);
@@ -6724,12 +6721,13 @@ document.addEventListener('click', function(e) {
 function initConfigurator() {
   ['#tab1 .card-option'].forEach(sel => {
     const first = document.querySelector(sel);
-    if (first) {
-      first.classList.add('active');
-      const label = first.querySelector('strong')?.innerText.replace(/^DRUTEX /, '') || first.dataset.label;
-      windowConfig.profile = label;
-      windowConfig.profileImg = first.querySelector('img')?.src || null;
-    }
+	    if (first) {
+	      first.classList.add('active');
+	      const label = (first.querySelector('strong')?.textContent || first.dataset.label || '')
+	        .replace(/^DRUTEX\s*/i, '');
+	      windowConfig.profile = label;
+	      windowConfig.profileImg = first.querySelector('img')?.src || null;
+	    }
   });
 
   windowConfig.wing = null; windowConfig.wingId = null; windowConfig.wingSvg = null;
