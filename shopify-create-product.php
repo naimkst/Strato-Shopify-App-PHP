@@ -92,6 +92,34 @@ if (!empty($data['balkon_note_2'])) {
     $balconyRows .= '<li>' . $configValue('balkon_note_2') . '</li>';
 }
 
+function normalizeShopifyMoney($value) {
+    $text = html_entity_decode((string)($value ?? ''), ENT_QUOTES, 'UTF-8');
+
+    if (!preg_match('/\d+(?:[.,]\d{3})*(?:[.,]\d{1,2})?/', $text, $match)) {
+        return '0.00';
+    }
+
+    $number = $match[0];
+    $lastComma = strrpos($number, ',');
+    $lastDot = strrpos($number, '.');
+
+    if ($lastComma !== false && $lastDot !== false) {
+        if ($lastComma > $lastDot) {
+            $number = str_replace('.', '', $number);
+            $number = str_replace(',', '.', $number);
+        } else {
+            $number = str_replace(',', '', $number);
+        }
+    } elseif ($lastComma !== false) {
+        $number = str_replace(',', '.', $number);
+    }
+
+    $amount = (float)$number;
+    return number_format($amount, 2, '.', '');
+}
+
+$variantPrice = normalizeShopifyMoney($data['price'] ?? '');
+
 // ---------- PRODUCT ----------
 $product = [
   "product" => [
@@ -119,7 +147,7 @@ $product = [
         <li>Rollladen: {$data['rollladen']}</li>
       </ul>",
 "variants" => [[
-  "price" => preg_replace('/[^0-9.]/', '', $data['price']),
+  "price" => $variantPrice,
   "inventory_management" => "shopify",   // ✅ ENABLE inventory
   "inventory_policy" => "continue",       // ✅ allow overselling
   "requires_shipping" => true,

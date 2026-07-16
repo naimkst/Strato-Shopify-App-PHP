@@ -4972,6 +4972,15 @@ document.addEventListener("click", function(e) {
   .catch(err => console.error("Cart add error:", err));
 }
 
+  function getCartPriceText() {
+    const ids = Array.from(arguments);
+    for (const id of ids) {
+      const text = (document.getElementById(id)?.textContent || '').trim();
+      if (/\d/.test(text)) return text;
+    }
+    return '0.00 €';
+  }
+
   // --------------- TAB 7 ----------------
   if (e.target && e.target.matches("#tab7 button.btnmain-cart.cart")) {
     const svgNode = document.querySelector("#tab7-svgPreviewBox svg");
@@ -4999,7 +5008,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       reedkontakt: document.getElementById("t7-sidebar-reedkontakt")?.textContent,
 	      rollladen: getRollladenDetailsText(),
       qty: currentQty,
-	      price: document.getElementById("t7-price")?.textContent,
+	      price: getCartPriceText("t7-price", "zubehoer-price", "glass-price", "tab4-price"),
 	      svg: svgMarkup
 	    };
 	    addBalconyDoorDetails(item);
@@ -5042,7 +5051,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       height: document.getElementById("sb-height")?.textContent,
       beschlag: document.getElementById("sb-beschlag")?.textContent,
       qty: currentQty,
-	      price: document.getElementById("t7-price")?.textContent,
+	      price: getCartPriceText("tab4-price", "t7-price"),
 	      svg: svgMarkup
 	    };
 	    addBalconyDoorDetails(item);
@@ -5088,7 +5097,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       isolierglas: document.getElementById("glass-sidebar-isolierglas")?.textContent,
       ornament: document.getElementById("glass-sidebar-ornament")?.textContent,
       qty: currentQty,
-	      price: document.getElementById("glass-price")?.textContent,
+	      price: getCartPriceText("glass-price", "tab4-price", "t7-price"),
 	      svg: svgMarkup
 	    };
 	    addBalconyDoorDetails(item);
@@ -5142,7 +5151,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
       reedkontakt: document.getElementById("zubehoer-sidebar-reedkontakt")?.textContent,
 	      rollladen: getRollladenDetailsText(),
       qty: currentQty,
-	      price: document.getElementById("zubehoer-price")?.textContent,
+	      price: getCartPriceText("zubehoer-price", "glass-price", "tab4-price", "t7-price"),
 	      svg: svgMarkup
 	    };
 	    addBalconyDoorDetails(item);
@@ -6487,13 +6496,18 @@ document.addEventListener('click', function(e) {
 
 
 function switchSubTab(subtabId, subtabBtns) {
+  if (!subtabBtns || subtabBtns.length < 2) return;
+  const groesseTab = document.getElementById('groesse-tab');
+  const beschlagTab = document.getElementById('beschlag-tab');
+  if (!groesseTab || !beschlagTab) return;
+
   subtabBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-id') == subtabId));
-  document.getElementById('groesse-tab').style.display =
+  groesseTab.style.display =
     subtabBtns[0].getAttribute('data-id') == subtabId ? 'block' : 'none';
-  document.getElementById('beschlag-tab').style.display =
+  beschlagTab.style.display =
     subtabBtns[1].getAttribute('data-id') == subtabId ? 'block' : 'none';
 
-  if (document.getElementById('beschlag-tab').style.display === 'block') {
+  if (beschlagTab.style.display === 'block') {
     const grid = document.querySelector('#beschlag-tab .option-grid');
     if (grid) {
       const active = grid.querySelector('.card-option.active');
