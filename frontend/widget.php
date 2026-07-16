@@ -1662,27 +1662,18 @@ div#tab7-svgPreviewBox svg g path {
     margin-top: 24px;
 }
 
-.its_my_app_work #rollladen-subtab .rollladen-accessory-section {
-    margin-top: 10px;
-}
-
 .its_my_app_work #rollladen-subtab .rollladen-drive-row {
     display: grid;
     grid-template-columns: repeat(3, minmax(140px, 1fr));
     gap: 32px;
-    margin: 22px 0 42px;
-}
-
-.its_my_app_work #rollladen-subtab .rollladen-accessory-row {
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    margin: 22px 0 14px;
 }
 
 .its_my_app_work #rollladen-subtab .rollladen-drive-choice {
     font-size: 20px;
 }
 
-.its_my_app_work #rollladen-subtab .rollladen-drive-section p,
-.its_my_app_work #rollladen-subtab .rollladen-accessory-section p {
+.its_my_app_work #rollladen-subtab .rollladen-choice-note {
     margin: 0;
     color: #777;
     font-size: 18px;

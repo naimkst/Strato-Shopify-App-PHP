@@ -455,12 +455,9 @@ const ROLLLADEN_DRIVE_OPTIONS = [
       heading: 'Motor',
       subheading: ''
     })
-  }
-];
-
-const ROLLLADEN_ACCESSORY_OPTIONS = [
+  },
   {
-    id: '__rollladen_accessory_funk__',
+    id: '__rollladen_drive_funk__',
     label: 'Funk / Fernbedienung',
     price: '0.00',
     depends_on: ROLLLADEN_SYSTEM_DEPENDENCIES,
@@ -472,6 +469,8 @@ const ROLLLADEN_ACCESSORY_OPTIONS = [
     })
   }
 ];
+
+const ROLLLADEN_ACCESSORY_OPTIONS = [];
 
 const SLIDING_DOOR_HEIGHT_MIN_MM = 2000;
 const SLIDING_DOOR_RAHMEN_PROFILE_IDS = ['584'];
@@ -700,14 +699,6 @@ function normalizeRollladenSubtab(subtab) {
     })
   }));
 
-  const accessoryOptions = ROLLLADEN_ACCESSORY_OPTIONS.map(opt => ({
-    ...opt,
-    section_id: ROLLLADEN_ACCESSORY_SECTION_ID,
-    extra_json: JSON.stringify({
-      ...getJsonValue(opt.extra_json, {})
-    })
-  }));
-
   subtab.sections = [
     {
       id: ROLLLADEN_SYSTEM_SECTION_ID,
@@ -720,12 +711,6 @@ function normalizeRollladenSubtab(subtab) {
       name: 'Antrieb',
       order_index: '2',
       options: driveOptions
-    },
-    {
-      id: ROLLLADEN_ACCESSORY_SECTION_ID,
-      name: 'Zubehörartikel',
-      order_index: '3',
-      options: accessoryOptions
     }
   ];
 
@@ -3801,7 +3786,6 @@ function getRollladenSummaryLines() {
   if (windowConfig.rollladen) lines.push(['Rollladen', windowConfig.rollladen]);
   if (windowConfig.rollladenMounting) lines.push(['Montage', windowConfig.rollladenMounting]);
   if (windowConfig.rollladenDrive) lines.push(['Antrieb', windowConfig.rollladenDrive]);
-  if (windowConfig.rollladenAccessory) lines.push(['Zubehörartikel', windowConfig.rollladenAccessory]);
   return lines;
 }
 
@@ -4099,13 +4083,11 @@ function updateRollladenAfterSelection(subtabId) {
 function renderReferenceRollladenOptions(subtab, subtabId, grid) {
   const systemSection = subtab.sections?.find(section => isRollladenSystemSection(section));
   const driveSection = subtab.sections?.find(section => String(section.id) === ROLLLADEN_DRIVE_SECTION_ID);
-  const accessorySection = subtab.sections?.find(section => String(section.id) === ROLLLADEN_ACCESSORY_SECTION_ID);
   const systemOptions = systemSection?.options || [];
   const driveOptions = driveSection?.options || ROLLLADEN_DRIVE_OPTIONS;
-  const accessoryOptions = accessorySection?.options || ROLLLADEN_ACCESSORY_OPTIONS;
   const systemKey = `${subtab.id}_${systemSection?.id || ROLLLADEN_SYSTEM_SECTION_ID}`;
   const driveKey = `${subtab.id}_${driveSection?.id || ROLLLADEN_DRIVE_SECTION_ID}`;
-  const accessoryKey = `${subtab.id}_${accessorySection?.id || ROLLLADEN_ACCESSORY_SECTION_ID}`;
+  const accessoryKey = `${subtab.id}_${ROLLLADEN_ACCESSORY_SECTION_ID}`;
 
   grid.classList.add('rollladen-reference-layout');
   grid.innerHTML = '';
@@ -4125,17 +4107,12 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
     <div class="rollladen-drive-section">
       <h3>Welchen Antrieb wünschen Sie?</h3>
       <div class="rollladen-drive-row"></div>
-    </div>
-    <div class="rollladen-accessory-section">
-      <h3>Zubehörartikel</h3>
-      <div class="rollladen-drive-row rollladen-accessory-row"></div>
-      <p>Ist ihre Wunschauswahl nicht dabei, sprechen Sie uns einfach an!</p>
+      <p class="rollladen-choice-note">Ist ihre Wunschauswahl nicht dabei, sprechen Sie uns einfach an!</p>
     </div>
   `;
 
   const systemGrid = wrapper.querySelector('.rollladen-system-grid');
   const driveRow = wrapper.querySelector('.rollladen-drive-row');
-  const accessoryRow = wrapper.querySelector('.rollladen-accessory-row');
   const noChoice = wrapper.querySelector('.rollladen-none-choice');
 
   function refreshSelectionUI() {
@@ -4167,12 +4144,7 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
       button.setAttribute('aria-pressed', String(active));
     });
 
-    wrapper.querySelectorAll('.rollladen-accessory-choice').forEach(button => {
-      const isNone = button.dataset.noneAccessory === '1';
-      const active = isNone ? !selectedAccessoryId : String(button.dataset.id) === selectedAccessoryId;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
+    if (selectedAccessoryId) delete selectedBySection[accessoryKey];
   }
 
   function selectNoRollladen() {
@@ -4190,47 +4162,40 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
   function selectDrive(opt) {
     selectedBySection[driveKey] = String(opt.id);
     windowConfig.rollladenDrive = opt.label || '';
+    windowConfig.rollladenAccessory = '';
+    delete selectedBySection[accessoryKey];
     extraPriceTab6Map[getTab6OptionPriceKey(subtabId, driveSection)] = parseFloat(opt.price) || 0;
     refreshSelectionUI();
     updateRollladenAfterSelection(subtabId);
   }
 
-  function selectNoAccessory() {
-    delete selectedBySection[accessoryKey];
-    windowConfig.rollladenAccessory = '';
-    delete extraPriceTab6Map[getTab6OptionPriceKey(subtabId, accessorySection)];
-    refreshSelectionUI();
-    updateRollladenAfterSelection(subtabId);
-  }
-
-  function selectAccessory(opt) {
-    selectedBySection[accessoryKey] = String(opt.id);
-    windowConfig.rollladenAccessory = opt.label || '';
-    extraPriceTab6Map[getTab6OptionPriceKey(subtabId, accessorySection)] = parseFloat(opt.price) || 0;
-    refreshSelectionUI();
-    updateRollladenAfterSelection(subtabId);
-  }
-
   function syncSelectedDrive() {
+    if (!windowConfig.rollladenDrive && windowConfig.rollladenAccessory) {
+      windowConfig.rollladenDrive = windowConfig.rollladenAccessory;
+    }
+
     const current = driveOptions.find(opt => String(opt.id) === String(selectedBySection[driveKey]));
     if (current) {
       windowConfig.rollladenDrive = current.label || '';
+      windowConfig.rollladenAccessory = '';
+      delete selectedBySection[accessoryKey];
+      return;
+    }
+
+    const selectedByLabel = driveOptions.find(opt => opt.label === windowConfig.rollladenDrive);
+    if (selectedByLabel) {
+      selectedBySection[driveKey] = String(selectedByLabel.id);
+      windowConfig.rollladenDrive = selectedByLabel.label || '';
+      windowConfig.rollladenAccessory = '';
+      delete selectedBySection[accessoryKey];
+      extraPriceTab6Map[getTab6OptionPriceKey(subtabId, driveSection)] = parseFloat(selectedByLabel.price) || 0;
       return;
     }
 
     windowConfig.rollladenDrive = '';
-    delete extraPriceTab6Map[getTab6OptionPriceKey(subtabId, driveSection)];
-  }
-
-  function syncSelectedAccessory() {
-    const current = accessoryOptions.find(opt => String(opt.id) === String(selectedBySection[accessoryKey]));
-    if (current) {
-      windowConfig.rollladenAccessory = current.label || '';
-      return;
-    }
-
     windowConfig.rollladenAccessory = '';
-    delete extraPriceTab6Map[getTab6OptionPriceKey(subtabId, accessorySection)];
+    delete selectedBySection[accessoryKey];
+    delete extraPriceTab6Map[getTab6OptionPriceKey(subtabId, driveSection)];
   }
 
   function selectSystem(opt, mountingOverride = null) {
@@ -4244,7 +4209,6 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
       : '';
     extraPriceTab6Map[getTab6OptionPriceKey(subtabId, systemSection)] = parseFloat(opt.price) || 0;
     syncSelectedDrive();
-    syncSelectedAccessory();
     ensureRollladenInquiryButton();
     refreshSelectionUI();
     updateRollladenAfterSelection(subtabId);
@@ -4266,10 +4230,12 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
       if (selectedDrive) selectedBySection[driveKey] = String(selectedDrive.id);
     }
 
-    if (windowConfig.rollladenAccessory && !selectedBySection[accessoryKey]) {
-      const selectedAccessory = accessoryOptions.find(opt => opt.label === windowConfig.rollladenAccessory);
-      if (selectedAccessory) selectedBySection[accessoryKey] = String(selectedAccessory.id);
+    if (windowConfig.rollladenAccessory && !windowConfig.rollladenDrive) {
+      windowConfig.rollladenDrive = windowConfig.rollladenAccessory;
     }
+
+    windowConfig.rollladenAccessory = '';
+    delete selectedBySection[accessoryKey];
   }
 
   function ensureRollladenInquiryButton() {
@@ -4348,37 +4314,10 @@ function renderReferenceRollladenOptions(subtab, subtabId, grid) {
     driveRow.appendChild(button);
   });
 
-  const noAccessoryButton = document.createElement('button');
-  noAccessoryButton.type = 'button';
-  noAccessoryButton.className = 'rollladen-choice rollladen-drive-choice rollladen-accessory-choice rollladen-none-accessory';
-  noAccessoryButton.dataset.noneAccessory = '1';
-  noAccessoryButton.setAttribute('aria-pressed', 'false');
-  noAccessoryButton.innerHTML = `
-    <span class="rollladen-checkbox" aria-hidden="true"></span>
-    <span>Keine Auswahl</span>
-  `;
-  noAccessoryButton.addEventListener('click', selectNoAccessory);
-  accessoryRow.appendChild(noAccessoryButton);
-
-  accessoryOptions.forEach(opt => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'rollladen-choice rollladen-drive-choice rollladen-accessory-choice';
-    button.dataset.id = opt.id;
-    button.setAttribute('aria-pressed', 'false');
-    button.innerHTML = `
-      <span class="rollladen-checkbox" aria-hidden="true"></span>
-      <span>${opt.label || ''}</span>
-    `;
-    button.addEventListener('click', () => selectAccessory(opt));
-    accessoryRow.appendChild(button);
-  });
-
   grid.appendChild(wrapper);
 
   restoreSelectedState();
   syncSelectedDrive();
-  syncSelectedAccessory();
 
   refreshSelectionUI();
   updateRollladenAfterSelection(subtabId);
