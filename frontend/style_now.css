@@ -3714,26 +3714,88 @@ div#globalBottomCheckpoint {
 }
 
 .its_my_app_work .preview-box .preview-cart-button {
-    margin: 8px 0 12px;
+    margin: 16px 0 0;
+    min-height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
 .its_my_app_work .preview-box .price-box {
-    margin: 0 0 14px;
-    padding: 0;
+    margin: 10px 0 14px;
+    padding: 12px 0;
     background: transparent;
+    border-top: 1px solid rgba(11, 45, 96, 0.14);
+    border-bottom: 1px solid rgba(11, 45, 96, 0.14);
 }
 
 .its_my_app_work .preview-box .price_inner strong {
     margin-top: 0;
     margin-bottom: 8px;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.25;
+    letter-spacing: 0;
+}
+
+.its_my_app_work .preview-box .price_inner .price {
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.its_my_app_work .preview-box .price_inner .price-tax {
+    font-size: 10px !important;
+    line-height: 1.2;
+    color: #333;
+    white-space: nowrap;
+}
+
+.its_my_app_work .preview-box .price-box > span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.its_my_app_work .preview-box .price_inner p {
+    margin: 0 0 10px;
+    font-size: 13px !important;
+    line-height: 1.35;
+    color: #333;
+    text-transform: uppercase;
 }
 
 .its_my_app_work .preview-box .quantity_app {
     margin-top: 6px;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #222;
+}
+
+.its_my_app_work .preview-box .quantity_app label,
+.its_my_app_work .preview-box .quantity_app > span:first-child {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #333;
 }
 
 .its_my_app_work .preview-box span.quantity_cover {
     background: transparent;
+    border: 1px solid rgba(11, 45, 96, 0.18);
+    padding: 4px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.its_my_app_work .preview-box span.quantity_cover button {
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 1;
 }
 
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {

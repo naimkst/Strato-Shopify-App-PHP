@@ -1850,26 +1850,88 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .its_my_app_work .preview-box .preview-cart-button {
-    margin: 8px 0 12px;
+    margin: 16px 0 0;
+    min-height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
 .its_my_app_work .preview-box .price-box {
-    margin: 0 0 14px;
-    padding: 0;
+    margin: 10px 0 14px;
+    padding: 12px 0;
     background: transparent;
+    border-top: 1px solid rgba(11, 45, 96, 0.14);
+    border-bottom: 1px solid rgba(11, 45, 96, 0.14);
 }
 
 .its_my_app_work .preview-box .price_inner strong {
     margin-top: 0;
     margin-bottom: 8px;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.25;
+    letter-spacing: 0;
+}
+
+.its_my_app_work .preview-box .price_inner .price {
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.its_my_app_work .preview-box .price_inner .price-tax {
+    font-size: 10px !important;
+    line-height: 1.2;
+    color: #333;
+    white-space: nowrap;
+}
+
+.its_my_app_work .preview-box .price-box > span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.its_my_app_work .preview-box .price_inner p {
+    margin: 0 0 10px;
+    font-size: 13px !important;
+    line-height: 1.35;
+    color: #333;
+    text-transform: uppercase;
 }
 
 .its_my_app_work .preview-box .quantity_app {
     margin-top: 6px;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #222;
+}
+
+.its_my_app_work .preview-box .quantity_app label,
+.its_my_app_work .preview-box .quantity_app > span:first-child {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #333;
 }
 
 .its_my_app_work .preview-box span.quantity_cover {
     background: transparent;
+    border: 1px solid rgba(11, 45, 96, 0.18);
+    padding: 4px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.its_my_app_work .preview-box span.quantity_cover button {
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 1;
 }
 
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
@@ -2144,8 +2206,6 @@ div#tab7-svgPreviewBox svg g path {
 	<div class="svgover" id="svgPreviewBox">
 	</div>
 
-          <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-
 	        <div class="price-box">
 	<div class="price_inner">
 		          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
@@ -2171,6 +2231,7 @@ div#tab7-svgPreviewBox svg g path {
 	          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
 	          Dichtungen schwarz
 	        </div>
+          <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	      </div>
 	     </div>
 	    </div>
@@ -2244,8 +2305,6 @@ div#tab7-svgPreviewBox svg g path {
 	 <div class="svgover" id="svgPreviewBox">
 	</div>
 
-    <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-
 	  <div class="price-box">
 	  <div class="price_inner">
 		    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
@@ -2277,6 +2336,7 @@ div#tab7-svgPreviewBox svg g path {
 		    Dichtungen schwarz<br>
 			<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
 		  </div>
+    <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	</div>
 	</div>
 	  </div>
@@ -2395,8 +2455,6 @@ div#tab7-svgPreviewBox svg g path {
 		     <div class="svgover" id="svgPreviewBox">
 		    </div>
 
-        <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-
 		      <div class="price-box">
 	      <div class="price_inner">
 	        <strong>FENSTER
@@ -2435,6 +2493,7 @@ div#tab7-svgPreviewBox svg g path {
 	       <span id="zubehoer-sidebar-rollladen"></span>
 
 	      </p>
+        <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	    </div>
 	  <div>
 	</div>
@@ -2484,8 +2543,6 @@ div#tab7-svgPreviewBox svg g path {
       <h4>Innenansicht</h4>
 	     <div id="tab7-svgPreviewBox"></div>
 
-      <button class="btnmain-cart cart preview-cart-button">🛒 Zum Warenkorb hinzufügen</button>
-
       <div class="price-box">
         <div class="price_inner">
           <strong>Fenster <span class="price"  id="t7-price">—</span></strong>
@@ -2526,6 +2583,7 @@ div#tab7-svgPreviewBox svg g path {
         <span id="t7-sidebar-reedkontakt" style="display:none"></span>
 	        <div id="t7-sidebar-rollladen"></div>
 	      </div>
+      <button class="btnmain-cart cart preview-cart-button">🛒 Zum Warenkorb hinzufügen</button>
 	    </div>
 	     </div>
 	  </div>
