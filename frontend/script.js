@@ -816,7 +816,47 @@ function createSlidingDoorRahmenFallbackOption(position) {
 }
 
 function isSlidingDoorConfiguration() {
-  return String(staticCode || windowConfig.staticCode || '') === '__static_schiebe__';
+  const activeStatic = document.querySelector('.tab-nav-buttons button.active')?.dataset?.code;
+  const urlStatic = getUrlParam('tab_check');
+  const productParam = getUrlParam('product');
+  const selectedStaticCode = windowConfig.staticCode || staticCode || activeStatic || urlStatic;
+
+  if (selectedStaticCode === '__static_schiebe__') return true;
+  if (staticCode === '__static_schiebe__') return true;
+  if (activeStatic === '__static_schiebe__') return true;
+  if (urlStatic === '__static_schiebe__') return true;
+
+  const labels = [
+    selectedStaticCode,
+    productParam,
+    window.location.pathname,
+    windowConfig.profile,
+    windowConfig.wing,
+    windowConfig.opening,
+    document.getElementById('sb-profile')?.textContent,
+    document.getElementById('sb-wing')?.textContent,
+    document.getElementById('sb-opening')?.textContent,
+    document.getElementById('t7-sidebar-profile')?.textContent,
+    document.getElementById('t7-sidebar-wing')?.textContent,
+    document.getElementById('t7-sidebar-opening')?.textContent,
+    document.getElementById('glass-sidebar-profile')?.textContent,
+    document.getElementById('glass-sidebar-wing')?.textContent,
+    document.getElementById('glass-sidebar-opening')?.textContent,
+    document.getElementById('zubehoer-sidebar-profile')?.textContent,
+    document.getElementById('zubehoer-sidebar-wing')?.textContent,
+    document.getElementById('zubehoer-sidebar-opening')?.textContent
+  ].join(' ');
+
+  return hasNormalizedText(labels, [
+    'schiebetuer',
+    'schiebetueren',
+    'schiebe tuer',
+    'schiebe tueren',
+    'hebeschiebetuer',
+    'hebeschiebetueren',
+    'hebe schiebe',
+    'sliding door'
+  ]);
 }
 
 function getDimensionInputBounds(rawMinW, rawMaxW, rawMinH, rawMaxH) {
@@ -8106,9 +8146,11 @@ if (r === rowH.length - 1) {
 
     // Widths
     if(hasV){
+      const forceEqualSlidingWidthSplit = isSlidingDoorConfiguration();
       for(let r=0;r<rowW.length;r++){
         const sec = mkSection(box, `Breiten in Reihe ${r+1} (mm)`);
         const totalRaw = rowW[r].reduce((a,b)=>a+b,0);
+        const equalSlidingValues = forceEqualSlidingWidthSplit ? splitEvenly(wVal, rowW[r].length) : null;
         wInputs[r]=[];
         for(let c=0;c<rowW[r].length;c++){
           const wrap=document.createElement('div'); wrap.style.margin='6px 0';
@@ -8118,10 +8160,14 @@ if (r === rowH.length - 1) {
           Object.assign(inp.style,{width:'100%',padding:'6px 8px',border:'1px solid #cfd3d7',borderRadius:'6px'});
 
           const rawVal = rowW[r][c];
-     const uiVal = Math.round(wVal / rowW[r].length);  // equal split
+     const uiVal = forceEqualSlidingWidthSplit ? equalSlidingValues[c] : Math.round(wVal / rowW[r].length);  // equal split
 inp.value = uiVal;
+          if (forceEqualSlidingWidthSplit) {
+            inp.readOnly = true;
+            inp.title = 'Schiebetüren werden immer 50/50 aufgeteilt.';
+          }
 
-if (c === rowW[r].length - 1) {
+if (!forceEqualSlidingWidthSplit && c === rowW[r].length - 1) {
   const sumPrev = (wInputs[r]||[]).reduce((s,el)=> s + (+el.value||0), 0);
   inp.value = wVal - sumPrev;
 }
@@ -8137,8 +8183,14 @@ if (c === rowW[r].length - 1) {
 
         // ✅ Fix: adjust last width so sum matches wVal
         if (wInputs[r].length > 1) {
-          const sum = wInputs[r].slice(0,-1).reduce((s,el)=>s + (+el.value||0),0);
-          wInputs[r][wInputs[r].length-1].value = wVal - sum;
+          if (forceEqualSlidingWidthSplit) {
+            splitEvenly(wVal, wInputs[r].length).forEach((value, index) => {
+              if (wInputs[r][index]) wInputs[r][index].value = value;
+            });
+          } else {
+            const sum = wInputs[r].slice(0,-1).reduce((s,el)=>s + (+el.value||0),0);
+            wInputs[r][wInputs[r].length-1].value = wVal - sum;
+          }
         }
       }
     }
@@ -8183,6 +8235,16 @@ function onRowH(r) {
 }
 
 function onRowW(r, c) {
+  if (isSlidingDoorConfiguration()) {
+    const values = splitEvenly(wVal, wInputs[r].length);
+    values.forEach((value, index) => {
+      if (wInputs[r][index]) wInputs[r][index].value = value;
+    });
+    rowW[r] = values.map(v => uiToModel(v, 'x', 1, 1));
+    model.apply(rowH, rowW);
+    return;
+  }
+
   let uiVal = +wInputs[r][c].value || 0;
   uiVal = Math.max(0, Math.min(uiVal, wVal));   // clamp inside 0..total width
   wInputs[r][c].value = uiVal;
