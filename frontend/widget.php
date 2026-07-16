@@ -1978,7 +1978,7 @@ div#tab7-svgPreviewBox svg g path {
     padding-top: 2px;
     color: #242424;
     font-size: 14px !important;
-    line-height: 1.42;
+    line-height: 1.38;
     font-weight: 400;
     text-align: left;
     text-transform: none;
@@ -1987,13 +1987,49 @@ div#tab7-svgPreviewBox svg g path {
 
 .its_my_app_work .preview-box .summary-box strong {
     display: block;
-    margin: 0 0 4px;
+    margin: 0 0 8px;
     color: #111;
-    font-size: 17px;
+    font-size: 16px !important;
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: 0;
     text-transform: uppercase;
+}
+
+.its_my_app_work .preview-box .summary-box strong span {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    font-weight: inherit !important;
+}
+
+.its_my_app_work .preview-box .summary-box,
+.its_my_app_work .preview-box .summary-box span,
+.its_my_app_work .preview-box .summary-box div,
+.its_my_app_work .preview-box .summary-box p,
+.its_my_app_work .preview-box .rollladen-sidebar-line {
+    font-size: 14px !important;
+    line-height: 1.38 !important;
+    letter-spacing: 0 !important;
+}
+
+.its_my_app_work .preview-box .summary-box > span,
+.its_my_app_work .preview-box .summary-box > div:not(.balcony-door-notes):not(#t7-sidebar-rollladen):not(#zubehoer-sidebar-rollladen),
+.its_my_app_work .preview-box .summary-box p {
+    margin-bottom: 2px;
+}
+
+.its_my_app_work .preview-box .summary-box > span[id$="-wing"],
+.its_my_app_work .preview-box .summary-box > span[id$="-opening"],
+.its_my_app_work .preview-box .summary-box #t7-sidebar-wing,
+.its_my_app_work .preview-box .summary-box #t7-sidebar-opening {
+    font-size: 15px !important;
+    line-height: 1.28 !important;
+    font-weight: 500;
+}
+
+.its_my_app_work .preview-box .summary-box #t7-sidebar-rollladen,
+.its_my_app_work .preview-box .summary-box #zubehoer-sidebar-rollladen {
+    margin-top: 8px;
 }
 
 .its_my_app_work .preview-box .summary-box p {
