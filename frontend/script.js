@@ -4022,53 +4022,10 @@ function closeRollladenInquiryModal(modal) {
 }
 
 function syncRollladenInquiryMode() {
-  const inquiryMode = !!windowConfig.rollladenOn;
-
-  const tab6 = document.getElementById('tab6');
-  if (tab6) {
-    const priceBox = tab6.querySelector('.price-box');
-    const cartButton = tab6.querySelector('button.btnmain-cart.cart');
-    let inquiryBox = tab6.querySelector('.rollladen-inquiry-box');
-
-    if (cartButton) cartButton.style.display = inquiryMode ? 'none' : '';
-
-    if (priceBox) {
-      priceBox.style.display = inquiryMode ? 'none' : '';
-      if (inquiryMode && !inquiryBox) {
-        priceBox.insertAdjacentHTML('afterend', getRollladenInquiryHTML());
-        inquiryBox = tab6.querySelector('.rollladen-inquiry-box');
-      }
-    }
-
-    if (!inquiryMode && inquiryBox) inquiryBox.remove();
-  }
-
-  const tab7 = document.getElementById('tab7');
-  if (tab7) {
-    const checkoutParts = [
-      tab7.querySelector('.price-box'),
-      tab7.querySelector('.price_inner'),
-      tab7.querySelector('.quantity_app'),
-      tab7.querySelector('button.btnmain-cart.cart')
-    ].filter(Boolean);
-
-    checkoutParts.forEach(el => {
-      el.style.display = inquiryMode ? 'none' : '';
-    });
-
-    let inquiryBox = tab7.querySelector('.rollladen-inquiry-box');
-    if (inquiryMode && !inquiryBox) {
-      const cartButton = tab7.querySelector('button.btnmain-cart.cart');
-      const sidebar = tab7.querySelector('.sidebar .forscrolling') || tab7.querySelector('.sidebar');
-
-      if (cartButton) cartButton.insertAdjacentHTML('afterend', getRollladenInquiryHTML());
-      else if (sidebar) sidebar.insertAdjacentHTML('beforeend', getRollladenInquiryHTML());
-    }
-
-    if (!inquiryMode && inquiryBox) inquiryBox.remove();
-  }
-
-  if (inquiryMode) updateRollladenInquiryForms();
+  document.querySelectorAll('.rollladen-inquiry-box').forEach(box => box.remove());
+  document.querySelectorAll('#tab6 .price-box, #tab7 .price-box, #tab7 .price_inner, #tab7 .quantity_app, #tab6 button.btnmain-cart.cart, #tab7 button.btnmain-cart.cart').forEach(el => {
+    el.style.display = '';
+  });
 }
 
 function updateRollladenAfterSelection(subtabId) {
@@ -4937,14 +4894,6 @@ function updateDependentSections(subtab) {
 
 // ========== TAB 7 ADD TO CART ==========
 document.addEventListener("click", function(e) {
-  if (windowConfig.rollladenOn && e.target.closest('button.btnmain-cart.cart')) {
-    e.preventDefault();
-    syncRollladenInquiryMode();
-    const inquiryBox = document.querySelector('#tab7 .rollladen-inquiry-box') || document.querySelector('.rollladen-inquiry-box');
-    openRollladenInquiryModal(inquiryBox);
-    return;
-  }
-
   const openButton = e.target.closest('.rollladen-inquiry-open');
   if (openButton) {
     e.preventDefault();
@@ -4985,6 +4934,10 @@ document.addEventListener("click", function(e) {
     "Reedkontakt": item.reedkontakt,
     "Rollladen": item.rollladen
   };
+
+  if (item.rollladen) {
+    properties["_Rollladen Anfrage"] = "Ja";
+  }
 
   Object.keys(properties).forEach(key => {
     if (properties[key] === undefined || properties[key] === null || properties[key] === '') {
