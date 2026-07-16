@@ -1925,6 +1925,121 @@ div#tab7-svgPreviewBox svg g path {
     line-height: 1;
 }
 
+@media (min-width: 1024px) {
+    .its_my_app_work #tab4.active .preview-box,
+    .its_my_app_work #tab5.active .preview-box,
+    .its_my_app_work #tab6.active .preview-box,
+    .its_my_app_work #tab7.active .preview-box {
+        max-height: calc(100vh - 110px);
+        padding: 22px 22px 24px;
+        background: #f5f5f6;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+    }
+}
+
+.its_my_app_work .preview-box .forscrolling {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 10px;
+}
+
+.its_my_app_work .preview-box h4 {
+    margin: 0;
+    color: #1f2933;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.its_my_app_work .preview-box .svgover,
+.its_my_app_work #tab7-svgPreviewBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 230px;
+    min-height: 150px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(11, 45, 96, 0.08);
+    padding-bottom: 8px;
+}
+
+.its_my_app_work .preview-box .svgover svg,
+.its_my_app_work #tab7-svgPreviewBox svg {
+    max-width: 100% !important;
+    max-height: 220px !important;
+}
+
+.its_my_app_work .preview-box .summary-box {
+    margin-top: 0 !important;
+    padding-top: 2px;
+    color: #242424;
+    font-size: 14px !important;
+    line-height: 1.42;
+    font-weight: 400;
+    text-align: left;
+    text-transform: none;
+    overflow-wrap: anywhere;
+}
+
+.its_my_app_work .preview-box .summary-box strong {
+    display: block;
+    margin: 0 0 4px;
+    color: #111;
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.its_my_app_work .preview-box .summary-box p {
+    margin: 0 0 3px;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+}
+
+.its_my_app_work .preview-box .price-box {
+    order: 2;
+    margin: 0;
+    padding: 10px 0 12px;
+}
+
+.its_my_app_work .preview-box .summary-box {
+    order: 3;
+}
+
+.its_my_app_work .preview-box .preview-cart-button {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    order: 4;
+    margin-top: 10px;
+    box-shadow: 0 -8px 14px rgba(245, 245, 246, 0.92);
+}
+
+.its_my_app_work .preview-box .preview-cart-button.is-inquiry-button {
+    background: #0b2d60;
+}
+
+.its_my_app_work .preview-box .price_inner strong {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+
+.its_my_app_work .preview-box .quantity_app {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
     gap: 16px !important;
@@ -2212,14 +2327,14 @@ div#tab7-svgPreviewBox svg g path {
 	</span>
 	          </div>
 	        </div>
-	        <div style="margin-top:10px;">
+	        <div class="summary-box">
 	<p></p>
 	          <strong><span id="sb-profile">IGLO 5 CLASSIC</span></strong><br>
 	          <span id="sb-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
 	          <span id="sb-opening">FESTVERGLASUNG</span><br>
-	          BREITE: <span id="sb-width">500</span> MM<br>
-	          HÖHE: <span id="sb-height">557</span> MM<br>
-	          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+	          Breite: <span id="sb-width">500</span> mm<br>
+	          Höhe: <span id="sb-height">557</span> mm<br>
+	          Beschlag: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
 	          Dichtungen schwarz
 	        </div>
           <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
@@ -2311,19 +2426,19 @@ div#tab7-svgPreviewBox svg g path {
 	    </div>
 	  </div>
 	<p></p>
-	  <div style="margin-top:10px;text-align:left;">
+	  <div class="summary-box">
 	    <strong><span id="glass-sidebar-profile">IGLO 5 CLASSIC</span></strong><br>
 	    <span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
 	    <span id="glass-sidebar-opening">FESTVERGLASUNG</span><br>
-	    BREITE: <span id="glass-sidebar-width">500</span> MM<br>
-		    HÖHE: <span id="glass-sidebar-height">557</span> MM<br>
+	    Breite: <span id="glass-sidebar-width">500</span> mm<br>
+		    Höhe: <span id="glass-sidebar-height">557</span> mm<br>
 		    <span id="glass-sidebar-balkon-notes"></span>
-		    BESCHLAG: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-		    FARBE INNEN: <span id="glass-sidebar-innen">BETONGRAU</span><br>
-		    FARBE AUSSEN: <span id="glass-sidebar-aussen">DUNKELROT</span><br>
-		    GRIFF: <span id="glass-sidebar-griff">Standard weiss</span><br>
-		    ISOLIERGLAS: <span id="glass-sidebar-isolierglas">2-FACH VERGLASUNG</span><br>
-		    ORNAMENT: <span id="glass-sidebar-ornament">KLARGLAS</span><br>
+		    Beschlag: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+		    Farbe innen: <span id="glass-sidebar-innen">BETONGRAU</span><br>
+		    Farbe außen: <span id="glass-sidebar-aussen">Weiss</span><br>
+		    Griff: <span id="glass-sidebar-griff">Standard weiss</span><br>
+		    Isolierglas: <span id="glass-sidebar-isolierglas">2-fach Verglasung</span><br>
+		    Ornament: <span id="glass-sidebar-ornament">Klarglas</span><br>
 		    Dichtungen schwarz<br>
 			<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
 		  </div>
@@ -2462,28 +2577,28 @@ div#tab7-svgPreviewBox svg g path {
 	</span>
 	        </div>
 	      </div>
-			      <p style="font-size:15px;">
+			      <div class="summary-box">
         <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
         <span id="zubehoer-sidebar-wing"></span><br>
 		        <span id="zubehoer-sidebar-opening"></span><br>
-		        BREITE: <span id="zubehoer-sidebar-width"></span> MM<br>
-		        HÖHE: <span id="zubehoer-sidebar-height"></span> MM<br>
+		        Breite: <span id="zubehoer-sidebar-width"></span> mm<br>
+		        Höhe: <span id="zubehoer-sidebar-height"></span> mm<br>
 		        <span id="zubehoer-sidebar-balkon-notes"></span>
-		        BESCHLAG: <span id="zubehoer-sidebar-beschlag"></span><br>
-	        FARBE INNEN: <span id="zubehoer-sidebar-innen"></span><br>
-	        FARBE AUSSEN: <span id="zubehoer-sidebar-aussen"></span><br>
-	        GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
-		        ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
-		        ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
+		        Beschlag: <span id="zubehoer-sidebar-beschlag"></span><br>
+	        Farbe innen: <span id="zubehoer-sidebar-innen"></span><br>
+	        Farbe außen: <span id="zubehoer-sidebar-aussen"></span><br>
+	        Griff: <span id="zubehoer-sidebar-griff"></span><br>
+		        Isolierglas: <span id="zubehoer-sidebar-isolierglas"></span><br>
+		        Ornament: <span id="zubehoer-sidebar-ornament"></span><br>
 		        Dichtungen schwarz<br>
 		        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
-		       RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
-	       FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
+		       Rahmen: <span id="zubehoer-sidebar-rahmen"></span><br>
+	       Fensterbank-Anschlussprofil: <span id="zubehoer-sidebar-fensterbank"></span><br>
 	       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
 	        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
 	       <span id="zubehoer-sidebar-rollladen"></span>
 
-	      </p>
+	      </div>
         <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	    </div>
 	  <div>

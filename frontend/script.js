@@ -3124,7 +3124,10 @@ if (!autoSelectDone) {
       selected = findMatch(windowConfig.farbeInnen);
     }
     else if (subName.includes('außen') || subName.includes('aussen')) {
-      selected = findMatch(windowConfig.farbeAussen);
+      selected = findMatch(windowConfig.farbeAussen) ||
+        findMatch('Weiss') ||
+        findMatch('Weiß') ||
+        findMatch('White');
     }
     else if (subName.includes('griff')) {
       selected = findMatch(windowConfig.griff) ||
@@ -4065,6 +4068,17 @@ function syncRollladenInquiryMode() {
   document.querySelectorAll('.rollladen-inquiry-box').forEach(box => box.remove());
   document.querySelectorAll('#tab6 .price-box, #tab7 .price-box, #tab7 .price_inner, #tab7 .quantity_app, #tab6 button.btnmain-cart.cart, #tab7 button.btnmain-cart.cart').forEach(el => {
     el.style.display = '';
+  });
+  syncPreviewCartButtonLabels();
+}
+
+function syncPreviewCartButtonLabels() {
+  const hasRollladen = !!(windowConfig.rollladenOn && windowConfig.rollladen);
+  const label = hasRollladen ? 'Jetzt Anfrage stellen' : '🛒 ZUM WARENKORB HINZUFÜGEN';
+
+  document.querySelectorAll('.its_my_app_work .preview-cart-button').forEach(button => {
+    button.textContent = label;
+    button.classList.toggle('is-inquiry-button', hasRollladen);
   });
 }
 

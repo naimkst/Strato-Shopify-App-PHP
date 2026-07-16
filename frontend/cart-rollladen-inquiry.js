@@ -251,6 +251,34 @@
     });
   }
 
+  function submitContactForm(form) {
+    var action = (form.getAttribute('action') || '/contact#contact_form').split('#')[0] || '/contact';
+    return fetch(action, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { Accept: 'text/html,application/xhtml+xml' },
+      body: new FormData(form)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Inquiry submit failed');
+      return res.text();
+    });
+  }
+
+  function clearCart() {
+    return fetch('/cart/clear.js', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: '{}'
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Cart clear failed');
+      return res.json();
+    });
+  }
+
   var latestCart = null;
   var running = false;
   var scheduled = false;
@@ -298,7 +326,30 @@
 
   document.addEventListener('submit', function (event) {
     if (!event.target.matches('.rollladen-cart-inquiry-form')) return;
+    event.preventDefault();
+
+    var form = event.target;
+    var submitButton = form.querySelector('.rollladen-cart-inquiry-submit');
     if (latestCart) updateModalMessage(latestCart);
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'WIRD GESENDET...';
+    }
+
+    submitContactForm(form)
+      .then(clearCart)
+      .then(function () {
+        window.location.href = '/';
+      })
+      .catch(function (err) {
+        console.error('[Rollladen Anfrage] Submit failed', err);
+        alert('Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'ABSENDEN ›';
+        }
+      });
   });
 
   document.addEventListener('DOMContentLoaded', applyCartState);
