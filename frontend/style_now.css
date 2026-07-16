@@ -3713,6 +3713,29 @@ div#globalBottomCheckpoint {
     font-weight: 400;
 }
 
+.its_my_app_work .preview-box .preview-cart-button {
+    margin: 8px 0 12px;
+}
+
+.its_my_app_work .preview-box .price-box {
+    margin: 0 0 14px;
+    padding: 0;
+    background: transparent;
+}
+
+.its_my_app_work .preview-box .price_inner strong {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.its_my_app_work .preview-box .quantity_app {
+    margin-top: 6px;
+}
+
+.its_my_app_work .preview-box span.quantity_cover {
+    background: transparent;
+}
+
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
     gap: 16px !important;

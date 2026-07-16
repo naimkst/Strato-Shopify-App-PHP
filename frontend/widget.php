@@ -1849,6 +1849,29 @@ div#tab7-svgPreviewBox svg g path {
     font-weight: 400;
 }
 
+.its_my_app_work .preview-box .preview-cart-button {
+    margin: 8px 0 12px;
+}
+
+.its_my_app_work .preview-box .price-box {
+    margin: 0 0 14px;
+    padding: 0;
+    background: transparent;
+}
+
+.its_my_app_work .preview-box .price_inner strong {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.its_my_app_work .preview-box .quantity_app {
+    margin-top: 6px;
+}
+
+.its_my_app_work .preview-box span.quantity_cover {
+    background: transparent;
+}
+
 .its_my_app_work #tab5 .option-grid.tab5-ornament-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
     gap: 16px !important;
@@ -2118,23 +2141,14 @@ div#tab7-svgPreviewBox svg g path {
 	  <div class="forscrolling">
         <h4>INNENANSICHT</h4>
 
-<div class="svgover" id="svgPreviewBox">
-</div>
+	<div class="svgover" id="svgPreviewBox">
+	</div>
 
+          <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 
-        <div style="margin-top:10px;">
-<p></p>
-          <strong><span id="sb-profile">IGLO 5 CLASSIC</span></strong><br>
-          <span id="sb-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
-          <span id="sb-opening">FESTVERGLASUNG</span><br>
-          BREITE: <span id="sb-width">500</span> MM<br>
-          HÖHE: <span id="sb-height">557</span> MM<br>
-          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-          Dichtungen schwarz
-        </div>
-        <div class="price-box">
-<div class="price_inner">
-	          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
+	        <div class="price-box">
+	<div class="price_inner">
+		          <strong>FENSTER  <span class="price" id="tab4-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
 
 </div>
           <span>Lieferzeit: ca. 3-5 Wochen</span>
@@ -2144,13 +2158,22 @@ div#tab7-svgPreviewBox svg g path {
             <button onclick="adjustQty(-1)">−</button>
             <span id="qty">1</span>
             <button onclick="adjustQty(1)">+</button>
-</span>
-          </div>
-          <button class="btnmain-cart cart">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-        </div>
-      </div>
-     </div>
-    </div>
+	</span>
+	          </div>
+	        </div>
+	        <div style="margin-top:10px;">
+	<p></p>
+	          <strong><span id="sb-profile">IGLO 5 CLASSIC</span></strong><br>
+	          <span id="sb-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
+	          <span id="sb-opening">FESTVERGLASUNG</span><br>
+	          BREITE: <span id="sb-width">500</span> MM<br>
+	          HÖHE: <span id="sb-height">557</span> MM<br>
+	          BESCHLAG: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+	          Dichtungen schwarz
+	        </div>
+	      </div>
+	     </div>
+	    </div>
 
 	<div class="bottom_check_point container">
  <div class="progress-bar-container"><div class="progress-bar"></div></div>
@@ -2217,29 +2240,15 @@ div#tab7-svgPreviewBox svg g path {
 
 <div class="sidebar preview-box" id="glass-sidebar">
 <div class="forscrolling">
-  <h4>INNENANSICHT</h4>
- <div class="svgover" id="svgPreviewBox">
-</div>
-<p></p>
-  <div style="margin-top:10px;text-align:left;">
-    <strong><span id="glass-sidebar-profile">IGLO 5 CLASSIC</span></strong><br>
-    <span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
-    <span id="glass-sidebar-opening">FESTVERGLASUNG</span><br>
-    BREITE: <span id="glass-sidebar-width">500</span> MM<br>
-	    HÖHE: <span id="glass-sidebar-height">557</span> MM<br>
-	    <span id="glass-sidebar-balkon-notes"></span>
-	    BESCHLAG: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-	    FARBE INNEN: <span id="glass-sidebar-innen">BETONGRAU</span><br>
-	    FARBE AUSSEN: <span id="glass-sidebar-aussen">DUNKELROT</span><br>
-	    GRIFF: <span id="glass-sidebar-griff">Standard weiss</span><br>
-	    ISOLIERGLAS: <span id="glass-sidebar-isolierglas">2-FACH VERGLASUNG</span><br>
-	    ORNAMENT: <span id="glass-sidebar-ornament">KLARGLAS</span><br>
-	    Dichtungen schwarz<br>
-		<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
-	  </div>
+	  <h4>INNENANSICHT</h4>
+	 <div class="svgover" id="svgPreviewBox">
+	</div>
+
+    <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
+
 	  <div class="price-box">
-  <div class="price_inner">
-	    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
+	  <div class="price_inner">
+		    <strong>FENSTER <span class="price" id="glass-price">65.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
     </div>
     <span>Lieferzeit: ca. 3-5 Wochen</span>
     <div class="quantity quantity_app">
@@ -2248,13 +2257,29 @@ div#tab7-svgPreviewBox svg g path {
   <button onclick="adjustQty(-1)">−</button>
   <span id="qty">1</span>
   <button onclick="adjustQty(1)">+</button>
-</span>
-    </div>
-    <button class="btnmain-cart cart">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-  </div>
-</div>
-</div>
-  </div>
+	</span>
+	    </div>
+	  </div>
+	<p></p>
+	  <div style="margin-top:10px;text-align:left;">
+	    <strong><span id="glass-sidebar-profile">IGLO 5 CLASSIC</span></strong><br>
+	    <span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
+	    <span id="glass-sidebar-opening">FESTVERGLASUNG</span><br>
+	    BREITE: <span id="glass-sidebar-width">500</span> MM<br>
+		    HÖHE: <span id="glass-sidebar-height">557</span> MM<br>
+		    <span id="glass-sidebar-balkon-notes"></span>
+		    BESCHLAG: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
+		    FARBE INNEN: <span id="glass-sidebar-innen">BETONGRAU</span><br>
+		    FARBE AUSSEN: <span id="glass-sidebar-aussen">DUNKELROT</span><br>
+		    GRIFF: <span id="glass-sidebar-griff">Standard weiss</span><br>
+		    ISOLIERGLAS: <span id="glass-sidebar-isolierglas">2-FACH VERGLASUNG</span><br>
+		    ORNAMENT: <span id="glass-sidebar-ornament">KLARGLAS</span><br>
+		    Dichtungen schwarz<br>
+			<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
+		  </div>
+	</div>
+	</div>
+	  </div>
 
   <div class="bottom_check_point container">
  <div class="progress-bar-container"><div class="progress-bar"></div></div>
@@ -2366,34 +2391,15 @@ div#tab7-svgPreviewBox svg g path {
     <!-- Sidebar (right) -->
     <div class="sidebar mypreviousdesign preview-box">
 	<div class="forscrolling">
-      <h4>INNENANSICHT</h4>
-	     <div class="svgover" id="svgPreviewBox">
-	    </div>
-		      <p style="font-size:15px;">
-        <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
-        <span id="zubehoer-sidebar-wing"></span><br>
-	        <span id="zubehoer-sidebar-opening"></span><br>
-	        BREITE: <span id="zubehoer-sidebar-width"></span> MM<br>
-	        HÖHE: <span id="zubehoer-sidebar-height"></span> MM<br>
-	        <span id="zubehoer-sidebar-balkon-notes"></span>
-	        BESCHLAG: <span id="zubehoer-sidebar-beschlag"></span><br>
-        FARBE INNEN: <span id="zubehoer-sidebar-innen"></span><br>
-        FARBE AUSSEN: <span id="zubehoer-sidebar-aussen"></span><br>
-        GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
-	        ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
-	        ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
-	        Dichtungen schwarz<br>
-	        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
-	       RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
-       FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
-       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
-        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
-       <span id="zubehoer-sidebar-rollladen"></span>
+	      <h4>INNENANSICHT</h4>
+		     <div class="svgover" id="svgPreviewBox">
+		    </div>
 
-      </p>
-	      <div class="price-box">
-      <div class="price_inner">
-        <strong>FENSTER
+        <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
+
+		      <div class="price-box">
+	      <div class="price_inner">
+	        <strong>FENSTER
 	        <span class="price" id="zubehoer-price">54.96 € <span class="price-tax">inkl. MwSt. zzg. Versand</span></span></strong>
         </div>
 
@@ -2404,13 +2410,34 @@ div#tab7-svgPreviewBox svg g path {
   <button onclick="adjustQty(-1)">−</button>
   <span id="qty">1</span>
   <button onclick="adjustQty(1)">+</button>
-</span>
-        </div>
-        <button class="btnmain-cart cart">🛒 ZUM WARENKORB HINZUFÜGEN</button>
-      </div>
-    </div>
-  <div>
-</div>
+	</span>
+	        </div>
+	      </div>
+			      <p style="font-size:15px;">
+        <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
+        <span id="zubehoer-sidebar-wing"></span><br>
+		        <span id="zubehoer-sidebar-opening"></span><br>
+		        BREITE: <span id="zubehoer-sidebar-width"></span> MM<br>
+		        HÖHE: <span id="zubehoer-sidebar-height"></span> MM<br>
+		        <span id="zubehoer-sidebar-balkon-notes"></span>
+		        BESCHLAG: <span id="zubehoer-sidebar-beschlag"></span><br>
+	        FARBE INNEN: <span id="zubehoer-sidebar-innen"></span><br>
+	        FARBE AUSSEN: <span id="zubehoer-sidebar-aussen"></span><br>
+	        GRIFF: <span id="zubehoer-sidebar-griff"></span><br>
+		        ISOLIERGLAS: <span id="zubehoer-sidebar-isolierglas"></span><br>
+		        ORNAMENT: <span id="zubehoer-sidebar-ornament"></span><br>
+		        Dichtungen schwarz<br>
+		        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
+		       RAHMENVERBREITERUNG: <span id="zubehoer-sidebar-rahmen"></span><br>
+	       FENSTERBANK-ANSCHLUSSPROFIL: <span id="zubehoer-sidebar-fensterbank"></span><br>
+	       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
+	        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
+	       <span id="zubehoer-sidebar-rollladen"></span>
+
+	      </p>
+	    </div>
+	  <div>
+	</div>
 
 </div>
 
@@ -2456,6 +2483,25 @@ div#tab7-svgPreviewBox svg g path {
 	<div class="forscrolling">
       <h4>Innenansicht</h4>
 	     <div id="tab7-svgPreviewBox"></div>
+
+      <button class="btnmain-cart cart preview-cart-button">🛒 Zum Warenkorb hinzufügen</button>
+
+      <div class="price-box">
+        <div class="price_inner">
+          <strong>Fenster <span class="price"  id="t7-price">—</span></strong>
+          <p>Lieferzeit: ca. 3-5 Wochen</p>
+        </div>
+
+        <div class="quantity_app">
+          <span>Menge</span>
+          <span class="quantity_cover">
+    <button onclick="adjustQty(-1)">−</button>
+    <span id="qty">1</span>
+    <button onclick="adjustQty(1)">+</button>
+  </span>
+        </div>
+      </div>
+
 		   <div class="summary-box">
 
     <strong><span id="t7-sidebar-profile"></span></strong><br>
@@ -2478,28 +2524,11 @@ div#tab7-svgPreviewBox svg g path {
 	        <p class="optional-summary-line" style="display:none;">Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
         <span id="t7-sidebar-luefter" style="display:none"></span>
         <span id="t7-sidebar-reedkontakt" style="display:none"></span>
-        <div id="t7-sidebar-rollladen"></div>
-      </div>
-
-
-      <div class="price_inner">
-        <strong>Fenster <span class="price"  id="t7-price">—</span></strong>
-        <p>Lieferzeit: ca. 3-5 Wochen</p>
-      </div>
-
-      <div class="quantity_app">
-        <span>Menge</span>
-        <span class="quantity_cover">
-  <button onclick="adjustQty(-1)">−</button>
-  <span id="qty">1</span>
-  <button onclick="adjustQty(1)">+</button>
-</span>
-      </div>
-
-      <button class="btnmain-cart cart">🛒 Zum Warenkorb hinzufügen</button>
-    </div>
-     </div>
-  </div>
+	        <div id="t7-sidebar-rollladen"></div>
+	      </div>
+	    </div>
+	     </div>
+	  </div>
   <div class="bottom_check_point container">
 <div class="progress-bar-container"><div class="progress-bar"></div></div>
       <div class="footer-buttons">

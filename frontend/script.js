@@ -4043,7 +4043,10 @@ function syncRollladenInquiryMode() {
   const tab6 = document.getElementById('tab6');
   if (tab6) {
     const priceBox = tab6.querySelector('.price-box');
+    const cartButton = tab6.querySelector('button.btnmain-cart.cart');
     let inquiryBox = tab6.querySelector('.rollladen-inquiry-box');
+
+    if (cartButton) cartButton.style.display = inquiryMode ? 'none' : '';
 
     if (priceBox) {
       priceBox.style.display = inquiryMode ? 'none' : '';
@@ -4059,6 +4062,7 @@ function syncRollladenInquiryMode() {
   const tab7 = document.getElementById('tab7');
   if (tab7) {
     const checkoutParts = [
+      tab7.querySelector('.price-box'),
       tab7.querySelector('.price_inner'),
       tab7.querySelector('.quantity_app'),
       tab7.querySelector('button.btnmain-cart.cart')
