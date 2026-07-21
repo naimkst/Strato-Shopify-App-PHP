@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260710-ornament-image">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-sidebar-typography-final">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2136,6 +2136,37 @@ div#tab7-svgPreviewBox svg g path {
         width: 92px !important;
         max-width: 92px;
     }
+}
+
+/* Final right-sidebar summary typography override.
+   The legacy stylesheet has broad span/strong rules for preview boxes; keep
+   summary details visually consistent regardless of those older selectors. */
+.its_my_app_work .preview-box .summary-box,
+.its_my_app_work .preview-box .summary-box *,
+.its_my_app_work .preview-box .rollladen-sidebar-line,
+.its_my_app_work .preview-box .rollladen-sidebar-line * {
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #222 !important;
+}
+
+.its_my_app_work .preview-box .summary-box {
+    margin-top: 0 !important;
+    padding-top: 2px !important;
+    overflow-wrap: anywhere;
+}
+
+.its_my_app_work .preview-box .summary-box strong,
+.its_my_app_work .preview-box .summary-box p,
+.its_my_app_work .preview-box .summary-box div {
+    margin: 0 0 4px !important;
+}
+
+.its_my_app_work .preview-box .summary-box strong {
+    display: block !important;
 }
 
 

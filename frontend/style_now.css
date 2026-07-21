@@ -3865,3 +3865,34 @@ div#globalBottomCheckpoint {
 .card-option[data-id="629"] {
     display: none !important;
 }
+
+/* Final right-sidebar summary typography override.
+   This must stay at the end of the stylesheet so legacy preview-box span,
+   div, p, and strong rules cannot re-enlarge summary labels or values. */
+.its_my_app_work .preview-box .summary-box,
+.its_my_app_work .preview-box .summary-box *,
+.its_my_app_work .preview-box .rollladen-sidebar-line,
+.its_my_app_work .preview-box .rollladen-sidebar-line * {
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #222 !important;
+}
+
+.its_my_app_work .preview-box .summary-box {
+    margin-top: 0 !important;
+    padding-top: 2px !important;
+    overflow-wrap: anywhere;
+}
+
+.its_my_app_work .preview-box .summary-box strong,
+.its_my_app_work .preview-box .summary-box p,
+.its_my_app_work .preview-box .summary-box div {
+    margin: 0 0 4px !important;
+}
+
+.its_my_app_work .preview-box .summary-box strong {
+    display: block !important;
+}
