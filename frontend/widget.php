@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-sidebar-height-match">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260722-dichtungen-summary-size">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2192,6 +2192,18 @@ div#tab7-svgPreviewBox svg g path {
     display: inline !important;
 }
 
+.its_my_app_work .preview-box .summary-box .summary-row,
+.its_my_app_work .preview-box .summary-box .summary-row > span,
+.its_my_app_work .preview-box .summary-box .summary-row > .summary-label,
+.its_my_app_work .preview-box .summary-box .summary-row > .summary-value {
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #222 !important;
+}
+
 /* Match the right preview panel height to the visible configurator work area. */
 @media (min-width: 1024px) {
     .its_my_app_work #tab4.active .preview-box,
@@ -2467,7 +2479,7 @@ div#tab7-svgPreviewBox svg g path {
 		          <div class="summary-row"><span class="summary-label">Breite:</span> <span class="summary-value"><span id="sb-width">500</span> mm</span></div>
 		          <div class="summary-row"><span class="summary-label">Höhe:</span> <span class="summary-value"><span id="sb-height">557</span> mm</span></div>
 		          <div class="summary-row"><span class="summary-label">Beschlag:</span> <span class="summary-value" id="sb-beschlag">SIEGENIA FAVORIT BASIS</span></div>
-		          <div class="summary-row">Dichtungen schwarz</div>
+		          <div class="summary-row"><span class="summary-value">Dichtungen schwarz</span></div>
 		        </div>
           <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	      </div>
@@ -2571,7 +2583,7 @@ div#tab7-svgPreviewBox svg g path {
 			    <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="glass-sidebar-griff">Standard weiss</span></div>
 			    <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="glass-sidebar-isolierglas">2-fach Verglasung</span></div>
 			    <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="glass-sidebar-ornament">Klarglas</span></div>
-			    <div class="summary-row">Dichtungen schwarz</div>
+			    <div class="summary-row"><span class="summary-value">Dichtungen schwarz</span></div>
 				<div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="glass-sidebar-vsg"></span></div>
 			  </div>
     <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
@@ -2722,7 +2734,7 @@ div#tab7-svgPreviewBox svg g path {
 		        <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="zubehoer-sidebar-griff"></span></div>
 			        <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="zubehoer-sidebar-isolierglas"></span></div>
 			        <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="zubehoer-sidebar-ornament"></span></div>
-			        <div class="summary-row">Dichtungen schwarz</div>
+			        <div class="summary-row"><span class="summary-value">Dichtungen schwarz</span></div>
 			        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="zubehoer-sidebar-vsg"></span></div>
 			       <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Rahmen:</span> <span class="summary-value" id="zubehoer-sidebar-rahmen"></span></div>
 		       <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Fensterbank-Anschlussprofil:</span> <span class="summary-value" id="zubehoer-sidebar-fensterbank"></span></div>
@@ -2810,7 +2822,7 @@ div#tab7-svgPreviewBox svg g path {
 	        <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="t7-sidebar-griff"></span></div>
 		        <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="t7-sidebar-isolierglas"></span></div>
 		        <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="t7-sidebar-ornament"></span></div>
-		        <div class="summary-row">Dichtungen schwarz</div>
+		        <div class="summary-row"><span class="summary-value">Dichtungen schwarz</span></div>
 		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="t7-sidebar-vsg"></span></div>
 		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Rahmen:</span> <span class="summary-value" id="t7-sidebar-rahmen"></span></div>
 		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Fensterbank-Anschlussprofil:</span> <span class="summary-value" id="t7-sidebar-fensterbank"></span></div>

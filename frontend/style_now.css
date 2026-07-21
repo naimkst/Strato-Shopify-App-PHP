@@ -3920,6 +3920,18 @@ div#globalBottomCheckpoint {
     display: inline !important;
 }
 
+.its_my_app_work .preview-box .summary-box .summary-row,
+.its_my_app_work .preview-box .summary-box .summary-row > span,
+.its_my_app_work .preview-box .summary-box .summary-row > .summary-label,
+.its_my_app_work .preview-box .summary-box .summary-row > .summary-value {
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #222 !important;
+}
+
 /* Match the right preview panel height to the visible configurator work area. */
 @media (min-width: 1024px) {
     .its_my_app_work #tab4.active .preview-box,
