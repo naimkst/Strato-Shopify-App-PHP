@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-summary-row-typography">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-sidebar-height-match">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2190,6 +2190,47 @@ div#tab7-svgPreviewBox svg g path {
 .its_my_app_work .preview-box .summary-box .summary-label,
 .its_my_app_work .preview-box .summary-box .summary-value {
     display: inline !important;
+}
+
+/* Match the right preview panel height to the visible configurator work area. */
+@media (min-width: 1024px) {
+    .its_my_app_work #tab4.active .preview-box,
+    .its_my_app_work #tab5.active .preview-box,
+    .its_my_app_work #tab6.active .preview-box,
+    .its_my_app_work #tab7.active .preview-box {
+        height: calc(100dvh - 112px) !important;
+        min-height: calc(100dvh - 112px) !important;
+        max-height: calc(100dvh - 112px) !important;
+        overflow-y: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        box-sizing: border-box !important;
+    }
+
+    .its_my_app_work #tab4.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab5.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab6.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab7.active .preview-box.sidebar--fixed {
+        top: 92px !important;
+        bottom: auto !important;
+    }
+
+    .its_my_app_work #tab4.active .preview-box:not(.sidebar--fixed):not(.sidebar--bottom),
+    .its_my_app_work #tab5.active .preview-box:not(.sidebar--fixed):not(.sidebar--bottom),
+    .its_my_app_work #tab6.active .preview-box:not(.sidebar--fixed):not(.sidebar--bottom),
+    .its_my_app_work #tab7.active .preview-box:not(.sidebar--fixed):not(.sidebar--bottom) {
+        top: 0 !important;
+    }
+
+    .its_my_app_work #tab4.active .preview-box .forscrolling,
+    .its_my_app_work #tab5.active .preview-box .forscrolling,
+    .its_my_app_work #tab6.active .preview-box .forscrolling,
+    .its_my_app_work #tab7.active .preview-box .forscrolling {
+        min-height: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
