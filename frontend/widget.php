@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-sidebar-typography-final">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260721-summary-row-typography">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2169,6 +2169,29 @@ div#tab7-svgPreviewBox svg g path {
     display: block !important;
 }
 
+.its_my_app_work .preview-box .summary-box .summary-row,
+.its_my_app_work .preview-box .summary-box .summary-label,
+.its_my_app_work .preview-box .summary-box .summary-value,
+.its_my_app_work .preview-box .summary-box .balcony-door-notes,
+.its_my_app_work .preview-box .summary-box .balcony-door-notes * {
+    display: block;
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #222 !important;
+}
+
+.its_my_app_work .preview-box .summary-box .summary-row {
+    margin: 0 0 4px !important;
+}
+
+.its_my_app_work .preview-box .summary-box .summary-label,
+.its_my_app_work .preview-box .summary-box .summary-value {
+    display: inline !important;
+}
+
 
 
 
@@ -2396,16 +2419,15 @@ div#tab7-svgPreviewBox svg g path {
 	</span>
 	          </div>
 	        </div>
-	        <div class="summary-box">
-	<p></p>
-	          <strong><span id="sb-profile">IGLO 5 CLASSIC</span></strong><br>
-	          <span id="sb-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
-	          <span id="sb-opening">FESTVERGLASUNG</span><br>
-	          Breite: <span id="sb-width">500</span> mm<br>
-	          Höhe: <span id="sb-height">557</span> mm<br>
-	          Beschlag: <span id="sb-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-	          Dichtungen schwarz
-	        </div>
+		        <div class="summary-box">
+		          <div class="summary-row"><span id="sb-profile">IGLO 5 CLASSIC</span></div>
+		          <div class="summary-row"><span id="sb-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span></div>
+		          <div class="summary-row"><span id="sb-opening">FESTVERGLASUNG</span></div>
+		          <div class="summary-row"><span class="summary-label">Breite:</span> <span class="summary-value"><span id="sb-width">500</span> mm</span></div>
+		          <div class="summary-row"><span class="summary-label">Höhe:</span> <span class="summary-value"><span id="sb-height">557</span> mm</span></div>
+		          <div class="summary-row"><span class="summary-label">Beschlag:</span> <span class="summary-value" id="sb-beschlag">SIEGENIA FAVORIT BASIS</span></div>
+		          <div class="summary-row">Dichtungen schwarz</div>
+		        </div>
           <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	      </div>
 	     </div>
@@ -2495,22 +2517,22 @@ div#tab7-svgPreviewBox svg g path {
 	    </div>
 	  </div>
 	<p></p>
-	  <div class="summary-box">
-	    <strong><span id="glass-sidebar-profile">IGLO 5 CLASSIC</span></strong><br>
-	    <span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span><br>
-	    <span id="glass-sidebar-opening">FESTVERGLASUNG</span><br>
-	    Breite: <span id="glass-sidebar-width">500</span> mm<br>
-		    Höhe: <span id="glass-sidebar-height">557</span> mm<br>
-		    <span id="glass-sidebar-balkon-notes"></span>
-		    Beschlag: <span id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span><br>
-		    Farbe innen: <span id="glass-sidebar-innen">BETONGRAU</span><br>
-		    Farbe außen: <span id="glass-sidebar-aussen">Weiss</span><br>
-		    Griff: <span id="glass-sidebar-griff">Standard weiss</span><br>
-		    Isolierglas: <span id="glass-sidebar-isolierglas">2-fach Verglasung</span><br>
-		    Ornament: <span id="glass-sidebar-ornament">Klarglas</span><br>
-		    Dichtungen schwarz<br>
-			<span class="optional-summary-line" style="display:none;">VSG Glas: <span id="glass-sidebar-vsg"></span></span>
-		  </div>
+		  <div class="summary-box">
+		    <div class="summary-row"><span id="glass-sidebar-profile">IGLO 5 CLASSIC</span></div>
+		    <div class="summary-row"><span id="glass-sidebar-wing">3-TLG. ELEMENT MIT 3 FELDER NEBENEINANDER</span></div>
+		    <div class="summary-row"><span id="glass-sidebar-opening">FESTVERGLASUNG</span></div>
+		    <div class="summary-row"><span class="summary-label">Breite:</span> <span class="summary-value"><span id="glass-sidebar-width">500</span> mm</span></div>
+			    <div class="summary-row"><span class="summary-label">Höhe:</span> <span class="summary-value"><span id="glass-sidebar-height">557</span> mm</span></div>
+			    <div class="summary-row" id="glass-sidebar-balkon-notes"></div>
+			    <div class="summary-row"><span class="summary-label">Beschlag:</span> <span class="summary-value" id="glass-sidebar-beschlag">SIEGENIA FAVORIT BASIS</span></div>
+			    <div class="summary-row"><span class="summary-label">Farbe innen:</span> <span class="summary-value" id="glass-sidebar-innen">BETONGRAU</span></div>
+			    <div class="summary-row"><span class="summary-label">Farbe außen:</span> <span class="summary-value" id="glass-sidebar-aussen">Weiss</span></div>
+			    <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="glass-sidebar-griff">Standard weiss</span></div>
+			    <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="glass-sidebar-isolierglas">2-fach Verglasung</span></div>
+			    <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="glass-sidebar-ornament">Klarglas</span></div>
+			    <div class="summary-row">Dichtungen schwarz</div>
+				<div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="glass-sidebar-vsg"></span></div>
+			  </div>
     <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
 	</div>
 	</div>
@@ -2646,26 +2668,26 @@ div#tab7-svgPreviewBox svg g path {
 	</span>
 	        </div>
 	      </div>
-			      <div class="summary-box">
-        <strong><span id="zubehoer-sidebar-profile"></span></strong><br>
-        <span id="zubehoer-sidebar-wing"></span><br>
-		        <span id="zubehoer-sidebar-opening"></span><br>
-		        Breite: <span id="zubehoer-sidebar-width"></span> mm<br>
-		        Höhe: <span id="zubehoer-sidebar-height"></span> mm<br>
-		        <span id="zubehoer-sidebar-balkon-notes"></span>
-		        Beschlag: <span id="zubehoer-sidebar-beschlag"></span><br>
-	        Farbe innen: <span id="zubehoer-sidebar-innen"></span><br>
-	        Farbe außen: <span id="zubehoer-sidebar-aussen"></span><br>
-	        Griff: <span id="zubehoer-sidebar-griff"></span><br>
-		        Isolierglas: <span id="zubehoer-sidebar-isolierglas"></span><br>
-		        Ornament: <span id="zubehoer-sidebar-ornament"></span><br>
-		        Dichtungen schwarz<br>
-		        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
-		       <span class="optional-summary-line" style="display:none;">Rahmen: <span id="zubehoer-sidebar-rahmen"></span></span>
-	       <span class="optional-summary-line" style="display:none;">Fensterbank-Anschlussprofil: <span id="zubehoer-sidebar-fensterbank"></span></span>
-	       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
-	        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
-	       <span id="zubehoer-sidebar-rollladen"></span>
+				      <div class="summary-box">
+	        <div class="summary-row"><span id="zubehoer-sidebar-profile"></span></div>
+	        <div class="summary-row"><span id="zubehoer-sidebar-wing"></span></div>
+			        <div class="summary-row"><span id="zubehoer-sidebar-opening"></span></div>
+			        <div class="summary-row"><span class="summary-label">Breite:</span> <span class="summary-value"><span id="zubehoer-sidebar-width"></span> mm</span></div>
+			        <div class="summary-row"><span class="summary-label">Höhe:</span> <span class="summary-value"><span id="zubehoer-sidebar-height"></span> mm</span></div>
+			        <div class="summary-row" id="zubehoer-sidebar-balkon-notes"></div>
+			        <div class="summary-row"><span class="summary-label">Beschlag:</span> <span class="summary-value" id="zubehoer-sidebar-beschlag"></span></div>
+		        <div class="summary-row"><span class="summary-label">Farbe innen:</span> <span class="summary-value" id="zubehoer-sidebar-innen"></span></div>
+		        <div class="summary-row"><span class="summary-label">Farbe außen:</span> <span class="summary-value" id="zubehoer-sidebar-aussen"></span></div>
+		        <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="zubehoer-sidebar-griff"></span></div>
+			        <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="zubehoer-sidebar-isolierglas"></span></div>
+			        <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="zubehoer-sidebar-ornament"></span></div>
+			        <div class="summary-row">Dichtungen schwarz</div>
+			        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="zubehoer-sidebar-vsg"></span></div>
+			       <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Rahmen:</span> <span class="summary-value" id="zubehoer-sidebar-rahmen"></span></div>
+		       <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Fensterbank-Anschlussprofil:</span> <span class="summary-value" id="zubehoer-sidebar-fensterbank"></span></div>
+		       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
+		        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
+		       <div id="zubehoer-sidebar-rollladen"></div>
 
 	      </div>
         <button class="btnmain-cart cart preview-cart-button">🛒 ZUM WARENKORB HINZUFÜGEN</button>
@@ -2734,26 +2756,23 @@ div#tab7-svgPreviewBox svg g path {
         </div>
       </div>
 
-		   <div class="summary-box">
-
-    <strong><span id="t7-sidebar-profile"></span></strong><br>
-        <p><span id="t7-sidebar-wing"></span></p>
-	        <p><span id="t7-sidebar-opening"></span></p>
-	        <p>Breite: <span id="t7-sidebar-width"></span></p>
-	        <p>Höhe: <span id="t7-sidebar-height"></span></p>
-	        <div id="t7-sidebar-balkon-notes"></div>
-	        <p>Beschlag: <span id="t7-sidebar-beschlag"></span></p>
-
-        <p>Farbe Innen: <span id="t7-sidebar-innen"></span></p>
-        <p>Farbe Außen: <span id="t7-sidebar-aussen"></span></p>
-        <p>Griff: <span id="t7-sidebar-griff"></span></p>
-	        <p>Isolierglas: <span id="t7-sidebar-isolierglas"></span></p>
-	        <p>Ornament: <span id="t7-sidebar-ornament"></span></p>
-	        <p>Dichtungen schwarz</p>
-	        <p class="optional-summary-line" style="display:none;">VSG Glas: <span id="t7-sidebar-vsg"></span></p>
-
-	        <p class="optional-summary-line" style="display:none;">Rahmen: <span id="t7-sidebar-rahmen"></span></p>
-	        <p class="optional-summary-line" style="display:none;">Fensterbank-Anschlussprofil: <span id="t7-sidebar-fensterbank"></span></p>
+			   <div class="summary-box">
+	    <div class="summary-row"><span id="t7-sidebar-profile"></span></div>
+	        <div class="summary-row"><span id="t7-sidebar-wing"></span></div>
+		        <div class="summary-row"><span id="t7-sidebar-opening"></span></div>
+		        <div class="summary-row"><span class="summary-label">Breite:</span> <span class="summary-value"><span id="t7-sidebar-width"></span> mm</span></div>
+		        <div class="summary-row"><span class="summary-label">Höhe:</span> <span class="summary-value"><span id="t7-sidebar-height"></span> mm</span></div>
+		        <div class="summary-row" id="t7-sidebar-balkon-notes"></div>
+		        <div class="summary-row"><span class="summary-label">Beschlag:</span> <span class="summary-value" id="t7-sidebar-beschlag"></span></div>
+	        <div class="summary-row"><span class="summary-label">Farbe innen:</span> <span class="summary-value" id="t7-sidebar-innen"></span></div>
+	        <div class="summary-row"><span class="summary-label">Farbe außen:</span> <span class="summary-value" id="t7-sidebar-aussen"></span></div>
+	        <div class="summary-row"><span class="summary-label">Griff:</span> <span class="summary-value" id="t7-sidebar-griff"></span></div>
+		        <div class="summary-row"><span class="summary-label">Isolierglas:</span> <span class="summary-value" id="t7-sidebar-isolierglas"></span></div>
+		        <div class="summary-row"><span class="summary-label">Ornament:</span> <span class="summary-value" id="t7-sidebar-ornament"></span></div>
+		        <div class="summary-row">Dichtungen schwarz</div>
+		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">VSG Glas:</span> <span class="summary-value" id="t7-sidebar-vsg"></span></div>
+		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Rahmen:</span> <span class="summary-value" id="t7-sidebar-rahmen"></span></div>
+		        <div class="summary-row optional-summary-line" style="display:none;"><span class="summary-label">Fensterbank-Anschlussprofil:</span> <span class="summary-value" id="t7-sidebar-fensterbank"></span></div>
         <span id="t7-sidebar-luefter" style="display:none"></span>
         <span id="t7-sidebar-reedkontakt" style="display:none"></span>
 	        <div id="t7-sidebar-rollladen"></div>
