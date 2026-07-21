@@ -1979,21 +1979,21 @@ div#tab7-svgPreviewBox svg g path {
     color: #242424;
     font-size: 14px !important;
     line-height: 1.38;
-    font-weight: 400;
+    font-weight: 500;
     text-align: left;
-    text-transform: none;
+    text-transform: uppercase;
     overflow-wrap: anywhere;
 }
 
 .its_my_app_work .preview-box .summary-box strong {
     display: block;
-    margin: 0 0 8px;
-    color: #111;
-    font-size: 16px !important;
-    line-height: 1.2;
-    font-weight: 800;
+    margin: 0 0 10px;
+    color: inherit;
+    font-size: 14px !important;
+    line-height: 1.38 !important;
+    font-weight: 500 !important;
     letter-spacing: 0;
-    text-transform: uppercase;
+    text-transform: inherit;
 }
 
 .its_my_app_work .preview-box .summary-box strong span {
@@ -2009,7 +2009,9 @@ div#tab7-svgPreviewBox svg g path {
 .its_my_app_work .preview-box .rollladen-sidebar-line {
     font-size: 14px !important;
     line-height: 1.38 !important;
+    font-weight: 500 !important;
     letter-spacing: 0 !important;
+    text-transform: inherit !important;
 }
 
 .its_my_app_work .preview-box .summary-box > span,
@@ -2022,8 +2024,8 @@ div#tab7-svgPreviewBox svg g path {
 .its_my_app_work .preview-box .summary-box > span[id$="-opening"],
 .its_my_app_work .preview-box .summary-box #t7-sidebar-wing,
 .its_my_app_work .preview-box .summary-box #t7-sidebar-opening {
-    font-size: 15px !important;
-    line-height: 1.28 !important;
+    font-size: 14px !important;
+    line-height: 1.38 !important;
     font-weight: 500;
 }
 
@@ -2628,8 +2630,8 @@ div#tab7-svgPreviewBox svg g path {
 		        Ornament: <span id="zubehoer-sidebar-ornament"></span><br>
 		        Dichtungen schwarz<br>
 		        <span class="optional-summary-line" style="display:none;">VSG Glas: <span id="zubehoer-sidebar-vsg"></span></span>
-		       Rahmen: <span id="zubehoer-sidebar-rahmen"></span><br>
-	       Fensterbank-Anschlussprofil: <span id="zubehoer-sidebar-fensterbank"></span><br>
+		       <span class="optional-summary-line" style="display:none;">Rahmen: <span id="zubehoer-sidebar-rahmen"></span></span>
+	       <span class="optional-summary-line" style="display:none;">Fensterbank-Anschlussprofil: <span id="zubehoer-sidebar-fensterbank"></span></span>
 	       <span id="zubehoer-sidebar-luefter" style="display:none"></span>
 	        <span id="zubehoer-sidebar-reedkontakt" style="display:none"></span>
 	       <span id="zubehoer-sidebar-rollladen"></span>

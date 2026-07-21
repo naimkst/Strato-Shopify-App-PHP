@@ -945,6 +945,30 @@ function getSillProfileSummary() {
   return `${profile.label} (${profile.pricePerMeter.toFixed(2)} €/m${calculatedText}, weiß)`;
 }
 
+function normalizeRahmenMmLabel(value) {
+  const mm = parseConfiguratorNumber(value);
+  if (!mm) return '';
+  return `${Math.round(mm)}mm`;
+}
+
+function getRahmenSummaryFromSelects(selectsMap) {
+  const positionLabels = {
+    oben: 'oben',
+    unten: 'unten',
+    links: 'links',
+    rechts: 'rechts'
+  };
+  const order = ['oben', 'unten', 'links', 'rechts'];
+  const values = [];
+
+  order.forEach(pos => {
+    const mm = normalizeRahmenMmLabel(selectsMap?.[pos]?.value);
+    if (mm) values.push(`${mm} ${positionLabels[pos]}`);
+  });
+
+  return values.length ? `${values.join(' / ')} zzgl. Fenstermaße` : '';
+}
+
 function updateSillProfilePrice() {
   extraPriceTab6Map[SILL_PROFILE_PRICE_KEY] = getSillProfilePrice();
 }
@@ -3493,19 +3517,15 @@ if (extra.default_option) {
   function updateRahmenSidebar() {
 
     let total = 0;
-    const values = [];
 
     Object.values(selectsMap).forEach(sel => {
       if (!sel || !sel.value) return;
-
-      values.push(sel.value);
 
       const selectedOpt = sel.options[sel.selectedIndex];
       total += parseFloat(selectedOpt?.dataset.price || 0);
     });
 
-    const el = document.getElementById('zubehoer-sidebar-rahmen');
-    if (el) el.textContent = values.join(' / ');
+    setOptionalSummaryText('zubehoer-sidebar-rahmen', getRahmenSummaryFromSelects(selectsMap));
 
    extraPriceTab6Map[subtabId] = total;
 
@@ -3636,16 +3656,14 @@ function renderTab6Rahmenverbreiterung(subtab, subtabId) {
 
   function updateRahmenSidebar() {
     let total = 0;
-    const values = [];
 
     Object.entries(selectsMap).forEach(([pos, select]) => {
       if (!select || !select.value) return;
-      values.push(select.value);
       total += parseFloat(select.options[select.selectedIndex]?.dataset.price || 0);
       TAB6_SELECTION[pos] = select.value;
     });
 
-    setOptionalSummaryText('zubehoer-sidebar-rahmen', values.join(' / '));
+    setOptionalSummaryText('zubehoer-sidebar-rahmen', getRahmenSummaryFromSelects(selectsMap));
     extraPriceTab6Map[subtabId] = total;
     recomputeTotalPrice();
     updateAllSidebars();
@@ -5873,8 +5891,7 @@ function updateTab6Sidebar() {
   setSummaryText('zubehoer-sidebar-isolierglas', document.getElementById('glass-sidebar-isolierglas')?.textContent || '');
   setSummaryText('zubehoer-sidebar-ornament', document.getElementById('glass-sidebar-ornament')?.textContent || '');
   setOptionalSummaryText('zubehoer-sidebar-vsg', document.getElementById('glass-sidebar-vsg')?.textContent || '');
-	  const fensterbankSidebar = document.getElementById('zubehoer-sidebar-fensterbank');
-  if (fensterbankSidebar) fensterbankSidebar.textContent = getSillProfileSummary();
+  setOptionalSummaryText('zubehoer-sidebar-fensterbank', getSillProfileSummary());
   const zubehoerBalconyNotes = document.getElementById('zubehoer-sidebar-balkon-notes');
   if (zubehoerBalconyNotes) zubehoerBalconyNotes.innerHTML = getBalconyDoorNotesHTML();
 
