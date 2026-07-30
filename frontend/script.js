@@ -345,12 +345,28 @@ const SILL_PROFILE_PRICE_KEY = SILL_PROFILE_SUBTAB_ID;
 const ROLLLADEN_SYSTEM_SECTION_ID = '__rollladen_system__';
 const ROLLLADEN_DRIVE_SECTION_ID = '__rollladen_drive__';
 const ROLLLADEN_ACCESSORY_SECTION_ID = '__rollladen_accessory__';
-const ROLLLADEN_SYSTEM_IDS = ['324', '325', '327'];
-const ROLLLADEN_SYSTEM_DEPENDENCIES = ROLLLADEN_SYSTEM_IDS.join(',');
 const ROLLLADEN_SYSTEM_IMAGES = {
   '324': 'https://cdn.shopify.com/s/files/1/0987/9683/1102/files/big_RAS_Vorbaurolllaeden_Eckig.jpg?v=1778618926',
   '325': 'https://cdn.shopify.com/s/files/1/0987/9683/1102/files/big_RAR_Vorbaurolllaeden_Rund.jpg?v=1778618927'
 };
+const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/shades.png';
+const ROLLLADEN_SYSTEM_LABELS = {
+  '324': 'Vorbaurollladen eckig',
+  '325': 'Vorbaurollladen rund',
+  '__rollladen_system_rnk_xt__': 'Aufsatzrollladen auf dem Rahmen'
+};
+const ROLLLADEN_SYSTEM_IDS = Object.keys(ROLLLADEN_SYSTEM_LABELS);
+const ROLLLADEN_SYSTEM_DEPENDENCIES = ROLLLADEN_SYSTEM_IDS.join(',');
+const ROLLLADEN_SYSTEM_SPECS = [
+  { id: '324', label: ROLLLADEN_SYSTEM_LABELS['324'], image_url: ROLLLADEN_SYSTEM_IMAGES['324'] },
+  { id: '325', label: ROLLLADEN_SYSTEM_LABELS['325'], image_url: ROLLLADEN_SYSTEM_IMAGES['325'] },
+  {
+    id: '__rollladen_system_rnk_xt__',
+    label: ROLLLADEN_SYSTEM_LABELS['__rollladen_system_rnk_xt__'],
+    image_url: RNK_XT_ROLLLADEN_IMAGE,
+    price: '0.00'
+  }
+];
 
 const SILL_PROFILE_OPTIONS = [
   {
@@ -488,7 +504,6 @@ const SLIDING_DOOR_RAHMEN_VALUES = [
   { label: '60MM', price: 15.51 },
   { label: '100MM', price: 25.10 }
 ];
-const RNK_XT_ROLLLADEN_IMAGE = 'https://droplify.de/deine-fenster24/frontend/img/shades.png';
 
 function normalizeConfigText(value) {
   return String(value || '')
@@ -633,23 +648,26 @@ function getJsonValue(value, fallback = {}) {
 }
 
 function getRollladenSystemLabel(opt) {
+  const id = String(opt?.id || '');
+  if (ROLLLADEN_SYSTEM_LABELS[id]) return ROLLLADEN_SYSTEM_LABELS[id];
+
   const label = opt?.label || opt?.value_key || '';
   const normalized = normalizeConfigText(label);
 
-  if (String(opt?.id) === '324' || normalized.includes('ras vorbaurollladen')) {
-    return 'RAS Vorbaurollladen';
+  if (normalized.includes('ras vorbaurollladen') || normalized.includes('vorbaurollladen eckig')) {
+    return ROLLLADEN_SYSTEM_LABELS['324'];
   }
 
-  if (String(opt?.id) === '325' || normalized.includes('rar vorbaurollladen')) {
-    return 'RAR Vorbaurollladen';
+  if (normalized.includes('rar vorbaurollladen') || normalized.includes('vorbaurollladen rund')) {
+    return ROLLLADEN_SYSTEM_LABELS['325'];
   }
 
   if (
-    String(opt?.id) === '__rollladen_system_rnk_xt__' ||
     normalized.includes('rnk xt aufsatzrolladen') ||
-    normalized.includes('rnk xt aufsatz unter putz')
+    normalized.includes('rnk xt aufsatz unter putz') ||
+    normalized.includes('aufsatzrollladen auf dem rahmen')
   ) {
-    return 'RNK/XT Aufsatz unter Putz';
+    return ROLLLADEN_SYSTEM_LABELS['__rollladen_system_rnk_xt__'];
   }
 
   return label;
@@ -680,18 +698,8 @@ function normalizeRollladenSubtab(subtab) {
 
   const allOptions = Array.isArray(subtab.options) ? subtab.options : [];
   const findById = id => allOptions.find(opt => String(opt.id) === String(id));
-  const systemSpecs = [
-    { id: '324', label: 'RAS Vorbaurollladen', image_url: ROLLLADEN_SYSTEM_IMAGES['324'] },
-    { id: '325', label: 'RAR Vorbaurollladen', image_url: ROLLLADEN_SYSTEM_IMAGES['325'] },
-    {
-      id: '__rollladen_system_rnk_xt__',
-      label: 'RNK/XT Aufsatz unter Putz',
-      image_url: RNK_XT_ROLLLADEN_IMAGE,
-      price: '0.00'
-    }
-  ];
 
-  const systems = systemSpecs
+  const systems = ROLLLADEN_SYSTEM_SPECS
     .map(spec => {
       const source = findById(spec.id) || allOptions.find(opt => getRollladenSystemLabel(opt) === spec.label);
       return buildRollladenSystemOption(source, spec);
@@ -3777,7 +3785,7 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
 // ---- ROLLLADEN ----
 function getRollladenDisplayLabel(opt) {
   const label = opt?.label || opt?.value_key || '';
-  return label;
+  return getRollladenSystemLabel(opt) || label;
 }
 
 function isRollladenSystemSection(section) {
@@ -3854,6 +3862,7 @@ function clearRollladenWindowConfig() {
 function getRollladenSummaryLines() {
   const lines = [];
   if (windowConfig.rollladen) lines.push(['Rollladen', windowConfig.rollladen]);
+  if (windowConfig.rollladen) lines.push(['Farbe wie Fenster', '']);
   if (windowConfig.rollladenMounting) lines.push(['Montage', windowConfig.rollladenMounting]);
   if (windowConfig.rollladenDrive) lines.push(['Antrieb', windowConfig.rollladenDrive]);
   return lines;
@@ -3861,13 +3870,13 @@ function getRollladenSummaryLines() {
 
 function getRollladenDetailsText() {
   return getRollladenSummaryLines()
-    .map(([label, value]) => `${label}: ${value}`)
+    .map(([label, value]) => value ? `${label}: ${value}` : label)
     .join('\n');
 }
 
 function getRollladenDetailsHTML() {
   return getRollladenSummaryLines()
-    .map(([label, value]) => `<span class="rollladen-sidebar-line">${label}: ${value}</span>`)
+    .map(([label, value]) => `<span class="rollladen-sidebar-line">${value ? `${label}: ${value}` : label}</span>`)
     .join('');
 }
 
