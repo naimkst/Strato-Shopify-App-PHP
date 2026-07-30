@@ -360,7 +360,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Keine Auswahl',
     profile: '',
     addHeight: 0,
-    pricePerMeter: 0
+    pricePerMeter: 0,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/Nicht%20Verfuegbar.png'
   },
   {
     id: '120209',
@@ -369,7 +370,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Steinbankanschluss 40 mm',
     profile: '17 x 40 mm',
     addHeight: 40,
-    pricePerMeter: 7.84
+    pricePerMeter: 7.84,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120209.png'
   },
   {
     id: '120208',
@@ -378,7 +380,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Steinbankanschluss 30 mm',
     profile: '17 x 30 mm',
     addHeight: 30,
-    pricePerMeter: 7.19
+    pricePerMeter: 7.19,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120208.jpg'
   },
   {
     id: '120206',
@@ -387,7 +390,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Steinbankanschluss 25 mm',
     profile: '16 x 25 mm',
     addHeight: 25,
-    pricePerMeter: 6.90
+    pricePerMeter: 6.90,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120206.png'
   },
   {
     id: '120102',
@@ -396,7 +400,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Bankanschlussprofil 50 mm',
     profile: '12 x 50 mm',
     addHeight: 50,
-    pricePerMeter: 14.95
+    pricePerMeter: 14.95,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120102.jpg'
   },
   {
     id: '120237',
@@ -405,7 +410,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Bankanschlussprofil 30 mm',
     profile: '8 x 30 mm',
     addHeight: 30,
-    pricePerMeter: 7.19
+    pricePerMeter: 7.19,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120237.jpg'
   },
   {
     id: '144247',
@@ -414,7 +420,8 @@ const SILL_PROFILE_OPTIONS = [
     designation: 'Neubau Bankanschlussprofil 30 mm',
     profile: '33.5 x 30 mm',
     addHeight: 30,
-    pricePerMeter: 6.90
+    pricePerMeter: 6.90,
+    image: 'https://droplify.de/deine-fenster24/frontend/img/fensterbank-120237.jpg'
   }
 ];
 
@@ -3731,8 +3738,10 @@ function renderTab6FensterbankAnschlussprofil(subtab, subtabId) {
       ? '<span>Kein Fensterbank-Anschlussprofil</span>'
       : `<span>${profile.profile}</span><span>${profile.pricePerMeter.toFixed(2)} €/m, weiß</span>`;
 
+    const imageSrc = profile.image || 'https://droplify.de/deine-fenster24/frontend/img/Fensterbankanschlussprofil.jpg';
+
     div.innerHTML = `
-      <img class="sill-profile-image" src="https://droplify.de/deine-fenster24/frontend/img/Fensterbankanschlussprofil.jpg" alt="${profile.label || ''}">
+      <img class="sill-profile-image" src="${imageSrc}" alt="${profile.label || ''}" loading="lazy">
       <div class="sill-profile-copy">
         <strong class="sill-profile-title">${profile.label || ''}</strong>
         ${details}

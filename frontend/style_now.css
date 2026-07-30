@@ -4010,3 +4010,22 @@ div#globalBottomCheckpoint {
         height: clamp(150px, 26dvh, 230px) !important;
     }
 }
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+    width: 112px !important;
+    height: 112px !important;
+    max-width: 112px !important;
+    max-height: 112px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #fff;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+        width: 92px !important;
+        height: 92px !important;
+        max-width: 92px !important;
+        max-height: 92px !important;
+    }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-sidebar-svg-fit">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-fensterbank-images">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2280,6 +2280,25 @@ div#tab7-svgPreviewBox svg g path {
     .its_my_app_work .preview-box .svgover,
     .its_my_app_work #tab7-svgPreviewBox {
         height: clamp(150px, 26dvh, 230px) !important;
+    }
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+    width: 112px !important;
+    height: 112px !important;
+    max-width: 112px !important;
+    max-height: 112px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #fff;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-image {
+        width: 92px !important;
+        height: 92px !important;
+        max-width: 92px !important;
+        max-height: 92px !important;
     }
 }
 
