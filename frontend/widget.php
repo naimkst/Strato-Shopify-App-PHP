@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260722-dichtungen-summary-size">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-sidebar-svg-fit">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2242,6 +2242,44 @@ div#tab7-svgPreviewBox svg g path {
         height: 100%;
         display: flex;
         flex-direction: column;
+    }
+}
+
+/* Keep the right-side SVG preview fully visible on different screen sizes.
+   This final override wins over older fixed 250/300/390px sidebar SVG rules. */
+.its_my_app_work .preview-box .svgover,
+.its_my_app_work #tab7-svgPreviewBox {
+    width: 100% !important;
+    height: clamp(180px, 30dvh, 300px) !important;
+    min-height: 160px !important;
+    max-height: none !important;
+    margin: 0 auto 12px !important;
+    padding: 0 0 10px !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    flex: 0 0 auto !important;
+}
+
+.its_my_app_work .preview-box .svgover svg,
+.its_my_app_work #tab7-svgPreviewBox svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+    object-fit: contain !important;
+}
+
+@media (min-width: 1024px) and (max-height: 780px) {
+    .its_my_app_work .preview-box .svgover,
+    .its_my_app_work #tab7-svgPreviewBox {
+        height: clamp(150px, 26dvh, 230px) !important;
     }
 }
 
