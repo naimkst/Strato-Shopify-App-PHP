@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-fensterbank-images">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-fensterbank-nowrap">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2299,6 +2299,49 @@ div#tab7-svgPreviewBox svg g path {
         height: 92px !important;
         max-width: 92px !important;
         max-height: 92px !important;
+    }
+}
+
+/* Prevent Fensterbankanschluss labels from breaking inside words. */
+.its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+    grid-template-columns: 112px minmax(190px, 1fr) !important;
+    column-gap: 18px !important;
+    padding: 18px 42px 18px 18px !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-copy,
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-title,
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-copy span {
+    min-width: 0 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-title {
+    font-size: 15px !important;
+    line-height: 1.28 !important;
+    margin-bottom: 12px !important;
+    text-transform: uppercase !important;
+}
+
+.its_my_app_work #fensterbankanschlussprofil-subtab .sill-profile-copy span {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #fensterbankanschlussprofil-subtab .option-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .its_my_app_work #fensterbankanschlussprofil-subtab .card-option.sill-profile-option {
+        grid-template-columns: 92px minmax(0, 1fr) !important;
+        padding: 16px 38px 16px 14px !important;
     }
 }
 
