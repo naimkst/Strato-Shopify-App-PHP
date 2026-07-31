@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-compact">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-title-fix">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2462,6 +2462,18 @@ div#tab7-svgPreviewBox svg g path {
         height: 132px !important;
         max-height: 132px !important;
     }
+}
+
+/* Prevent hidden Tab 5 subtab headings from overlapping the following accordion sections. */
+.its_my_app_work #tab5:not(.active) .glass-subtab .section-title,
+.its_my_app_work #tab5 .glass-subtab[style*="display:none"] .section-title,
+.its_my_app_work #tab5 .glass-subtab[style*="display: none"] .section-title,
+.its_my_app_work #tab5 #farben-tab-vsg .section-title {
+    display: none !important;
+    visibility: hidden !important;
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
 }
 
 </style>

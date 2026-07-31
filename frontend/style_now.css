@@ -4192,3 +4192,15 @@ div#globalBottomCheckpoint {
         max-height: 132px !important;
     }
 }
+
+/* Prevent hidden Tab 5 subtab headings from overlapping the following accordion sections. */
+.its_my_app_work #tab5:not(.active) .glass-subtab .section-title,
+.its_my_app_work #tab5 .glass-subtab[style*="display:none"] .section-title,
+.its_my_app_work #tab5 .glass-subtab[style*="display: none"] .section-title,
+.its_my_app_work #tab5 #farben-tab-vsg .section-title {
+    display: none !important;
+    visibility: hidden !important;
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+}
