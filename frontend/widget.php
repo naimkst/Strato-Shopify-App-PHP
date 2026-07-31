@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-smaller">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-compact">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2388,6 +2388,79 @@ div#tab7-svgPreviewBox svg g path {
     .its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
         min-height: 124px !important;
         height: 124px !important;
+    }
+}
+
+/* Final VSG glass compact layout: keep these cards from inheriting large Tab 5 card sizing. */
+.its_my_app_work #tab5 #farben-tab-vsg.option-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(220px, 300px)) !important;
+    justify-content: start !important;
+    align-items: start !important;
+    gap: 16px !important;
+    max-width: 640px !important;
+    margin-top: 28px !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 150px !important;
+    height: 150px !important;
+    max-height: 150px !important;
+    padding: 16px 14px !important;
+    display: grid !important;
+    grid-template-rows: auto 1fr !important;
+    align-content: center !important;
+    align-items: center !important;
+    justify-items: center !important;
+    gap: 10px !important;
+    text-align: center !important;
+    overflow: hidden !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title {
+    margin: 0 !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title strong {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #111827 !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card > img {
+    width: 78px !important;
+    height: 62px !important;
+    max-width: 78px !important;
+    max-height: 62px !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card .checkmark-box img {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #tab5 #farben-tab-vsg.option-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        max-width: 100% !important;
+        gap: 12px !important;
+    }
+
+    .its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
+        min-height: 132px !important;
+        height: 132px !important;
+        max-height: 132px !important;
     }
 }
 
