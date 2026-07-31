@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-title-fix">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-svg-preview-padding">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2254,13 +2254,18 @@ div#tab7-svgPreviewBox svg g path {
     min-height: 160px !important;
     max-height: none !important;
     margin: 0 auto 12px !important;
-    padding: 0 0 10px !important;
+    padding: 8px 32px 14px !important;
     overflow: visible !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
     flex: 0 0 auto !important;
+}
+
+.its_my_app_work .preview-box .forscrolling,
+.its_my_app_work .preview-box .inner_scrolling {
+    overflow-x: visible !important;
 }
 
 .its_my_app_work .preview-box .svgover svg,
@@ -2280,6 +2285,7 @@ div#tab7-svgPreviewBox svg g path {
     .its_my_app_work .preview-box .svgover,
     .its_my_app_work #tab7-svgPreviewBox {
         height: clamp(150px, 26dvh, 230px) !important;
+        padding-inline: 28px !important;
     }
 }
 
