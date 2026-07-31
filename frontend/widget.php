@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-image">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-smaller">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2345,13 +2345,14 @@ div#tab7-svgPreviewBox svg g path {
     }
 }
 .its_my_app_work #tab5 #farben-tab-vsg.option-grid {
-    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
-    gap: 14px !important;
+    grid-template-columns: repeat(2, minmax(240px, 1fr)) !important;
+    gap: 12px !important;
 }
 
 .its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
-    min-height: 170px !important;
-    padding: 18px 22px !important;
+    min-height: 132px !important;
+    height: 132px !important;
+    padding: 14px 18px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -2360,21 +2361,21 @@ div#tab7-svgPreviewBox svg g path {
 }
 
 .its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title {
-    margin: 0 0 14px !important;
+    margin: 0 0 8px !important;
 }
 
 .its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title strong {
-    font-size: 14px !important;
-    line-height: 1.3 !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
     font-weight: 700 !important;
     text-transform: none !important;
 }
 
 .its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card > img {
-    width: 118px !important;
-    height: 92px !important;
-    max-width: 118px !important;
-    max-height: 92px !important;
+    width: 86px !important;
+    height: 66px !important;
+    max-width: 86px !important;
+    max-height: 66px !important;
     object-fit: contain !important;
     margin: 0 auto !important;
 }
@@ -2382,6 +2383,11 @@ div#tab7-svgPreviewBox svg g path {
 @media (max-width: 640px) {
     .its_my_app_work #tab5 #farben-tab-vsg.option-grid {
         grid-template-columns: 1fr !important;
+    }
+
+    .its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
+        min-height: 124px !important;
+        height: 124px !important;
     }
 }
 
