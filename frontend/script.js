@@ -1911,7 +1911,7 @@ tab.options.forEach((opt, idx) => {
   } catch (e) {}
 
   div.innerHTML = `
-    <span class="discount-label">-35%</span>
+    <span class="discount-label">-40%</span>
     <img src="${opt.image_url}" alt="${opt.label}">
     <div><strong>${opt.label}</strong>${extraHTML}</div>
     <span class="checkmark-box"><img src="https://droplify.de/deine-fenster24/frontend/Vector.svg"></span>
