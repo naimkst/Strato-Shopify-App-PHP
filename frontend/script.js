@@ -453,6 +453,7 @@ const VSG_PRICE_BY_LABEL = {
   '6': { double: 55.90, triple: 59.90 },
   '8': { double: 65.90, triple: 85.90 }
 };
+const VSG_GLASS_IMAGE_URL = 'https://droplify.de/deine-fenster24/frontend/img/vsg-glas.jpeg?v=20260731-vsg-image';
 
 const ROLLLADEN_DRIVE_OPTIONS = [
   {
@@ -2858,26 +2859,36 @@ if (subName.includes('griff')) {
 
       const div = document.createElement('div');
       const displayLabel = getTab5DisplayLabel(opt, subName);
+      const isVsgOption = subName.includes('vsg');
       div.className = 'card-option';
-      if (subName.includes('vsg')) div.classList.add('vsg-option-card');
+      if (isVsgOption) div.classList.add('vsg-option-card');
       div.dataset.id = opt.id;
       div.dataset.label = displayLabel || '';
       div.dataset.value = opt.value_key || '';
 
       let imageBlock = '';
-      if (opt.image_url && opt.image_url.trim().startsWith('<svg')) {
-        imageBlock = opt.image_url;
-      } else if (opt.image_url) {
-        imageBlock = `<img src="${opt.image_url}" alt="${displayLabel || ''}">`;
+      const optionImageUrl = isVsgOption ? VSG_GLASS_IMAGE_URL : opt.image_url;
+      if (optionImageUrl && optionImageUrl.trim().startsWith('<svg')) {
+        imageBlock = optionImageUrl;
+      } else if (optionImageUrl) {
+        imageBlock = `<img src="${optionImageUrl}" alt="${displayLabel || ''}">`;
       }
 
-      div.innerHTML = `
-        ${imageBlock}
-        <div><strong>${displayLabel || ''}</strong></div>
-        <span class="checkmark-box">
-          <img src="https://droplify.de/deine-fenster24/frontend/Vector.svg">
-        </span>
-      `;
+      div.innerHTML = isVsgOption
+        ? `
+          <div class="vsg-option-title"><strong>${displayLabel || ''}</strong></div>
+          ${imageBlock}
+          <span class="checkmark-box">
+            <img src="https://droplify.de/deine-fenster24/frontend/Vector.svg">
+          </span>
+        `
+        : `
+          ${imageBlock}
+          <div><strong>${displayLabel || ''}</strong></div>
+          <span class="checkmark-box">
+            <img src="https://droplify.de/deine-fenster24/frontend/Vector.svg">
+          </span>
+        `;
 
      div.onclick = function () {
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fenster Konfigurator</title>
-  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260730-fensterbank-nowrap">
+  <link rel="stylesheet" href="https://droplify.de/deine-fenster24/frontend/style_now.css?v=20260731-vsg-image">
 <style>
 
 #tab4 g#handle_handle_1 path {
@@ -2344,9 +2344,46 @@ div#tab7-svgPreviewBox svg g path {
         padding: 16px 38px 16px 14px !important;
     }
 }
+.its_my_app_work #tab5 #farben-tab-vsg.option-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+    gap: 14px !important;
+}
 
+.its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card {
+    min-height: 170px !important;
+    padding: 18px 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
 
+.its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title {
+    margin: 0 0 14px !important;
+}
 
+.its_my_app_work #tab5 #farben-tab-vsg .vsg-option-title strong {
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+}
+
+.its_my_app_work #tab5 #farben-tab-vsg .card-option.vsg-option-card > img {
+    width: 118px !important;
+    height: 92px !important;
+    max-width: 118px !important;
+    max-height: 92px !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
+
+@media (max-width: 640px) {
+    .its_my_app_work #tab5 #farben-tab-vsg.option-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
 
 </style>
 </head>
