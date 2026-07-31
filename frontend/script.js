@@ -7763,6 +7763,35 @@ infills.forEach(p => {
       return best;
     }
     const panelVents = infills.map(p=> pickVentForPanel(p.box));
+    const panelFrameOverlaps = infills.map((panel, idx) => {
+      const g = panelVents[idx];
+      const box = panel.box;
+      const fallbackFill = '#e8e6e0';
+      const out = {
+        left: { size: 0, fill: fallbackFill },
+        right: { size: 0, fill: fallbackFill },
+        top: { size: 0, fill: fallbackFill },
+        bottom: { size: 0, fill: fallbackFill }
+      };
+      if (!g || g.score >= 1e6) return out;
+      for (const v of (g?.arr || [])) {
+        const vb = safeBBox(v);
+        if (!vb) continue;
+        const fill = v.getAttribute('fill') || fallbackFill;
+        if (vb.height >= vb.width) {
+          const leftOverlap = vb.left < box.left && vb.right > box.left ? vb.right - box.left : 0;
+          const rightOverlap = vb.left < box.right && vb.right > box.right ? box.right - vb.left : 0;
+          if (leftOverlap > out.left.size) out.left = { size: leftOverlap, fill };
+          if (rightOverlap > out.right.size) out.right = { size: rightOverlap, fill };
+        } else {
+          const topOverlap = vb.top < box.top && vb.bottom > box.top ? vb.bottom - box.top : 0;
+          const bottomOverlap = vb.top < box.bottom && vb.bottom > box.bottom ? box.bottom - vb.top : 0;
+          if (topOverlap > out.top.size) out.top = { size: topOverlap, fill };
+          if (bottomOverlap > out.bottom.size) out.bottom = { size: bottomOverlap, fill };
+        }
+      }
+      return out;
+    });
     function updateVentForPanel(idx, inner){
       const g = panelVents[idx]; if(!g) return;
       const [v1,v2,v3,v4] = g.arr || [];
@@ -7780,6 +7809,81 @@ infills.forEach(p => {
       if(!_hasBad(p2)) setD(v2, p2);
       if(!_hasBad(p3)) setD(v3, p3);
       if(!_hasBad(p4)) setD(v4, p4);
+    }
+
+    function clearDynamicGapCovers() {
+      svg.querySelectorAll('[data-dynamic-gap-cover="1"]').forEach(el => el.remove());
+    }
+
+    function getFrameFill() {
+      const candidates = [
+        ...vents,
+        ...mullions.map(m => m.el),
+        ...paths.filter(p => /^outer_frame_\d+$/i.test(p.id || ''))
+      ];
+      for (const el of candidates) {
+        const fill = el.getAttribute('fill');
+        if (fill && fill !== 'none' && fill !== '#daeef7') return fill;
+      }
+      return '#e8e6e0';
+    }
+
+    function addDynamicGapCovers(orderedBoxes, resizeAxis, boxesById) {
+      clearDynamicGapCovers();
+      if (!orderedBoxes || orderedBoxes.length < 2) return;
+
+      const parent = arr[0]?.el?.parentNode || infills[0]?.el?.parentNode || svg;
+      const frameNodes = new Set([
+        ...vents,
+        ...mullions.map(m => m.el),
+        ...paths.filter(p => /^outer_frame_\d+$/i.test(p.id || ''))
+      ]);
+      const anchor = Array.from(parent.children).find(el => frameNodes.has(el));
+      const fill = getFrameFill();
+      const insertRect = (left, top, right, bottom, rectFill = fill) => {
+        if (right - left < 0.5 || bottom - top < 0.5) return;
+        const rectEl = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rectEl.setAttribute('data-dynamic-gap-cover', '1');
+        rectEl.setAttribute('fill', rectFill || fill);
+        rectEl.setAttribute('stroke', 'none');
+        rectEl.setAttribute('pointer-events', 'none');
+        rectEl.setAttribute('x', left);
+        rectEl.setAttribute('y', top);
+        rectEl.setAttribute('width', right - left);
+        rectEl.setAttribute('height', bottom - top);
+        if (anchor) parent.insertBefore(rectEl, anchor);
+        else parent.appendChild(rectEl);
+      };
+
+      for (let i = 0; i < orderedBoxes.length - 1; i++) {
+        const first = orderedBoxes[i];
+        const second = orderedBoxes[i + 1];
+        if (!first || !second) continue;
+
+        if (resizeAxis === 'x') {
+          const left = Math.min(first.right, second.left);
+          const right = Math.max(first.right, second.left);
+          const top = Math.min(first.top, second.top);
+          const bottom = Math.max(first.bottom, second.bottom);
+          insertRect(left, top, right, bottom);
+        } else {
+          const top = Math.min(first.bottom, second.top);
+          const bottom = Math.max(first.bottom, second.top);
+          const left = Math.min(first.left, second.left);
+          const right = Math.max(first.right, second.right);
+          insertRect(left, top, right, bottom);
+        }
+      }
+
+      for (let i = 0; i < infills.length; i++) {
+        const b = boxesById?.[infills[i].el.id];
+        const overlap = panelFrameOverlaps[i];
+        if (!b || !overlap) continue;
+        if (overlap.left.size) insertRect(b.left, b.top, b.left + overlap.left.size, b.bottom, overlap.left.fill);
+        if (overlap.right.size) insertRect(b.right - overlap.right.size, b.top, b.right, b.bottom, overlap.right.fill);
+        if (overlap.top.size) insertRect(b.left, b.top, b.right, b.top + overlap.top.size, overlap.top.fill);
+        if (overlap.bottom.size) insertRect(b.left, b.bottom - overlap.bottom.size, b.right, b.bottom, overlap.bottom.fill);
+      }
     }
 
     // openings normalized to their infill
@@ -8070,6 +8174,7 @@ function apply1D(uiLens){
     const b = newBoxesById[infills[i].el.id];
     if (b) updateVentForPanel(i, b);
   }
+  addDynamicGapCovers(newBoxes, axis, newBoxesById);
 
   const ptsToPath = pts => { if(!pts.length) return ''; let s = `M${pts[0].x} ${pts[0].y}`; for(let i=1;i<pts.length;i++) s+=` L${pts[i].x} ${pts[i].y}`; return s; };
   for(const o of openingsNorm){
