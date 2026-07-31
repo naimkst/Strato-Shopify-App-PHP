@@ -4,6 +4,7 @@
   var PANEL_ID = 'rollladen-cart-inquiry-panel';
   var MODAL_ID = 'rollladen-cart-inquiry-modal';
   var STYLE_ID = 'rollladen-cart-inquiry-style';
+  var INQUIRY_ENDPOINT = 'https://droplify.de/deine-fenster24/rollladen-cart-inquiry-submit.php';
   var CHECKOUT_SELECTORS = [
     'button[name="checkout"]',
     'input[name="checkout"]',
@@ -135,10 +136,8 @@
       '<div class="rollladen-inquiry-backdrop" data-rollladen-cart-close></div>',
       '<div class="rollladen-inquiry-dialog" role="dialog" aria-modal="true" aria-label="Rollladen-Anfrage stellen">',
       '<button type="button" class="rollladen-inquiry-close" aria-label="Schließen" data-rollladen-cart-close>&times;</button>',
-      '<form class="rollladen-cart-inquiry-form" method="post" action="/contact#contact_form" accept-charset="UTF-8">',
-      '<input type="hidden" name="form_type" value="contact">',
-      '<input type="hidden" name="utf8" value="✓">',
-      '<input type="hidden" name="contact[tags]" value="Rollladen Anfrage, Warenkorb">',
+      '<form class="rollladen-cart-inquiry-form" method="post" action="' + INQUIRY_ENDPOINT + '" accept-charset="UTF-8">',
+      '<input type="hidden" name="tags" value="Rollladen Anfrage, Warenkorb">',
       '<h2 class="rollladen-cart-inquiry-title">Anfrage stellen</h2>',
       '<p class="rollladen-cart-inquiry-copy">Ihr Warenkorb enthält Rollläden. Senden Sie uns eine Anfrage, wir melden uns mit den nächsten Schritten.</p>',
       '<div class="rollladen-cart-inquiry-fields">',
@@ -251,16 +250,63 @@
     });
   }
 
+  function getFieldValue(form, name) {
+    var field = form.querySelector('[name="' + name + '"]');
+    return field ? String(field.value || '').trim() : '';
+  }
+
+  function buildSubmitPayload(form) {
+    var cart = latestCart || {};
+    var rollladenItems = getRollladenItems(cart);
+    return {
+      source: 'cart',
+      shop_domain: window.location.hostname,
+      page_url: window.location.href,
+      name: getFieldValue(form, 'contact[name]'),
+      email: getFieldValue(form, 'contact[email]'),
+      phone: getFieldValue(form, 'contact[phone]'),
+      tags: getFieldValue(form, 'tags'),
+      message: getFieldValue(form, 'contact[body]'),
+      cart: {
+        token: cart.token || '',
+        item_count: cart.item_count || 0,
+        total_price: cart.total_price || 0,
+        currency: cart.currency || '',
+        rollladen_item_count: rollladenItems.length,
+        items: rollladenItems.map(function (item) {
+          return {
+            title: item.product_title || item.title || 'Konfigurator Produkt',
+            variant_title: item.variant_title || '',
+            quantity: item.quantity || 1,
+            price: item.price || 0,
+            line_price: item.line_price || 0,
+            url: item.url ? window.location.origin + item.url : '',
+            properties: getProperties(item)
+          };
+        })
+      }
+    };
+  }
+
   function submitContactForm(form) {
-    var action = (form.getAttribute('action') || '/contact#contact_form').split('#')[0] || '/contact';
+    var action = (form.getAttribute('action') || INQUIRY_ENDPOINT).split('#')[0] || INQUIRY_ENDPOINT;
     return fetch(action, {
       method: 'POST',
-      credentials: 'same-origin',
-      headers: { Accept: 'text/html,application/xhtml+xml' },
-      body: new FormData(form)
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(buildSubmitPayload(form))
     }).then(function (res) {
-      if (!res.ok) throw new Error('Inquiry submit failed');
-      return res.text();
+      return res.json().catch(function () {
+        return {};
+      }).then(function (data) {
+        if (!res.ok || !data.success) {
+          throw new Error(data.msg || 'Inquiry submit failed');
+        }
+        return data;
+      });
     });
   }
 
