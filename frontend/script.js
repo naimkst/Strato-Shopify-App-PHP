@@ -7395,6 +7395,27 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
   const xSegs = toSegments(vCutsU, liveOuter.x, liveOuter.x + liveOuter.width);   // columns (width)
   const ySegs = toSegments(hCutsU, liveOuter.y, liveOuter.y + liveOuter.height);  // rows (height)
 
+  const readStoredSegmentValues = (axis, count, total) => {
+    const raw = svg.dataset?.[axis === 'y' ? 'measurementSplitY' : 'measurementSplitX'];
+    if (!raw || !count) return null;
+    try {
+      const values = JSON.parse(raw)
+        .map(v => Math.max(0, Math.round(num(v, 0))))
+        .slice(0, count);
+      if (values.length !== count) return null;
+      const sum = values.reduce((s, v) => s + v, 0);
+      if (sum <= 0) return null;
+      const scaled = values.map(v => Math.round((v / sum) * total));
+      if (scaled.length > 1) {
+        const subtotal = scaled.slice(0, -1).reduce((s, v) => s + v, 0);
+        scaled[scaled.length - 1] = Math.max(0, Math.round(total) - subtotal);
+      }
+      return scaled;
+    } catch {
+      return null;
+    }
+  };
+
   // ===== proportional, STACKED lanes so line length == value =====
 
   // Right lane: stack row segments top→bottom
@@ -7403,10 +7424,13 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
   const usableRightLaneH   = Math.max(1, usableRightLaneBot - usableRightLaneTop);
   let rightCursorY = usableRightLaneTop;
 
+  const ySegmentValues = readStoredSegmentValues('y', ySegs.length, outH);
   if (ySegs.length >= 2) {
-    for (const [y1, y2] of ySegs) {
+    for (const [index, seg] of ySegs.entries()) {
+      const [y1, y2] = seg;
       const segHpx   = Math.max(1, (y2 - y1));                         // actual segment in artwork space
-      const ratio    = segHpx / liveOuter.height;                      // share of total height
+      const storedValue = ySegmentValues ? ySegmentValues[index] : null;
+      const ratio    = storedValue != null ? storedValue / outH : segHpx / liveOuter.height; // share of total height
       const drawH    = Math.max(1, Math.round(ratio * usableRightLaneH)); // how tall we draw in lane
       const x        = RIGHT_SPLIT_X;
       const yStart   = rightCursorY;
@@ -7422,7 +7446,7 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
       const t = document.createElementNS('http://www.w3.org/2000/svg','text');
       t.setAttribute('x', x); t.setAttribute('y', ym);
       t.setAttribute('style', textStyle);
-      t.textContent = Math.round(outH * ratio); // label already correct before; now line matches it
+      t.textContent = storedValue != null ? Math.round(storedValue) : Math.round(outH * ratio); // label already correct before; now line matches it
       sg.appendChild(t);
 
       rightCursorY = yEnd; // stack next one under this
@@ -7435,10 +7459,13 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
   const usableBottomLaneW    = Math.max(1, usableBottomLaneRight - usableBottomLaneLeft);
   let bottomCursorX = usableBottomLaneLeft;
 
+  const xSegmentValues = readStoredSegmentValues('x', xSegs.length, outW);
   if (xSegs.length >= 2) {
-    for (const [x1, x2] of xSegs) {
+    for (const [index, seg] of xSegs.entries()) {
+      const [x1, x2] = seg;
       const segWpx   = Math.max(1, (x2 - x1));
-      const ratio    = segWpx / liveOuter.width;
+      const storedValue = xSegmentValues ? xSegmentValues[index] : null;
+      const ratio    = storedValue != null ? storedValue / outW : segWpx / liveOuter.width;
       const drawW    = Math.max(1, Math.round(ratio * usableBottomLaneW));
       const y        = BOTTOM_SPLIT_Y;
       const xStart   = bottomCursorX;
@@ -7454,7 +7481,7 @@ function drawSelectedMeasurements(svg, a, b, c, d, outW, outH) {
       const t = document.createElementNS('http://www.w3.org/2000/svg','text');
       t.setAttribute('x', xm); t.setAttribute('y', y);
       t.setAttribute('style', textStyle);
-      t.textContent = Math.round(outW * ratio);
+      t.textContent = storedValue != null ? Math.round(storedValue) : Math.round(outW * ratio);
       sg.appendChild(t);
 
       bottomCursorX = xEnd; // stack next to the right
@@ -8006,22 +8033,26 @@ function apply1D(uiLens){
   const s = totalPanels / ((vals.reduce((a,b)=>a+b,0)) || 1);
   vals = vals.map(v=> Math.max(0, v*s));
 
-  const newBoxes=[], centers=[];
+  const newBoxes=[], newBoxesById={}, centers=[];
   let cur = totalMin;
   for(let i=0;i<arr.length;i++){
+    let box;
     if(axis==='x'){
       const top=arr[i].box.top, bottom=arr[i].box.bottom;
       const left=cur, right=cur+vals[i];
-      newBoxes.push({left,top,right,bottom});
+      box = {left,top,right,bottom};
+      newBoxes.push(box);
       cur = right;
       if(i<gaps.length){ centers.push(cur + gaps[i]/2); cur += gaps[i]; }
     }else{
       const left=arr[i].box.left, right=arr[i].box.right;
       const top=cur, bottom=cur+vals[i];
-      newBoxes.push({left,top,right,bottom});
+      box = {left,top,right,bottom};
+      newBoxes.push(box);
       cur = bottom;
       if(i<gaps.length){ centers.push(cur + gaps[i]/2); cur += gaps[i]; }
     }
+    newBoxesById[arr[i].el.id] = box;
   }
 
   // --- redraw infills as rects
@@ -8035,13 +8066,19 @@ function apply1D(uiLens){
   }
 
   // vents + openings
-  for(let i=0;i<arr.length;i++) updateVentForPanel(i, newBoxes[i]);
+  for(let i=0;i<infills.length;i++){
+    const b = newBoxesById[infills[i].el.id];
+    if (b) updateVentForPanel(i, b);
+  }
 
   const ptsToPath = pts => { if(!pts.length) return ''; let s = `M${pts[0].x} ${pts[0].y}`; for(let i=1;i<pts.length;i++) s+=` L${pts[i].x} ${pts[i].y}`; return s; };
   for(const o of openingsNorm){
     const pts = o.norm.map(p=>{
       if(p.panel==null) return {x:p.x,y:p.y};
-      const b=newBoxes[p.panel], w=b.right-b.left, h=b.bottom-b.top;
+      const source = infills[p.panel];
+      const b = source ? newBoxesById[source.el.id] : null;
+      if (!b) return {x:p.x,y:p.y};
+      const w=b.right-b.left, h=b.bottom-b.top;
       return {x:b.left + p.tx*w, y:b.top + p.ty*h};
     });
     setD(o.el, ptsToPath(pts));
@@ -8156,6 +8193,74 @@ function buildInputs(model){
       const vbH = +svgNode.getAttribute('height') || vb[3] || 400;
       drawSelectedMeasurements(svgNode, 0, 0, vbW, vbH, vbW, vbH);
     }
+  }
+
+  function readMeasurementSplit(axis, count, total){
+    const svgNode = getSVG();
+    const raw = svgNode?.dataset?.[axis === 'y' ? 'measurementSplitY' : 'measurementSplitX'];
+    if (!raw || !count) return null;
+    try {
+      const values = JSON.parse(raw)
+        .map(v => Math.max(0, Math.round(parseConfiguratorNumber(v))))
+        .slice(0, count);
+      if (values.length !== count) return null;
+      const sum = values.reduce((s, v) => s + v, 0);
+      if (sum <= 0) return null;
+      const scaled = values.map(v => Math.round((v / sum) * total));
+      if (scaled.length > 1) {
+        const subtotal = scaled.slice(0, -1).reduce((s, v) => s + v, 0);
+        scaled[scaled.length - 1] = Math.max(0, Math.round(total) - subtotal);
+      }
+      return scaled;
+    } catch {
+      return null;
+    }
+  }
+
+  function setMeasurementSplit(axis, values){
+    const svgNode = getSVG();
+    if (!svgNode) return;
+    const key = axis === 'y' ? 'measurementSplitY' : 'measurementSplitX';
+    svgNode.dataset[key] = JSON.stringify(values.map(v => Math.max(0, Math.round(parseConfiguratorNumber(v)))));
+  }
+
+  function normalizeSegmentValues(values, editedIndex, total){
+    const count = values.length;
+    const safeTotal = Math.max(0, Math.round(parseConfiguratorNumber(total)));
+    if (!count) return [];
+    if (count === 1) return [safeTotal];
+
+    const index = Math.max(0, Math.min(count - 1, parseInt(editedIndex, 10) || 0));
+    const out = values.map(v => Math.max(0, Math.round(parseConfiguratorNumber(v))));
+    out[index] = Math.max(0, Math.min(out[index], safeTotal));
+
+    const otherIndexes = out.map((_, i) => i).filter(i => i !== index);
+    const remainder = Math.max(0, safeTotal - out[index]);
+    const otherTotal = otherIndexes.reduce((sum, i) => sum + out[i], 0);
+    let running = out[index];
+
+    if (otherTotal > 0) {
+      otherIndexes.forEach((i, position) => {
+        if (position === otherIndexes.length - 1) {
+          out[i] = Math.max(0, safeTotal - running);
+        } else {
+          out[i] = Math.round((out[i] / otherTotal) * remainder);
+          running += out[i];
+        }
+      });
+    } else {
+      const split = splitEvenly(remainder, otherIndexes.length);
+      otherIndexes.forEach((i, position) => {
+        out[i] = split[position] || 0;
+      });
+    }
+
+    const sum = out.reduce((s, v) => s + v, 0);
+    if (sum !== safeTotal) {
+      const adjustIndex = otherIndexes[otherIndexes.length - 1] ?? index;
+      out[adjustIndex] = Math.max(0, out[adjustIndex] + safeTotal - sum);
+    }
+    return out;
   }
 
   if(model.mode==='ragged'){
@@ -8292,6 +8397,7 @@ function onRowH(r) {
   // normalize into model space
   rowH = values.map(v => uiToModel(v, 'y', 1, 1));
   model.apply(rowH, rowW);
+  refreshMeasurements();
 }
 
 function onRowW(r, c) {
@@ -8302,6 +8408,7 @@ function onRowW(r, c) {
     });
     rowW[r] = values.map(v => uiToModel(v, 'x', 1, 1));
     model.apply(rowH, rowW);
+    refreshMeasurements();
     return;
   }
 
@@ -8320,6 +8427,7 @@ function onRowW(r, c) {
 
   rowW[r] = values.map(v => uiToModel(v, 'x', 1, 1));
   model.apply(rowH, rowW);
+  refreshMeasurements();
 }
 
     hInputs.forEach((inp,r)=>{
@@ -8349,7 +8457,9 @@ function onRowW(r, c) {
     const totalRaw = vals.reduce((a,b)=>a+b,0);
     const outer    = (model.axis==='x') ? wVal : hVal;
     const forceEqualSlidingSplit = isSlidingDoorConfiguration() && model.axis === 'x' && model.infillCount > 1;
-    const equalSlidingValues = forceEqualSlidingSplit ? splitEvenly(outer, model.infillCount) : null;
+    const equalValues = splitEvenly(outer, model.infillCount);
+    const storedValues = forceEqualSlidingSplit ? null : readMeasurementSplit(model.axis, model.infillCount, outer);
+    const initialValues = forceEqualSlidingSplit ? equalValues : (storedValues || equalValues);
 
     for(let i=0;i<model.infillCount;i++){
       const wrap=document.createElement('div'); wrap.style.margin='6px 0';
@@ -8360,7 +8470,7 @@ function onRowW(r, c) {
 
       const rawVal = vals[i];
       const ratio  = rawVal / totalRaw;
-      const uiVal  = forceEqualSlidingSplit ? equalSlidingValues[i] : Math.round(outer * ratio);
+      const uiVal  = initialValues[i] ?? Math.round(outer * ratio);
       inp.value = uiVal;
       if (forceEqualSlidingSplit) {
         inp.readOnly = true;
@@ -8378,7 +8488,7 @@ function onRowW(r, c) {
     // ✅ Fix: adjust last so sum matches outer
     if (inputs.length > 1) {
       if (forceEqualSlidingSplit) {
-        equalSlidingValues.forEach((value, index) => {
+        equalValues.forEach((value, index) => {
           if (inputs[index]) inputs[index].value = value;
         });
       } else {
@@ -8386,6 +8496,7 @@ function onRowW(r, c) {
         inputs[inputs.length-1].value = outer - sum;
       }
     }
+    setMeasurementSplit(model.axis, inputs.map(el => +el.value || 0));
 
     function writeExcept(skip){
       if (forceEqualSlidingSplit) {
@@ -8412,7 +8523,9 @@ function onRowW(r, c) {
     values.forEach((value, index) => {
       if (inputs[index]) inputs[index].value = value;
     });
+    setMeasurementSplit(model.axis, values);
     model.apply1D(values);
+    refreshMeasurements();
     return;
   }
 
@@ -8421,15 +8534,14 @@ function onRowW(r, c) {
   inputs[i].value = uiVal;
 
   let values = inputs.map(el => +el.value || 0);
+  values = normalizeSegmentValues(values, i, outer);
+  values.forEach((value, index) => {
+    if (inputs[index]) inputs[index].value = value;
+  });
 
-  // force last input to absorb remainder
-  if (inputs.length > 1) {
-    const sum = values.slice(0, -1).reduce((s, v) => s + v, 0);
-    values[values.length - 1] = Math.max(0, outer - sum);
-    inputs[inputs.length - 1].value = values[values.length - 1];
-  }
-
+  setMeasurementSplit(model.axis, values);
   model.apply1D(values);
+  refreshMeasurements();
 }
 
     inputs.forEach((inp,i)=>{
