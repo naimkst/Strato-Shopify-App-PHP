@@ -2688,6 +2688,7 @@ if (hideGriffIds.includes(openingId)) {
   if (!grid) return;
   grid.classList.toggle('tab5-isolierglas-grid', subName.includes('isolierglas'));
   grid.classList.toggle('tab5-ornament-grid', subName.includes('ornament'));
+  grid.classList.toggle('tab5-vsg-grid', subName.includes('vsg'));
 
   // ===============================
   // ACTIVE BUTTON
