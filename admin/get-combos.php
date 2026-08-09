@@ -19,7 +19,7 @@ if (!empty($_GET['combo_option_ids'])) {
     $comboKey = json_encode(array_values(array_map('strval', $decoded)));
     $hw = [];
 
-    $stmt = $conn->prepare("SELECT * FROM height_width_prices WHERE combo_option_ids = ? ORDER BY width, height, id");
+    $stmt = $conn->prepare("SELECT * FROM height_width_prices WHERE combo_option_ids = ? AND price > 0 AND ABS(price - 55.00) > 0.004 ORDER BY width, height, id");
     $stmt->bind_param("s", $comboKey);
     $stmt->execute();
     $res = $stmt->get_result();
@@ -37,7 +37,7 @@ if (!empty($_GET['combo_option_ids'])) {
 }
 
 $hw = [];
-$res = $conn->query("SELECT * FROM height_width_prices");
+$res = $conn->query("SELECT * FROM height_width_prices WHERE price > 0 AND ABS(price - 55.00) > 0.004");
 while ($r = $res->fetch_assoc()) $hw[] = $r;
 
 $combo = [];

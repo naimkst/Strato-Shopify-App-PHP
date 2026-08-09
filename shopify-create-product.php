@@ -119,6 +119,14 @@ function normalizeShopifyMoney($value) {
 }
 
 $variantPrice = normalizeShopifyMoney($data['price'] ?? '');
+if ((float)$variantPrice <= 0) {
+    http_response_code(422);
+    echo json_encode([
+        "success" => false,
+        "msg" => "Invalid configurator price"
+    ]);
+    exit;
+}
 
 // ---------- PRODUCT ----------
 $product = [
