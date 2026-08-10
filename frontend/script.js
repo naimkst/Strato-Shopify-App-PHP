@@ -848,6 +848,70 @@ function getFirstValidPriceMatrixCell(combos) {
   return rows[0] || null;
 }
 
+function getSortedUniqueDimensions(values) {
+  return Array.from(new Set(
+    (values || [])
+      .map(value => Math.round(parseConfiguratorNumber(value)))
+      .filter(value => value > 0)
+  )).sort((a, b) => a - b);
+}
+
+function getSmallestPositiveGap(values) {
+  const unique = getSortedUniqueDimensions(values);
+  let gap = 0;
+
+  for (let i = 1; i < unique.length; i += 1) {
+    const diff = unique[i] - unique[i - 1];
+    if (diff > 0 && (!gap || diff < gap)) gap = diff;
+  }
+
+  return gap || 1;
+}
+
+function setDimensionDatalist(input, id, values) {
+  if (!input) return;
+
+  let list = document.getElementById(id);
+  if (!list) {
+    list = document.createElement('datalist');
+    list.id = id;
+    input.insertAdjacentElement('afterend', list);
+  }
+
+  list.innerHTML = '';
+  getSortedUniqueDimensions(values).forEach(value => {
+    const option = document.createElement('option');
+    option.value = String(value);
+    list.appendChild(option);
+  });
+
+  input.setAttribute('list', id);
+}
+
+function updateDimensionInputMatrixHints(combos) {
+  const widthInput = document.getElementById('width');
+  const heightInput = document.getElementById('height');
+  if (!widthInput || !heightInput) return;
+
+  const rows = normalizePriceMatrixRows(combos);
+  if (!rows.length) {
+    widthInput.step = '1';
+    heightInput.step = '1';
+    return;
+  }
+
+  const allWidths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const currentWidth = Math.round(parseConfiguratorNumber(widthInput.value));
+  const rowsForWidth = rows.filter(row => row.width === currentWidth);
+  const activeHeightRows = rowsForWidth.length ? rowsForWidth : rows;
+  const activeHeights = getSortedUniqueDimensions(activeHeightRows.map(row => row.height));
+
+  widthInput.step = String(getSmallestPositiveGap(allWidths));
+  heightInput.step = String(getSmallestPositiveGap(activeHeights));
+  setDimensionDatalist(widthInput, 'price-matrix-width-options', allWidths);
+  setDimensionDatalist(heightInput, 'price-matrix-height-options', activeHeights);
+}
+
 function getDimensionValidationEl() {
   let el = document.getElementById('groesse-validation-message');
   if (el) return el;
@@ -5591,11 +5655,35 @@ function getMatchingComboRows() {
 
 function findPriceForSize(combos, widthInput, heightInput) {
   const rows = normalizePriceMatrixRows(combos);
-  const width = parseConfiguratorNumber(widthInput);
-  const height = parseConfiguratorNumber(heightInput);
+  const rawWidth = Math.round(parseConfiguratorNumber(widthInput));
+  const rawHeight = Math.round(parseConfiguratorNumber(heightInput));
+  const { width, height } = getPricingLookupDimensions(rows, rawWidth, rawHeight);
   if (!rows.length || !width || !height) return null;
 
   return rows.find(row => row.width === width && row.height === height) || null;
+}
+
+function refreshCurrentPriceFromMatrix() {
+  const comboKey = getCurrentPricingComboKey();
+
+  if (comboKey && !hasCachedPricingRows(comboKey)) {
+    loadPricingRowsForCombo(comboKey)
+      .then(() => {
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+        }
+      })
+      .catch(err => {
+        console.error('Price grid loading failed', err);
+        COMBO_ROWS_BY_KEY[comboKey] = [];
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateTab4PriceAndSVGFromCombo([]);
+        }
+      });
+    return;
+  }
+
+  updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
 }
 
 function setGroesseLoadingState(widthInput, heightInput) {
@@ -5737,11 +5825,9 @@ function updateGroesseDropdownsAndSidebar() {
 
   widthInput.min = String(minW);
   widthInput.max = String(maxW);
-  widthInput.step = '1';
 
   heightInput.min = String(minH);
   heightInput.max = String(maxH);
-  heightInput.step = '1';
 
   const currentExact = findPriceForSize(validRows, widthInput.value, heightInput.value);
   if (!currentExact) {
@@ -5750,6 +5836,8 @@ function updateGroesseDropdownsAndSidebar() {
     heightInput.value = String(defaultCell.height);
   }
 
+  updateDimensionInputMatrixHints(validRows);
+
   // Clear old listeners
   widthInput.oninput = heightInput.oninput = null;
   widthInput.onchange = heightInput.onchange = null;
@@ -5757,32 +5845,32 @@ function updateGroesseDropdownsAndSidebar() {
   widthInput.onkeydown = heightInput.onkeydown = null;
 
   widthInput.oninput = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onchange = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onblur = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onkeydown = (e) => {
     if (e.key === 'Enter') {
-      updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+      refreshCurrentPriceFromMatrix();
     }
   };
 
   heightInput.oninput = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onchange = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onblur = () => {
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onkeydown = (e) => {
     if (e.key === 'Enter') {
-      updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+      refreshCurrentPriceFromMatrix();
     }
   };
 
@@ -5800,6 +5888,8 @@ function updateTab4PriceAndSVGFromCombo(combos) {
   const heightInput = document.getElementById('height');
   let widthVal = parseInt(widthInput?.value, 10);
   let heightVal = parseInt(heightInput?.value, 10);
+
+  updateDimensionInputMatrixHints(combos);
 
   if (!combos || combos.length === 0 || isNaN(widthVal) || isNaN(heightVal)) {
     setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine Preisfelder hinterlegt.');
