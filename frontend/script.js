@@ -335,10 +335,15 @@ let pendingStaticCode = null;
 
 let basePriceTab4 = 0;   // stores price from Tab 4
 let hasVisitedTab5 = false;
+let currentPriceMatrixValid = false;
+let currentDimensionValidationMessage = '';
 //let extraPriceTab5 = 0;  // stores selected option price from Tab 5
 let extraPriceTab5Map = {};
 let extraPriceTab6Map = {};
 let TAB6_SELECTION = {};
+
+const INVALID_MATRIX_PRICE_VALUES = [55];
+const MIN_ELEMENT_WIDTH_MM = 300;
 
 const SILL_PROFILE_SUBTAB_ID = '__fensterbankanschlussprofil__';
 const SILL_PROFILE_PRICE_KEY = SILL_PROFILE_SUBTAB_ID;
@@ -812,6 +817,244 @@ function parseConfiguratorNumber(value) {
   return Number.isFinite(number) ? number : 0;
 }
 
+function isInvalidMatrixPlaceholderPrice(value) {
+  const price = parseConfiguratorNumber(value);
+  return INVALID_MATRIX_PRICE_VALUES.some(invalidPrice => Math.abs(price - invalidPrice) < 0.005);
+}
+
+function isValidMatrixPrice(value) {
+  const price = parseConfiguratorNumber(value);
+  return price > 0 && !isInvalidMatrixPlaceholderPrice(price);
+}
+
+function normalizePriceMatrixRows(combos, includeInvalid = false) {
+  return (combos || [])
+    .map(row => ({
+      ...row,
+      width: Math.round(parseConfiguratorNumber(row.width)),
+      height: Math.round(parseConfiguratorNumber(row.height)),
+      price: parseConfiguratorNumber(row.price)
+    }))
+    .filter(row =>
+      row.width > 0 &&
+      row.height > 0 &&
+      (includeInvalid || isValidMatrixPrice(row.price))
+    );
+}
+
+function getFirstValidPriceMatrixCell(combos) {
+  const rows = normalizePriceMatrixRows(combos);
+  rows.sort((a, b) => a.width - b.width || a.height - b.height || a.id - b.id);
+  return rows[0] || null;
+}
+
+function getNextMatrixDimension(values, requestedValue) {
+  const unique = getSortedUniqueDimensions(values);
+  const requested = Math.round(parseConfiguratorNumber(requestedValue));
+  if (!unique.length || !requested) return null;
+
+  return unique.find(value => value >= requested) || null;
+}
+
+function getSortedUniqueDimensions(values) {
+  return Array.from(new Set(
+    (values || [])
+      .map(value => Math.round(parseConfiguratorNumber(value)))
+      .filter(value => value > 0)
+  )).sort((a, b) => a - b);
+}
+
+function getSmallestPositiveGap(values) {
+  const unique = getSortedUniqueDimensions(values);
+  let gap = 0;
+
+  for (let i = 1; i < unique.length; i += 1) {
+    const diff = unique[i] - unique[i - 1];
+    if (diff > 0 && (!gap || diff < gap)) gap = diff;
+  }
+
+  return gap || 1;
+}
+
+function setDimensionDatalist(input, id, values) {
+  if (!input) return;
+
+  let list = document.getElementById(id);
+  if (!list) {
+    list = document.createElement('datalist');
+    list.id = id;
+    input.insertAdjacentElement('afterend', list);
+  }
+
+  list.innerHTML = '';
+  getSortedUniqueDimensions(values).forEach(value => {
+    const option = document.createElement('option');
+    option.value = String(value);
+    list.appendChild(option);
+  });
+
+  input.setAttribute('list', id);
+}
+
+function updateDimensionInputMatrixHints(combos) {
+  const widthInput = document.getElementById('width');
+  const heightInput = document.getElementById('height');
+  if (!widthInput || !heightInput) return;
+
+  const rows = normalizePriceMatrixRows(combos);
+  if (!rows.length) {
+    widthInput.step = '1';
+    heightInput.step = '1';
+    return;
+  }
+
+  const allWidths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const currentWidth = Math.round(parseConfiguratorNumber(widthInput.value));
+  const rowsForWidth = rows.filter(row => row.width === currentWidth);
+  const activeHeightRows = rowsForWidth.length ? rowsForWidth : rows;
+  const activeHeights = getSortedUniqueDimensions(activeHeightRows.map(row => row.height));
+
+  widthInput.step = '1';
+  heightInput.step = '1';
+  setDimensionDatalist(widthInput, 'price-matrix-width-options', allWidths);
+  setDimensionDatalist(heightInput, 'price-matrix-height-options', activeHeights);
+}
+
+function getDimensionValidationEl() {
+  let el = document.getElementById('groesse-validation-message');
+  if (el) return el;
+
+  const sizeTab = document.getElementById('groesse-tab');
+  const row = sizeTab?.querySelector('.flex-row');
+  if (!sizeTab || !row) return null;
+
+  el = document.createElement('div');
+  el.id = 'groesse-validation-message';
+  el.setAttribute('role', 'alert');
+  Object.assign(el.style, {
+    display: 'none',
+    margin: '12px 0 0',
+    padding: '10px 12px',
+    border: '1px solid #d38b00',
+    borderRadius: '4px',
+    color: '#8a4f00',
+    background: '#fff7e6',
+    fontSize: '14px',
+    lineHeight: '1.45'
+  });
+  row.insertAdjacentElement('afterend', el);
+  return el;
+}
+
+function setDimensionValidationMessage(message = '') {
+  currentDimensionValidationMessage = message;
+  const el = getDimensionValidationEl();
+  if (!el) return;
+
+  el.textContent = message;
+  el.style.display = message ? 'block' : 'none';
+
+  const widthInput = document.getElementById('width');
+  const heightInput = document.getElementById('height');
+  [widthInput, heightInput].forEach(input => {
+    if (!input) return;
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    input.style.borderColor = message ? '#d38b00' : '';
+  });
+}
+
+function formatDimensionRange(values) {
+  const unique = Array.from(new Set(values.map(v => Math.round(parseConfiguratorNumber(v))).filter(v => v > 0)))
+    .sort((a, b) => a - b);
+  if (!unique.length) return '';
+  if (unique.length <= 8) return unique.map(v => `${v} mm`).join(', ');
+  return `${unique[0]}-${unique[unique.length - 1]} mm`;
+}
+
+function buildDimensionValidationMessage(combos, widthValue, heightValue) {
+  const rows = normalizePriceMatrixRows(combos);
+  const width = Math.round(parseConfiguratorNumber(widthValue));
+  const height = Math.round(parseConfiguratorNumber(heightValue));
+
+  if (!rows.length) {
+    return 'Für diese Auswahl sind keine gültigen Preisfelder hinterlegt.';
+  }
+
+  const widths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const minWidth = widths[0];
+  const maxWidth = widths[widths.length - 1];
+  const lookupWidth = getNextMatrixDimension(widths, width);
+
+  if (!width || width < minWidth || width > maxWidth || !lookupWidth) {
+    return `Diese Breite ist nicht verfügbar. Gültige Breiten: ${formatDimensionRange(widths)}.`;
+  }
+
+  const widthRows = rows.filter(row => row.width === lookupWidth);
+  const heights = getSortedUniqueDimensions(widthRows.map(row => row.height));
+  const minHeight = heights[0];
+  const maxHeight = heights[heights.length - 1];
+  const requestedHeight = Math.round(parseConfiguratorNumber(
+    getPricingLookupDimensions(rows, width, height, { resolveToMatrix: false }).height
+  ));
+
+  if (!requestedHeight || requestedHeight < minHeight || requestedHeight > maxHeight) {
+    return `Diese Höhe ist für ${width} mm Breite nicht verfügbar. Gültige Höhen: ${minHeight}-${maxHeight} mm.`;
+  }
+
+  return 'Für diese Größe ist kein gültiger Preis hinterlegt.';
+}
+
+function setCurrentPriceMatrixValid(isValid, message = '') {
+  currentPriceMatrixValid = Boolean(isValid);
+  setDimensionValidationMessage(isValid ? '' : message);
+  updateConfiguratorCartButtonState();
+}
+
+function updateConfiguratorCartButtonState() {
+  const disabled = !currentPriceMatrixValid;
+  document.querySelectorAll('#tab4 button.btnmain-cart.cart, #tab5 button.btnmain-cart.cart, #tab6 button.btnmain-cart.cart, #tab7 button.btnmain-cart.cart')
+    .forEach(button => {
+      button.disabled = disabled;
+      button.style.opacity = disabled ? '0.55' : '';
+      button.style.cursor = disabled ? 'not-allowed' : '';
+      if (disabled) {
+        button.setAttribute('aria-disabled', 'true');
+        button.title = currentDimensionValidationMessage || 'Bitte wählen Sie eine gültige Größe.';
+      } else {
+        button.removeAttribute('aria-disabled');
+        button.removeAttribute('title');
+      }
+    });
+}
+
+function getElementSplitValidationMessage() {
+  const widthInputs = Array.from(document.querySelectorAll('#elemets_group .element-width-input'))
+    .filter(input => !input.readOnly && input.offsetParent !== null);
+
+  const invalid = widthInputs.find(input => parseConfiguratorNumber(input.value) > 0 && parseConfiguratorNumber(input.value) < MIN_ELEMENT_WIDTH_MM);
+  if (!invalid) return '';
+
+  return `Die Elementbreite muss mindestens ${MIN_ELEMENT_WIDTH_MM} mm betragen.`;
+}
+
+function ensureCurrentConfigurationCanSubmit() {
+  const comboRows = getMatchingComboRows();
+  const width = document.getElementById('width')?.value;
+  const height = document.getElementById('height')?.value;
+  const tier = findPriceForSize(comboRows, width, height);
+  const splitMessage = getElementSplitValidationMessage();
+
+  if (!tier || splitMessage) {
+    const message = splitMessage || buildDimensionValidationMessage(comboRows, width, height);
+    setCurrentPriceMatrixValid(false, message);
+    updateTab4PriceAndSVGFromCombo(comboRows);
+    return false;
+  }
+
+  setCurrentPriceMatrixValid(true);
+  return true;
+}
+
 function createSlidingDoorRahmenFallbackOption(position) {
   const labels = {
     oben: 'Rahmenverbreiterung oben',
@@ -884,19 +1127,46 @@ function getDimensionInputBounds(rawMinW, rawMaxW, rawMinH, rawMaxH) {
   };
 }
 
-function getPricingLookupDimensions(combos, widthValue, heightValue) {
-  if (!isSlidingDoorConfiguration()) {
-    return { width: widthValue, height: heightValue };
+function getPricingLookupDimensions(combos, widthValue, heightValue, options = {}) {
+  const resolveToMatrix = options.resolveToMatrix !== false;
+  const rows = normalizePriceMatrixRows(combos);
+  const rawWidth = Math.round(parseConfiguratorNumber(widthValue));
+  const rawHeight = Math.round(parseConfiguratorNumber(heightValue));
+
+  if (!rows.length || !rawWidth || !rawHeight) {
+    return { width: rawWidth, height: rawHeight };
   }
 
-  const heights = (combos || [])
-    .map(row => parseConfiguratorNumber(row.height))
-    .filter(height => height > 0);
-  const minMatrixHeight = heights.length ? Math.min(...heights) : heightValue;
+  const allHeights = getSortedUniqueDimensions(rows.map(row => row.height));
+  const minMatrixHeight = allHeights[0] || rawHeight;
+  const effectiveHeight = isSlidingDoorConfiguration() && rawHeight < minMatrixHeight
+    ? minMatrixHeight
+    : rawHeight;
+
+  if (!resolveToMatrix) {
+    return { width: rawWidth, height: effectiveHeight };
+  }
+
+  const widths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const minWidth = widths[0];
+  const maxWidth = widths[widths.length - 1];
+  if (rawWidth < minWidth || rawWidth > maxWidth) {
+    return { width: null, height: null };
+  }
+
+  const lookupWidth = getNextMatrixDimension(widths, rawWidth);
+  const widthRows = rows.filter(row => row.width === lookupWidth);
+  const heights = getSortedUniqueDimensions(widthRows.map(row => row.height));
+  const minHeight = heights[0];
+  const maxHeight = heights[heights.length - 1];
+
+  if (effectiveHeight < minHeight || effectiveHeight > maxHeight) {
+    return { width: lookupWidth, height: null };
+  }
 
   return {
-    width: widthValue,
-    height: heightValue < minMatrixHeight ? minMatrixHeight : heightValue
+    width: lookupWidth,
+    height: getNextMatrixDimension(heights, effectiveHeight)
   };
 }
 
@@ -909,6 +1179,49 @@ function splitEvenly(total, count) {
   return Array.from({ length: safeCount }, (_, index) =>
     base + (index < remainder ? 1 : 0)
   );
+}
+
+function normalizeSegmentValuesWithMinimum(values, editedIndex, total, minimum) {
+  const count = values.length;
+  const safeTotal = Math.max(0, Math.round(parseConfiguratorNumber(total)));
+  if (!count) return [];
+  if (count === 1) return [safeTotal];
+
+  const min = count * minimum <= safeTotal ? minimum : Math.floor(safeTotal / count);
+  const index = Math.max(0, Math.min(count - 1, parseInt(editedIndex, 10) || 0));
+  const maxEdited = Math.max(min, safeTotal - (min * (count - 1)));
+  const out = values.map(v => Math.max(min, Math.round(parseConfiguratorNumber(v))));
+  out[index] = Math.max(min, Math.min(out[index], maxEdited));
+
+  const otherIndexes = out.map((_, i) => i).filter(i => i !== index);
+  const otherBase = min * otherIndexes.length;
+  const distributable = Math.max(0, safeTotal - out[index] - otherBase);
+  const weights = otherIndexes.map(i => Math.max(0, out[i] - min));
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+  let running = out[index];
+
+  otherIndexes.forEach((i, position) => {
+    const isLast = position === otherIndexes.length - 1;
+    if (isLast) {
+      out[i] = Math.max(min, safeTotal - running);
+      return;
+    }
+
+    const extra = totalWeight > 0
+      ? Math.round((weights[position] / totalWeight) * distributable)
+      : Math.floor(distributable / otherIndexes.length);
+
+    out[i] = min + extra;
+    running += out[i];
+  });
+
+  const sum = out.reduce((acc, value) => acc + value, 0);
+  if (sum !== safeTotal) {
+    const adjustIndex = otherIndexes[otherIndexes.length - 1] ?? index;
+    out[adjustIndex] = Math.max(min, out[adjustIndex] + safeTotal - sum);
+  }
+
+  return out;
 }
 
 function setSidebarPrice(element, value, emptyText = '—') {
@@ -3264,6 +3577,14 @@ updateSillProfilePrice();
 const totalTab5 = Object.values(extraPriceTab5Map).reduce((a, b) => a + b, 0);
 const totalTab6 = Object.values(extraPriceTab6Map || {}).reduce((a, b) => a + b, 0);
 
+if (!currentPriceMatrixValid || basePriceTab4 <= 0) {
+  ['tab4-price', 'glass-price', 'zubehoer-price', 't7-price'].forEach(id => {
+    setSidebarPrice(document.getElementById(id), null, '-');
+  });
+  updateConfiguratorCartButtonState();
+  return;
+}
+
 const total = (basePriceTab4 + totalTab5 + totalTab6) * currentQty;
   // Tab 4 sidebar
 const t4Price = document.querySelector('#tab4 .price-box .price');
@@ -5078,13 +5399,14 @@ document.addEventListener("click", function(e) {
     const ids = Array.from(arguments);
     for (const id of ids) {
       const text = (document.getElementById(id)?.textContent || '').trim();
-      if (/\d/.test(text)) return text;
+      if (/\d/.test(text) && text !== '-') return text;
     }
-    return '0.00 €';
+    return '';
   }
 
   // --------------- TAB 7 ----------------
   if (e.target && e.target.matches("#tab7 button.btnmain-cart.cart")) {
+    if (!ensureCurrentConfigurationCanSubmit()) return;
     const svgNode = document.querySelector("#tab7-svgPreviewBox svg");
 	    if (svgNode) svgNode.setAttribute("style", "max-width:200px; max-height:200px;object-fit:fill;overflow:visible;");
 	const mullion = svgNode?.querySelector("#mullion_1");
@@ -5139,6 +5461,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
 
   // --------------- TAB 4 ----------------
   if (e.target && e.target.matches("#tab4 button.btnmain-cart.cart")) {
+    if (!ensureCurrentConfigurationCanSubmit()) return;
     const svgNode = document.querySelector("#tab4 #svgPreviewBox svg");
     if (svgNode) svgNode.setAttribute("style", "max-width:200px; max-height:200px;object-fit:fill;overflow:visible;");
 	const mullion = svgNode?.querySelector("#mullion_1");
@@ -5180,6 +5503,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
 
   // --------------- TAB 5 ----------------
   if (e.target && e.target.matches("#tab5 button.btnmain-cart.cart")) {
+    if (!ensureCurrentConfigurationCanSubmit()) return;
     const svgNode = document.querySelector("#glass-sidebar #svgPreviewBox svg");
     if (svgNode) svgNode.setAttribute("style", "max-width:200px; max-height:200px;object-fit:fill;overflow:visible;");
 	const mullion = svgNode?.querySelector("#mullion_1");
@@ -5226,6 +5550,7 @@ if (mullion) mullion.setAttribute("style", "display:none");
 
   // --------------- TAB 6 ----------------
   if (e.target && e.target.matches("#tab6 button.btnmain-cart.cart")) {
+    if (!ensureCurrentConfigurationCanSubmit()) return;
     const svgNode = document.querySelector("#tab6 #svgPreviewBox svg");
     if (svgNode) svgNode.setAttribute("style", "max-width:200px; max-height:200px;object-fit:fill;overflow:visible;");
 	const mullion = svgNode?.querySelector("#mullion_1");
@@ -5373,42 +5698,40 @@ function getMatchingComboRows() {
 
 
 function findPriceForSize(combos, widthInput, heightInput) {
-  const rows = (combos || [])
-    .map(row => ({
-      ...row,
-      width: parseConfiguratorNumber(row.width),
-      height: parseConfiguratorNumber(row.height)
-    }))
-    .filter(row => row.width > 0 && row.height > 0);
-
-  const width = parseConfiguratorNumber(widthInput);
-  const height = parseConfiguratorNumber(heightInput);
+  const rows = normalizePriceMatrixRows(combos);
+  const rawWidth = Math.round(parseConfiguratorNumber(widthInput));
+  const rawHeight = Math.round(parseConfiguratorNumber(heightInput));
+  const { width, height } = getPricingLookupDimensions(rows, rawWidth, rawHeight);
   if (!rows.length || !width || !height) return null;
 
-  const exact = rows.find(row => row.width === width && row.height === height);
-  if (exact) return exact;
+  return rows.find(row => row.width === width && row.height === height) || null;
+}
 
-  const covering = rows.filter(row => row.width >= width && row.height >= height);
-  if (covering.length) {
-    covering.sort((a, b) =>
-      (a.width * a.height) - (b.width * b.height) ||
-      a.width - b.width ||
-      a.height - b.height
-    );
-    return covering[0];
+function refreshCurrentPriceFromMatrix() {
+  const comboKey = getCurrentPricingComboKey();
+
+  if (comboKey && !hasCachedPricingRows(comboKey)) {
+    loadPricingRowsForCombo(comboKey)
+      .then(() => {
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+        }
+      })
+      .catch(err => {
+        console.error('Price grid loading failed', err);
+        COMBO_ROWS_BY_KEY[comboKey] = [];
+        if (getCurrentPricingComboKey() === comboKey) {
+          updateTab4PriceAndSVGFromCombo([]);
+        }
+      });
+    return;
   }
 
-  const lower = rows.filter(row => row.width <= width && row.height <= height);
-  if (!lower.length) return null;
-  lower.sort((a, b) =>
-    (b.width * b.height) - (a.width * a.height) ||
-    b.width - a.width ||
-    b.height - a.height
-  );
-  return lower[0];
+  updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
 }
 
 function setGroesseLoadingState(widthInput, heightInput) {
+  setCurrentPriceMatrixValid(false, '');
   widthInput.value = '';
   heightInput.value = '';
   widthInput.min = ''; widthInput.max = '';
@@ -5459,6 +5782,7 @@ function updateGroesseDropdownsAndSidebar() {
 
   // ---- NO DB ROWS: blank + readonly + alert on focus ----
   if (!combos || combos.length === 0) {
+    setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine Preisfelder hinterlegt.');
     widthInput.value = '';
     heightInput.value = '';
     widthInput.min = ''; widthInput.max = '';
@@ -5474,12 +5798,32 @@ function updateGroesseDropdownsAndSidebar() {
     widthInput.onkeydown = heightInput.onkeydown = null;
 
     const focusAlert = () => {
-      alert("Missing height/width in database");
+      setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine Preisfelder hinterlegt.');
       widthInput.blur(); heightInput.blur();
     };
     widthInput.onfocus = focusAlert;
     heightInput.onfocus = focusAlert;
 
+    const priceBox = document.querySelector('#tab4 .price-box .price');
+    setSidebarPrice(priceBox, null, '-');
+    const sbW = document.getElementById('sb-width');  if (sbW) sbW.textContent = '';
+    const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = '';
+    return;
+  }
+
+  const validRows = normalizePriceMatrixRows(combos);
+  if (!validRows.length) {
+    setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine gültigen Preisfelder hinterlegt.');
+    widthInput.value = '';
+    heightInput.value = '';
+    widthInput.min = ''; widthInput.max = '';
+    heightInput.min = ''; heightInput.max = '';
+    widthInput.readOnly = true;
+    heightInput.readOnly = true;
+    widthInput.oninput = heightInput.oninput = null;
+    widthInput.onchange = heightInput.onchange = null;
+    widthInput.onblur = heightInput.onblur = null;
+    widthInput.onkeydown = heightInput.onkeydown = null;
     const priceBox = document.querySelector('#tab4 .price-box .price');
     setSidebarPrice(priceBox, null, '-');
     const sbW = document.getElementById('sb-width');  if (sbW) sbW.textContent = '';
@@ -5495,8 +5839,8 @@ function updateGroesseDropdownsAndSidebar() {
   heightInput.onfocus = null;
 
   const nums = (arr) => arr.map(Number).filter(n => Number.isFinite(n));
-  const allWidths  = nums(combos.map(c => c.width));
-  const allHeights = nums(combos.map(c => c.height));
+  const allWidths  = nums(validRows.map(c => c.width));
+  const allHeights = nums(validRows.map(c => c.height));
 
   if (!allWidths.length || !allHeights.length) {
     // Treat as no DB
@@ -5505,7 +5849,7 @@ function updateGroesseDropdownsAndSidebar() {
     widthInput.readOnly = true;
     heightInput.readOnly = true;
     const fallbackAlert = () => {
-      alert("Missing height/width in database");
+      setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine Preisfelder hinterlegt.');
       widthInput.blur(); heightInput.blur();
     };
     widthInput.onfocus = fallbackAlert;
@@ -5525,75 +5869,52 @@ function updateGroesseDropdownsAndSidebar() {
 
   widthInput.min = String(minW);
   widthInput.max = String(maxW);
-  widthInput.step = '1';
 
   heightInput.min = String(minH);
   heightInput.max = String(maxH);
-  heightInput.step = '1';
 
-  // Defaults from DB min if empty or out-of-range
-  if (!widthInput.value || +widthInput.value < minW || +widthInput.value > maxW) {
-    widthInput.value = String(minW);
-  }
-  if (!heightInput.value || +heightInput.value < minH || +heightInput.value > maxH) {
-    heightInput.value = String(minH);
+  const currentExact = findPriceForSize(validRows, widthInput.value, heightInput.value);
+  if (!currentExact) {
+    const defaultCell = getFirstValidPriceMatrixCell(validRows);
+    widthInput.value = String(defaultCell.width);
+    heightInput.value = String(defaultCell.height);
   }
 
-  // ---- Validation (no alert while typing; alert only on blur/change/Enter) ----
-  function clampWithAlert(el, min, max, label) {
-    const val = +el.value;
-    if (!Number.isFinite(val)) return;
-    if (val < min) {
-      alert(`Please don't exceed the limit of ${label}.\nAllowed range: **${min} - ${max}**`);
-      el.value = String(min);
-    } else if (val > max) {
-      alert(`Please don't exceed the limit of ${label}.\nAllowed range: **${min} - ${max}**`);
-      el.value = String(max);
-    }
-  }
+  updateDimensionInputMatrixHints(validRows);
 
   // Clear old listeners
   widthInput.oninput = heightInput.oninput = null;
   widthInput.onchange = heightInput.onchange = null;
   widthInput.onblur = heightInput.onblur = null;
   widthInput.onkeydown = heightInput.onkeydown = null;
-  // Width: live update only; enforce on blur/change/Enter
+
   widthInput.oninput = () => {
-    // no alert, no snapping inside range
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onchange = () => {
-    clampWithAlert(widthInput, minW, maxW, "width");
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onblur = () => {
-    clampWithAlert(widthInput, minW, maxW, "width");
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   widthInput.onkeydown = (e) => {
     if (e.key === 'Enter') {
-      clampWithAlert(widthInput, minW, maxW, "width");
-      updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+      refreshCurrentPriceFromMatrix();
     }
   };
 
-  // Height: live update only; enforce on blur/change/Enter
   heightInput.oninput = () => {
-    // no alert, no snapping inside range
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onchange = () => {
-    clampWithAlert(heightInput, minH, maxH, "height");
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onblur = () => {
-    clampWithAlert(heightInput, minH, maxH, "height");
-    updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+    refreshCurrentPriceFromMatrix();
   };
   heightInput.onkeydown = (e) => {
     if (e.key === 'Enter') {
-      clampWithAlert(heightInput, minH, maxH, "height");
-      updateTab4PriceAndSVGFromCombo(getMatchingComboRows());
+      refreshCurrentPriceFromMatrix();
     }
   };
 
@@ -5607,26 +5928,36 @@ function updateGroesseDropdownsAndSidebar() {
 function updateTab4PriceAndSVGFromCombo(combos) {
   const priceBox = document.querySelector('#tab4 .price-box .price');
 
-  let widthVal = parseInt(document.getElementById('width').value, 10);
-  let heightVal = parseInt(document.getElementById('height').value, 10);
+  const widthInput = document.getElementById('width');
+  const heightInput = document.getElementById('height');
+  let widthVal = parseInt(widthInput?.value, 10);
+  let heightVal = parseInt(heightInput?.value, 10);
+
+  updateDimensionInputMatrixHints(combos);
 
   if (!combos || combos.length === 0 || isNaN(widthVal) || isNaN(heightVal)) {
+    setCurrentPriceMatrixValid(false, 'Für diese Auswahl sind keine Preisfelder hinterlegt.');
+    basePriceTab4 = 0;
     setSidebarPrice(priceBox, null, '-');
-    document.getElementById('sb-width').textContent = '';
-    document.getElementById('sb-height').textContent = '';
+    const sbW = document.getElementById('sb-width'); if (sbW) sbW.textContent = '';
+    const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = '';
+    recomputeTotalPrice();
     return;
   }
 
-  const lookupSize = getPricingLookupDimensions(combos, widthVal, heightVal);
-  const tier = findPriceForSize(combos, lookupSize.width, lookupSize.height);
+  const tier = findPriceForSize(combos, widthVal, heightVal);
 
   if (tier) {
     basePriceTab4 = parseFloat(tier.price) || 0;
-    document.getElementById('sb-width').textContent = widthVal;
-    document.getElementById('sb-height').textContent = heightVal;
+    const sbW = document.getElementById('sb-width'); if (sbW) sbW.textContent = widthVal;
+    const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = heightVal;
+    setCurrentPriceMatrixValid(true);
   } else {
     basePriceTab4 = 0;
     setSidebarPrice(priceBox, null, '-');
+    const sbW = document.getElementById('sb-width'); if (sbW) sbW.textContent = widthVal;
+    const sbH = document.getElementById('sb-height'); if (sbH) sbH.textContent = heightVal;
+    setCurrentPriceMatrixValid(false, buildDimensionValidationMessage(combos, widthVal, heightVal));
   }
 
   // update SVG for Tab 4
@@ -8428,6 +8759,7 @@ if (r === rowH.length - 1) {
           const id=`row${r+1}col${c+1}`;
           const lab=document.createElement('label'); lab.setAttribute('for',id); lab.textContent=`Element ${c+1} (mm) → Siehe Visualisierung`;
           const inp=document.createElement('input'); inp.type='number'; inp.step='1'; inp.min='0'; inp.id=id;
+          inp.classList.add('element-width-input');
           Object.assign(inp.style,{width:'100%',padding:'6px 8px',border:'1px solid #cfd3d7',borderRadius:'6px'});
 
           const rawVal = rowW[r][c];
@@ -8436,6 +8768,8 @@ inp.value = uiVal;
           if (forceEqualSlidingWidthSplit) {
             inp.readOnly = true;
             inp.title = 'Schiebetüren werden immer 50/50 aufgeteilt.';
+          } else {
+            inp.min = String(MIN_ELEMENT_WIDTH_MM);
           }
 
 if (!forceEqualSlidingWidthSplit && c === rowW[r].length - 1) {
@@ -8459,8 +8793,15 @@ if (!forceEqualSlidingWidthSplit && c === rowW[r].length - 1) {
               if (wInputs[r][index]) wInputs[r][index].value = value;
             });
           } else {
-            const sum = wInputs[r].slice(0,-1).reduce((s,el)=>s + (+el.value||0),0);
-            wInputs[r][wInputs[r].length-1].value = wVal - sum;
+            const normalized = normalizeSegmentValuesWithMinimum(
+              wInputs[r].map(el => +el.value || 0),
+              0,
+              wVal,
+              MIN_ELEMENT_WIDTH_MM
+            );
+            normalized.forEach((value, index) => {
+              if (wInputs[r][index]) wInputs[r][index].value = value;
+            });
           }
         }
       }
@@ -8526,9 +8867,10 @@ function onRowW(r, c) {
 
   // force last input to absorb remainder
   if (wInputs[r].length > 1) {
-    const sum = values.slice(0, -1).reduce((s, v) => s + v, 0);
-    values[values.length - 1] = Math.max(0, wVal - sum);
-    wInputs[r][wInputs[r].length - 1].value = values[values.length - 1];
+    values = normalizeSegmentValuesWithMinimum(values, c, wVal, MIN_ELEMENT_WIDTH_MM);
+    values.forEach((value, index) => {
+      if (wInputs[r][index]) wInputs[r][index].value = value;
+    });
   }
 
   rowW[r] = values.map(v => uiToModel(v, 'x', 1, 1));
@@ -8572,6 +8914,10 @@ function onRowW(r, c) {
       const id=`el${i+1}`;
       const lab=document.createElement('label'); lab.setAttribute('for',id); lab.textContent=`Element ${i+1} (mm) → Siehe Visualisierung`;
       const inp=document.createElement('input'); inp.type='number'; inp.step='1'; inp.min='0'; inp.id=id;
+      if (model.axis === 'x') {
+        inp.classList.add('element-width-input');
+        inp.min = String(MIN_ELEMENT_WIDTH_MM);
+      }
       Object.assign(inp.style,{width:'100%',padding:'6px 8px',border:'1px solid #cfd3d7',borderRadius:'6px'});
 
       const rawVal = vals[i];
@@ -8595,6 +8941,16 @@ function onRowW(r, c) {
     if (inputs.length > 1) {
       if (forceEqualSlidingSplit) {
         equalValues.forEach((value, index) => {
+          if (inputs[index]) inputs[index].value = value;
+        });
+      } else if (model.axis === 'x') {
+        const normalized = normalizeSegmentValuesWithMinimum(
+          inputs.map(el => +el.value || 0),
+          0,
+          outer,
+          MIN_ELEMENT_WIDTH_MM
+        );
+        normalized.forEach((value, index) => {
           if (inputs[index]) inputs[index].value = value;
         });
       } else {
@@ -8640,7 +8996,9 @@ function onRowW(r, c) {
   inputs[i].value = uiVal;
 
   let values = inputs.map(el => +el.value || 0);
-  values = normalizeSegmentValues(values, i, outer);
+  values = model.axis === 'x'
+    ? normalizeSegmentValuesWithMinimum(values, i, outer, MIN_ELEMENT_WIDTH_MM)
+    : normalizeSegmentValues(values, i, outer);
   values.forEach((value, index) => {
     if (inputs[index]) inputs[index].value = value;
   });
