@@ -848,6 +848,14 @@ function getFirstValidPriceMatrixCell(combos) {
   return rows[0] || null;
 }
 
+function getNextMatrixDimension(values, requestedValue) {
+  const unique = getSortedUniqueDimensions(values);
+  const requested = Math.round(parseConfiguratorNumber(requestedValue));
+  if (!unique.length || !requested) return null;
+
+  return unique.find(value => value >= requested) || null;
+}
+
 function getSortedUniqueDimensions(values) {
   return Array.from(new Set(
     (values || [])
@@ -906,8 +914,8 @@ function updateDimensionInputMatrixHints(combos) {
   const activeHeightRows = rowsForWidth.length ? rowsForWidth : rows;
   const activeHeights = getSortedUniqueDimensions(activeHeightRows.map(row => row.height));
 
-  widthInput.step = String(getSmallestPositiveGap(allWidths));
-  heightInput.step = String(getSmallestPositiveGap(activeHeights));
+  widthInput.step = '1';
+  heightInput.step = '1';
   setDimensionDatalist(widthInput, 'price-matrix-width-options', allWidths);
   setDimensionDatalist(heightInput, 'price-matrix-height-options', activeHeights);
 }
@@ -972,16 +980,25 @@ function buildDimensionValidationMessage(combos, widthValue, heightValue) {
     return 'Für diese Auswahl sind keine gültigen Preisfelder hinterlegt.';
   }
 
-  const widths = rows.map(row => row.width);
-  const widthRows = rows.filter(row => row.width === width);
+  const widths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const minWidth = widths[0];
+  const maxWidth = widths[widths.length - 1];
+  const lookupWidth = getNextMatrixDimension(widths, width);
 
-  if (!width || !widthRows.length) {
+  if (!width || width < minWidth || width > maxWidth || !lookupWidth) {
     return `Diese Breite ist nicht verfügbar. Gültige Breiten: ${formatDimensionRange(widths)}.`;
   }
 
-  const heights = widthRows.map(row => row.height);
-  if (!height || !widthRows.some(row => row.height === height)) {
-    return `Diese Höhe ist für ${width} mm Breite nicht verfügbar. Gültige Höhen: ${formatDimensionRange(heights)}.`;
+  const widthRows = rows.filter(row => row.width === lookupWidth);
+  const heights = getSortedUniqueDimensions(widthRows.map(row => row.height));
+  const minHeight = heights[0];
+  const maxHeight = heights[heights.length - 1];
+  const requestedHeight = Math.round(parseConfiguratorNumber(
+    getPricingLookupDimensions(rows, width, height, { resolveToMatrix: false }).height
+  ));
+
+  if (!requestedHeight || requestedHeight < minHeight || requestedHeight > maxHeight) {
+    return `Diese Höhe ist für ${width} mm Breite nicht verfügbar. Gültige Höhen: ${minHeight}-${maxHeight} mm.`;
   }
 
   return 'Für diese Größe ist kein gültiger Preis hinterlegt.';
@@ -1110,19 +1127,46 @@ function getDimensionInputBounds(rawMinW, rawMaxW, rawMinH, rawMaxH) {
   };
 }
 
-function getPricingLookupDimensions(combos, widthValue, heightValue) {
-  if (!isSlidingDoorConfiguration()) {
-    return { width: widthValue, height: heightValue };
+function getPricingLookupDimensions(combos, widthValue, heightValue, options = {}) {
+  const resolveToMatrix = options.resolveToMatrix !== false;
+  const rows = normalizePriceMatrixRows(combos);
+  const rawWidth = Math.round(parseConfiguratorNumber(widthValue));
+  const rawHeight = Math.round(parseConfiguratorNumber(heightValue));
+
+  if (!rows.length || !rawWidth || !rawHeight) {
+    return { width: rawWidth, height: rawHeight };
   }
 
-  const heights = (combos || [])
-    .map(row => parseConfiguratorNumber(row.height))
-    .filter(height => height > 0);
-  const minMatrixHeight = heights.length ? Math.min(...heights) : heightValue;
+  const allHeights = getSortedUniqueDimensions(rows.map(row => row.height));
+  const minMatrixHeight = allHeights[0] || rawHeight;
+  const effectiveHeight = isSlidingDoorConfiguration() && rawHeight < minMatrixHeight
+    ? minMatrixHeight
+    : rawHeight;
+
+  if (!resolveToMatrix) {
+    return { width: rawWidth, height: effectiveHeight };
+  }
+
+  const widths = getSortedUniqueDimensions(rows.map(row => row.width));
+  const minWidth = widths[0];
+  const maxWidth = widths[widths.length - 1];
+  if (rawWidth < minWidth || rawWidth > maxWidth) {
+    return { width: null, height: null };
+  }
+
+  const lookupWidth = getNextMatrixDimension(widths, rawWidth);
+  const widthRows = rows.filter(row => row.width === lookupWidth);
+  const heights = getSortedUniqueDimensions(widthRows.map(row => row.height));
+  const minHeight = heights[0];
+  const maxHeight = heights[heights.length - 1];
+
+  if (effectiveHeight < minHeight || effectiveHeight > maxHeight) {
+    return { width: lookupWidth, height: null };
+  }
 
   return {
-    width: widthValue,
-    height: heightValue < minMatrixHeight ? minMatrixHeight : heightValue
+    width: lookupWidth,
+    height: getNextMatrixDimension(heights, effectiveHeight)
   };
 }
 
