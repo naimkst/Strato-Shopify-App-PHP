@@ -1,6 +1,8 @@
 <?php
+header("Content-Type: text/plain; charset=UTF-8");
 
 require '../connect.php';
+require '../db-charset.php';
 
 $tabId = isset($_GET['tab_id']) ? (int)$_GET['tab_id'] : 0;
 

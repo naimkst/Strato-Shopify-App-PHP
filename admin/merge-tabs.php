@@ -3,7 +3,7 @@
 ini_set('memory_limit', '1024M');
 ini_set('max_execution_time', 0);
 
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=UTF-8");
 
 $finalFile = __DIR__ . '/first-four.json';
 

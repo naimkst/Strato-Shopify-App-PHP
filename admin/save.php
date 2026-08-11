@@ -25,7 +25,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
   "X-Shopify-Access-Token: $token",
-  "Content-Type: application/json"
+  "Content-Type: application/json; charset=UTF-8"
 ]);
 
 $response = curl_exec($ch);

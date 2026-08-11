@@ -7,8 +7,9 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-if (isset($_GET['action'])) header('Content-Type: application/json');
+header(isset($_GET['action']) ? 'Content-Type: application/json; charset=UTF-8' : 'Content-Type: text/html; charset=UTF-8');
 require '../connect.php';
+require '../db-charset.php';
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(["success" => false, "error" => "DB Connection failed: " . $conn->connect_error]);

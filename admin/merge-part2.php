@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/plain; charset=UTF-8");
 
 $final = __DIR__ . '/cache_tabs_part2.json';
 $temp  = $final . '.tmp';

@@ -1,9 +1,10 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=UTF-8");
 
 require '../connect.php';
+require '../db-charset.php';
 
 $tab_id = 5;
 

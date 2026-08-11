@@ -25,7 +25,7 @@ function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 
 
     // Setup headers
     $headers = [];
-    $headers[] = "Content-Type: application/json";
+    $headers[] = "Content-Type: application/json; charset=UTF-8";
     if (!is_null($token)) {
         $headers[] = "X-Shopify-Access-Token: " . $token;
     }
