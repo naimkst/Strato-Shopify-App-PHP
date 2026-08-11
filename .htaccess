@@ -1,2 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (^|&)shop= [NC]
+RewriteRule ^$ admin/index.php [QSA,L]
+</IfModule>
+
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .htm .css .js .json
