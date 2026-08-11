@@ -1,7 +1,2 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^$ index.php [L]
-</IfModule>
-
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .htm .css .js .json
