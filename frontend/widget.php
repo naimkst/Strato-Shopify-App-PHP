@@ -2495,6 +2495,210 @@ div#tab7-svgPreviewBox svg g path {
     z-index: auto !important;
 }
 
+/* Embedded Shopify Admin layout reset.
+   Older rules use fixed 68/70% widths and viewport-fixed footer/sidebar
+   behavior, which breaks inside the Shopify admin iframe. */
+.its_my_app_work,
+.its_my_app_work * {
+    box-sizing: border-box;
+}
+
+.its_my_app_work {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.its_my_app_work .tab-header-wrapper,
+.its_my_app_work #tabHeaderContainer,
+.its_my_app_work .tab-content,
+.its_my_app_work .tab-content > .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+div#globalBottomCheckpoint {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
+    background: transparent !important;
+    padding: 0 20px 20px !important;
+}
+
+.its_my_app_work #tab4.active > .bottom_check_point.container,
+.its_my_app_work #tab5.active > .bottom_check_point.container,
+.its_my_app_work #tab6.active > .bottom_check_point.container,
+.its_my_app_work #tab7.active > .bottom_check_point.container,
+div#globalBottomCheckpoint > .bottom_check_point.container,
+div#globalBottomCheckpoint[data-active-tab] > .bottom_check_point.container {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 20px 0 0 !important;
+    padding: 0 !important;
+}
+
+.its_my_app_work .bottom_check_point .progress-bar-container {
+    width: 100% !important;
+}
+
+@media (min-width: 1024px) {
+    .its_my_app_work #tabHeaderContainer.container {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0 !important;
+        width: 100% !important;
+        padding: 0 20px !important;
+        justify-content: stretch !important;
+        overflow: visible !important;
+    }
+
+    .its_my_app_work #tabHeaderContainer .tab-link {
+        width: auto !important;
+        min-width: 0 !important;
+        padding: 16px 10px !important;
+        font-size: clamp(13px, 0.95vw, 17px) !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    .its_my_app_work .tab-content {
+        padding: 0 20px !important;
+    }
+
+    .its_my_app_work .tab-content h2 {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 0 28px !important;
+        padding-top: 20px !important;
+        font-size: clamp(24px, 2vw, 34px) !important;
+        line-height: 1.25 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .its_my_app_work #tab4.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab5.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab6.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab7.active > .container:not(.bottom_check_point) {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(330px, 34%);
+        gap: 32px !important;
+        align-items: start !important;
+        justify-content: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .its_my_app_work #tab4 .main,
+    .its_my_app_work #tab5 .flex-2,
+    .its_my_app_work #tab6 .main,
+    .its_my_app_work #tab7 .main {
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    .its_my_app_work #tab4.active .preview-box,
+    .its_my_app_work #tab5.active .preview-box,
+    .its_my_app_work #tab6.active .preview-box,
+    .its_my_app_work #tab7.active .preview-box,
+    .its_my_app_work #tab4.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab5.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab6.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab7.active .preview-box.sidebar--fixed,
+    .its_my_app_work #tab4.active .preview-box.sidebar--bottom,
+    .its_my_app_work #tab5.active .preview-box.sidebar--bottom,
+    .its_my_app_work #tab6.active .preview-box.sidebar--bottom,
+    .its_my_app_work #tab7.active .preview-box.sidebar--bottom {
+        position: sticky !important;
+        top: 16px !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: calc(100dvh - 140px) !important;
+        margin-top: 0 !important;
+        flex: none !important;
+        align-self: start !important;
+        overflow-y: auto !important;
+    }
+
+    .its_my_app_work #tab4 .tabs,
+    .its_my_app_work #tab6 .tabs {
+        margin-bottom: 18px !important;
+    }
+
+    .its_my_app_work #tab4 .tab,
+    .its_my_app_work #tab6 .tab {
+        padding: 10px 12px !important;
+        font-size: 16px !important;
+        line-height: 1.25 !important;
+    }
+
+    .its_my_app_work #tab4 .section-title,
+    .its_my_app_work #tab6 .section-title {
+        margin: 20px 0 16px !important;
+        font-size: clamp(20px, 1.5vw, 28px) !important;
+        line-height: 1.25 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .its_my_app_work #tab4 .form-group label,
+    .its_my_app_work #tab6 .form-group label {
+        font-size: 15px !important;
+        line-height: 1.3 !important;
+    }
+
+    .its_my_app_work #tab4 input[type=number],
+    .its_my_app_work #tab6 input[type=number] {
+        height: auto !important;
+        min-height: 38px !important;
+        padding: 8px 10px !important;
+        font-size: 15px !important;
+        line-height: 1.35 !important;
+    }
+
+    .its_my_app_work .preview-box .svgover,
+    .its_my_app_work #tab7-svgPreviewBox {
+        height: clamp(150px, 24dvh, 260px) !important;
+        min-height: 140px !important;
+        padding: 6px 18px 12px !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .its_my_app_work #tab4.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab5.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab6.active > .container:not(.bottom_check_point),
+    .its_my_app_work #tab7.active > .container:not(.bottom_check_point) {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .its_my_app_work #tab4.active .preview-box,
+    .its_my_app_work #tab5.active .preview-box,
+    .its_my_app_work #tab6.active .preview-box,
+    .its_my_app_work #tab7.active .preview-box {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        margin-top: 0 !important;
+    }
+}
+
 </style>
 </head>
 <body>

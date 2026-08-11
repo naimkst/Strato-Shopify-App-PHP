@@ -6928,16 +6928,22 @@ document.addEventListener('click', function(e) {
 
 
 function switchSubTab(subtabId, subtabBtns) {
+  subtabBtns = subtabBtns || document.querySelectorAll('#tab4 .tabs .tab');
   if (!subtabBtns || subtabBtns.length < 2) return;
   const groesseTab = document.getElementById('groesse-tab');
   const beschlagTab = document.getElementById('beschlag-tab');
   if (!groesseTab || !beschlagTab) return;
 
-  subtabBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-id') == subtabId));
-  groesseTab.style.display =
-    subtabBtns[0].getAttribute('data-id') == subtabId ? 'block' : 'none';
-  beschlagTab.style.display =
-    subtabBtns[1].getAttribute('data-id') == subtabId ? 'block' : 'none';
+  const normalizedId = String(subtabId || '').toLowerCase();
+  const tabIds = Array.from(subtabBtns).map((btn, index) => {
+    return String(btn.getAttribute('data-id') || (index === 0 ? 'groesse' : 'beschlag'));
+  });
+  let activeIndex = tabIds.findIndex(id => id == subtabId);
+  if (activeIndex < 0) activeIndex = normalizedId.includes('beschlag') ? 1 : 0;
+
+  subtabBtns.forEach((btn, index) => btn.classList.toggle('active', index === activeIndex));
+  groesseTab.style.display = activeIndex === 0 ? 'block' : 'none';
+  beschlagTab.style.display = activeIndex === 1 ? 'block' : 'none';
 
   if (beschlagTab.style.display === 'block') {
     const grid = document.querySelector('#beschlag-tab .option-grid');
