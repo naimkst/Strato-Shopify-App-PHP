@@ -930,11 +930,63 @@ tbody tr:nth-child(even) td {
     width: 100% !important;
   }
 }
+
+.admin-backend-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: min(100%, 1180px);
+  margin: 0 auto 18px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.admin-backend-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid #c9cccf;
+  border-radius: 6px;
+  background: #f7f8fa;
+  color: #202223;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-backend-nav a:hover {
+  border-color: #005bd3;
+  color: #005bd3;
+}
+
+#adminCreateTab,
+#subtabSection,
+#sectionSection,
+#adminAddOption,
+#tabsTable,
+#bottomSection {
+  scroll-margin-top: 76px;
+}
 </style>
 </head>
 <body>
 
-<h2>Create Tab</h2>
+<nav class="admin-backend-nav" aria-label="Backend add details sections">
+  <a href="#adminCreateTab">Add Tab</a>
+  <a href="#subtabSection">Add Subtab</a>
+  <a href="#sectionSection">Add Details</a>
+  <a href="#adminAddOption">Add Option</a>
+  <a href="#bottomSection">Options List</a>
+</nav>
+
+<h2 id="adminCreateTab">Create Tab</h2>
 <form id="tabForm">
   <div class="row">
     <input type="text" id="tabName" placeholder="Tab Name" required />
@@ -995,7 +1047,7 @@ tbody tr:nth-child(even) td {
 </div>
 
 
-<h2>Add Option to Tab / Subtab</h2>
+<h2 id="adminAddOption">Add Option to Tab / Subtab</h2>
 <form id="optionForm">
   <div class="row">
     <select id="tabSubtabSelect"></select>
