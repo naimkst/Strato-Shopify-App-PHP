@@ -705,6 +705,231 @@ thumb svg{height:40px;}
 }
 #editOptionModal label{display:block;margin-bottom:2px;}
 #editOptionModal input,#editOptionModal textarea{margin-bottom:8px;}
+
+/* Shopify Admin embedded dashboard layout */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f1f2f4;
+}
+
+body {
+  max-width: none;
+  margin: 0;
+  padding: 28px clamp(18px, 2.4vw, 34px) 56px;
+  background: #f1f2f4;
+  color: #202223;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+body > h2,
+body > h3 {
+  max-width: 1180px;
+  margin: 26px auto 12px;
+  color: #202223;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+body > h2:first-of-type {
+  margin-top: 0;
+}
+
+body > form,
+body > table,
+#subtabSection,
+#sectionSection,
+#bottomSection {
+  width: min(100%, 1180px);
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body > form,
+#subtabSection,
+#sectionSection,
+#bottomSection {
+  border: 1px solid #dfe3e8 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  padding: 18px !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+#subtabSection,
+#sectionSection,
+#bottomSection {
+  margin-top: 22px !important;
+}
+
+#bottomSection {
+  overflow-x: auto;
+}
+
+#bottomSection h2,
+#subtabSection h3,
+#sectionSection h3,
+body > form h2 {
+  margin: 0 0 16px !important;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 550;
+  color: #202223;
+}
+
+input,
+select,
+textarea {
+  min-height: 38px;
+  border: 1px solid #c9cccf;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #202223;
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #005bd3;
+  outline-offset: 1px;
+  border-color: #005bd3;
+}
+
+button {
+  min-height: 38px;
+  border: 1px solid #1f2937;
+  border-radius: 6px;
+  background: #202223;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #111827;
+}
+
+.row {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+body > table,
+#tabsTable,
+#sectionsTable,
+#optionsTable,
+#heightWidthRowsTable,
+#comboRowsTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+#optionsTable {
+  min-width: 980px;
+}
+
+th,
+td {
+  border: 0;
+  border-bottom: 1px solid #dfe3e8;
+  border-right: 1px solid #dfe3e8;
+  padding: 10px;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+th {
+  background: #f7f8fa;
+  color: #202223;
+  font-weight: 650;
+}
+
+td {
+  background: #ffffff;
+}
+
+tbody tr:nth-child(even) td {
+  background: #fbfbfc;
+}
+
+#optionsTable img.thumb {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.extra-json-display {
+  max-width: none;
+  max-height: 150px;
+  overflow: auto;
+  color: #202223;
+}
+
+.extra-json-display table {
+  min-width: 0;
+  border-radius: 6px;
+}
+
+.edit,
+.delete {
+  display: inline-block;
+  margin: 0 10px 6px 0;
+  font-weight: 600;
+}
+
+.edit {
+  color: #005bd3;
+}
+
+.delete {
+  color: #d72c0d;
+}
+
+.select2-container .select2-selection--multiple,
+.select2-container .select2-selection--single {
+  min-height: 38px;
+  border-color: #c9cccf;
+  border-radius: 6px;
+}
+
+@media (max-width: 820px) {
+  body {
+    padding: 18px 12px 40px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .row > * {
+    width: 100% !important;
+  }
+}
 </style>
 </head>
 <body>
