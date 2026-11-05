@@ -1,0 +1,122 @@
+{
+  "mode": "dry-run",
+  "include_same_glass": false,
+  "source": "/Users/naim/WWW/strato-project-backups/codex-20260810-233829-before-price-fix/remote-data/get-tabs.json",
+  "csv": "/Users/naim/Downloads/deine-fenster24_configurator-vs-excel_developer.csv",
+  "summary": {
+    "matched": 3309,
+    "needs_update": 3309,
+    "skipped_same_glass": 3339
+  },
+  "sql_update_count": 3309,
+  "blockers": {},
+  "payload_blockers": [
+    "parent 519: has 2 combo_option_ids groups",
+    "parent 621: has 2 combo_option_ids groups",
+    "parent 634: has 3 combo_option_ids groups",
+    "parent 635: has 2 combo_option_ids groups",
+    "parent 895: has 2 combo_option_ids groups",
+    "parent 913: has 3 combo_option_ids groups",
+    "parent 916: has 2 combo_option_ids groups",
+    "parent 1003: has 2 combo_option_ids groups"
+  ],
+  "parent_payloads": [
+    {
+      "id": "466",
+      "correction_count": 1,
+      "label": "HW Combo: __static_ksf__ > 1 > 14 > 429"
+    },
+    {
+      "id": "545",
+      "correction_count": 161,
+      "label": "HW Combo: __static_ksf__ > 1 > 15 > 438"
+    },
+    {
+      "id": "561",
+      "correction_count": 2,
+      "label": "HW Combo: __static_ksf__ > 2 > 16 > 502"
+    },
+    {
+      "id": "575",
+      "correction_count": 206,
+      "label": "HW Combo: __static_ksf__ > 3 > 16 > 502"
+    },
+    {
+      "id": "637",
+      "correction_count": 163,
+      "label": "HW Combo: __static_ksf__ > 5 > 16 > 506"
+    },
+    {
+      "id": "797",
+      "correction_count": 24,
+      "label": "HW Combo: __static_balkon__ > 1 > 15 > 439"
+    },
+    {
+      "id": "799",
+      "correction_count": 24,
+      "label": "HW Combo: __static_balkon__ > 1 > 15 > 444"
+    },
+    {
+      "id": "801",
+      "correction_count": 24,
+      "label": "HW Combo: __static_balkon__ > 2 > 15 > 439"
+    },
+    {
+      "id": "806",
+      "correction_count": 24,
+      "label": "HW Combo: __static_balkon__ > 3 > 15 > 439"
+    },
+    {
+      "id": "811",
+      "correction_count": 33,
+      "label": "HW Combo: __static_balkon__ > 5 > 15 > 439"
+    },
+    {
+      "id": "813",
+      "correction_count": 33,
+      "label": "HW Combo: __static_balkon__ > 5 > 15 > 444"
+    },
+    {
+      "id": "920",
+      "correction_count": 163,
+      "label": "HW Combo: __static_ksf__ > 4 > 16 > 506"
+    },
+    {
+      "id": "997",
+      "correction_count": 163,
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 554"
+    },
+    {
+      "id": "998",
+      "correction_count": 163,
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 616"
+    },
+    {
+      "id": "1005",
+      "correction_count": 163,
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 506"
+    },
+    {
+      "id": "1029",
+      "correction_count": 27,
+      "label": "HW Combo: __static_balkon__ > 420 > 15 > 439"
+    },
+    {
+      "id": "1030",
+      "correction_count": 27,
+      "label": "HW Combo: __static_balkon__ > 420 > 15 > 444"
+    },
+    {
+      "id": "1035",
+      "correction_count": 219,
+      "label": "HW Combo: __static_ksf__ > 1 > 16 > 554"
+    },
+    {
+      "id": "1036",
+      "correction_count": 219,
+      "label": "HW Combo: __static_ksf__ > 1 > 16 > 616"
+    }
+  ],
+  "bad_rows": [],
+  "db_csv_current_mismatches": []
+}

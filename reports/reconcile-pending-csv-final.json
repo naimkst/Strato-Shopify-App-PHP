@@ -1,0 +1,14 @@
+{
+  "mode": "dry-run",
+  "csv": "/Users/naim/Downloads/deine-fenster24_remaining-fixes_developer.csv",
+  "source": "reports/live-reconcile-csvs-final/get-tabs-live.json",
+  "payload_count": 0,
+  "corrections": 0,
+  "skipped": {
+    "unconfirmed_conflict_rows": 206,
+    "already_correct": 163
+  },
+  "blockers": [],
+  "payloads": [],
+  "applied": []
+}

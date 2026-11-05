@@ -1,0 +1,286 @@
+{
+  "mode": "dry-run",
+  "source": "/Users/naim/WWW/strato-project-backups/codex-20260811-004134-before-original-excel-http-apply/remote-data/get-tabs-live.json",
+  "changes": "reports/original-excel-price-changes-pre-http-apply.csv",
+  "update_parent_payloads": 34,
+  "create_parent_payloads": 2,
+  "update_corrections": 3152,
+  "update_inserts": 144,
+  "create_parent_rows": 329,
+  "skipped": {
+    "already_correct": 20419,
+    "create_parent_insert": 329,
+    "conflict": 618,
+    "already_correct_duplicate": 402
+  },
+  "blockers": [
+    "parent 518: has 2 combo groups",
+    "parent 519: has 2 combo groups",
+    "parent 562: has 2 combo groups",
+    "parent 563: has 2 combo groups",
+    "parent 576: has 2 combo groups",
+    "parent 577: has 2 combo groups",
+    "parent 621: has 2 combo groups",
+    "parent 634: has 3 combo groups",
+    "parent 635: has 2 combo groups",
+    "parent 895: has 2 combo groups",
+    "parent 913: has 3 combo groups",
+    "parent 916: has 2 combo groups",
+    "parent 994: has 2 combo groups",
+    "parent 1003: has 2 combo groups",
+    "parent 1004: has 3 combo groups"
+  ],
+  "update_payloads": [
+    {
+      "id": "466",
+      "label": "HW Combo: __static_ksf__ > 1 > 14 > 429",
+      "corrections": 2,
+      "inserts": 0,
+      "rows": 222
+    },
+    {
+      "id": "520",
+      "label": "HW Combo: __static_ksf__ > 1 > 16 > 505",
+      "corrections": 1,
+      "inserts": 0,
+      "rows": 224
+    },
+    {
+      "id": "545",
+      "label": "HW Combo: __static_ksf__ > 1 > 15 > 438",
+      "corrections": 161,
+      "inserts": 0,
+      "rows": 221
+    },
+    {
+      "id": "561",
+      "label": "HW Combo: __static_ksf__ > 2 > 16 > 502",
+      "corrections": 2,
+      "inserts": 0,
+      "rows": 207
+    },
+    {
+      "id": "572",
+      "label": "HW Combo: __static_ksf__ > 3 > 16 > 554",
+      "corrections": 206,
+      "inserts": 0,
+      "rows": 207
+    },
+    {
+      "id": "575",
+      "label": "HW Combo: __static_ksf__ > 3 > 16 > 502",
+      "corrections": 0,
+      "inserts": 1,
+      "rows": 207
+    },
+    {
+      "id": "581",
+      "label": "HW Combo: __static_ksf__ > 3 > 16 > 510",
+      "corrections": 206,
+      "inserts": 0,
+      "rows": 207
+    },
+    {
+      "id": "604",
+      "label": "HW Combo: __static_ksf__ > 5 > 15 > 438",
+      "corrections": 135,
+      "inserts": 0,
+      "rows": 189
+    },
+    {
+      "id": "605",
+      "label": "HW Combo: __static_ksf__ > 5 > 15 > 439",
+      "corrections": 135,
+      "inserts": 0,
+      "rows": 189
+    },
+    {
+      "id": "624",
+      "label": "HW Combo: __static_ksf__ > 5 > 16 > 554",
+      "corrections": 165,
+      "inserts": 0,
+      "rows": 165
+    },
+    {
+      "id": "625",
+      "label": "HW Combo: __static_ksf__ > 5 > 16 > 616",
+      "corrections": 165,
+      "inserts": 0,
+      "rows": 165
+    },
+    {
+      "id": "637",
+      "label": "HW Combo: __static_ksf__ > 5 > 16 > 506",
+      "corrections": 163,
+      "inserts": 0,
+      "rows": 163
+    },
+    {
+      "id": "799",
+      "label": "HW Combo: __static_balkon__ > 1 > 15 > 444",
+      "corrections": 24,
+      "inserts": 12,
+      "rows": 36
+    },
+    {
+      "id": "801",
+      "label": "HW Combo: __static_balkon__ > 2 > 15 > 439",
+      "corrections": 24,
+      "inserts": 12,
+      "rows": 36
+    },
+    {
+      "id": "803",
+      "label": "HW Combo: __static_balkon__ > 2 > 15 > 444",
+      "corrections": 0,
+      "inserts": 12,
+      "rows": 36
+    },
+    {
+      "id": "806",
+      "label": "HW Combo: __static_balkon__ > 3 > 15 > 439",
+      "corrections": 24,
+      "inserts": 12,
+      "rows": 36
+    },
+    {
+      "id": "811",
+      "label": "HW Combo: __static_balkon__ > 5 > 15 > 439",
+      "corrections": 33,
+      "inserts": 3,
+      "rows": 38
+    },
+    {
+      "id": "813",
+      "label": "HW Combo: __static_balkon__ > 5 > 15 > 444",
+      "corrections": 33,
+      "inserts": 0,
+      "rows": 35
+    },
+    {
+      "id": "848",
+      "label": "HW Combo: __static_balkon__ > 4 > 15 > 445",
+      "corrections": 157,
+      "inserts": 0,
+      "rows": 157
+    },
+    {
+      "id": "861",
+      "label": "HW Combo: __static_ksf__ > 4 > 14 > 429",
+      "corrections": 1,
+      "inserts": 0,
+      "rows": 222
+    },
+    {
+      "id": "882",
+      "label": "HW Combo: __static_ksf__ > 4 > 15 > 445",
+      "corrections": 1,
+      "inserts": 0,
+      "rows": 176
+    },
+    {
+      "id": "883",
+      "label": "HW Combo: __static_ksf__ > 4 > 15 > 446",
+      "corrections": 1,
+      "inserts": 0,
+      "rows": 176
+    },
+    {
+      "id": "900",
+      "label": "HW Combo: __static_ksf__ > 4 > 16 > 616",
+      "corrections": 163,
+      "inserts": 0,
+      "rows": 163
+    },
+    {
+      "id": "920",
+      "label": "HW Combo: __static_ksf__ > 4 > 16 > 506",
+      "corrections": 163,
+      "inserts": 0,
+      "rows": 163
+    },
+    {
+      "id": "997",
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 554",
+      "corrections": 163,
+      "inserts": 2,
+      "rows": 165
+    },
+    {
+      "id": "998",
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 616",
+      "corrections": 163,
+      "inserts": 2,
+      "rows": 165
+    },
+    {
+      "id": "1005",
+      "label": "HW Combo: __static_ksf__ > 420 > 16 > 506",
+      "corrections": 163,
+      "inserts": 0,
+      "rows": 163
+    },
+    {
+      "id": "1012",
+      "label": "HW Combo: __static_balkon__ > 420 > 14 > 610",
+      "corrections": 0,
+      "inserts": 33,
+      "rows": 47
+    },
+    {
+      "id": "1013",
+      "label": "HW Combo: __static_balkon__ > 420 > 14 > 609",
+      "corrections": 0,
+      "inserts": 33,
+      "rows": 47
+    },
+    {
+      "id": "1029",
+      "label": "HW Combo: __static_balkon__ > 420 > 15 > 439",
+      "corrections": 27,
+      "inserts": 6,
+      "rows": 33
+    },
+    {
+      "id": "1030",
+      "label": "HW Combo: __static_balkon__ > 420 > 15 > 444",
+      "corrections": 27,
+      "inserts": 6,
+      "rows": 33
+    },
+    {
+      "id": "1035",
+      "label": "HW Combo: __static_ksf__ > 1 > 16 > 554",
+      "corrections": 219,
+      "inserts": 5,
+      "rows": 224
+    },
+    {
+      "id": "1036",
+      "label": "HW Combo: __static_ksf__ > 1 > 16 > 616",
+      "corrections": 219,
+      "inserts": 5,
+      "rows": 224
+    },
+    {
+      "id": "1040",
+      "label": "HW Combo: __static_ksf__ > 3 > 16 > 616",
+      "corrections": 206,
+      "inserts": 0,
+      "rows": 207
+    }
+  ],
+  "create_payloads": [
+    {
+      "label": "HW Combo: __static_ksf__ > 3 > 15 > 444",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"444\"]",
+      "rows": 166
+    },
+    {
+      "label": "HW Combo: __static_ksf__ > 4 > 16 > 554",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"554\"]",
+      "rows": 163
+    }
+  ],
+  "applied": []
+}

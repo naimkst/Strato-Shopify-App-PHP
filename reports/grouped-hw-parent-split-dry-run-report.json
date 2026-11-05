@@ -1,0 +1,170 @@
+{
+  "mode": "dry-run",
+  "source": "reports/live-after-original-excel-http-apply/get-tabs-live.json",
+  "changes": "reports/original-excel-price-changes-post-http-apply.csv",
+  "parent_plan_count": 15,
+  "create_payload_count": 18,
+  "corrections": 2852,
+  "inserts": 11,
+  "created_rows": 3244,
+  "primary_rows": 2746,
+  "skipped": {
+    "already_correct": 23886,
+    "conflict": 618,
+    "already_correct_duplicate": 560
+  },
+  "blockers": [],
+  "plans": [
+    {
+      "parent_id": "518",
+      "primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 219,
+      "inserts": 0,
+      "created_rows": 224,
+      "primary_rows": 224
+    },
+    {
+      "parent_id": "519",
+      "primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 219,
+      "inserts": 0,
+      "created_rows": 224,
+      "primary_rows": 224
+    },
+    {
+      "parent_id": "562",
+      "primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "563",
+      "primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "576",
+      "primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "577",
+      "primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 1,
+      "inserts": 0,
+      "created_rows": 207,
+      "primary_rows": 207
+    },
+    {
+      "parent_id": "621",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 165,
+      "inserts": 0,
+      "created_rows": 165,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "634",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 328,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "635",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "895",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "913",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 330,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "916",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 326,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "994",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 163,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "1003",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 326,
+      "inserts": 2,
+      "created_rows": 165,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "1004",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 328,
+      "primary_rows": 163
+    }
+  ],
+  "applied": []
+}

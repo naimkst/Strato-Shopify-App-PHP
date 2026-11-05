@@ -1,0 +1,26 @@
+{
+  "mode": "dry-run",
+  "source": "reports/live-client-message-final-check-20260811/get-tabs-live.json",
+  "conflict_files_skipped": [
+    "Fenster/Aluplast Ideal 8000/3-Teilig/2026-3-8000-DKL-Fest im Rahmen-DKR.xlsx",
+    "Fenster/Aluplast Ideal 8000/3-Teilig/2026-4-8000-DKL-Fest im Rahmen-DKR.xlsx"
+  ],
+  "matrix_summary": {
+    "mapped": 108
+  },
+  "desired_combo_count": 201,
+  "desired_row_count": 26985,
+  "source_conflicts": [],
+  "skipped": {
+    "conflict_file_rows": 413
+  },
+  "update_parent_payloads": 0,
+  "create_parent_payloads": 0,
+  "split_parent_payloads": 0,
+  "stats": {
+    "already_exact_parent": 201
+  },
+  "blockers": [],
+  "deletion_samples": [],
+  "applied": []
+}

@@ -1,0 +1,2679 @@
+{
+  "source_json": "reports/live-csv-client-check-20260811/get-tabs-live.json",
+  "excel_rows": 14165,
+  "excel_matrices": 107,
+  "matrix_summary": {
+    "mapped": 107
+  },
+  "target_summary": {
+    "expanded_targets": 27603
+  },
+  "change_summary": {
+    "already_correct": 27243,
+    "duplicate_db_keys": 360,
+    "already_correct_duplicate": 802,
+    "target_keys": 27603
+  },
+  "sql_update_statements": 0,
+  "sql_insert_statements": 0,
+  "unmapped_matrices": [],
+  "mapped_matrices": [
+    {
+      "relative_path": "Balkontür/Aluplast Ideal 4000/1-Teilig/2026-1-OK-4000- Balkonturen DREHKIPP - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal 4000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel | Rahmen unten",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "1",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"1\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"1\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal 4000/1-Teilig/2026-2-OK-4000- Balkonturen DREH - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal 4000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon Drehflügel | IDEAL 4000 | 2 fachglas",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "1",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"1\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"1\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal 4000/2-Teilig/2026-1-OK-4000- Balkonturen DREHKIPPLINKS PFOSTEN DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKippLinks Pfosten DrehKippRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"1\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal 4000/2-Teilig/2026-2-OK-4000- Balkonturen DREH-LINKS PFOSTEN DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Pfosten DrehKippRechts | Balkon DrehKippLinks Pfosten DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"1\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"1\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal 4000/2-Teilig/2026-3-OK-4000- Balkonturen DREH-LINKS STULP DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Stulp DrehKippRechts | Balkon DrehKippLinks Stulp DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"1\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"1\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal7000/1-Teilig/2026-7000- Balkonturen DREH - 1 teilig OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal7000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehRechts | Balkon DrehLinks",
+      "record_count": 15,
+      "static_code": "__static_balkon__",
+      "profile_id": "2",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"2\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"2\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal7000/1-Teilig/2026-7000- Balkonturen DREHKIPP - 1 teilig OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal7000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel",
+      "record_count": 15,
+      "static_code": "__static_balkon__",
+      "profile_id": "2",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"2\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"2\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal7000/2-Teilig/2026-7000- Balkonturen DREH-LINKS -PFOSTEN- DREHKIPPRECHTS - 2 teilig OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Pfosten DrehKippRechts | Balkon DrehKippLinks Pfosten DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"2\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"2\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal7000/2-Teilig/2026-7000- Balkonturen DREH-LINKS -STULP- DREHKIPPRECHTS - 2 teilig OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Stulp DrehKippRechts | Balkon DrehKippLinks Stulp DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"2\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"2\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideal7000/2-Teilig/2026-7000- Balkonturen DREHKIPPLINKS- PFOSTEN- DREHKIPPRECHTS - 2 teilig OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideal7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKippLinks Pfosten DrehKippRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"2\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideał 8000/1-Teilig/2026-8000- Balkonturen DREH - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideał 8000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon Drehflügel | Rahmen unten",
+      "record_count": 15,
+      "static_code": "__static_balkon__",
+      "profile_id": "3",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"3\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"3\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideał 8000/1-Teilig/2026-8000- Balkonturen DREHKIPP - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideał 8000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel | Rahmen unten",
+      "record_count": 15,
+      "static_code": "__static_balkon__",
+      "profile_id": "3",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"3\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"3\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideał 8000/2-Teilig/2026-8000- Balkonturen DREH-LINKS -PFOSTEN- DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideał 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Pfosten DrehKippRechts | Balkon DrehKippLinks Pfosten DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"3\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"3\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideał 8000/2-Teilig/2026-8000- Balkonturen DREH-LINKS -STULP- DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideał 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Stulp DrehKippRechts | Balkon DrehKippLinks Stulp DrehRechts",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"3\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"3\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Aluplast Ideał 8000/2-Teilig/2026-8000- Balkonturen DREHKIPPLINKS- PFOSTEN- DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Aluplast Ideał 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKippLinks Pfosten DrehKippRechts | Rahmen unten",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"3\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 AD Balkon/1-Teilig/2026-1-Salamander 76 AD- Balkonturen DREHKIPP - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 AD Balkon",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel | Rahmen unten | Salamander GreenEvolution flex 76 AD Classic | 2 Fachglas",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "4",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"4\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"4\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 AD Balkon/1-Teilig/2026-2-Salamander- Balkonturen DREH - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 AD Balkon",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon Drehflügel | Salamander GreenEvolution flex 76 AD Classic | 2 Fachglas | Rahmen unten",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "4",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"4\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"4\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 AD Balkon/2-Teilig/2026-1-Salamander 76 AD- Balkonturen DREHKIPPLINKS- PFOSTEN -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 AD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon - DrehKippLinks Pfosten DrehKippRechts | Salamander GreenEvolution flex 76 AD | 2 Fachglas | Rahmen unten",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"4\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 AD Balkon/2-Teilig/2026-2-Salamander 76 AD- Balkonturen DREHLINKS- PFOSTEN -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 AD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Salamander GreenEvolution 76 AD | 2 Fachglas | Rahmen unten | Balkon - DrehLinks- Pfosten -DrehKippRechts | Balkon - DrehKippLinks- Pfosten- DrehRechts",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"4\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"4\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 AD Balkon/2-Teilig/2026-3-Salamander 76 AD- Balkonturen DREHLINKS- STULP -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 AD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Salamander GreenEvolution 76 AD | 2 Fachglas | Rahmen unten | Balkon - DrehLinks- STULP -DrehKippRechts | Balkon - DrehKippLinks- STULP- DrehRechts",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"4\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"4\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 MD Balkon/1-Teilig/2026-76MD- Balkonturen DREH - 1 teilig EKO OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 MD Balkon",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon Drehflügel | Rahmen unten",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "5",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"5\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"5\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 MD Balkon/1-Teilig/2026-76MD- Balkonturen DREHKIPP - 1 teilig EKO OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 MD Balkon",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel | Rahmen unten",
+      "record_count": 18,
+      "static_code": "__static_balkon__",
+      "profile_id": "5",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"5\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"5\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 MD Balkon/2-Teilig/2026-76MD- Balkonturen DREH-LINKS -PFOSTEN- DREHKIPPRECHTS - 2 teilig EKO OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 MD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Pfosten DrehKippRechts | Balkon DrehKippLinks Pfosten DrehRechts | Rahmen unten",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"5\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"5\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 MD Balkon/2-Teilig/2026-76MD- Balkonturen DREH-LINKS -STULP- DREHKIPPRECHTS - 2 teilig EKO OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 MD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehLinks Stulp DrehKippRechts | Balkon DrehKippLinks Stulp DrehRechts | Rahmen unten",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"5\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"5\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander 76 MD Balkon/2-Teilig/2026-76MD- Balkonturen DREHKIPPLINKS- PFOSTEN- DREHKIPPRECHTS - 2 teilig EKO OK.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander 76 MD Balkon",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKippLinks Pfosten DrehKippRechts | Rahmen unten",
+      "record_count": 36,
+      "static_code": "__static_balkon__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"5\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander Balkontüren 82 MD/1-Teilig/2026-1-Salamander 82 MD- Balkonturen DREHKIPP - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander Balkontüren 82 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon DrehKipp Flügel | Rahmen unten | Salamander BluEvolution 82 MD Classic | 3 Fachglas",
+      "record_count": 14,
+      "static_code": "__static_balkon__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"420\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"420\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander Balkontüren 82 MD/1-Teilig/2026-1-Salamander 82 MD- Balkonturen DREHKIPPLINKS- PFOSTEN -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander Balkontüren 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "609",
+        "610"
+      ],
+      "opening_labels": [
+        "Tür Dreh-Kipp Links",
+        "Tür Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon - DrehKippLinks Pfosten DrehKippRechts | Salamander BluEvolution 82 MD | Classic | 3 Fachglas | Rahmen unten",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"420\",\"14\",\"609\"]",
+        "[\"__static_balkon__\",\"420\",\"14\",\"610\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander Balkontüren 82 MD/2-Teilig/2026-2-Salamander 82 MD- Balkonturen DREHLINKS- PFOSTEN -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander Balkontüren 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Salamander BluEvolution 82 MD | Classic | 3 Fachglas | Rahmen unten | Balkon - DrehLinks- Pfosten -DrehKippRechts | Balkon - DrehKippLinks- Pfosten- DrehRechts",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"420\",\"15\",\"438\"]",
+        "[\"__static_balkon__\",\"420\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander Balkontüren 82 MD/2-Teilig/2026-2-Salamander- 82 MD- Balkonturen DREH - 1 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander Balkontüren 82 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "611",
+        "612"
+      ],
+      "opening_labels": [
+        "Tür Dreh Links",
+        "Tür Dreh Rechts"
+      ],
+      "status": "mapped",
+      "title": "Balkon Drehflügel | Salamander BluEvolution 82 MD Classic | 3 Fachglas | Rahmen unten",
+      "record_count": 14,
+      "static_code": "__static_balkon__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"420\",\"14\",\"611\"]",
+        "[\"__static_balkon__\",\"420\",\"14\",\"612\"]"
+      ]
+    },
+    {
+      "relative_path": "Balkontür/Salamander Balkontüren 82 MD/2-Teilig/2026-3-Salamander 82 MD- Balkonturen DREHLINKS- Stulp -DREHKIPPRECHTS - 2 teilig.xlsx",
+      "product": "Balcony door",
+      "profile_folder": "Salamander Balkontüren 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Salamander BluEvolution 82 MD | Classic | 3 Fachglas | Rahmen unten | Balkon - DrehLinks- Stulp -DrehKippRechts | Balkon - DrehKippLinks- Stulp- DrehRechts",
+      "record_count": 33,
+      "static_code": "__static_balkon__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_balkon__\",\"420\",\"15\",\"441\"]",
+        "[\"__static_balkon__\",\"420\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/1-Teilig/2026-1-OK-8000 - DREH- KIPP FLUGEL.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | 3 Fachglas | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 106,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"3\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/1-Teilig/2026-2-OK-8000 - FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 8000 | Fest im Rahmen | innen weiss + aussen weiss | 3 Fachglas",
+      "record_count": 225,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/1-Teilig/2026-3-OK-8000 - Kipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 8000 | 3 Fachglas | kein 2 Fachglas",
+      "record_count": 120,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/2-Teilig/2026-1-8000 - FEST-FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "Im Rahmen | Fest / Fest | Ideal | 3 fachglas",
+      "record_count": 255,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/2-Teilig/2026-2-8000 - Fest-DrehKipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 8000 | 3 Fachglas | Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen",
+      "record_count": 200,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"3\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/2-Teilig/2026-3-8000- DREH KIPP LINKS -Pfosten- DREH KIPP RECHTS.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "IDEAL8000 | 3 Fachglas | Breite | Höhe | DrehKipp Links-Pfosten -DrehKipp Rechts",
+      "record_count": 166,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/2-Teilig/2026-4-8000 - DREH -Pfosten- DREH KIPP.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 8000 | 3-Fachglas | Breite | Höhe | DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts",
+      "record_count": 154,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"3\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/2-Teilig/2026-5-8000 - DREH - Stulp- DREH KIPP.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | 3 Fachglas | 4-18-4-18-4 | UG 0,5 | DrehLinks -Stulp- DrehKipp Rechts | DrehKippLinks- Stulp- DrehRechts",
+      "record_count": 166,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"3\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-1-8000-Fest-Fest-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "497"
+      ],
+      "opening_labels": [
+        "Fest/Fest/Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | Fest im Rahmen | Fest-Fest-Fest im Rahmen",
+      "record_count": 266,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"16\",\"497\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-2-8000-Fest im Rahmen- DKL- Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499",
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest",
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen | Fest-Fest im Rahmen - DKR | DKL-Fest-Fest im Rahmen",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"499\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-4-8000-DKL-Fest im Rahmen-DKR.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "502",
+        "1078",
+        "1079"
+      ],
+      "opening_labels": [
+        "DKL/Fest/DKR",
+        "Fest im Rahmen-DKL-Pfosten-DKR",
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | 3Fachglas | DKL- Fest im Rahmen - DKR | Fest im Rahmen - DKL-Pfosten-DKR | DKL-Pfosten-DKR- Fest im Rahmen",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"16\",\"502\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"1078\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-5-8000-DL-Pfosten-DKR-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504",
+        "505"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest",
+        "DKL/DR-Pfosten/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Pfosten - DKR | DL-Pfosten - DKR - Fest im Rahmen | DKL-Pfosten-DR - Fest im Rahmen | IDEAL | 3 Fachglas",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"504\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"505\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-6-8000-DL-Stulp-DKR-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideal 8000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Stulp - DKR | DL-Stulp - DKR - Fest im Rahmen | DKL-Stulp -DR-Fest im Rahmen | IDEAL | 3 Fachglas",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "3",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"3\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"3\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/1-Teilig/2026-4000 - DREH- KIPP FLUGEL.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | 2 Fachglas | 4-16-4 | UG 1,1 | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 100,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"1\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/1-Teilig/2026-4000 - FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 4000 | Fest im Rahmen | innen weiss + aussen weiss | 2 Fachglas",
+      "record_count": 222,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/1-Teilig/2026-4000 - Kipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "IDEAL 4000 | 2 Fachglas | 4-16-4 | UG 1,1 | Kipp",
+      "record_count": 120,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/2-Teilig/2026-1-OK-4000 - FEST-FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "Im Rahmen | Fest / Fest | Ideal | 2 fachglas | 4-16-4 | UG 1,1",
+      "record_count": 240,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/2-Teilig/2026-2-OK-4000 - Fest-DrehKipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "Aluplast Ideal 4000 | 2 Fachglas | Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen",
+      "record_count": 200,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"1\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/2-Teilig/2026-3-OK-4000- DREH KIPP LINKS + DREH KIPP RECHTS (PFOSTEN).xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Aluplast Ideal 4000 | 2 Fachglas | 4-16-4 | UG 1,1 | DrehKipp Links-Pfosten -DrehKipp Rechts",
+      "record_count": 174,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/2-Teilig/2026-4-OK-4000 - DREH + DREH KIPP (Pfosten).xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Ideal 4000 | 2 Fachglas | 4-16-4 | UG 1,1 | DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts",
+      "record_count": 174,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"1\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/2-Teilig/2026-5-OK-4000 - DREH + DREH KIPP (STULP).xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks -Stulp- DrehKipp | DrehKippLinks- Stulp- DrehRechts",
+      "record_count": 174,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"1\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/3-Teilig/2026-2-OK-4000-Fest im Rahmen- DKL- Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen",
+      "record_count": 224,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"499\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/3-Teilig/2026-3-OK-4000-Fest-Fest im Rahmen - DKR.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "DKL-Fest-Fest im Rahmen | Fest-Fest im Rahmen - DKR",
+      "record_count": 224,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/3-Teilig/2026-4-OK-4000-DKL-Fest im Rahmen-DKR.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "502",
+        "1078",
+        "1079"
+      ],
+      "opening_labels": [
+        "DKL/Fest/DKR",
+        "Fest im Rahmen-DKL-Pfosten-DKR",
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "DKL- Fest im Rahmen - DKR | Fest im Rahmen-DKL-Pfosten -DKR | DKL-Pfosten-DKR - Fest im Rahmen",
+      "record_count": 219,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"16\",\"502\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"1078\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/3-Teilig/2026-5-OK-4000-DL-Pfosten-DKR-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504",
+        "505"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest",
+        "DKL/DR-Pfosten/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Pfosten - DKR | DL-Pfosten - DKR - Fest im Rahmen | DKL-Pfosten-DR - Fest im Rahmen",
+      "record_count": 224,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"504\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"505\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 4000/3-Teilig/2026-6-OK-4000-DL-Stulp-DKR-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 4000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Stulp - DKR | DL-Stulp - DKR - Fest im Rahmen | DKL-Stulp -DR-Fest im Rahmen",
+      "record_count": 224,
+      "static_code": "__static_ksf__",
+      "profile_id": "1",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"1\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"1\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/1-Teilig/2026-1-7000 - FEST OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "OK | IDEAL 7000 | Fest im Rahmen | innen weiss + aussen weiss | 2 Fachglas",
+      "record_count": 225,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/1-Teilig/2026-2-7000 - Kipp OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "OK | IDEAL 7000 | Kipp | innen weiss + aussen weiss | 2 Fachglas",
+      "record_count": 120,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/1-Teilig/2026-3-7000 - DREH- KIPP FLUGEL OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "OK | IDEAL 7000 | innen weiss + aussen weiss | Dreh Kipp | 2 Fachglas | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 109,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"2\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/2-Teilig/2026-1-7000 - FEST-FEST OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "OK | Ideal 7000 | 2 Fach Glas | weiß - weiß | Im Rahmen | Fest / Fest",
+      "record_count": 255,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/2-Teilig/2026-2-7000 - Fest-DrehKipp OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "OK | Ideal 7000 | 2 Fach Glas | weiß - weiß | Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen",
+      "record_count": 200,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"2\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/2-Teilig/2026-3-7000- DREH KIPP LINKS -Pfosten- DREH KIPP RECHTS ok.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "OK | Ideal 7000 | 2 Fach Glas | weiß-weiß | Breite | Höhe | DrehKipp Links-Pfosten -DrehKipp Rechts",
+      "record_count": 166,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/2-Teilig/2026-4-7000 - DREH -Pfosten- DREH KIPP ok.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "OK | Ideal 7000 | 2 Fach Glas | weiß - weiß | DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts",
+      "record_count": 152,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"2\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/2-Teilig/2026-5-7000 - DREH - Stulp- DREH KIPP ok.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "OK | Ideal 7000 | 2 Fach Glas | weiß - weiß | DrehLinks -Stulp- DrehKipp | DrehKippLinks- Stulp- DrehRechts",
+      "record_count": 154,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"2\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/3-Teilig/2026-1-7000-Fest-Fest-Fest im Rahmen OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "497"
+      ],
+      "opening_labels": [
+        "Fest/Fest/Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "IDEAL | Fest im Rahmen | weiß-weiß | 2 Fach Glas | Fest-Fest-Fest im Rahmen",
+      "record_count": 285,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"16\",\"497\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/3-Teilig/2026-2-7000-2 x Fest im Rahmen- 1 x DK OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499",
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest",
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "3 Tlg. Fenster | IDEAL 7000 | Weiß/weiß | 2 Fach Glas | Breite | Höhe | Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen | DKL-Fest-Fest im Rahmen | Fest-Fest im Rahmen - DKR",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"499\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/3-Teilig/2026-4-7000-DKL-Fest im Rahmen-DKR OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "502",
+        "1078",
+        "1079"
+      ],
+      "opening_labels": [
+        "DKL/Fest/DKR",
+        "Fest im Rahmen-DKL-Pfosten-DKR",
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "3 Tlg. | IDEAL | 2Fachglas | DKL- Fest im Rahmen - DKR | DKL-Pfosten-DKR-Fest im Rahmen | Fest im Rahmen-DKL-Pfosten-DKR",
+      "record_count": 207,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"16\",\"502\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"1078\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/3-Teilig/2026-5-7000-DL-Pfosten-DKR-Fest im Rahmen OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504",
+        "505"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest",
+        "DKL/DR-Pfosten/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Pfosten - DKR | DL-Pfosten - DKR - Fest im Rahmen | DKL-Pfosten-DR - Fest im Rahmen | IDEAL | 2 Fachglas | weiß/weiß",
+      "record_count": 206,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"504\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"505\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Aluplast Ideał 7000/3-Teilig/2026-6-7000-DL-Stulp-DKR-Fest im Rahmen OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Aluplast Ideał 7000",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DL - Stulp - DKR | DL-Stulp - DKR - Fest im Rahmen | DKL-Stulp -DR-Fest im Rahmen | IDEAL | 2 Fachglas",
+      "record_count": 207,
+      "static_code": "__static_ksf__",
+      "profile_id": "2",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"2\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"2\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-1-FEST- 76 AD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "Salamander GreenEvolution flex 76 AD | Fest im Rahmen | innen weiss + aussen weiss",
+      "record_count": 222,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-2-Kipp-76 AD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "2 Fachglas | Salamander GreenEvolution flex 76 AD",
+      "record_count": 60,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Salamander | GreenEvolution flex 76 AD | 2- Fachglas | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 102,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"4\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/2-Teilig/2026-1-Salamander AD - FEST-FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "Salamander GreenEvolution flex 76 AD | 2 fachglas | Fest/Fest im Rahmen",
+      "record_count": 255,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/2-Teilig/2026-2-Salamander AD - Fest im Rahmen-DrehKipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen | Salamander GreenEvolution flex 76 AD | 2 Fachglas",
+      "record_count": 176,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"4\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/2-Teilig/2026-3-OK-Salamander AD - DREH + DREH KIPP (Pfosten).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts | Salamander GreenEvolution flex 76 AD | 2 Fach Glas",
+      "record_count": 134,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"4\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/2-Teilig/2026-4-OK-Salamander AD - DREH + DREH KIPP (Stulp).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks -Stulp - DrehKipp Rechts | DrehKippLinks- Stulp- DrehRechts | Salamander GreenEvolution flex 76 AD | 2 Fach Glas",
+      "record_count": 135,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"4\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/2-Teilig/2026-5-OK-Salamander AD - DREHKipp + DREH KIPP (Pfosten).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "DrehKippLinks Pfosten DrehKipp Rechts | Salamander GreenEvolution flex 76 AD | 2 Fach Glas",
+      "record_count": 142,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/3-Teilig/2026-1-Salamander 76 AD-Fest im Rahmen- DKL- Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499",
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest",
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen | DKL- Fest im Rahmen-Fest im Rahmen | Fest im Rahmen - Fest im Rahmen DKR | Salamander GreenEvolution flex 76 AD Classic | 2 Fach Glas",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"499\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/3-Teilig/2026-2-Salamander 76 AD-DrehKippLinks- Pfosten-DrehKippRechts-Fest im Rahmen-DrehKippRechts.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "1078",
+        "1079"
+      ],
+      "opening_labels": [
+        "Fest im Rahmen-DKL-Pfosten-DKR",
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "DrehKippLinks-Pfosten- -Fest im Rahmen-Pfosten-DrehKippRechts | DrehKippLinks-Pfosten-DrehKippRechts-Fest im Rahmen | Salamander GreenEvolution flex 76 AD Classic | 2 Fachglas",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"16\",\"1078\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/3-Teilig/2026-3-Salamander 76 AD-DrehKippLinks- Pfosten-DrehRechts-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest"
+      ],
+      "status": "mapped",
+      "title": "DrehKippLinks-Pfosten- -DrehRechts-Fest im Rahmen | Fest im Rahmen-DrehLinks-Pfosten-DrehKippRechts | DrehLinks-Pfosten- -DrehKippRechts-Fest im Rahmen | Salamander GreenEvolution flex 76 AD Classic | 2 Fachglas",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"504\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 AD/3-Teilig/2026-4-Salamander 76 AD-DrehKippLinks- Stulp-DrehRechts-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 AD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "DrehKippLinks-Stulp- -DrehRechts-Fest im Rahmen | Fest im Rahmen-DrehLinks-Stulp-DrehKippRechts | DrehLinks-Stulp- -DrehKippRechts-Fest im Rahmen | Salamander GreenEvolution flex 76 AD Classic | 2 Fach Glas",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "4",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"4\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"4\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/1-Teilig/2026-Kopie von 1-FEST- 76 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "Salamander GreenEvolution flex 76 MD classic | Fest im Rahmen | innen weiss + aussen weiss | Breite | Höhe | 2 Fach Glas",
+      "record_count": 207,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/1-Teilig/2026-Kopie von 2-Kipp-76 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "Kipp | Weiß/weiß | Breite | Höhe | 2 Fachglas | 3 Dichtungen | Salamander GreenEvolution flex 76 MD classic",
+      "record_count": 60,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/1-Teilig/2026-Kopie von 3-DrehKippFlu_gel-76 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | Salamander | GreenEvolution flex 76 MD classic | 2- Fachglas | 3 Dichtungen | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 102,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"5\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/2-Teilig/2026- 1-Salamander GreenEvolution flex 76 MD - FEST-FEST.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | Salamander GreenEvolution flex 76 MD | 2 fachglas | Fest/Fest im Rahmen | weiß/ weiß",
+      "record_count": 255,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/2-Teilig/2026- 2-Salamander GreenEvolution flex 76 MD Fest im Rahmen-DrehKipp.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen | Salamander GreenEvolution flex 76 MD classic | 2 Fachglas",
+      "record_count": 176,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"5\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/2-Teilig/2026- 4-Salamander GreenEvolution flex 76 MD - DREH + DREH KIPP (Stulp).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | DrehLinks -Stulp - DrehKipp Rechts | DrehKippLinks- Stulp- DrehRechts | Salamander GreenEvolution flex 76 MD classic | 2 Fach Glas | weiß/weiß",
+      "record_count": 135,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"5\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/2-Teilig/2026- 5-Salamander GreenEvolution flex 76 MD - DREHKipp + DREH KIPP (Pfosten).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | DrehKippLinks Pfosten DrehKipp Rechts | weiß/weiß | Salamander GreenEvolution flex 76 MD classic | 2 Fach Glas",
+      "record_count": 143,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/3-Teilig/2026- 2-Salamander 76 MD-DrehKippLinks- Pfosten-DrehKippRechts-Fest im Rahmen-DrehKippRechts.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "1079"
+      ],
+      "opening_labels": [
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | DrehKippLinks-Pfosten-DrehKippRechts-Fest im Rahmen | Salamander GreenEvolution flex 76 MD Classic | 2 Fachglas | weiß/weiß",
+      "record_count": 165,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/3-Teilig/2026- 3-Salamander GreenEvolution flex 76 MD - DREH + DREH KIPP (Pfosten).xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts | Salamander GreenEvolution flex 76 MD classic | 2 Fach Glas | weiß/weiß",
+      "record_count": 135,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"5\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/3-Teilig/2026-1-Salamander 76 MD-Fest im Rahmen- DKL- Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499",
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest",
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen | DKL- Fest im Rahmen-Fest im Rahmen | Fest im Rahmen - Fest im Rahmen- DKR | Salamander GreenEvolution flex 76 MD Classic | weiß/weiß | 2 Fach Glas",
+      "record_count": 165,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"499\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/3-Teilig/2026-4-Salamander 76 MD-DrehKippLinks- Stulp-DrehRechts-Fest im Rahmen EKO.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | x | DrehKippLinks-Stulp- -DrehRechts-Fest im Rahmen | Fest im Rahmen-DrehLinks-Stulp-DrehKippRechts | DrehLinks-Stulp- -DrehKippRechts-Fest im Rahmen | Salamander GreenEvolution flex 76 MD Classic | 2 Fach Glas | weiß/weiß",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 76 MD/3-Teilig/3-Salamander 76 MD-DrehKippLinks- Pfosten-DrehRechts-Fest im Rahmen EKO OK.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 76 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504",
+        "505"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest",
+        "DKL/DR-Pfosten/Fest"
+      ],
+      "status": "mapped",
+      "title": "Breite | Höhe | DrehKippLinks-Pfosten-DR-Fest | Fest im Rahmen-DrehLinks-Pfosten-DrehKippRechts | DrehLinks-Pfosten-DrehKippRechts-Fest | Salamander GreenEvolution flex 76 MD Classic | weiß/weiß | 2 Fachglas",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "5",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"5\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"504\"]",
+        "[\"__static_ksf__\",\"5\",\"16\",\"505\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/1-Teilig/2026-1-FEST- 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "429"
+      ],
+      "opening_labels": [
+        "Festelement"
+      ],
+      "status": "mapped",
+      "title": "Salamander BluEvolution 82 MD | Fest im Rahmen | innen weiss + aussen weiss | 3 Fachglas",
+      "record_count": 254,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"14\",\"429\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/1-Teilig/2026-2-Kipp-82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "430"
+      ],
+      "opening_labels": [
+        "Kipp Griff Oben"
+      ],
+      "status": "mapped",
+      "title": "3 Fachglas | 4th / 18Ar / 4 / 18Ar / 4th [Ug = 0.5 | Salamander BluEvolution 82 MD | Classic",
+      "record_count": 60,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"14\",\"430\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/1-Teilig/2026-3-DrehKipp- 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "1-part",
+      "effective_configuration": "1-part",
+      "opening_ids": [
+        "425",
+        "426"
+      ],
+      "opening_labels": [
+        "Dreh-Kipp Links",
+        "Dreh-Kipp Rechts"
+      ],
+      "status": "mapped",
+      "title": "Salamander | Salamander BlueEvolution 82 MD | 3- Fachglas | 4th / 18Ar / 4 / 18Ar / 4th [Ug = 0.5] | DrehKipp Rechts | DrehKipp Links",
+      "record_count": 102,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "14",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"14\",\"425\"]",
+        "[\"__static_ksf__\",\"420\",\"14\",\"426\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/2-Teilig/2026-1-FEST-FEST- 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "440"
+      ],
+      "opening_labels": [
+        "Fest/Fest"
+      ],
+      "status": "mapped",
+      "title": "Salamander BluEvolution 82 MD | 3 fachglas | 4-18-4-18-4 UG 0,5 | Fest/Fest im Rahmen",
+      "record_count": 255,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"15\",\"440\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/2-Teilig/2026-2- Fest im Rahmen-DrehKipp- 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "445",
+        "446"
+      ],
+      "opening_labels": [
+        "Fest/DKR",
+        "DKL/Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen-DrehKippRechts | DrehKippLinks - Fest im Rahmen | Salamander BluEvolution 82 MD | 3 Fachglas",
+      "record_count": 176,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"15\",\"445\"]",
+        "[\"__static_ksf__\",\"420\",\"15\",\"446\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/2-Teilig/2026-3- DREH -Pfosten- DREH KIPP 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "438",
+        "439"
+      ],
+      "opening_labels": [
+        "DL/DKR-Pfosten",
+        "DKL/DR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks Pfosten DrehKipp Rechts | DrehKippLinks Pfosten DrehRechts | Salamander BLUEvolution 82 MD | 3 Fachglas | 3 Dichtungsebenen | 4-18-4-18-4 UG 0,5",
+      "record_count": 135,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"15\",\"438\"]",
+        "[\"__static_ksf__\",\"420\",\"15\",\"439\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/2-Teilig/2026-4- DREH -Stulp- DREH KIPP 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "441",
+        "444"
+      ],
+      "opening_labels": [
+        "DL-Stulp/DKR",
+        "DKL/DR-Stulp"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks - Stulp- DrehKipp Rechts | DrehKippLinks -Stulp- DrehRechts | Salamander BLUEvolution 82 MD | 3 Fachglas | 3 Dichtungsebenen",
+      "record_count": 135,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"15\",\"441\"]",
+        "[\"__static_ksf__\",\"420\",\"15\",\"444\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/2-Teilig/2026-5- DREHKippLinks -Pfosten- + DREH KIPPRECHTS 82 MD.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "2-part",
+      "effective_configuration": "2-part",
+      "opening_ids": [
+        "437"
+      ],
+      "opening_labels": [
+        "DKL/DKR-Pfosten"
+      ],
+      "status": "mapped",
+      "title": "DrehKippLinks -Pfosten -DrehKipp Rechts | 3 Fachglas | 4-18-4-18-4 UG 0,5 | Salamander BluEvolution 82 MD",
+      "record_count": 165,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"15\",\"437\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/3-Teilig/2026-1-Salamander 82 MD-Fest- Fest im Rahmen- 1 x DK.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "498",
+        "499",
+        "554",
+        "616"
+      ],
+      "opening_labels": [
+        "Fest/DKR/Fest",
+        "Fest/DKL/Fest",
+        "DKL/Fest/Fest",
+        "Fest/Fest/DKR"
+      ],
+      "status": "mapped",
+      "title": "Salamander 82 MD Classic | 3 Fach Glas | Breite | Höhe | Fest im Rahmen- DKR - Fest im Rahmen | Fest im Rahmen - DKL- Fest im Rahmen | Fest-Fest im Rahmen - DKR | DKL-Fest Fest im Rahmen",
+      "record_count": 165,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"16\",\"498\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"499\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"554\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"616\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/3-Teilig/2026-2-Salamander 82 MD-DKL-Fest im Rahmen-DKR.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "502",
+        "1078",
+        "1079"
+      ],
+      "opening_labels": [
+        "DKL/Fest/DKR",
+        "Fest im Rahmen-DKL-Pfosten-DKR",
+        "DKL-Pfosten-DKR - Fest im Rahmen"
+      ],
+      "status": "mapped",
+      "title": "3 Tlg. | Breite | Höhe | weiß/weiß | Salamander BluEvolution 82 MD | 3 Fach Glas | DKL- Fest im Rahmen - DKR | Fest im Rahmen-DKL-Pfosten-DKR | DKL-Pfosten-DKR-Fest im Rahmen",
+      "record_count": 165,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"16\",\"502\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"1078\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"1079\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/3-Teilig/2026-3-Salamander 82 MD-DrehKippLinks- Pfosten-DrehRechts-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "503",
+        "504"
+      ],
+      "opening_labels": [
+        "Fest/DL-Pfosten/DKR",
+        "DL-Pfosten/DKR-Fest"
+      ],
+      "status": "mapped",
+      "title": "Fest im Rahmen-DrehLinks-Pfosten-DrehKippRechts | DrehLinks-Pfosten- -DrehKippRechts-Fest im Rahmen | DrehKippLinks-Pfosten- -DrehRechts-Fest im Rahmen | Salamander BluEvolution 82 MD Classic | 3 Fachglas | 4-18-4-18-4 UG 0,5",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"16\",\"503\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"504\"]"
+      ]
+    },
+    {
+      "relative_path": "Fenster/Fenster Salamander 82 MD/3-Teilig/2026-4-Salamander 82 MD-DrehKippLinks- Stulp-DrehRechts-Fest im Rahmen.xlsx",
+      "product": "Window",
+      "profile_folder": "Fenster Salamander 82 MD",
+      "source_configuration": "3-part",
+      "effective_configuration": "3-part",
+      "opening_ids": [
+        "506",
+        "509",
+        "510"
+      ],
+      "opening_labels": [
+        "Fest/DL-Stulp/DKR",
+        "DL-Stulp/DKR-Fest",
+        "DKL/DR-Stulp/Fest"
+      ],
+      "status": "mapped",
+      "title": "DrehLinks-Stulp- -DrehKippRechts-Fest im Rahmen | DrehKippLinks-Stulp- -DrehRechts-Fest im Rahmen | Fest im Rahmen-DrehLinks-Stulp-DrehKippRechts | Salamander BluEvolution 82 MD Classic | 3 Fachglas | 4-18-4-18-4 | UG 0,5",
+      "record_count": 163,
+      "static_code": "__static_ksf__",
+      "profile_id": "420",
+      "wing_id": "16",
+      "combo_keys": [
+        "[\"__static_ksf__\",\"420\",\"16\",\"506\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"509\"]",
+        "[\"__static_ksf__\",\"420\",\"16\",\"510\"]"
+      ]
+    },
+    {
+      "relative_path": "Schiebetür/Aluplast HST85/2026-weis-3 fachglas-HST BASIC BIALY 4_18_4_18_4 do 4.2.xlsx",
+      "product": "Sliding door",
+      "profile_folder": "Aluplast HST85",
+      "source_configuration": "sliding",
+      "effective_configuration": "sliding",
+      "opening_ids": [
+        "815",
+        "816"
+      ],
+      "opening_labels": [
+        "Hebeschiebe Rechts - Hebeschiebe Festfeld",
+        "Hebeschiebe Festfeld - Hebeschiebe Links"
+      ],
+      "status": "mapped",
+      "title": "HST BASIC 4/18/4/18/4 | 3 Fachglas | W\\S | Schieben von Links nach Rechts/Fest | Schieben von Rechts nach LinKs/Fest",
+      "record_count": 82,
+      "static_code": "__static_schiebe__",
+      "profile_id": "584",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+        "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]"
+      ]
+    },
+    {
+      "relative_path": "Schiebetür/Salamander HST82/2026-3 Fachglas-Salamander evolutionDrive HST 82 3-Fachglas.xlsx",
+      "product": "Sliding door",
+      "profile_folder": "Salamander HST82",
+      "source_configuration": "sliding",
+      "effective_configuration": "sliding",
+      "opening_ids": [
+        "815",
+        "816"
+      ],
+      "opening_labels": [
+        "Hebeschiebe Rechts - Hebeschiebe Festfeld",
+        "Hebeschiebe Festfeld - Hebeschiebe Links"
+      ],
+      "status": "mapped",
+      "title": "3 Fachglas | 4th/18Ar/4/18Ar/4th | UG 0,5 | Hebeschiebetür Salamander evolutionDrive HST 82 | weiß/weiß | W\\S | Schieben von Rechts nach Links/Fest | Schieben von rechts nach links/fest",
+      "record_count": 82,
+      "static_code": "__static_schiebe__",
+      "profile_id": "585",
+      "wing_id": "15",
+      "combo_keys": [
+        "[\"__static_schiebe__\",\"585\",\"15\",\"815\"]",
+        "[\"__static_schiebe__\",\"585\",\"15\",\"816\"]"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "skipped_row_count": 0,
+  "outputs": {
+    "changes_csv": "reports/original-excel-authority-2026-4-client-check-20260811.csv",
+    "sql": "reports/original-excel-authority-2026-4-client-check-20260811.sql"
+  }
+}

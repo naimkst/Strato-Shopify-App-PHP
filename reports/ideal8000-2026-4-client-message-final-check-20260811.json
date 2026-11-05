@@ -1,0 +1,52 @@
+{
+  "mode": "dry-run",
+  "source_json": "reports/live-client-message-final-check-20260811/get-tabs-live.json",
+  "source_excel_file": "Fenster/Aluplast Ideal 8000/3-Teilig/2026-4-8000-DKL-Fest im Rahmen-DKR.xlsx",
+  "target_combo_keys": [
+    "[\"__static_ksf__\",\"3\",\"16\",\"502\"]",
+    "[\"__static_ksf__\",\"3\",\"16\",\"1078\"]",
+    "[\"__static_ksf__\",\"3\",\"16\",\"1079\"]"
+  ],
+  "wanted_rows_per_combo": 206,
+  "payload_count": 3,
+  "comparisons": [
+    {
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]",
+      "parent_id": "575",
+      "updates": 0,
+      "inserts": 0,
+      "deletes": 0,
+      "already_correct": 206,
+      "current_rows": 206,
+      "wanted_rows": 206
+    },
+    {
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"1078\"]",
+      "parent_id": "1088",
+      "updates": 0,
+      "inserts": 0,
+      "deletes": 0,
+      "already_correct": 206,
+      "current_rows": 206,
+      "wanted_rows": 206
+    },
+    {
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"1079\"]",
+      "parent_id": "1089",
+      "updates": 0,
+      "inserts": 0,
+      "deletes": 0,
+      "already_correct": 206,
+      "current_rows": 206,
+      "wanted_rows": 206
+    }
+  ],
+  "summary": {
+    "updates": 0,
+    "inserts": 0,
+    "deletes": 0,
+    "already_correct": 618
+  },
+  "blockers": [],
+  "applied": []
+}

@@ -1,0 +1,216 @@
+{
+  "client_instruction_followed": "Use CSV as checklist, but original Excel values are authoritative; for the Ideal 8000 duplicate conflict use 2026-4, not 2026-3.",
+  "main_csv": {
+    "path": "/Users/naim/Downloads/deine-fenster24_configurator-vs-excel_developer.csv",
+    "rows_processed": 6648,
+    "raw_checker_summary": {
+      "matched": 6647,
+      "already_correct": 6025,
+      "db_csv_current_mismatch": 6235,
+      "needs_update": 622,
+      "missing_height_width_row": 1
+    },
+    "classification": {
+      "main_csv_target_matches_live": 6025,
+      "main_csv_target_is_duplicate_2026_3_do_not_apply": 618,
+      "main_csv_rounding_noise_do_not_apply": 4,
+      "main_csv_non_buildable_2026_3_row_do_not_insert": 1
+    },
+    "examples": {
+      "main_csv_target_is_duplicate_2026_3_do_not_apply": [
+        {
+          "line": 677,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "700",
+          "live_price": "456.98",
+          "csv_target": "445.37",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 678,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "800",
+          "live_price": "474.20",
+          "csv_target": "467.47",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 679,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "900",
+          "live_price": "491.42",
+          "csv_target": "490.87",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 680,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "1000",
+          "live_price": "519.92",
+          "csv_target": "520.77",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 681,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "1100",
+          "live_price": "541.88",
+          "csv_target": "545.47",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 682,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "1200",
+          "live_price": "559.10",
+          "csv_target": "566.27",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 683,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "1300",
+          "live_price": "581.66",
+          "csv_target": "592.27",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        },
+        {
+          "line": 684,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/DKR",
+          "width": "1500",
+          "height": "1400",
+          "live_price": "604.82",
+          "csv_target": "620.87",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"502\"]"
+        }
+      ],
+      "main_csv_rounding_noise_do_not_apply": [
+        {
+          "line": 2699,
+          "product": "Window",
+          "profile": "Salamander 82 MD",
+          "configuration": "3-part",
+          "opening": "DKL/Fest/Fest",
+          "width": "1900",
+          "height": "1400",
+          "live_price": "549.19",
+          "csv_target": "549.18",
+          "combo_key": "[\"__static_ksf__\",\"420\",\"16\",\"554\"]"
+        },
+        {
+          "line": 3093,
+          "product": "Window",
+          "profile": "Salamander 82 MD",
+          "configuration": "3-part",
+          "opening": "Fest/DL-Stulp/DKR",
+          "width": "2500",
+          "height": "1600",
+          "live_price": "812.18",
+          "csv_target": "812.17",
+          "combo_key": "[\"__static_ksf__\",\"420\",\"16\",\"506\"]"
+        },
+        {
+          "line": 3188,
+          "product": "Window",
+          "profile": "Salamander 82 MD",
+          "configuration": "3-part",
+          "opening": "Fest/Fest/DKR",
+          "width": "1900",
+          "height": "1400",
+          "live_price": "549.19",
+          "csv_target": "549.18",
+          "combo_key": "[\"__static_ksf__\",\"420\",\"16\",\"616\"]"
+        },
+        {
+          "line": 6527,
+          "product": "Window",
+          "profile": "Salamander 82 MD",
+          "configuration": "3-part",
+          "opening": "Fest/DKR/Fest",
+          "width": "1900",
+          "height": "1400",
+          "live_price": "549.19",
+          "csv_target": "549.18",
+          "combo_key": "[\"__static_ksf__\",\"420\",\"16\",\"498\"]"
+        }
+      ],
+      "main_csv_non_buildable_2026_3_row_do_not_insert": [
+        {
+          "line": 4343,
+          "product": "Window",
+          "profile": "Ideal 8000",
+          "configuration": "3-part",
+          "opening": "DKL-Pfosten-DKR - Fest im Rahmen",
+          "width": "2900",
+          "height": "700",
+          "csv_target": "597.47",
+          "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"1079\"]",
+          "reason": "2900x700 is blank/not present in 2026-4 authoritative Excel grid"
+        }
+      ]
+    }
+  },
+  "remaining_csv": {
+    "path": "/Users/naim/Downloads/deine-fenster24_remaining-fixes_developer.csv",
+    "corrections_pending": 0,
+    "skipped": {
+      "already_correct": 369
+    }
+  },
+  "authoritative_excel_2026_4": {
+    "rows_checked": 27603,
+    "target_keys": 27603,
+    "updates_pending": 0,
+    "inserts_pending": 0,
+    "conflicts": 0,
+    "change_summary": {
+      "already_correct": 27243,
+      "duplicate_db_keys": 360,
+      "already_correct_duplicate": 802,
+      "target_keys": 27603
+    }
+  },
+  "ideal8000_2026_4_direct_check": {
+    "updates": 0,
+    "inserts": 0,
+    "deletes": 0,
+    "already_correct": 618
+  },
+  "source_reports": [
+    "reports/main-csv-client-check-20260811.json",
+    "reports/remaining-csv-client-check-20260811.json",
+    "reports/original-excel-authority-2026-4-client-check-20260811.json",
+    "reports/ideal8000-2026-4-client-check-20260811.json"
+  ]
+}

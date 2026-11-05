@@ -1,0 +1,288 @@
+{
+  "source_rule": "Original Excel files are authoritative; duplicate Ideal 8000 2026-3 table excluded, 2026-4 retained.",
+  "categories": [
+    "Balcony door",
+    "Sliding door",
+    "Window"
+  ],
+  "desired_target_rows_by_product": {
+    "Balcony door": 1469,
+    "Window": 25806,
+    "Sliding door": 328
+  },
+  "desired_target_keys": 27603,
+  "source_conflicts": 0,
+  "missing_buildable_rows": 0,
+  "wrong_price_rows": 0,
+  "extra_non_buildable_rows": 0,
+  "duplicate_same_price_keys": 360,
+  "duplicate_conflicting_price_keys": 0,
+  "samples": {
+    "missing": [],
+    "wrong": [],
+    "extra": [],
+    "duplicate_same_price": [
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "600",
+        "height": "600",
+        "price": [
+          "134.85"
+        ],
+        "rows": [
+          "92847",
+          "93112"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "700",
+        "height": "600",
+        "price": [
+          "142.51"
+        ],
+        "rows": [
+          "92848",
+          "93113"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "800",
+        "height": "600",
+        "price": [
+          "147.85"
+        ],
+        "rows": [
+          "92849",
+          "93114"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "900",
+        "height": "600",
+        "price": [
+          "155.50"
+        ],
+        "rows": [
+          "92850",
+          "93115"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1000",
+        "height": "600",
+        "price": [
+          "167.76"
+        ],
+        "rows": [
+          "92851",
+          "93116"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "600",
+        "height": "700",
+        "price": [
+          "149.38"
+        ],
+        "rows": [
+          "92852",
+          "93117"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "700",
+        "height": "700",
+        "price": [
+          "156.11"
+        ],
+        "rows": [
+          "92853",
+          "93118"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "800",
+        "height": "700",
+        "price": [
+          "164.68"
+        ],
+        "rows": [
+          "92854",
+          "93119"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "900",
+        "height": "700",
+        "price": [
+          "173.25"
+        ],
+        "rows": [
+          "92855",
+          "93120"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1000",
+        "height": "700",
+        "price": [
+          "186.43"
+        ],
+        "rows": [
+          "92856",
+          "93121"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1100",
+        "height": "700",
+        "price": [
+          "194.54"
+        ],
+        "rows": [
+          "92857",
+          "93122"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1200",
+        "height": "700",
+        "price": [
+          "204.03"
+        ],
+        "rows": [
+          "92858",
+          "93123"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "600",
+        "height": "800",
+        "price": [
+          "155.83"
+        ],
+        "rows": [
+          "92859",
+          "93124"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "700",
+        "height": "800",
+        "price": [
+          "163.49"
+        ],
+        "rows": [
+          "92860",
+          "93125"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "800",
+        "height": "800",
+        "price": [
+          "172.52"
+        ],
+        "rows": [
+          "92861",
+          "93126"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "900",
+        "height": "800",
+        "price": [
+          "181.54"
+        ],
+        "rows": [
+          "92862",
+          "93127"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1000",
+        "height": "800",
+        "price": [
+          "195.18"
+        ],
+        "rows": [
+          "92863",
+          "93128"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1100",
+        "height": "800",
+        "price": [
+          "203.76"
+        ],
+        "rows": [
+          "92864",
+          "93129"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1200",
+        "height": "800",
+        "price": [
+          "214.17"
+        ],
+        "rows": [
+          "92865",
+          "93130"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      },
+      {
+        "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+        "width": "1300",
+        "height": "800",
+        "price": [
+          "223.20"
+        ],
+        "rows": [
+          "92866",
+          "93131"
+        ],
+        "source": "Fenster/Fenster Salamander 76 AD/1-Teilig/2026-3-DrehKippFlu_gel-76 AD.xlsx"
+      }
+    ],
+    "duplicate_conflicting_price": []
+  }
+}

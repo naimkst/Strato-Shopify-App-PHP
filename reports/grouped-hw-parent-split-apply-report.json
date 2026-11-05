@@ -1,0 +1,309 @@
+{
+  "mode": "apply",
+  "source": "/Users/naim/WWW/strato-project-backups/codex-20260811-004732-before-grouped-parent-split/remote-data/get-tabs-live.json",
+  "changes": "reports/original-excel-price-changes-pre-grouped-split.csv",
+  "parent_plan_count": 15,
+  "create_payload_count": 18,
+  "corrections": 2852,
+  "inserts": 11,
+  "created_rows": 3244,
+  "primary_rows": 2746,
+  "skipped": {
+    "already_correct": 23886,
+    "conflict": 618,
+    "already_correct_duplicate": 560
+  },
+  "blockers": [],
+  "plans": [
+    {
+      "parent_id": "518",
+      "primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 219,
+      "inserts": 0,
+      "created_rows": 224,
+      "primary_rows": 224
+    },
+    {
+      "parent_id": "519",
+      "primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 219,
+      "inserts": 0,
+      "created_rows": 224,
+      "primary_rows": 224
+    },
+    {
+      "parent_id": "562",
+      "primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "563",
+      "primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "576",
+      "primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 206,
+      "inserts": 1,
+      "created_rows": 207,
+      "primary_rows": 206
+    },
+    {
+      "parent_id": "577",
+      "primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"504\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 1,
+      "inserts": 0,
+      "created_rows": 207,
+      "primary_rows": 207
+    },
+    {
+      "parent_id": "621",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 165,
+      "inserts": 0,
+      "created_rows": 165,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "634",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 328,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "635",
+      "primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "895",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "913",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 0,
+      "created_rows": 330,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "916",
+      "primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 326,
+      "inserts": 0,
+      "created_rows": 163,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "994",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"498\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 163,
+      "primary_rows": 165
+    },
+    {
+      "parent_id": "1003",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"503\"]",
+      "combo_count": 2,
+      "create_count": 1,
+      "corrections": 326,
+      "inserts": 2,
+      "created_rows": 165,
+      "primary_rows": 163
+    },
+    {
+      "parent_id": "1004",
+      "primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"505\"]",
+      "combo_count": 3,
+      "create_count": 2,
+      "corrections": 163,
+      "inserts": 2,
+      "created_rows": 328,
+      "primary_rows": 163
+    }
+  ],
+  "applied": [
+    {
+      "parent_id": "518",
+      "created_ids": [
+        "1084"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"503\"]",
+      "corrections": 219,
+      "inserts": 0
+    },
+    {
+      "parent_id": "519",
+      "created_ids": [
+        "1085"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"1\",\"16\",\"504\"]",
+      "corrections": 219,
+      "inserts": 0
+    },
+    {
+      "parent_id": "562",
+      "created_ids": [
+        "1086"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"503\"]",
+      "corrections": 206,
+      "inserts": 1
+    },
+    {
+      "parent_id": "563",
+      "created_ids": [
+        "1087"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"2\",\"16\",\"504\"]",
+      "corrections": 206,
+      "inserts": 1
+    },
+    {
+      "parent_id": "576",
+      "created_ids": [
+        "1088"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"503\"]",
+      "corrections": 206,
+      "inserts": 1
+    },
+    {
+      "parent_id": "577",
+      "created_ids": [
+        "1089"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"3\",\"16\",\"504\"]",
+      "corrections": 1,
+      "inserts": 0
+    },
+    {
+      "parent_id": "621",
+      "created_ids": [
+        "1090"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"498\"]",
+      "corrections": 165,
+      "inserts": 0
+    },
+    {
+      "parent_id": "634",
+      "created_ids": [
+        "1091",
+        "1092"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"505\"]",
+      "corrections": 163,
+      "inserts": 2
+    },
+    {
+      "parent_id": "635",
+      "created_ids": [
+        "1093"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"5\",\"16\",\"503\"]",
+      "corrections": 163,
+      "inserts": 0
+    },
+    {
+      "parent_id": "895",
+      "created_ids": [
+        "1094"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"498\"]",
+      "corrections": 163,
+      "inserts": 0
+    },
+    {
+      "parent_id": "913",
+      "created_ids": [
+        "1095",
+        "1096"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"505\"]",
+      "corrections": 163,
+      "inserts": 0
+    },
+    {
+      "parent_id": "916",
+      "created_ids": [
+        "1097"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"4\",\"16\",\"503\"]",
+      "corrections": 326,
+      "inserts": 0
+    },
+    {
+      "parent_id": "994",
+      "created_ids": [
+        "1098"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"498\"]",
+      "corrections": 163,
+      "inserts": 2
+    },
+    {
+      "parent_id": "1003",
+      "created_ids": [
+        "1099"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"503\"]",
+      "corrections": 326,
+      "inserts": 2
+    },
+    {
+      "parent_id": "1004",
+      "created_ids": [
+        "1100",
+        "1101"
+      ],
+      "converted_primary_combo": "[\"__static_ksf__\",\"420\",\"16\",\"505\"]",
+      "corrections": 163,
+      "inserts": 2
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "mode": "apply",
+  "include_same_glass": false,
+  "source": "https://droplify.de/deine-fenster24/admin/get-tabs.php",
+  "csv": "/Users/naim/Downloads/deine-fenster24_configurator-vs-excel_developer.csv",
+  "summary": {
+    "skipped_filter": 6624,
+    "matched": 24,
+    "needs_update": 24
+  },
+  "sql_update_count": 24,
+  "blockers": {},
+  "payload_blockers": [],
+  "parent_payloads": [
+    {
+      "id": "797",
+      "correction_count": 24,
+      "label": "HW Combo: __static_balkon__ > 1 > 15 > 439"
+    }
+  ],
+  "bad_rows": [],
+  "db_csv_current_mismatches": []
+}

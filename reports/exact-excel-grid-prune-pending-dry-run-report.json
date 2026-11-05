@@ -1,0 +1,1233 @@
+{
+  "mode": "dry-run",
+  "source": "reports/live-pending-csv-check/get-tabs-live.json",
+  "conflict_files_skipped": [
+    "Fenster/Aluplast Ideal 8000/3-Teilig/2026-3-8000-DKL-Fest im Rahmen-DKR.xlsx",
+    "Fenster/Aluplast Ideal 8000/3-Teilig/2026-4-8000-DKL-Fest im Rahmen-DKR.xlsx"
+  ],
+  "matrix_summary": {
+    "mapped": 108
+  },
+  "desired_combo_count": 201,
+  "desired_row_count": 26985,
+  "source_conflicts": [],
+  "skipped": {
+    "conflict_file_rows": 413
+  },
+  "update_parent_payloads": 41,
+  "create_parent_payloads": 0,
+  "split_parent_payloads": 3,
+  "stats": {
+    "already_exact_parent": 158,
+    "single_parent_updates": 41,
+    "delete_rows": 946,
+    "insert_rows": 121,
+    "price_update_rows": 0,
+    "grouped_parent_splits": 3,
+    "created_split_parents": 3
+  },
+  "blockers": [],
+  "deletion_samples": [
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "2200",
+      "height": "700"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "490",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"437\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1800",
+      "height": "2000"
+    },
+    {
+      "parent_id": "491",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"438\"]",
+      "width": "1900",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1800",
+      "height": "2000"
+    },
+    {
+      "parent_id": "492",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"439\"]",
+      "width": "1900",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1800",
+      "height": "2000"
+    },
+    {
+      "parent_id": "494",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"441\"]",
+      "width": "1900",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1800",
+      "height": "2000"
+    },
+    {
+      "parent_id": "496",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"15\",\"444\"]",
+      "width": "1900",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1800",
+      "height": "2000"
+    },
+    {
+      "parent_id": "534",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"441\"]",
+      "width": "1900",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "536",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"438\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "537",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"439\"]",
+      "width": "1700",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "2200",
+      "height": "700"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1400",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1500",
+      "height": "2000"
+    },
+    {
+      "parent_id": "542",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"15\",\"437\"]",
+      "width": "1600",
+      "height": "2000"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "1800",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "1900",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2000",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2100",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2200",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2500",
+      "height": "600"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "545",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"438\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1100",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1200",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1300",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1400",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1500",
+      "height": "500"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1200",
+      "height": "2000"
+    },
+    {
+      "parent_id": "548",
+      "combo_key": "[\"__static_ksf__\",\"1\",\"15\",\"444\"]",
+      "width": "1300",
+      "height": "2000"
+    },
+    {
+      "parent_id": "557",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"16\",\"498\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "558",
+      "combo_key": "[\"__static_ksf__\",\"2\",\"16\",\"499\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "570",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"498\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "571",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"499\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "572",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"554\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "577",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"504\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "578",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"505\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "579",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"506\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "581",
+      "combo_key": "[\"__static_ksf__\",\"3\",\"16\",\"510\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "900"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "900"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "1000"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "1000"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "1100"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "1100"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "1200"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "1200"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2300",
+      "height": "1300"
+    },
+    {
+      "parent_id": "604",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"438\"]",
+      "width": "2400",
+      "height": "1300"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2300",
+      "height": "900"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2400",
+      "height": "900"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2300",
+      "height": "1000"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2400",
+      "height": "1000"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2300",
+      "height": "1100"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2400",
+      "height": "1100"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2300",
+      "height": "1200"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2400",
+      "height": "1200"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2300",
+      "height": "1300"
+    },
+    {
+      "parent_id": "605",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"439\"]",
+      "width": "2400",
+      "height": "1300"
+    },
+    {
+      "parent_id": "608",
+      "combo_key": "[\"__static_ksf__\",\"5\",\"15\",\"437\"]",
+      "width": "2200",
+      "height": "600"
+    },
+    {
+      "parent_id": "649",
+      "combo_key": "[\"__static_balkon__\",\"2\",\"14\",\"611\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "650",
+      "combo_key": "[\"__static_balkon__\",\"2\",\"14\",\"612\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "653",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"14\",\"611\"]",
+      "width": "1100",
+      "height": "2000"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1100",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1200",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1300",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1400",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1500",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1600",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1700",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1800",
+      "height": "700"
+    },
+    {
+      "parent_id": "808",
+      "combo_key": "[\"__static_balkon__\",\"3\",\"15\",\"444\"]",
+      "width": "1900",
+      "height": "700"
+    },
+    {
+      "parent_id": "811",
+      "combo_key": "[\"__static_balkon__\",\"5\",\"15\",\"439\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "811",
+      "combo_key": "[\"__static_balkon__\",\"5\",\"15\",\"439\"]",
+      "width": "1000",
+      "height": "2100"
+    },
+    {
+      "parent_id": "813",
+      "combo_key": "[\"__static_balkon__\",\"5\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "2000"
+    },
+    {
+      "parent_id": "813",
+      "combo_key": "[\"__static_balkon__\",\"5\",\"15\",\"444\"]",
+      "width": "1000",
+      "height": "2100"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3900",
+      "height": "2200"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "4000",
+      "height": "2200"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3700",
+      "height": "2300"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3800",
+      "height": "2300"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3900",
+      "height": "2300"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "4000",
+      "height": "2300"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3600",
+      "height": "2400"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3700",
+      "height": "2400"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3800",
+      "height": "2400"
+    },
+    {
+      "parent_id": "832",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"816\"]",
+      "width": "3900",
+      "height": "2400"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1100",
+      "height": "600"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1200",
+      "height": "600"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1300",
+      "height": "600"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1400",
+      "height": "600"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1300",
+      "height": "700"
+    },
+    {
+      "parent_id": "866",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"426\"]",
+      "width": "1400",
+      "height": "700"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1100",
+      "height": "600"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1200",
+      "height": "600"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1300",
+      "height": "600"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1400",
+      "height": "600"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1300",
+      "height": "700"
+    },
+    {
+      "parent_id": "869",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1400",
+      "height": "700"
+    },
+    {
+      "parent_id": "898",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"499\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "898",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"499\"]",
+      "width": "3000",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1600",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1700",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1800",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "1900",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2000",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2100",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2200",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2300",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2400",
+      "height": "700"
+    },
+    {
+      "parent_id": "899",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"14\",\"425\"]",
+      "width": "2500",
+      "height": "700"
+    },
+    {
+      "parent_id": "919",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"509\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "919",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"509\"]",
+      "width": "3000",
+      "height": "700"
+    },
+    {
+      "parent_id": "919",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"510\"]",
+      "width": "2900",
+      "height": "700"
+    },
+    {
+      "parent_id": "919",
+      "combo_key": "[\"__static_ksf__\",\"4\",\"16\",\"510\"]",
+      "width": "3000",
+      "height": "700"
+    },
+    {
+      "parent_id": "934",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+      "width": "3900",
+      "height": "2200"
+    },
+    {
+      "parent_id": "934",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+      "width": "4000",
+      "height": "2200"
+    },
+    {
+      "parent_id": "934",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+      "width": "3700",
+      "height": "2300"
+    },
+    {
+      "parent_id": "934",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+      "width": "3800",
+      "height": "2300"
+    },
+    {
+      "parent_id": "934",
+      "combo_key": "[\"__static_schiebe__\",\"584\",\"15\",\"815\"]",
+      "width": "3900",
+      "height": "2300"
+    }
+  ],
+  "applied": []
+}

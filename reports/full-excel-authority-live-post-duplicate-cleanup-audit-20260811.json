@@ -1,0 +1,27 @@
+{
+  "source_rule": "Original Excel files are authoritative; duplicate Ideal 8000 2026-3 table excluded, 2026-4 retained.",
+  "categories": [
+    "Balcony door",
+    "Sliding door",
+    "Window"
+  ],
+  "desired_target_rows_by_product": {
+    "Balcony door": 1469,
+    "Window": 25806,
+    "Sliding door": 328
+  },
+  "desired_target_keys": 27603,
+  "source_conflicts": 0,
+  "missing_buildable_rows": 0,
+  "wrong_price_rows": 0,
+  "extra_non_buildable_rows": 0,
+  "duplicate_same_price_keys": 0,
+  "duplicate_conflicting_price_keys": 0,
+  "samples": {
+    "missing": [],
+    "wrong": [],
+    "extra": [],
+    "duplicate_same_price": [],
+    "duplicate_conflicting_price": []
+  }
+}

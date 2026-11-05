@@ -1,0 +1,24 @@
+{
+  "mode": "apply",
+  "csv": "/Users/naim/Downloads/deine-fenster24_remaining-fixes_developer.csv",
+  "source": "reports/live-after-exact-grid-prune/get-tabs-live.json",
+  "payload_count": 1,
+  "corrections": 163,
+  "skipped": {
+    "unconfirmed_conflict_rows": 206
+  },
+  "blockers": [],
+  "payloads": [
+    {
+      "id": "1093",
+      "label": "HW Combo: __static_ksf__ > 5 > 16 > 1078",
+      "corrections": 163
+    }
+  ],
+  "applied": [
+    {
+      "id": "1093",
+      "corrections": 163
+    }
+  ]
+}
